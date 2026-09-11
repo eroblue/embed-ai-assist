@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "schematic-reader output",
+  "description": "schematic-reader 输出契约：写入 state.json 的 circuit 字段结构。完整网表数据另行写入 outputs/circuit_netlist.json。",
+  "type": "object",
+  "properties": {
+    "circuit": {
+      "type": "object",
+      "description": "state.json 中由 schematic-reader 写入的唯一字段，其他 Skill 字段禁止读写",
+      "properties": {
+        "netlist_path": {
+          "type": "string",
+          "minLength": 1,
+          "description": "网表 JSON 文件路径，指向 outputs/circuit_netlist.json"
+        },
+        "component_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "元件数量"
+        },
+        "net_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "网络数量"
+        },
+        "pin_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "引脚数量（网表中引脚连接总数）"
+        },
+        "parse_status": {
+          "type": "string",
+          "enum": ["success", "partial", "failed"],
+          "description": "解析状态：success=完整解析；partial=解析完成但存在告警/不完整连通性；failed=解析失败"
+        },
+        "eda_tool": {
+          "type": "string",
+          "enum": ["altium", "kicad"],
+          "description": "实际使用的 EDA 适配器"
+        },
+        "source_file": {
+          "type": "string",
+          "description": "被解析的原理图文件绝对路径"
+        },
+        "error": {
+          "type": ["string", "null"],
+          "description": "解析失败或部分失败时的错误信息，成功时为 null"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "写入时间（ISO 8601 格式）"
+        }
+      },
+      "required": ["netlist_path", "parse_status", "component_count", "net_count", "pin_count", "eda_tool", "source_file", "error"]
+    }
+  },
+  "required": ["circuit"],
+  "additionalProperties": false
+}

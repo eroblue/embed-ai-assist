@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EmbedAIAssist config.json",
+  "description": "全局配置契约：路径、工具链选择等。各 Skill 只读，禁止修改。",
+  "type": "object",
+  "properties": {
+    "project": {
+      "type": "object",
+      "description": "项目基本信息与输入文件路径",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "项目名称"
+        },
+        "workspace": {
+          "type": "string",
+          "default": ".",
+          "description": "项目工作区目录，outputs/ 与 state.json 相对此目录"
+        },
+        "schematic_path": {
+          "type": "string",
+          "description": "原理图文件路径（.SchDoc / .kicad_sch），schematic-reader 读取"
+        },
+        "spec_path": {
+          "type": "string",
+          "description": "功能规格书路径（PDF / Word / Markdown），spec-reader 读取"
+        },
+        "datasheet_path": {
+          "type": "string",
+          "description": "MCU 数据手册路径（PDF），datasheet-extractor 读取"
+        }
+      },
+      "required": ["name", "workspace"]
+    },
+    "python": {
+      "type": "object",
+      "description": "Python 解释器配置",
+      "properties": {
+        "executable": {
+          "type": "string",
+          "description": "Python 解释器路径（3.10+）"
+        },
+        "min_version": {
+          "type": "string",
+          "description": "最低 Python 版本要求"
+        }
+      }
+    },
+    "eda": {
+      "type": "object",
+      "description": "EDA 工具配置",
+      "properties": {
+        "tool": {
+          "type": "string",
+          "enum": ["altium", "kicad"],
+          "default": "altium",
+          "description": "默认 EDA 工具类型"
+        }
+      }
+    },
+    "toolchain": {
+      "type": "object",
+      "description": "编译工具链配置，build Skill 读取",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["keil", "gcc", "iar"],
+          "description": "工具链类型"
+        },
+        "keil_path": {
+          "type": "string",
+          "description": "Keil 安装路径（如 C:\\Keil_v5）"
+        },
+        "gcc_path": {
+          "type": "string",
+          "description": "ARM GCC 工具链路径"
+        }
+      }
+    },
+    "flash": {
+      "type": "object",
+      "description": "烧录工具配置，flash Skill 读取",
+      "properties": {
+        "tool_type": {
+          "type": "string",
+          "enum": ["jlink", "tlink", "openocd", "dap", "pwlink"],
+          "description": "烧录工具类型"
+        },
+        "jlink_path": {
+          "type": "string",
+          "description": "J-Link 路径"
+        },
+        "openocd_path": {
+          "type": "string",
+          "description": "OpenOCD 路径"
+        },
+        "target_device": {
+          "type": "string",
+          "description": "目标 MCU 型号（如 STM32F103C8）"
+        }
+      }
+    },
+    "serial": {
+      "type": "object",
+      "description": "串口监控配置，serial-monitor Skill 读取",
+      "properties": {
+        "port": {
+          "type": "string",
+          "description": "串口号（如 COM3）"
+        },
+        "baudrate": {
+          "type": "integer",
+          "default": 115200,
+          "description": "波特率"
+        }
+      }
+    }
+  },
+  "required": ["project"]
+}

@@ -1,0 +1,31 @@
+{
+  "project": {
+    "name": "EmbedAIAssist",
+    "workspace": ".",
+    "schematic_path": "",
+    "spec_path": "",
+    "datasheet_path": ""
+  },
+  "python": {
+    "executable": "C:\\Python314\\python.exe",
+    "min_version": "3.10"
+  },
+  "eda": {
+    "tool": "altium"
+  },
+  "toolchain": {
+    "type": "keil",
+    "keil_path": "",
+    "gcc_path": ""
+  },
+  "flash": {
+    "tool_type": "jlink",
+    "jlink_path": "",
+    "openocd_path": "",
+    "target_device": ""
+  },
+  "serial": {
+    "port": "",
+    "baudrate": 115200
+  }
+}

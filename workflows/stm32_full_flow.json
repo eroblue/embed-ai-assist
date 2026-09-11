@@ -1,0 +1,73 @@
+{
+  "name": "stm32_full_flow",
+  "description": "STM32 全流程示例：原理图解析 -> 芯片手册提取 -> 电路验证 -> 代码生成 -> 合并 -> 编译 -> 固件合并 -> 烧录 -> 串口监控 -> 日志分析",
+  "version": "1.0",
+  "steps": [
+    {
+      "id": "S1",
+      "skill": "schematic-reader",
+      "params": {
+        "eda_tool": "altium"
+      }
+    },
+    {
+      "id": "S2",
+      "skill": "spec-reader",
+      "params": {}
+    },
+    {
+      "id": "S3",
+      "skill": "datasheet-extractor",
+      "params": {}
+    },
+    {
+      "id": "S4",
+      "skill": "circuit-investigator",
+      "params": {}
+    },
+    {
+      "id": "S5",
+      "skill": "code-generator",
+      "params": {}
+    },
+    {
+      "id": "S6",
+      "skill": "code-merger",
+      "params": {
+        "mode": "source"
+      }
+    },
+    {
+      "id": "S7",
+      "skill": "build",
+      "params": {}
+    },
+    {
+      "id": "S8",
+      "skill": "code-merger",
+      "params": {
+        "mode": "firmware"
+      }
+    },
+    {
+      "id": "S9",
+      "skill": "unit-test",
+      "params": {}
+    },
+    {
+      "id": "S10",
+      "skill": "flash",
+      "params": {}
+    },
+    {
+      "id": "S11",
+      "skill": "serial-monitor",
+      "params": {}
+    },
+    {
+      "id": "S12",
+      "skill": "log-analyzer",
+      "params": {}
+    }
+  ]
+}

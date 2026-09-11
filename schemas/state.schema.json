@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EmbedAIAssist state.json",
+  "description": "全局运行时状态契约：各 Skill 读写自己负责的字段，禁止读写其他 Skill 的字段。null 表示尚未由对应 Skill 写入。",
+  "type": "object",
+  "properties": {
+    "circuit": {
+      "type": ["object", "null"],
+      "description": "schematic-reader (S1) 写入：原理图解析结果",
+      "properties": {
+        "netlist_path": {
+          "type": "string",
+          "description": "网表 JSON 文件路径（outputs/circuit_netlist.json）"
+        },
+        "component_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "元件数量"
+        },
+        "net_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "网络数量"
+        },
+        "pin_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "引脚数量（网表中已连接的引脚连接总数）"
+        },
+        "parse_status": {
+          "type": "string",
+          "enum": ["success", "partial", "failed"],
+          "description": "解析状态"
+        },
+        "eda_tool": {
+          "type": "string",
+          "enum": ["altium", "kicad"],
+          "description": "实际使用的 EDA 适配器"
+        },
+        "source_file": {
+          "type": "string",
+          "description": "被解析的原理图文件绝对路径"
+        },
+        "error": {
+          "type": ["string", "null"],
+          "description": "解析失败或部分失败时的错误信息"
+        }
+      },
+      "required": ["netlist_path", "parse_status"]
+    },
+    "spec": {
+      "type": ["object", "null"],
+      "description": "spec-reader (S2) 写入：需求摘要 spec.summary"
+    },
+    "chip": {
+      "type": ["object", "null"],
+      "description": "datasheet-extractor (S3) 写入：芯片信息 chip.info"
+    },
+    "facts": {
+      "type": ["object", "null"],
+      "description": "circuit-investigator (S4) 写入：验证后的硬件事实 circuit.facts"
+    },
+    "code": {
+      "type": ["object", "null"],
+      "description": "code-generator (S5) 写入：代码生成状态 code.app.status / code.boot.status"
+    },
+    "project": {
+      "type": ["object", "null"],
+      "description": "code-merger (S6) 写入：合并工程路径 project.merged.path"
+    },
+    "build": {
+      "type": ["object", "null"],
+      "description": "build (S7) 写入：编译产物路径 build.hex.app.path / build.hex.boot.path"
+    },
+    "firmware": {
+      "type": ["object", "null"],
+      "description": "code-merger (S8) 写入：合并固件路径 firmware.merged.path"
+    },
+    "test": {
+      "type": ["object", "null"],
+      "description": "unit-test (S9) 写入：测试结果 test.result"
+    },
+    "flash": {
+      "type": ["object", "null"],
+      "description": "flash (S10) 写入：烧录状态 flash.status"
+    },
+    "log": {
+      "type": ["object", "null"],
+      "description": "serial-monitor (S11) 写入：日志路径 log.path"
+    },
+    "analysis": {
+      "type": ["object", "null"],
+      "description": "log-analyzer (S12) 写入：分析结果 error_report / workflow.status"
+    },
+    "workflow": {
+      "type": ["object", "null"],
+      "description": "workflow-runner (S13) 写入：工作流执行状态"
+    }
+  }
+}

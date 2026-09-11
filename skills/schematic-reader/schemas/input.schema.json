@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "schematic-reader input",
+  "description": "schematic-reader 输入契约：执行时从 config.json 读取的字段及可选运行参数。config.json 为只读，命令行覆盖参数仅本次生效、不回写。",
+  "type": "object",
+  "properties": {
+    "config_path": {
+      "type": "string",
+      "description": "config.json 文件路径，默认为工作目录下的 config.json"
+    },
+    "project": {
+      "type": "object",
+      "description": "从 config.json 读取的项目字段",
+      "properties": {
+        "schematic_path": {
+          "type": "string",
+          "minLength": 1,
+          "description": "原理图文件路径，支持 Altium (.SchDoc) 与 KiCad (.kicad_sch) 文件"
+        },
+        "workspace": {
+          "type": "string",
+          "default": ".",
+          "description": "项目工作区目录，outputs/ 与 state.json 相对此目录"
+        }
+      },
+      "required": ["schematic_path"],
+      "additionalProperties": true
+    },
+    "eda_tool": {
+      "type": "string",
+      "enum": ["altium", "kicad"],
+      "default": "altium",
+      "description": "EDA 工具类型。未显式指定时依次取：命令行参数 > config.json 的 eda.tool > altium"
+    }
+  },
+  "required": ["project"],
+  "additionalProperties": false
+}
