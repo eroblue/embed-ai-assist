@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.netlist.v1",
+  "title": "schematic-reader netlist",
+  "description": "通用电路网表契约：outputs/circuit_netlist.json 的完整结构（EDA 无关）。数据量大，真实数据存放于 outputs/，state.json 的 circuit 字段仅存指针与统计。",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "embedaiassist.netlist.v1",
+      "description": "网表结构版本标识"
+    },
+    "generator": {
+      "type": "string",
+      "description": "生成器名称（skill 名称）"
+    },
+    "eda_tool": {
+      "type": "string",
+      "enum": ["altium", "kicad"],
+      "description": "实际使用的 EDA 适配器"
+    },
+    "source_file": {
+      "type": "string",
+      "description": "被解析的原理图文件绝对路径"
+    },
+    "parse_status": {
+      "type": "string",
+      "enum": ["success", "partial", "failed"],
+      "description": "解析状态"
+    },
+    "generated_at": {
+      "type": "string",
+      "description": "生成时间（ISO 8601 格式）"
+    },
+    "statistics": {
+      "type": "object",
+      "description": "统计信息",
+      "properties": {
+        "component_count": { "type": "integer", "minimum": 0 },
+        "net_count": { "type": "integer", "minimum": 0 },
+        "pin_count": { "type": "integer", "minimum": 0 }
+      },
+      "required": ["component_count", "net_count", "pin_count"],
+      "additionalProperties": false
+    },
+    "warnings": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "解析警告列表"
+    },
+    "components": {
+      "type": "array",
+      "description": "元件列表",
+      "items": {
+        "type": "object",
+        "properties": {
+          "designator": {
+            "type": "string",
+            "description": "元件位号（如 U1、R1），全图唯一"
+          },
+          "value": {
+            "type": "string",
+            "description": "元件值/型号"
+          },
+          "footprint": {
+            "type": "string",
+            "description": "封装名"
+          },
+          "library_ref": {
+            "type": "string",
+            "description": "原理图库引用名"
+          },
+          "description": {
+            "type": "string",
+            "description": "元件描述"
+          },
+          "parameters": {
+            "type": "object",
+            "description": "元件参数键值对（additionalProperties 为字符串）",
+            "additionalProperties": { "type": "string" }
+          },
+          "pins": {
+            "type": "array",
+            "description": "元件引脚列表（含悬空引脚，net 为 null）",
+            "items": {
+              "type": "object",
+              "properties": {
+                "pin": {
+                  "type": "string",
+                  "description": "引脚编号"
+                },
+                "pin_name": {
+                  "type": "string",
+                  "description": "引脚名称（如 PA0、VBAT）"
+                },
+                "pin_type": {
+                  "type": "string",
+                  "description": "引脚电气类型：INPUT / OUTPUT / IO / PASSIVE / TRISTATE / OPEN_COLLECTOR / OPEN_EMITTER / POWER / UNKNOWN 等"
+                },
+                "net": {
+                  "type": ["string", "null"],
+                  "description": "所属网络名，悬空引脚为 null"
+                }
+              },
+              "required": ["pin", "pin_name", "pin_type", "net"],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": ["designator", "value", "footprint", "library_ref", "description", "parameters", "pins"],
+        "additionalProperties": false
+      }
+    },
+    "nets": {
+      "type": "array",
+      "description": "网络列表（仅含有连接的网络，悬空引脚不生成网络）",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "网络名：标签/电源端口名，或自动命名 Net<位号>_<引脚>"
+          },
+          "auto_named": {
+            "type": "boolean",
+            "description": "true 表示自动命名（无标签/电源端口）"
+          },
+          "source_sheets": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "网络出现的原理图页标识"
+          },
+          "terminals": {
+            "type": "array",
+            "description": "网络端点（连接到该网络的引脚）",
+            "items": {
+              "type": "object",
+              "properties": {
+                "designator": { "type": "string", "description": "元件位号" },
+                "pin": { "type": "string", "description": "引脚编号" },
+                "pin_name": { "type": "string", "description": "引脚名称" },
+                "pin_type": { "type": "string", "description": "引脚电气类型" }
+              },
+              "required": ["designator", "pin", "pin_name", "pin_type"],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": ["name", "auto_named", "source_sheets", "terminals"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["schema", "generator", "eda_tool", "source_file", "parse_status", "generated_at", "statistics", "warnings", "components", "nets"],
+  "additionalProperties": false
+}

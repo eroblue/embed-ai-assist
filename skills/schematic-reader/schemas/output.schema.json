@@ -42,6 +42,10 @@
           "type": "string",
           "description": "被解析的原理图文件绝对路径"
         },
+        "excel_path": {
+          "type": ["string", "null"],
+          "description": "引脚配置 Excel 文件路径（outputs/pin_table.xlsx），导出失败或跳过时为 null"
+        },
         "error": {
           "type": ["string", "null"],
           "description": "解析失败或部分失败时的错误信息，成功时为 null"
@@ -51,7 +55,7 @@
           "description": "写入时间（ISO 8601 格式）"
         }
       },
-      "required": ["netlist_path", "parse_status", "component_count", "net_count", "pin_count", "eda_tool", "source_file", "error"]
+      "required": ["netlist_path", "parse_status", "component_count", "net_count", "pin_count", "eda_tool", "source_file", "excel_path", "error"]
     }
   },
   "required": ["circuit"],

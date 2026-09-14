@@ -2,11 +2,12 @@
 """schematic-reader 主入口。
 
 执行步骤：
-1. 从 config.json 读取 project.schematic_path / project.workspace，检查文件存在
-2. 根据 eda_tool 选择适配器（adapters/altium_adapter.py / kicad_adapter.py）
-3. 调用适配器解析原理图，得到通用网表数据
-4. 将网表写入 outputs/circuit_netlist.json
-5. 将路径和统计信息写入 state.json 的 circuit 字段（不触碰其他 Skill 字段）
+1. 分层加载配置：根目录 config.json（全局默认）→ 项目 config.json（覆盖/补充）→ 深合并
+2. 从合并配置读取 schematic_path / output_dir，检查文件存在
+3. 根据 eda_tool 选择适配器（adapters/altium_adapter.py / kicad_adapter.py）
+4. 调用适配器解析原理图，得到通用网表数据
+5. 将网表写入项目 outputs/circuit_netlist.json，生成引脚 Excel
+6. 将路径和统计信息写入项目 state.json 的 circuit 字段（不触碰其他 Skill 字段）
 
 禁止事项：不修改 config.json；不读写 state.json 中其他 Skill 的字段。
 """
@@ -21,6 +22,7 @@ from pathlib import Path
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 SKILL_DIR = SCRIPT_DIR.parent
+ROOT_DIR = SKILL_DIR.parent.parent  # embed-ai-assist/（根目录，含全局 config.json）
 
 # 使 scripts/adapters 可导入
 sys.path.insert(0, str(SCRIPT_DIR))
@@ -82,6 +84,47 @@ def _update_state(state_path: Path, circuit: dict) -> None:
     _save_json(state_path, state)
 
 
+def _deep_merge(base: dict, override: dict) -> dict:
+    """深合并：override 的值覆盖 base 的同名项，dict 递归合并。"""
+    merged = dict(base)
+    for key, value in override.items():
+        if isinstance(value, dict) and isinstance(merged.get(key), dict):
+            merged[key] = _deep_merge(merged[key], value)
+        else:
+            merged[key] = value
+    return merged
+
+
+def _load_layered_config(project_config_path: Path) -> tuple[dict, list[str]]:
+    """分层加载配置：
+    第 1 步：加载根目录 config.json（全局默认）
+    第 2 步：加载项目/示例 config.json（覆盖或补充）
+    第 3 步：深合并得到最终生效的配置
+    返回 (合并后的配置, 加载日志列表)。
+    """
+    notes: list[str] = []
+    root_config_path = ROOT_DIR / "config.json"
+    root_cfg: dict = {}
+    if root_config_path.is_file():
+        root_cfg = _load_json(root_config_path)
+        notes.append(f"已加载全局配置: {root_config_path}")
+    else:
+        notes.append(f"未找到全局配置 {root_config_path}，跳过")
+    if not project_config_path.is_file():
+        raise FileNotFoundError(f"项目配置不存在: {project_config_path}")
+    proj_cfg = _load_json(project_config_path)
+    notes.append(f"已加载项目配置: {project_config_path}")
+    return _deep_merge(root_cfg, proj_cfg), notes
+
+
+def _rel_path(path: Path, workspace: Path) -> str:
+    """工作区内路径转相对 POSIX 路径，工作区外转绝对路径。"""
+    resolved = path.resolve()
+    if resolved.is_relative_to(workspace.resolve()):
+        return resolved.relative_to(workspace.resolve()).as_posix()
+    return str(resolved)
+
+
 def _make_circuit_payload(
     netlist_path: Path,
     workspace: Path,
@@ -90,17 +133,17 @@ def _make_circuit_payload(
     eda_tool: str,
     source_file: Path,
     error: str | None,
+    excel_path: Path | None = None,
 ) -> dict:
     return {
-        "netlist_path": netlist_path.resolve().relative_to(workspace.resolve()).as_posix()
-        if netlist_path.resolve().is_relative_to(workspace.resolve())
-        else str(netlist_path.resolve()),
+        "netlist_path": _rel_path(netlist_path, workspace),
         "component_count": stats["component_count"],
         "net_count": stats["net_count"],
         "pin_count": stats["pin_count"],
         "parse_status": parse_status,
         "eda_tool": eda_tool,
         "source_file": str(source_file.resolve()) if str(source_file) not in ("", ".") else "",
+        "excel_path": _rel_path(excel_path, workspace) if excel_path is not None else None,
         "error": error,
         "updated_at": datetime.now().isoformat(timespec="seconds"),
     }
@@ -110,44 +153,50 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         description="schematic-reader: 解析原理图（.SchDoc / .kicad_sch），输出通用网表"
     )
-    parser.add_argument("--config", default="config.json", help="config.json 路径（只读）")
+    parser.add_argument(
+        "--config", default="config.json",
+        help="项目 config.json 路径（自动与根目录全局 config.json 分层合并，只读）",
+    )
     parser.add_argument(
         "--eda-tool", choices=["altium", "kicad"], default=None,
-        help="EDA 工具类型，覆盖 config.json 的 eda.tool",
+        help="EDA 工具类型，覆盖配置中的 eda_tool（仅本次生效）",
     )
     parser.add_argument(
         "--schematic", default=None,
-        help="覆盖 config.json 的 project.schematic_path（仅本次生效，不回写）",
+        help="覆盖配置中的 schematic_path（仅本次生效，不回写）",
     )
     parser.add_argument(
         "--workspace", default=None,
-        help="覆盖 config.json 的 project.workspace（仅本次生效，不回写）",
+        help="覆盖项目目录（默认为 --config 所在目录，仅本次生效）",
     )
     args = parser.parse_args(argv)
 
-    # ---- 1. 读取 config.json（只读，禁止修改）----
+    # ---- 1. 分层加载配置（只读，禁止修改）----
     config_path = Path(args.config).resolve()
-    if not config_path.exists():
-        _log(f"config.json 不存在: {config_path}")
-        return EXIT_CONFIG_ERROR
     try:
-        config = _load_json(config_path)
+        config, config_notes = _load_layered_config(config_path)
+    except FileNotFoundError as exc:
+        _log(str(exc))
+        return EXIT_CONFIG_ERROR
     except json.JSONDecodeError as exc:
         _log(f"config.json 解析失败: {exc}")
         return EXIT_CONFIG_ERROR
+    for note in config_notes:
+        _log(note)
 
-    project = config.get("project") or {}
-    schematic_raw = args.schematic or project.get("schematic_path") or ""
+    schematic_raw = args.schematic or config.get("schematic_path") or ""
     schematic_path = Path(schematic_raw).expanduser()
-    workspace = Path(args.workspace or project.get("workspace") or ".").expanduser()
+    # 工作区 = 项目目录（--config 所在目录）；--workspace 可覆盖
+    workspace = Path(args.workspace or ".").expanduser()
     if not workspace.is_absolute():
         workspace = (config_path.parent / workspace).resolve()
     state_path = workspace / "state.json"
-    outputs_dir = workspace / "outputs"
+    outputs_dir_name = (config.get("output_dir") or "outputs").rstrip("/\\")
+    outputs_dir = workspace / outputs_dir_name
     netlist_path = outputs_dir / "circuit_netlist.json"
 
-    # ---- 2. 确定 eda_tool：命令行 > config.eda.tool > 按扩展名 > altium ----
-    eda_tool = args.eda_tool or (config.get("eda") or {}).get("tool")
+    # ---- 2. 确定 eda_tool：命令行 > config.eda_tool > 按扩展名 > altium ----
+    eda_tool = args.eda_tool or config.get("eda_tool")
     ext_tool = EXT_TOOL_MAP.get(schematic_path.suffix.lower())
     if eda_tool is None:
         eda_tool = ext_tool or "altium"
@@ -164,10 +213,10 @@ def main(argv: list[str] | None = None) -> int:
             netlist_path, workspace,
             {"component_count": 0, "net_count": 0, "pin_count": 0},
             "failed", eda_tool, Path(""),
-            "config.json 中 project.schematic_path 未配置",
+            "配置中 schematic_path 未配置",
         )
         _update_state(state_path, circuit)
-        _log("config.json 中 project.schematic_path 未配置")
+        _log("配置中 schematic_path 未配置")
         print(json.dumps({"circuit": circuit}, ensure_ascii=False, indent=2))
         return EXIT_FAILED
     if not schematic_path.is_absolute():
@@ -239,13 +288,39 @@ def main(argv: list[str] | None = None) -> int:
         "nets": nets,
     }
 
-    # ---- 6. 写入 outputs/circuit_netlist.json ----
+    # ---- 6. 校验网表结构并写入 outputs/circuit_netlist.json ----
+    netlist_errors = _validate(
+        netlist_doc, SKILL_DIR / "schemas" / "netlist.schema.json", "netlist.schema"
+    )
+    if netlist_errors:
+        circuit = _make_circuit_payload(
+            netlist_path, workspace, stats, "failed", eda_tool, schematic_path,
+            "网表结构校验失败: " + "; ".join(netlist_errors),
+        )
+        _update_state(state_path, circuit)
+        _log("网表结构校验失败: " + "; ".join(netlist_errors))
+        return EXIT_FAILED
     _save_json(netlist_path, netlist_doc)
+
+    # ---- 6.5 生成引脚配置 Excel（outputs/pin_table.xlsx，格式见 references/excel_format.md）----
+    excel_path = outputs_dir / "pin_table.xlsx"
+    try:
+        from excel_export import export_pin_table
+
+        _, excel_warnings = export_pin_table(netlist_doc, excel_path)
+        for w in excel_warnings:
+            _log(f"警告: {w}")
+    except ImportError as exc:
+        excel_path = None
+        _log(f"Excel 导出跳过: {exc}")
+    except Exception as exc:  # noqa: BLE001
+        excel_path = None
+        _log(f"Excel 导出失败: {type(exc).__name__}: {exc}")
 
     # ---- 7. 写入 state.json 的 circuit 字段并校验 ----
     circuit = _make_circuit_payload(
         netlist_path, workspace, stats, parse_status, eda_tool, schematic_path,
-        "; ".join(warnings) if warnings else None,
+        "; ".join(warnings) if warnings else None, excel_path,
     )
     errors = _validate(
         {"circuit": circuit}, SKILL_DIR / "schemas" / "output.schema.json", "output.schema"

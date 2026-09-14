@@ -1,0 +1,6 @@
+{
+  "platform": "stm32f103zet6",
+  "schematic_path": "schematic/STM32F103ZET6_MinSystem.SchDoc",
+  "datasheet_path": "platforms/stm32f103zet6/datasheets/STM32F103ZET6-DataSheet.pdf",
+  "output_dir": "outputs/"
+}

@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# 项目输出（大文件、临时产物）
+projects/*/outputs/
+examples/*/outputs/
+
+# 芯片资料（可能很大，视情况决定是否提交）
+# platforms/*/datasheets/*.pdf
+# platforms/*/std_periph_lib/
+
+# IDE
+.vscode/
+.idea/
+
+# 操作系统
+Thumbs.db
+.DS_Store
