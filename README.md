@@ -29,7 +29,7 @@ embed-ai-assist/
 │       ├── linker_scripts/              # 链接脚本（待填充）
 │       └── templates/                   # 工程模板（待填充）
 ├── examples/                            # 验证/演示工程
-│   └── stm32f103zet6-min-system/
+│   └── stm32f103zet6/
 │       ├── config.json                  # 本示例的配置（项目层）
 │       ├── state.json                   # 本示例的运行时状态
 │       ├── outputs/                     # 本示例的输出（网表/Excel 等）
@@ -75,7 +75,7 @@ embed-ai-assist/
 }
 ```
 
-### 项目 config.json（项目特有，如 examples/stm32f103zet6-min-system/config.json）
+### 项目 config.json（项目特有，如 examples/stm32f103zet6/config.json）
 
 ```json
 {
@@ -127,9 +127,9 @@ embed-ai-assist/
 
 ```bash
 # 1. 运行 schematic-reader 解析示例工程原理图
-python skills/schematic-reader/scripts/parse.py --config examples/stm32f103zet6-min-system/config.json
+python skills/schematic-reader/scripts/parse.py --config examples/stm32f103zet6/config.json
 
 # 2. 查看结果
-#    examples/stm32f103zet6-min-system/state.json   -> circuit 字段（指针与统计）
-#    examples/stm32f103zet6-min-system/outputs/     -> circuit_netlist.json + pin_table.xlsx
+#    examples/stm32f103zet6/state.json   -> circuit 字段（指针与统计）
+#    examples/stm32f103zet6/outputs/     -> circuit_netlist.json + pin_table.xlsx
 ```

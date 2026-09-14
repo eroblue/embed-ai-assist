@@ -2,7 +2,8 @@
 """从通用网表数据生成引脚配置 Excel（outputs/pin_table.xlsx）。
 
 格式规范见 references/excel_format.md：
-- 每个元件一个工作表，命名 "{designator} 引脚配置"
+- 所有元件放在同一个工作表中，每个元件一个区块，便于通读
+- 区块 = 元件标题行（合并单元格）+ 表头行 + 引脚行 + 空行分隔
 - 列：引脚号 / 引脚名 / 网络名 / 作用 / 外设模式
 - 行颜色：电源=蓝、特殊功能=黄、悬空=灰、普通=白
 - 作用与外设/模式按关键词自动推断，无法识别的留空待人工/AI 补充
@@ -10,6 +11,7 @@
 
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 try:
@@ -18,20 +20,32 @@ try:
 except ImportError:  # 由调用方处理
     Workbook = None  # type: ignore[assignment]
 
+SHEET_TITLE = "引脚配置"
+
 HEADER = ["引脚号", "引脚名", "网络名", "作用", "外设/模式"]
 
 HEADER_FILL = PatternFill(start_color="4472C4", end_color="4472C4", fill_type="solid")
 HEADER_FONT = Font(color="FFFFFF", bold=True)
+COMP_FILL = PatternFill(start_color="B4C6E7", end_color="B4C6E7", fill_type="solid")
+COMP_FONT = Font(bold=True)
 FILL_POWER = PatternFill(start_color="D9E1F2", end_color="D9E1F2", fill_type="solid")
 FILL_SPECIAL = PatternFill(start_color="FFF2CC", end_color="FFF2CC", fill_type="solid")
 FILL_FLOATING = PatternFill(start_color="E7E6E6", end_color="E7E6E6", fill_type="solid")
 
 ALIGN_CENTER = Alignment(horizontal="center", vertical="center")
+ALIGN_LEFT = Alignment(horizontal="left", vertical="center")
 COL_WIDTHS = [10, 14, 18, 28, 16]
+
+# 数字电源网络名：3V3 / 5V / 12V / 2V8 / +3V3 / 3.3V 等（整体匹配）
+_POWER_NET_RE = re.compile(r"^\+?\d+(\.\d+)?V\d*$")
 
 
 def infer_role(pin_name: str, net: str | None, pin_type: str) -> tuple[str, str]:
-    """按引脚名/网络名/引脚类型推断 (作用, 外设/模式)，无法识别返回空串。"""
+    """按引脚名/网络名/引脚类型推断 (作用, 外设/模式)，无法识别返回空串。
+
+    语义来源说明：原理图只存电气连接，"按键/LED/串口"等用途语义藏在网络名中
+    （如 KEY2 / LED1 / UART1_TX），引脚级复用映射则需 datasheet（S3/S4 的职责）。
+    """
     name_l = (pin_name or "").upper()
     net_l = (net or "").upper()
 
@@ -40,14 +54,30 @@ def infer_role(pin_name: str, net: str | None, pin_type: str) -> tuple[str, str]
         for k in ("VDD", "VSS", "VCC", "GND", "VBAT", "VREF")
     ):
         return ("电源", "电源")
+    if net and _POWER_NET_RE.match(net_l):
+        return ("电源", "电源")
     if any(k in name_l or k in net_l for k in ("SWDIO", "SWCLK", "TMS", "TCK")):
         return ("SWD 调试", "SWD")
+    if any(k in net_l for k in ("JTDI", "JTDO", "JTRST")):
+        return ("JTAG 调试", "JTAG")
     if "BOOT" in name_l or "BOOT" in net_l:
         return ("启动模式配置", "BOOT")
     if any(k in name_l or k in net_l for k in ("NRST", "RESET", "RST")):
         return ("复位", "RESET")
-    if any(k in name_l for k in ("OSCI", "OSCO", "XCIN", "XCOUT", "XTAL")):
+    if any(k in name_l for k in ("OSCI", "OSCO", "XCIN", "XCOUT", "XTAL")) or "OSC" in net_l:
         return ("晶振", "晶振")
+    if any(k in net_l for k in ("KEY", "BTN", "BUTTON")):
+        return ("按键输入", "GPIO 输入")
+    if "LED" in net_l:
+        return ("LED 指示", "GPIO 输出")
+    if net_l in ("SCL", "SDA") or "I2C" in net_l:
+        return ("I2C 通信", "I2C")
+    if any(k in net_l for k in ("MOSI", "MISO", "SPI")):
+        return ("SPI 通信", "SPI")
+    if "CAN" in net_l:
+        return ("CAN 通信", "CAN")
+    if "UART" in net_l or "USART" in net_l:
+        return ("串口通信", "UART")
     if net is None:
         return ("未使用（悬空）", "")
     return ("", "")
@@ -57,7 +87,10 @@ def _row_fill(role: str, net: str | None) -> PatternFill | None:
     """根据推断结果选择行填充色。"""
     if role == "电源":
         return FILL_POWER
-    if role in ("SWD 调试", "启动模式配置", "复位", "晶振"):
+    if role in (
+        "SWD 调试", "JTAG 调试", "启动模式配置", "复位", "晶振",
+        "I2C 通信", "SPI 通信", "CAN 通信", "串口通信",
+    ):
         return FILL_SPECIAL
     if net is None:
         return FILL_FLOATING
@@ -76,42 +109,60 @@ def export_pin_table(netlist_doc: dict, excel_path: Path) -> tuple[int, list[str
     warnings: list[str] = []
     components = netlist_doc.get("components", [])
     wb = Workbook()
-    wb.remove(wb.active)  # 移除默认 sheet
+    ws = wb.active
+    ws.title = SHEET_TITLE
+    for col_idx, width in enumerate(COL_WIDTHS, start=1):
+        ws.column_dimensions[chr(64 + col_idx)].width = width
 
     total_rows = 0
+    row = 1
     for comp in components:
         designator = comp.get("designator") or "?"
-        ws = wb.create_sheet(title=f"{designator} 引脚配置")
-        ws.append(HEADER)
-        for col_idx, width in enumerate(COL_WIDTHS, start=1):
-            ws.column_dimensions[chr(64 + col_idx)].width = width
-        for cell in ws[1]:
+        value = (comp.get("value") or "").strip()
+        pins = comp.get("pins", [])
+
+        # 元件标题行（合并 A:E）
+        title = f"{designator}（{value}）— {len(pins)} 引脚" if value else f"{designator} — {len(pins)} 引脚"
+        ws.cell(row=row, column=1, value=title)
+        ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=5)
+        for col in range(1, 6):
+            cell = ws.cell(row=row, column=col)
+            cell.fill = COMP_FILL
+            cell.font = COMP_FONT
+            cell.alignment = ALIGN_LEFT
+        row += 1
+
+        # 表头行
+        for col, head in enumerate(HEADER, start=1):
+            cell = ws.cell(row=row, column=col, value=head)
             cell.fill = HEADER_FILL
             cell.font = HEADER_FONT
             cell.alignment = ALIGN_CENTER
+        row += 1
 
-        for pin in comp.get("pins", []):
+        # 引脚数据行
+        for pin in pins:
             net = pin.get("net")
             role, periph = infer_role(
                 pin.get("pin_name", ""), net, pin.get("pin_type", "")
             )
-            row = [
-                pin.get("pin", ""),
-                pin.get("pin_name", ""),
-                net if net is not None else "未连接",
-                role,
-                periph,
-            ]
-            ws.append(row)
-            total_rows += 1
+            ws.cell(row=row, column=1, value=pin.get("pin", ""))
+            ws.cell(row=row, column=2, value=pin.get("pin_name", ""))
+            ws.cell(row=row, column=3, value=net if net is not None else "未连接")
+            ws.cell(row=row, column=4, value=role)
+            ws.cell(row=row, column=5, value=periph)
             fill = _row_fill(role, net)
             if fill is not None:
-                for cell in ws[ws.max_row]:
-                    cell.fill = fill
-            ws.cell(row=ws.max_row, column=1).alignment = ALIGN_CENTER
+                for col in range(1, 6):
+                    ws.cell(row=row, column=col).fill = fill
+            ws.cell(row=row, column=1).alignment = ALIGN_CENTER
+            row += 1
+            total_rows += 1
+
+        row += 1  # 元件区块间空行
 
     if total_rows == 0:
-        warnings.append("网表无元件引脚，pin_table.xlsx 仅含表头")
+        warnings.append("网表无元件引脚，pin_table.xlsx 仅含空表")
 
     excel_path.parent.mkdir(parents=True, exist_ok=True)
     wb.save(excel_path)

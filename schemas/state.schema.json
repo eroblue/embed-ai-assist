@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "EmbedAIAssist state.json",
+  "title": "embed-ai-assist state.json",
   "description": "全局运行时状态契约：各 Skill 读写自己负责的字段，禁止读写其他 Skill 的字段。null 表示尚未由对应 Skill 写入。",
   "type": "object",
   "properties": {

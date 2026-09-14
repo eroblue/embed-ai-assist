@@ -1,15 +1,15 @@
 {
   "circuit": {
     "netlist_path": "outputs/circuit_netlist.json",
-    "component_count": 63,
+    "component_count": 51,
     "net_count": 125,
-    "pin_count": 308,
+    "pin_count": 271,
     "parse_status": "success",
     "eda_tool": "altium",
-    "source_file": "E:\\skills\\EmbedSoftAutomaticProject\\embed-ai-assist\\examples\\stm32f103zet6-min-system\\schematic\\STM32F103ZET6_MinSystem.SchDoc",
+    "source_file": "E:\\skills\\EmbedSoftAutomaticProject\\embed-ai-assist\\examples\\stm32f103zet6\\schematic\\STM32F103ZET6_MinSystem\\STM32F103ZET6_MinSystem.SchDoc",
     "excel_path": "outputs/pin_table.xlsx",
     "error": null,
-    "updated_at": "2026-09-14T11:14:59"
+    "updated_at": "2026-09-14T15:42:27"
   },
   "spec": null,
   "chip": null,

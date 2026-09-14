@@ -35,6 +35,10 @@
       "type": "string",
       "description": "芯片数据手册路径（项目层；以 platforms/ 开头时相对根目录，否则相对项目目录）"
     },
+    "stdperiph_lib_path": {
+      "type": "string",
+      "description": "MCU 标准外设库路径（项目层，S5 code-generator 使用；以 platforms/ 开头时相对根目录，否则相对项目目录；留空时按 platforms/<platform>/std_periph_lib/ 约定自动发现）"
+    },
     "output_dir": {
       "type": "string",
       "description": "输出目录（项目层，相对项目目录，默认 outputs/）"

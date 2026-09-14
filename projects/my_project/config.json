@@ -2,5 +2,6 @@
   "platform": "",
   "schematic_path": "",
   "datasheet_path": "",
+  "stdperiph_lib_path": "",
   "output_dir": "outputs/"
 }

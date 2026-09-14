@@ -134,7 +134,8 @@ schematic-reader/
 ```
 
 `outputs/pin_table.xlsx`：引脚配置 Excel（格式规范见 [references/excel_format.md](references/excel_format.md)），
-每个元件一个工作表，列为 **引脚号 / 引脚名 / 网络名 / 作用 / 外设/模式**。
+所有元件放在同一个工作表（每元件一个区块，含标题行/表头行/引脚行），
+列为 **引脚号 / 引脚名 / 网络名 / 作用 / 外设/模式**。
 
 - 引脚号、引脚名、网络名来自网表
 - 作用、外设/模式按关键词自动推断（电源、SWD、BOOT、复位、晶振、悬空），无法识别的留空待人工/AI 补充
@@ -154,13 +155,13 @@ schematic-reader/
 
 ```bash
 # 解析示例工程（自动分层合并：根 config.json + 示例 config.json）
-python skills/schematic-reader/scripts/parse.py --config examples/stm32f103zet6-min-system/config.json
+python skills/schematic-reader/scripts/parse.py --config examples/stm32f103zet6/config.json
 
 # 解析实际项目
 python skills/schematic-reader/scripts/parse.py --config projects/my_project/config.json
 
 # 显式指定 EDA 工具 / 命令行覆盖原理图路径（不修改 config.json）
-python skills/schematic-reader/scripts/parse.py --config examples/stm32f103zet6-min-system/config.json --eda-tool kicad --schematic path/to/demo.kicad_sch
+python skills/schematic-reader/scripts/parse.py --config examples/stm32f103zet6/config.json --eda-tool kicad --schematic path/to/demo.kicad_sch
 ```
 
 参数说明：

@@ -9,8 +9,20 @@
 
 ## 工作表（Sheet）结构
 
-每个元件一个工作表，命名规则：`{designator} 引脚配置`（如 `U1 引脚配置`）。
-工作表按元件创建顺序排列。
+所有元件放在**同一个工作表**（命名 `引脚配置`），便于通读和筛选。
+每个元件一个**区块**，自上而下依次排列：
+
+```
+C1（0.1uF）— 2 引脚          ← 元件标题行（合并 A:E 单元格，蓝底加粗）
+引脚号 | 引脚名 | 网络名 | 作用 | 外设/模式    ← 表头行（深蓝底白字）
+1      | 1      | VCC    | ...  | ...
+2      | 2      | GND    | ...  | ...
+                              ← 空行分隔
+C2（0.1uF）— 2 引脚
+...
+```
+
+元件区块按网表中元件顺序排列。
 
 ## 列定义
 
@@ -31,12 +43,24 @@
 | 识别条件（引脚名或网络名，大小写不敏感） | 作用 | 外设/模式 |
 |------------------------------------------|------|----------|
 | VDD / VSS / VCC / GND / VBAT / VREF，或 pin_type=POWER | 电源 | 电源 |
+| 网络名整体形如 3V3 / 5V / 12V / +3V3 / 3.3V | 电源 | 电源 |
 | SWDIO / SWCLK / TMS / TCK | SWD 调试 | SWD |
+| JTDI / JTDO / JTRST | JTAG 调试 | JTAG |
 | BOOT | 启动模式配置 | BOOT |
 | NRST / RESET / RST | 复位 | RESET |
-| OSCI / OSCO / XCIN / XCOUT / XTAL | 晶振 | 晶振 |
+| OSCI / OSCO / XCIN / XCOUT / XTAL（引脚名），或网络名含 OSC | 晶振 | 晶振 |
+| KEY / BTN / BUTTON | 按键输入 | GPIO 输入 |
+| LED | LED 指示 | GPIO 输出 |
+| SCL / SDA / I2C | I2C 通信 | I2C |
+| MOSI / MISO / SPI | SPI 通信 | SPI |
+| CAN | CAN 通信 | CAN |
+| UART / USART | 串口通信 | UART |
 | 网络 net 为 null | 未使用（悬空） | （空） |
 | 其他 | （空，待补充） | （空，待补充） |
+
+> 说明：原理图只存电气连接，"按键/LED/串口"等用途语义来自**网络名**；
+> 引脚级精确复用映射（如 PA9 = USART1_TX）需 datasheet 引脚复用表，
+> 由 S3 datasheet-extractor + S4 circuit-investigator 完成深度标注。
 
 ## 行颜色编码
 

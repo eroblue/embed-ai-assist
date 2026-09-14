@@ -1,4 +1,4 @@
-# EmbedAIAssist Skill 通用模板
+# embed-ai-assist Skill 通用模板
 
 > 后续 13 个 skill 均按本模板生成。第一个 skill（schematic-reader）为本模板的参考实现，
 > 位于 `skills/schematic-reader/`。
@@ -64,7 +64,7 @@ state.json只存产物路径指针与统计，不存数据本体）
 Skill目录结构（标准结构，所有skill统一）：
 <skill-name>/
 ├── SKILL.md / schemas/ / scripts/ / references/ / assets/
-（详见 EmbedAIAssist/docs/skill_template.md）
+（详见 embed-ai-assist/docs/skill_template.md）
 
 执行步骤：
 1. 从config.json读取<输入>，检查<前置条件>
