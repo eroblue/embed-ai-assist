@@ -19,7 +19,8 @@
 ```
 embed-ai-assist/
 ├── skills/                              # 所有 Skill
-│   └── schematic-reader/                # S1 原理图解析（参考实现）
+│   ├── schematic-reader/                # S1 原理图解析（参考实现）
+│   └── datasheet-extractor/             # S3 芯片手册提取（SVD > SDK 头文件 > PDF）
 ├── platforms/                           # 共享的芯片资料库（只读）
 │   └── stm32f103zet6/
 │       ├── datasheets/                  # PDF 手册（人类阅读）
@@ -114,7 +115,7 @@ embed-ai-assist/
 | :--- | :--- | :--- | :--- | :--- |
 | S1 | schematic-reader | 数据输入 | 解析原理图，输出通用网表 | 已实现 |
 | S2 | spec-reader | 数据输入 | 解析功能规格书，输出需求摘要 | 规划中 |
-| S3 | datasheet-extractor | 数据输入 | 提取 MCU 手册引脚/寄存器/时钟信息 | 规划中 |
+| S3 | datasheet-extractor | 数据输入 | 提取 MCU 手册引脚/寄存器/时钟信息 | 已实现 |
 | S4 | circuit-investigator | 验证 | 电路覆盖门禁，输出硬件事实 | 规划中 |
 | S5 | code-generator | 核心处理 | 生成 APP/BootLoader 代码 | 规划中 |
 | S6 | code-merger | 核心处理 | 源码合并 / 固件合并 | 规划中 |
@@ -131,7 +132,7 @@ embed-ai-assist/
 ## 环境要求
 
 - Python 3.10+（本机 `C:/Python314/python.exe`，路径配置在根 config.json 的 `tool_paths.python`）
-- 依赖：`pip install altium-monkey jsonschema openpyxl`
+- 依赖：`pip install altium-monkey jsonschema openpyxl pdfplumber pypdf`
 
 ## 快速开始
 
@@ -139,7 +140,12 @@ embed-ai-assist/
 # 1. 运行 schematic-reader 解析示例工程原理图
 python skills/schematic-reader/scripts/parse.py --config examples/stm32f103zet6/config.json
 
-# 2. 查看结果
-#    examples/stm32f103zet6/state.json   -> circuit 字段（指针与统计）
-#    examples/stm32f103zet6/outputs/     -> circuit_netlist.json + pin_table.xlsx
+# 2. 运行 datasheet-extractor 提取芯片数据（数据源优先级：SVD > SDK 头文件 > 参考手册 PDF）
+python skills/datasheet-extractor/scripts/extract.py --config examples/stm32f103zet6/config.json
+
+# 3. 查看结果
+#    examples/stm32f103zet6/state.json        -> circuit 字段（S1）/ chip 字段（S3）
+#    examples/stm32f103zet6/outputs/          -> circuit_netlist.json + pin_table.xlsx
+#    examples/stm32f103zet6/outputs/chip_info/ -> pins/registers/clock_tree/peripherals
+#                                                 .json + pin_table/register_map.xlsx
 ```
