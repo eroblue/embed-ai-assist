@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.chip.pins.v1",
+  "title": "芯片引脚定义数据契约（outputs/chip_info/pins.json）",
+  "type": "object",
+  "required": ["schema", "mcu_family", "package", "pin_count", "source", "pins"],
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "embedaiassist.chip.pins.v1"
+    },
+    "mcu_family": {
+      "type": "string",
+      "description": "MCU 系列（如 STM32F1）"
+    },
+    "package": {
+      "type": "string",
+      "description": "封装类型（如 LQFP144）"
+    },
+    "pin_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "封装引脚总数"
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "datasheet": { "type": "string", "description": "数据手册路径" },
+        "extracted_at": { "type": "string", "description": "提取时间（ISO 8601）" }
+      },
+      "required": ["datasheet", "extracted_at"]
+    },
+    "pins": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["pin", "name", "pin_type"],
+        "properties": {
+          "pin": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "引脚号（封装管脚位号）"
+          },
+          "name": {
+            "type": "string",
+            "description": "引脚名（如 PE2 / VDD / VSSA）"
+          },
+          "pin_type": {
+            "type": "string",
+            "enum": ["IO", "POWER", "INPUT", "OUTPUT", "BOOT", "NRST", "UNKNOWN"],
+            "description": "引脚大类：POWER=电源（含 S 类）/ IO=通用复用 / BOOT=启动 / NRST=复位"
+          },
+          "pin_type_raw": {
+            "type": "string",
+            "description": "手册原始类型标注（I/O、S、I、I/O FT 等）"
+          },
+          "io_level": {
+            "type": "string",
+            "description": "IO 电平（FT=5V 容忍 / 空=非容忍），仅 IO 类有意义"
+          },
+          "main_function": {
+            "type": "string",
+            "description": "复位后主功能（通常等于引脚名）"
+          },
+          "alternate_functions": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "默认复用功能列表（AFIO remap 前的复用，如 TRACECK、FSMC_A23）"
+          },
+          "alternate_functions_remap": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "重映射后的复用功能列表（STM32F1 的 AFIO remap 列）"
+          }
+        }
+      }
+    }
+  }
+}

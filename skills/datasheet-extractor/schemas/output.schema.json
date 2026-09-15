@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.datasheet-extractor.output.v1",
+  "title": "datasheet-extractor 输出契约（state.json 的 chip 字段）",
+  "description": "指针/数据分离规则：本字段仅存产物路径指针与统计计数，数据本体在 outputs/chip_info/ 下由对应 schema 约束。",
+  "type": "object",
+  "required": [
+    "mcu_family", "package", "pin_count", "extract_status",
+    "extract_scope", "error", "updated_at"
+  ],
+  "properties": {
+    "datasheet_path": {
+      "type": ["string", "null"],
+      "description": "数据手册源文件绝对路径"
+    },
+    "datasheet_secondary_path": {
+      "type": ["string", "null"],
+      "description": "参考手册源文件绝对路径（未提供为 null；兜底数据源）"
+    },
+    "svd_path": {
+      "type": ["string", "null"],
+      "description": "CMSIS-SVD 源文件绝对路径（未提供为 null；数据源优先级 1）"
+    },
+    "sdk_header_path": {
+      "type": ["string", "null"],
+      "description": "厂商设备头文件绝对路径（未提供为 null；数据源优先级 2）"
+    },
+    "mcu_family": {
+      "type": "string",
+      "description": "MCU 系列（由 platform 名解析，如 stm32f103zet6 → STM32F1）",
+      "examples": ["STM32F1", "GD32F2"]
+    },
+    "package": {
+      "type": ["string", "null"],
+      "description": "封装类型（如 LQFP144；由 platform 命名规则解析并与 datasheet 引脚表交叉确认）"
+    },
+    "pin_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "封装引脚总数（统计计数）"
+    },
+    "pin_defined_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "已成功提取定义的引脚数（统计计数）"
+    },
+    "register_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "已提取的寄存器条目数（统计计数，需参考手册）"
+    },
+    "peripheral_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "已提取的外设条目数（统计计数，需参考手册）"
+    },
+    "pins_path": {
+      "type": ["string", "null"],
+      "description": "outputs/chip_info/pins.json 相对工作区路径（指针）"
+    },
+    "registers_path": {
+      "type": ["string", "null"],
+      "description": "outputs/chip_info/registers.json 相对工作区路径（指针）"
+    },
+    "clock_tree_path": {
+      "type": ["string", "null"],
+      "description": "outputs/chip_info/clock_tree.json 相对工作区路径（指针）"
+    },
+    "peripherals_path": {
+      "type": ["string", "null"],
+      "description": "outputs/chip_info/peripherals.json 相对工作区路径（指针）"
+    },
+    "pin_table_excel_path": {
+      "type": ["string", "null"],
+      "description": "outputs/chip_info/pin_table.xlsx 相对工作区路径（指针）"
+    },
+    "register_map_excel_path": {
+      "type": ["string", "null"],
+      "description": "outputs/chip_info/register_map.xlsx 相对工作区路径（指针）"
+    },
+    "extract_status": {
+      "type": "string",
+      "enum": ["success", "partial", "failed"],
+      "description": "success=请求范围全部提取成功；partial=部分提取成功（缺参考手册/部分章节无法解析）；failed=全部失败"
+    },
+    "extract_scope": {
+      "type": "string",
+      "description": "实际成功提取的范围（请求 all 但仅完成 pins 时为 pins）"
+    },
+    "error": {
+      "type": ["string", "null"],
+      "description": "失败或降级原因（成功且完整为 null；partial 时记录未完成部分）"
+    },
+    "updated_at": {
+      "type": "string",
+      "description": "ISO 8601 时间戳（秒精度）"
+    }
+  },
+  "additionalProperties": false
+}

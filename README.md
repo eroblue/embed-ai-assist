@@ -22,10 +22,16 @@ embed-ai-assist/
 │   └── schematic-reader/                # S1 原理图解析（参考实现）
 ├── platforms/                           # 共享的芯片资料库（只读）
 │   └── stm32f103zet6/
-│       ├── datasheets/                  # STM32F103ZET6-DataSheet.pdf
+│       ├── datasheets/                  # PDF 手册（人类阅读）
+│       │   ├── STM32F103ZET6.pdf        #   数据手册
+│       │   └── STM32F10x_Reference_Manual.pdf  # 参考手册
+│       ├── svd/                         # CMSIS-SVD（机器可读，S3 优先数据源）
+│       │   └── STM32F103xx.svd
+│       ├── sdk/                         # 厂商 SDK（机器可读）
+│       │   ├── cmsis/                  #   core_cm3.h / stm32f10x.h / system_stm32f10x.*
+│       │   ├── startup/                #   启动文件（arm / gcc_ride7）
+│       │   └── std_periph_lib/         #   标准外设库（inc/ + src/）
 │       ├── schematics/                  # 参考原理图（WarShip SCH.pdf）
-│       ├── std_periph_lib/              # STM32F10x_StdPeriph_Lib_V3.5.0（含 CMSIS）
-│       ├── cmsis/                       # CMSIS（当前位于 std_periph_lib 内，保留占位）
 │       ├── linker_scripts/              # 链接脚本（待填充）
 │       └── templates/                   # 工程模板（待填充）
 ├── examples/                            # 验证/演示工程
@@ -80,8 +86,12 @@ embed-ai-assist/
 ```json
 {
   "platform": "stm32f103zet6",
-  "schematic_path": "schematic/STM32F103ZET6_MinSystem.SchDoc",
-  "datasheet_path": "platforms/stm32f103zet6/datasheets/STM32F103ZET6-DataSheet.pdf",
+  "schematic_path": "schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc",
+  "datasheet_path": "platforms/stm32f103zet6/datasheets/STM32F103ZET6.pdf",
+  "datasheet_secondary_path": "platforms/stm32f103zet6/datasheets/STM32F10x_Reference_Manual.pdf",
+  "svd_path": "platforms/stm32f103zet6/svd/STM32F103xx.svd",
+  "sdk_header_path": "platforms/stm32f103zet6/sdk/cmsis/stm32f10x.h",
+  "stdperiph_lib_path": "platforms/stm32f103zet6/sdk/std_periph_lib",
   "output_dir": "outputs/"
 }
 ```
@@ -91,7 +101,7 @@ embed-ai-assist/
 | 路径字段 | 解析基准 |
 |---------|---------|
 | `schematic_path`、`output_dir`、`src` 等项目文件路径 | 项目 config.json 所在目录 |
-| 以 `platforms/` 开头的路径（如 `datasheet_path`） | 根目录（embed-ai-assist/） |
+| 以 `platforms/` 开头的路径（如 `datasheet_path`、`svd_path`） | 根目录（embed-ai-assist/） |
 
 ### 运行时状态
 

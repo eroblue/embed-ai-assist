@@ -35,9 +35,21 @@
       "type": "string",
       "description": "芯片数据手册路径（项目层；以 platforms/ 开头时相对根目录，否则相对项目目录）"
     },
+    "datasheet_secondary_path": {
+      "type": "string",
+      "description": "参考手册 PDF 路径（项目层，可选；S3 datasheet-extractor 兜底数据源，仅在无 SVD 时用于提取寄存器映射/时钟树/外设清单；路径解析规则同 datasheet_path）"
+    },
+    "svd_path": {
+      "type": "string",
+      "description": "CMSIS-SVD 文件路径（项目层，可选但推荐；S3 数据源优先级 1，机器可读、寄存器/位域/中断/复位值完整；路径解析规则同 datasheet_path）"
+    },
+    "sdk_header_path": {
+      "type": "string",
+      "description": "厂商设备头文件路径（项目层，可选；S3 数据源优先级 2，寄存器/地址/中断权威，覆盖无 SVD 的芯片；路径解析规则同 datasheet_path）"
+    },
     "stdperiph_lib_path": {
       "type": "string",
-      "description": "MCU 标准外设库路径（项目层，S5 code-generator 使用；以 platforms/ 开头时相对根目录，否则相对项目目录；留空时按 platforms/<platform>/std_periph_lib/ 约定自动发现）"
+      "description": "MCU 标准外设库路径（项目层，S5 code-generator 使用；以 platforms/ 开头时相对根目录，否则相对项目目录；留空时按 platforms/<platform>/sdk/std_periph_lib/ 约定自动发现）"
     },
     "output_dir": {
       "type": "string",

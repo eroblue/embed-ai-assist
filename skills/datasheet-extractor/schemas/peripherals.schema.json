@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.chip.peripherals.v1",
+  "title": "外设清单数据契约（outputs/chip_info/peripherals.json）",
+  "type": "object",
+  "required": ["schema", "mcu_family", "source", "peripherals"],
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "embedaiassist.chip.peripherals.v1"
+    },
+    "mcu_family": {
+      "type": "string"
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "svd": { "type": ["string", "null"], "description": "CMSIS-SVD 路径（数据源优先级 1）" },
+        "sdk_header": { "type": ["string", "null"], "description": "厂商设备头文件路径（数据源优先级 2）" },
+        "reference_manual": { "type": ["string", "null"], "description": "参考手册路径（单手册模式下为 null）" },
+        "extracted_at": { "type": "string" }
+      },
+      "required": ["extracted_at"]
+    },
+    "peripherals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "外设名（如 GPIOA、RCC、USART1）"
+          },
+          "base_address": {
+            "type": ["string", "null"],
+            "pattern": "^0[xX][0-9a-fA-F]+$",
+            "description": "基地址（如 0x40010800）；8 位机等 SFR 模型无外设基地址，为 null"
+          },
+          "end_address": {
+            "type": ["string", "null"],
+            "description": "结束地址（来自寄存器边界表，如 0x40010BFF）"
+          },
+          "bus": {
+            "type": ["string", "null"],
+            "description": "所在总线（AHB/APB1/APB2；从地址范围推断）"
+          },
+          "irqs": {
+            "type": "array",
+            "description": "关联中断向量",
+            "items": {
+              "type": "object",
+              "required": ["name", "number"],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "中断名（如 USART1_IRQn 中的 USART1）"
+                },
+                "number": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "中断号（Core 外设号或位置）"
+                }
+              }
+            }
+          },
+          "description": {
+            "type": "string",
+            "description": "外设说明（如 General purpose I/O）"
+          }
+        }
+      }
+    }
+  }
+}

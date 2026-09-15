@@ -1,7 +1,10 @@
 {
   "platform": "stm32f103zet6",
   "schematic_path": "schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc",
-  "datasheet_path": "platforms/stm32f103zet6/datasheets/STM32F103ZET6-DataSheet.pdf",
-  "stdperiph_lib_path": "platforms/stm32f103zet6/std_periph_lib/STM32F10x_StdPeriph_Lib_V3.5.0",
+  "datasheet_path": "platforms/stm32f103zet6/datasheets/STM32F103ZET6.pdf",
+  "datasheet_secondary_path": "platforms/stm32f103zet6/datasheets/STM32F10x_Reference_Manual.pdf",
+  "svd_path": "platforms/stm32f103zet6/svd/STM32F103xx.svd",
+  "sdk_header_path": "platforms/stm32f103zet6/sdk/cmsis/stm32f10x.h",
+  "stdperiph_lib_path": "platforms/stm32f103zet6/sdk/std_periph_lib",
   "output_dir": "outputs/"
 }

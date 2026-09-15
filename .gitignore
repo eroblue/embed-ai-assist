@@ -9,7 +9,8 @@ examples/*/outputs/
 
 # 芯片资料（可能很大，视情况决定是否提交）
 # platforms/*/datasheets/*.pdf
-# platforms/*/std_periph_lib/
+# platforms/*/svd/
+# platforms/*/sdk/
 
 # IDE
 .vscode/
@@ -18,3 +19,5 @@ examples/*/outputs/
 # 操作系统
 Thumbs.db
 .DS_Store
+
+echo "platforms/stm32f103zet6/datasheets/STM32F10x_Reference_Manual.pdf" >> .gitignore

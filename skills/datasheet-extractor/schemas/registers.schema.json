@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.chip.registers.v1",
+  "title": "寄存器映射数据契约（outputs/chip_info/registers.json）",
+  "type": "object",
+  "required": ["schema", "mcu_family", "source", "registers"],
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "embedaiassist.chip.registers.v1"
+    },
+    "mcu_family": {
+      "type": "string"
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "svd": { "type": ["string", "null"], "description": "CMSIS-SVD 路径（数据源优先级 1；为 null 时来自 SDK 头文件或参考手册 PDF）" },
+        "sdk_header": { "type": ["string", "null"], "description": "厂商设备头文件路径（数据源优先级 2）" },
+        "reference_manual": { "type": ["string", "null"], "description": "参考手册路径（单手册模式下为 null，数据来自 datasheet）" },
+        "extracted_at": { "type": "string" }
+      },
+      "required": ["extracted_at"]
+    },
+    "registers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["peripheral", "name", "address"],
+        "properties": {
+          "peripheral": {
+            "type": "string",
+            "description": "所属外设（如 GPIOA、RCC、USART1）"
+          },
+          "name": {
+            "type": "string",
+            "description": "寄存器名（如 CRL、CRH、APB2ENR）"
+          },
+          "address": {
+            "type": ["string", "null"],
+            "pattern": "^0[xX][0-9a-fA-F]+$",
+            "description": "绝对地址（外设基地址+偏移，如 0x40010800）；8 位机 SFR 模型直接存单字节地址（如 0x80）。无法合成（通配寄存器 GPIOx_CR1、基地址未解析）时为 null"
+          },
+          "offset": {
+            "type": ["string", "null"],
+            "description": "相对外设基地址的偏移（如 0x00、0x14）；SFR 模型无偏移概念，为 null"
+          },
+          "access": {
+            "type": "string",
+            "enum": ["r", "w", "rw", "rc_w1", "rc_w0", "t", ""],
+            "description": "读写权限（rc_w1=读清/写 1；t=toggle）"
+          },
+          "reset_value": {
+            "type": ["string", "null"],
+            "description": "复位值（如 0x00000000；未知为 null）"
+          },
+          "description": {
+            "type": "string",
+            "description": "寄存器功能说明"
+          },
+          "bitfields": {
+            "type": "array",
+            "description": "位域定义（尽力而为：无参考手册位域表时可能为空）",
+            "items": {
+              "type": "object",
+              "required": ["name", "bits"],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "位段名（如 MODE0、HPRE、IOPAEN）"
+                },
+                "bits": {
+                  "type": "string",
+                  "description": "位段位置（如 1:0、7:4、31）"
+                },
+                "access": {
+                  "type": "string",
+                  "description": "该位段读写权限"
+                },
+                "reset_value": {
+                  "type": ["string", "null"],
+                  "description": "该位段复位值"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "该位段功能说明"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

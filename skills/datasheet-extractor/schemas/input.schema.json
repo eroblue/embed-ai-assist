@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.datasheet-extractor.input.v1",
+  "title": "datasheet-extractor 输入契约",
+  "description": "从合并后的 config.json 中读取的输入字段。svd_path 可选但推荐（CMSIS-SVD 为优先数据源，机器可读、数据完整）；无 SVD 时回退 datasheet_secondary_path 解析参考手册 PDF（尽力而为）；两者都缺失时寄存器/时钟树/外设提取退化为 partial）。",
+  "type": "object",
+  "required": ["platform", "datasheet_path"],
+  "properties": {
+    "platform": {
+      "type": "string",
+      "description": "芯片平台名（对应 platforms/ 目录名），前缀决定适配器：stm32* / gd32* / fm32*",
+      "examples": ["stm32f103zet6", "gd32f205vet6"]
+    },
+    "datasheet_path": {
+      "type": "string",
+      "minLength": 1,
+      "description": "数据手册 PDF 路径（以 platforms/ 开头时相对根目录，否则相对项目目录）"
+    },
+    "datasheet_secondary_path": {
+      "type": ["string", "null"],
+      "description": "参考手册 PDF 路径（可选；无 SVD 时的兜底数据源，从 PDF 提取寄存器映射/时钟树/外设清单）"
+    },
+    "svd_path": {
+      "type": ["string", "null"],
+      "description": "CMSIS-SVD 文件路径（可选但推荐；优先数据源，一次 XML 解析即得全部外设/寄存器/位域/中断/复位值）"
+    },
+    "sdk_header_path": {
+      "type": ["string", "null"],
+      "description": "厂商设备头文件路径（可选；第二优先数据源，寄存器/地址/中断权威，无 SVD 时使用）"
+    },
+    "workspace": {
+      "type": "string",
+      "description": "项目工作区目录（state.json 与 outputs/ 所在）"
+    },
+    "extract_scope": {
+      "type": "string",
+      "enum": ["pins", "registers", "clocks", "peripherals", "all"],
+      "default": "all",
+      "description": "请求提取范围：pins=引脚定义 / registers=寄存器映射 / clocks=时钟树 / peripherals=外设清单 / all=全部"
+    }
+  },
+  "additionalProperties": true
+}

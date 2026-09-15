@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.chip.clock_tree.v1",
+  "title": "时钟树配置要素数据契约（outputs/chip_info/clock_tree.json）",
+  "description": "存储时钟配置要素（时钟源/PLL/总线分频/外设时钟使能位）而非图形树；位段信息与 registers.json 的 RCC 位域联动。",
+  "type": "object",
+  "required": ["schema", "mcu_family", "source", "clock_sources", "bus_prescalers", "peripheral_clock_enables"],
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "embedaiassist.chip.clocktree.v1"
+    },
+    "mcu_family": {
+      "type": "string"
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "svd": { "type": ["string", "null"], "description": "CMSIS-SVD 路径（数据源优先级 1，时钟树从 RCC 寄存器位域推导）" },
+        "sdk_header": { "type": ["string", "null"], "description": "厂商设备头文件路径（数据源优先级 2，时钟树从 RCC 位域掩码推导）" },
+        "reference_manual": { "type": ["string", "null"] },
+        "datasheet": { "type": ["string", "null"] },
+        "extracted_at": { "type": "string" }
+      },
+      "required": ["extracted_at"]
+    },
+    "clock_sources": {
+      "type": "array",
+      "description": "时钟源列表",
+      "items": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "enum": ["HSE", "HSI", "LSE", "LSI", "SYSCLK"],
+            "description": "时钟源名"
+          },
+          "frequency_range": {
+            "type": "string",
+            "description": "频率范围（如 4-16 MHz、30 kHz）"
+          },
+          "typical": {
+            "type": "string",
+            "description": "典型频率（如 8 MHz）"
+          },
+          "notes": {
+            "type": "string",
+            "description": "备注（如系统时钟来源选择）"
+          }
+        }
+      }
+    },
+    "pll": {
+      "type": "object",
+      "description": "PLL 配置要素",
+      "properties": {
+        "source": { "type": "string", "description": "PLL 时钟源（HSE/HSI/2）" },
+        "multiplier_field": { "type": "string", "description": "倍频位段名（如 PLLMUL）" },
+        "multiplier_range": { "type": "string", "description": "倍频范围（如 x2..x16）" }
+      }
+    },
+    "bus_prescalers": {
+      "type": "array",
+      "description": "总线分频器",
+      "items": {
+        "type": "object",
+        "required": ["bus", "field"],
+        "properties": {
+          "bus": {
+            "type": "string",
+            "enum": ["AHB", "APB1", "APB2", "ADC", "USB", "SYSCLK"],
+            "description": "总线名"
+          },
+          "field": {
+            "type": "string",
+            "description": "分频位段名（如 HPRE、PPRE1、PPRE2、ADCPRE、USBPRE）"
+          },
+          "register": {
+            "type": "string",
+            "description": "所在寄存器（如 RCC_CFGR）"
+          },
+          "division_range": {
+            "type": "string",
+            "description": "分频范围（如 /1../256）"
+          }
+        }
+      }
+    },
+    "peripheral_clock_enables": {
+      "type": "array",
+      "description": "外设时钟使能位",
+      "items": {
+        "type": "object",
+        "required": ["peripheral", "field", "bus"],
+        "properties": {
+          "peripheral": {
+            "type": "string",
+            "description": "外设名（如 GPIOA、USART1、TIM2）"
+          },
+          "field": {
+            "type": "string",
+            "description": "使能位段名（如 IOPAEN、USART1EN、TIM2EN）"
+          },
+          "register": {
+            "type": "string",
+            "description": "所在寄存器（如 RCC_APB2ENR）"
+          },
+          "bus": {
+            "type": "string",
+            "enum": ["AHB", "APB1", "APB2"],
+            "description": "所在总线"
+          }
+        }
+      }
+    }
+  }
+}
