@@ -20,4 +20,5 @@ examples/*/outputs/
 Thumbs.db
 .DS_Store
 
-echo "platforms/stm32f103zet6/datasheets/STM32F10x_Reference_Manual.pdf" >> .gitignore
+# 芯片资料（大文件不提交，小文件保留）
+platforms/**/datasheets/STM32F10x_Reference_Manual.pdf
