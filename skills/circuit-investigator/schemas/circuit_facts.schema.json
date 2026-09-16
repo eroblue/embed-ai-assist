@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.circuit.facts.v1",
+  "title": "硬件事实报告数据契约（outputs/circuit_facts.json）",
+  "description": "S4 circuit-investigator 的完整产物：每个引脚的最终角色、外设配置、冲突列表、警告列表、电源轨、时钟配置。S5 code-generator 以此为硬件输入。",
+  "type": "object",
+  "properties": {
+    "schema": { "const": "embedaiassist.circuit.facts.v1" },
+    "mcu": { "type": "string", "description": "主控型号（来自网表主控元件 value）" },
+    "package": { "type": ["string", "null"], "description": "封装（如 LQFP144）" },
+    "platform": { "type": "string", "description": "芯片平台名" },
+    "verify_status": { "type": "string", "enum": ["success", "partial", "failed"] },
+    "verify_scope": { "type": "string", "enum": ["pins", "power", "clocks", "peripherals", "all"] },
+    "inference_mode": { "type": "string", "enum": ["rule", "ai"] },
+    "pins": {
+      "type": "array",
+      "description": "主控每个引脚的验证与推断结果（按引脚号升序）",
+      "items": {
+        "type": "object",
+        "properties": {
+          "pin": { "type": "string", "description": "引脚号" },
+          "pin_name": { "type": "string", "description": "引脚名（如 PA0-WKUP）" },
+          "net": { "type": ["string", "null"], "description": "网络名（NC 为 null）" },
+          "component": { "type": ["string", "null"], "description": "元件位号（主控）" },
+          "role": { "type": "string", "description": "推断的功能角色（如 串口2发送；无法推断为空串）" },
+          "peripheral": { "type": "string", "description": "外设/模式（如 USART2_TX、GPIO 输入上拉、电源；NC 为 NC）" },
+          "config": { "type": "string", "description": "配置说明" },
+          "status": { "type": "string", "enum": ["ok", "warning", "conflict", "nc"], "description": "该引脚的验证状态" },
+          "note": { "type": "string", "description": "备注（推断依据或问题描述）" }
+        },
+        "required": ["pin", "pin_name", "net", "component", "role", "peripheral", "config", "status", "note"]
+      }
+    },
+    "power": {
+      "type": "object",
+      "description": "电源轨：芯片电源引脚名 → 实际网络名（如 VDD → 3V3）",
+      "additionalProperties": { "type": ["string", "null"] }
+    },
+    "clocks": {
+      "type": "object",
+      "description": "时钟配置（HSE/LSE 频率来自晶振元件 value；未连接为 未连接；PLL/总线为 待定，由 S5 决定）",
+      "properties": {
+        "HSE": { "type": ["string", "null"] },
+        "LSE": { "type": ["string", "null"] }
+      },
+      "additionalProperties": { "type": ["string", "null"] }
+    },
+    "conflicts": {
+      "type": "array",
+      "description": "冲突列表（severity=error，必须修复否则代码无法正常工作）",
+      "items": {
+        "type": "object",
+        "properties": {
+          "pin": { "type": "string" },
+          "issue": { "type": "string" },
+          "severity": { "const": "error" }
+        },
+        "required": ["pin", "issue", "severity"]
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "description": "警告列表（severity=warning，建议确认）",
+      "items": {
+        "type": "object",
+        "properties": {
+          "pin": { "type": "string" },
+          "issue": { "type": "string" },
+          "severity": { "const": "warning" }
+        },
+        "required": ["pin", "issue", "severity"]
+      }
+    },
+    "nc_pins": {
+      "type": "array",
+      "description": "未连接引脚名列表（severity=info，无需处理）",
+      "items": { "type": "string" }
+    },
+    "verified_pin_count": { "type": "integer", "minimum": 0 },
+    "conflict_count": { "type": "integer", "minimum": 0 },
+    "warning_count": { "type": "integer", "minimum": 0 },
+    "nc_pin_count": { "type": "integer", "minimum": 0 },
+    "source": {
+      "type": "object",
+      "description": "数据来源（S1 网表 + S3 引脚定义，绝对路径）",
+      "properties": {
+        "netlist": { "type": ["string", "null"] },
+        "chip_pins": { "type": ["string", "null"] },
+        "investigated_at": { "type": "string" }
+      },
+      "required": ["netlist", "chip_pins", "investigated_at"]
+    }
+  },
+  "required": [
+    "schema", "mcu", "package", "platform", "verify_status", "verify_scope",
+    "inference_mode", "pins", "power", "clocks", "conflicts", "warnings",
+    "nc_pins", "verified_pin_count", "conflict_count", "warning_count",
+    "nc_pin_count", "source"
+  ]
+}

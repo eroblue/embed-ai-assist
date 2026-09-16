@@ -135,10 +135,10 @@ schematic-reader/
 
 `outputs/pin_table.xlsx`：引脚配置 Excel（格式规范见 [references/excel_format.md](references/excel_format.md)），
 所有元件放在同一个工作表（每元件一个区块，含标题行/表头行/引脚行），
-列为 **引脚号 / 引脚名 / 网络名 / 作用 / 外设/模式**。
+列为 **引脚号 / 引脚名 / 网络名**。
 
 - 引脚号、引脚名、网络名来自网表
-- 作用、外设/模式按关键词自动推断（电源、SWD、BOOT、复位、晶振、悬空），无法识别的留空待人工/AI 补充
+- 作用与外设/模式的判断归 S4 circuit-investigator（输出在 `outputs/circuit_facts.xlsx`），本表不再输出这两列
 - 行颜色编码：电源=蓝、特殊功能=黄、悬空=灰、普通=白
 
 ## 执行步骤

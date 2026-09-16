@@ -1,0 +1,10 @@
+{
+  "platform": "gd32f205vet6",
+  "schematic_path": "schematic/gd32f205vet6.SchDoc",
+  "datasheet_path": "platforms/gd32f205vet6/datasheets/GD32F205xx_Datasheet_Rev2.4.pdf",
+  "datasheet_secondary_path": "platforms/gd32f205vet6/datasheets/GD32F20x 用户手册.pdf",
+  "svd_path": "platforms/gd32f205vet6/svd/GD32F20x.svd",
+  "sdk_header_path": "platforms/gd32f205vet6/sdk/cmsis/gd32f20x.h",
+  "stdperiph_lib_path": "platforms/gd32f205vet6/sdk/std_periph_lib",
+  "output_dir": "outputs/"
+}

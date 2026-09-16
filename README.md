@@ -20,28 +20,44 @@
 embed-ai-assist/
 ├── skills/                              # 所有 Skill
 │   ├── schematic-reader/                # S1 原理图解析（参考实现）
-│   └── datasheet-extractor/             # S3 芯片手册提取（SVD > SDK 头文件 > PDF）
+│   ├── datasheet-extractor/             # S3 芯片手册提取（SVD > SDK 头文件 > PDF）
+│   └── circuit-investigator/            # S4 电路侦查（S1×S3 交叉验证 → 硬件事实）
 ├── platforms/                           # 共享的芯片资料库（只读）
-│   └── stm32f103zet6/
-│       ├── datasheets/                  # PDF 手册（人类阅读）
-│       │   ├── STM32F103ZET6.pdf        #   数据手册
-│       │   └── STM32F10x_Reference_Manual.pdf  # 参考手册
-│       ├── svd/                         # CMSIS-SVD（机器可读，S3 优先数据源）
-│       │   └── STM32F103xx.svd
+│   ├── stm32f103zet6/
+│   │   ├── datasheets/                  # PDF 手册（人类阅读）
+│   │   │   ├── STM32F103ZET6.pdf        #   数据手册
+│   │   │   └── STM32F10x_Reference_Manual.pdf  # 参考手册
+│   │   ├── svd/                         # CMSIS-SVD（机器可读，S3 优先数据源）
+│   │   │   └── STM32F103xx.svd
+│   │   ├── sdk/                         # 厂商 SDK（机器可读）
+│   │   │   ├── cmsis/                  #   core_cm3.h / stm32f10x.h / system_stm32f10x.*
+│   │   │   ├── startup/                #   启动文件（arm / gcc_ride7）
+│   │   │   └── std_periph_lib/         #   标准外设库（inc/ + src/）
+│   │   ├── schematics/                  # 参考原理图（WarShip SCH.pdf）
+│   │   ├── linker_scripts/              # 链接脚本（待填充）
+│   │   └── templates/                   # 工程模板（待填充）
+│   └── gd32f205vet6/
+│       ├── datasheets/                  # GD32F205xx 数据手册 + GD32F20x 用户手册
+│       ├── svd/                         # GD32F20x.svd
 │       ├── sdk/                         # 厂商 SDK（机器可读）
-│       │   ├── cmsis/                  #   core_cm3.h / stm32f10x.h / system_stm32f10x.*
-│       │   ├── startup/                #   启动文件（arm / gcc_ride7）
+│       │   ├── cmsis/                  #   gd32f20x.h / system_gd32f20x.h / core_*.h
 │       │   └── std_periph_lib/         #   标准外设库（inc/ + src/）
-│       ├── schematics/                  # 参考原理图（WarShip SCH.pdf）
+│       ├── schematics/                  # 参考原理图（待填充）
 │       ├── linker_scripts/              # 链接脚本（待填充）
 │       └── templates/                   # 工程模板（待填充）
 ├── examples/                            # 验证/演示工程
-│   └── stm32f103zet6/
-│       ├── config.json                  # 本示例的配置（项目层）
-│       ├── state.json                   # 本示例的运行时状态
-│       ├── outputs/                     # 本示例的输出（网表/Excel 等）
-│       ├── schematic/                   # 本示例的原理图
-│       └── src/                         # 本示例的源码
+│   ├── stm32f103zet6/
+│   │   ├── config.json                  # 本示例的配置（项目层）
+│   │   ├── state.json                   # 本示例的运行时状态
+│   │   ├── outputs/                     # 本示例的输出（网表/Excel 等）
+│   │   ├── schematic/                   # 本示例的原理图
+│   │   └── src/                         # 本示例的源码
+│   └── gd32f205vet6/
+│       ├── config.json
+│       ├── state.json
+│       ├── outputs/
+│       ├── schematic/                   # gd32f205vet6.SchDoc
+│       └── src/
 ├── projects/                           # 实际项目工作区
 │   └── my_project/
 │       ├── config.json
@@ -116,7 +132,7 @@ embed-ai-assist/
 | S1 | schematic-reader | 数据输入 | 解析原理图，输出通用网表 | 已实现 |
 | S2 | spec-reader | 数据输入 | 解析功能规格书，输出需求摘要 | 规划中 |
 | S3 | datasheet-extractor | 数据输入 | 提取 MCU 手册引脚/寄存器/时钟信息 | 已实现 |
-| S4 | circuit-investigator | 验证 | 电路覆盖门禁，输出硬件事实 | 规划中 |
+| S4 | circuit-investigator | 验证 | 电路覆盖门禁，输出硬件事实 | 已实现 |
 | S5 | code-generator | 核心处理 | 生成 APP/BootLoader 代码 | 规划中 |
 | S6 | code-merger | 核心处理 | 源码合并 / 固件合并 | 规划中 |
 | S7 | build | 编译构建 | 调用工具链编译工程 | 规划中 |
@@ -143,9 +159,13 @@ python skills/schematic-reader/scripts/parse.py --config examples/stm32f103zet6/
 # 2. 运行 datasheet-extractor 提取芯片数据（数据源优先级：SVD > SDK 头文件 > 参考手册 PDF）
 python skills/datasheet-extractor/scripts/extract.py --config examples/stm32f103zet6/config.json
 
-# 3. 查看结果
-#    examples/stm32f103zet6/state.json        -> circuit 字段（S1）/ chip 字段（S3）
+# 3. 运行 circuit-investigator 交叉验证（S1 网表 × S3 芯片规格 → 硬件事实报告）
+python skills/circuit-investigator/scripts/investigate.py --config examples/stm32f103zet6/config.json
+
+# 4. 查看结果
+#    examples/stm32f103zet6/state.json        -> circuit 字段（S1/S4）/ chip 字段（S3）
 #    examples/stm32f103zet6/outputs/          -> circuit_netlist.json + pin_table.xlsx
+#                                                + circuit_facts.json + circuit_facts.xlsx
 #    examples/stm32f103zet6/outputs/chip_info/ -> pins/registers/clock_tree/peripherals
 #                                                 .json + pin_table/register_map.xlsx
 ```

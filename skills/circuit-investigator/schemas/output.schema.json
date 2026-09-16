@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.investigate.output.v1",
+  "title": "circuit-investigator 输出契约（state.json 的 circuit.facts 字段）",
+  "description": "指针/数据分离：硬件事实报告本体写入 outputs/circuit_facts.json（由 circuit_facts.schema.json 约束），state.json 的 circuit.facts 只存指针与统计计数。",
+  "type": "object",
+  "properties": {
+    "facts_path": { "type": "string", "description": "硬件事实报告 JSON 路径（相对 workspace）" },
+    "facts_xlsx_path": { "type": ["string", "null"], "description": "硬件事实报告 Excel 路径（openpyxl 缺失时为 null）" },
+    "verified_pin_count": { "type": "integer", "minimum": 0, "description": "已验证的引脚数量" },
+    "conflict_count": { "type": "integer", "minimum": 0, "description": "检测到的冲突数量（severity=error）" },
+    "warning_count": { "type": "integer", "minimum": 0, "description": "警告数量" },
+    "nc_pin_count": { "type": "integer", "minimum": 0, "description": "未连接引脚数量（NC）" },
+    "verify_status": { "type": "string", "enum": ["success", "partial", "failed"] },
+    "verify_scope": { "type": "string", "enum": ["pins", "power", "clocks", "peripherals", "all"] },
+    "inference_mode": { "type": "string", "enum": ["rule", "ai"] },
+    "error": { "type": ["string", "null"], "description": "失败时的错误信息（成功时为 null）" },
+    "updated_at": { "type": "string", "description": "ISO 时间戳" }
+  },
+  "required": [
+    "facts_path", "verified_pin_count", "conflict_count", "warning_count",
+    "nc_pin_count", "verify_status", "verify_scope", "inference_mode", "error"
+  ]
+}

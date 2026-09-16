@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.investigate.input.v1",
+  "title": "circuit-investigator 输入契约",
+  "description": "S4 读取 state.json 的 circuit 字段（S1 输出）与 chip 字段（S3 输出）执行交叉验证。输入就绪性：两者 status 均非 failed 才可执行。",
+  "type": "object",
+  "properties": {
+    "circuit": {
+      "type": "object",
+      "description": "S1 schematic-reader 写入的 circuit 字段",
+      "properties": {
+        "netlist_path": { "type": ["string", "null"], "description": "网表 JSON 路径指针" },
+        "parse_status": { "type": "string", "enum": ["success", "partial", "failed"] }
+      },
+      "required": ["parse_status"]
+    },
+    "chip": {
+      "type": "object",
+      "description": "S3 datasheet-extractor 写入的 chip 字段",
+      "properties": {
+        "pins_path": { "type": ["string", "null"], "description": "引脚定义 JSON 路径指针" },
+        "extract_status": { "type": "string", "enum": ["success", "partial", "failed"] }
+      },
+      "required": ["extract_status"]
+    },
+    "platform": { "type": "string", "description": "芯片平台名（识别主控元件）" },
+    "verify_scope": {
+      "type": "string",
+      "enum": ["pins", "power", "clocks", "peripherals", "all"],
+      "default": "all"
+    },
+    "inference_mode": {
+      "type": "string",
+      "enum": ["rule", "ai"],
+      "default": "rule",
+      "description": "rule=规则推断；ai=LLM 辅助推断（当前版本 ai 失败自动降级 rule）"
+    }
+  },
+  "required": ["circuit", "chip", "platform"]
+}

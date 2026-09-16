@@ -22,3 +22,4 @@ Thumbs.db
 
 # 芯片资料（大文件不提交，小文件保留）
 platforms/**/datasheets/STM32F10x_Reference_Manual.pdf
+platforms/**/datasheets/GD32F20x 用户手册.pdf

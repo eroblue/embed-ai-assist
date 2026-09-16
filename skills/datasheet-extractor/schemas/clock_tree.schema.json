@@ -33,8 +33,8 @@
         "properties": {
           "name": {
             "type": "string",
-            "enum": ["HSE", "HSI", "LSE", "LSI", "SYSCLK"],
-            "description": "时钟源名"
+            "enum": ["HSE", "HSI", "LSE", "LSI", "SYSCLK", "HXTAL", "IRC8M", "IRC40K", "LXTAL"],
+            "description": "时钟源名（ST 命名 HSE/HSI/LSE/LSI；GD32 命名 HXTAL/IRC8M/IRC40K/LXTAL）"
           },
           "frequency_range": {
             "type": "string",
@@ -69,8 +69,8 @@
         "properties": {
           "bus": {
             "type": "string",
-            "enum": ["AHB", "APB1", "APB2", "ADC", "USB", "SYSCLK"],
-            "description": "总线名"
+            "enum": ["AHB", "AHB1", "AHB2", "APB1", "APB2", "ADC", "USB", "SYSCLK"],
+            "description": "总线名（GD32F2xx 的 AHB 分 AHB1/AHB2）"
           },
           "field": {
             "type": "string",
@@ -108,8 +108,8 @@
           },
           "bus": {
             "type": "string",
-            "enum": ["AHB", "APB1", "APB2"],
-            "description": "所在总线"
+            "enum": ["AHB", "AHB1", "AHB2", "APB1", "APB2"],
+            "description": "所在总线（GD32F2xx 的 AHB 分 AHB1/AHB2）"
           }
         }
       }
