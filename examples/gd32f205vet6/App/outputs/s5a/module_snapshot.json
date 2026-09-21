@@ -1,0 +1,278 @@
+{
+  "platform": "gd32f205vet6",
+  "rtos": "none",
+  "architecture": "layered",
+  "power": false,
+  "modules": [
+    "clock_init",
+    "fsmc_init",
+    "gpio_init",
+    "nvic_init",
+    "pwm_init",
+    "spi_init",
+    "uart_init"
+  ],
+  "domains": {
+    "clock": {
+      "sysclk_hz": 32000000,
+      "hse_hz": 16000000,
+      "lse_hz": 32768,
+      "ahb_hz": 32000000,
+      "apb1_hz": 32000000,
+      "apb2_hz": 32000000
+    },
+    "gpio": [
+      {
+        "af": null,
+        "mode": "IN_FLOATING",
+        "name": "PA0",
+        "net": "NetU1_23",
+        "pin": "23",
+        "pin_no": 0,
+        "port": "PA",
+        "role": "唤醒输入"
+      },
+      {
+        "af": "FSMC/EXMC",
+        "mode": "AF_PP",
+        "name": "PE7",
+        "net": "LCD_DB4",
+        "pin": "38",
+        "pin_no": 7,
+        "port": "PE",
+        "role": "并口/LCD 接口"
+      },
+      {
+        "af": "FSMC/EXMC",
+        "mode": "AF_PP",
+        "name": "PE8",
+        "net": "LCD_DB5",
+        "pin": "39",
+        "pin_no": 8,
+        "port": "PE",
+        "role": "并口/LCD 接口"
+      },
+      {
+        "af": "FSMC/EXMC",
+        "mode": "AF_PP",
+        "name": "PE9",
+        "net": "LCD_DB6",
+        "pin": "40",
+        "pin_no": 9,
+        "port": "PE",
+        "role": "并口/LCD 接口"
+      },
+      {
+        "af": "FSMC/EXMC",
+        "mode": "AF_PP",
+        "name": "PE10",
+        "net": "LCD_DB7",
+        "pin": "41",
+        "pin_no": 10,
+        "port": "PE",
+        "role": "并口/LCD 接口"
+      },
+      {
+        "af": "FSMC/EXMC",
+        "mode": "AF_PP",
+        "name": "PD14",
+        "net": "LCD_DB0",
+        "pin": "61",
+        "pin_no": 14,
+        "port": "PD",
+        "role": "并口/LCD 接口"
+      },
+      {
+        "af": "FSMC/EXMC",
+        "mode": "AF_PP",
+        "name": "PD15",
+        "net": "LCD_DB1",
+        "pin": "62",
+        "pin_no": 15,
+        "port": "PD",
+        "role": "并口/LCD 接口"
+      },
+      {
+        "af": "FSMC/EXMC",
+        "mode": "AF_PP",
+        "name": "PD0",
+        "net": "LCD_DB2",
+        "pin": "81",
+        "pin_no": 0,
+        "port": "PD",
+        "role": "并口/LCD 接口"
+      },
+      {
+        "af": "FSMC/EXMC",
+        "mode": "AF_PP",
+        "name": "PD1",
+        "net": "LCD_DB3",
+        "pin": "82",
+        "pin_no": 1,
+        "port": "PD",
+        "role": "并口/LCD 接口"
+      },
+      {
+        "af": "FSMC/EXMC",
+        "mode": "AF_PP",
+        "name": "PD7",
+        "net": "LCD_CS",
+        "pin": "88",
+        "pin_no": 7,
+        "port": "PD",
+        "role": "并口/LCD 接口"
+      }
+    ],
+    "uart": [
+      {
+        "baud": 115200,
+        "instance": "USART5",
+        "irq": "USART5",
+        "rx": null,
+        "tx": {
+          "name": "PC6",
+          "net": "DEBUG-TXD",
+          "pin": "63",
+          "pin_no": 6,
+          "port": "PC",
+          "role": "串口通信"
+        }
+      }
+    ],
+    "spi": [
+      {
+        "instance": "SPI2",
+        "pin_map": {
+          "miso": {
+            "name": "PC11",
+            "net": "SPI-DO",
+            "pin": "79",
+            "pin_no": 11,
+            "port": "PC",
+            "role": "SPI 通信"
+          },
+          "mosi": {
+            "name": "PC12",
+            "net": "SPI-DI",
+            "pin": "80",
+            "pin_no": 12,
+            "port": "PC",
+            "role": "SPI 通信"
+          },
+          "nss": {
+            "name": "PA15",
+            "net": "SPI-CS",
+            "pin": "77",
+            "pin_no": 15,
+            "port": "PA",
+            "role": "SPI 通信"
+          },
+          "sck": {
+            "name": "PC10",
+            "net": "SPI-CLK",
+            "pin": "78",
+            "pin_no": 10,
+            "port": "PC",
+            "role": "SPI 通信"
+          }
+        },
+        "remap": true
+      }
+    ],
+    "i2c": [],
+    "adc": [],
+    "pwm": [
+      {
+        "channel": "TIMER_CH0",
+        "instance": "TIMER0",
+        "pclk_hz": 32000000,
+        "pin": {
+          "name": "PA8",
+          "net": "LCD-PWM",
+          "pin": "67",
+          "pin_no": 8,
+          "port": "PA",
+          "role": "定时器/脉冲输出"
+        }
+      }
+    ],
+    "fsmc": [
+      {
+        "name": "PE7",
+        "net": "LCD_DB4",
+        "pin": "38",
+        "pin_no": 7,
+        "port": "PE",
+        "role": "并口/LCD 接口"
+      },
+      {
+        "name": "PE8",
+        "net": "LCD_DB5",
+        "pin": "39",
+        "pin_no": 8,
+        "port": "PE",
+        "role": "并口/LCD 接口"
+      },
+      {
+        "name": "PE9",
+        "net": "LCD_DB6",
+        "pin": "40",
+        "pin_no": 9,
+        "port": "PE",
+        "role": "并口/LCD 接口"
+      },
+      {
+        "name": "PE10",
+        "net": "LCD_DB7",
+        "pin": "41",
+        "pin_no": 10,
+        "port": "PE",
+        "role": "并口/LCD 接口"
+      },
+      {
+        "name": "PD14",
+        "net": "LCD_DB0",
+        "pin": "61",
+        "pin_no": 14,
+        "port": "PD",
+        "role": "并口/LCD 接口"
+      },
+      {
+        "name": "PD15",
+        "net": "LCD_DB1",
+        "pin": "62",
+        "pin_no": 15,
+        "port": "PD",
+        "role": "并口/LCD 接口"
+      },
+      {
+        "name": "PD0",
+        "net": "LCD_DB2",
+        "pin": "81",
+        "pin_no": 0,
+        "port": "PD",
+        "role": "并口/LCD 接口"
+      },
+      {
+        "name": "PD1",
+        "net": "LCD_DB3",
+        "pin": "82",
+        "pin_no": 1,
+        "port": "PD",
+        "role": "并口/LCD 接口"
+      },
+      {
+        "name": "PD7",
+        "net": "LCD_CS",
+        "pin": "88",
+        "pin_no": 7,
+        "port": "PD",
+        "role": "并口/LCD 接口"
+      }
+    ],
+    "irq_names": [
+      "USART5",
+      "SPI2"
+    ]
+  }
+}

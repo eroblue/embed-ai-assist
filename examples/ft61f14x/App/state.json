@@ -1,0 +1,86 @@
+{
+  "circuit": {
+    "netlist_path": "outputs/circuit_netlist.json",
+    "component_count": 18,
+    "net_count": 19,
+    "pin_count": 48,
+    "parse_status": "success",
+    "eda_tool": "altium",
+    "source_file": "E:\\skills\\EmbedSoftAutomaticProject\\embed-ai-assist\\examples\\ft61f14x\\schematic\\ft61f14x_test.SchDoc",
+    "excel_path": "outputs/pin_table.xlsx",
+    "error": null,
+    "updated_at": "2026-09-20T11:42:43",
+    "facts": {
+      "facts_path": "E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/ft61f14x/App/outputs/circuit_facts.json",
+      "facts_xlsx_path": "E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/ft61f14x/App/outputs/circuit_facts.xlsx",
+      "verified_pin_count": 8,
+      "conflict_count": 0,
+      "warning_count": 8,
+      "nc_pin_count": 8,
+      "verify_status": "success",
+      "verify_scope": "all",
+      "inference_mode": "rule",
+      "error": null,
+      "updated_at": "2026-09-20T12:05:50"
+    }
+  },
+  "chip": {
+    "datasheet_path": "E:\\skills\\EmbedSoftAutomaticProject\\embed-ai-assist\\platforms\\ft61f14x\\datasheets\\ft61f14x_ds_rev1p09_cn.pdf",
+    "datasheet_secondary_path": null,
+    "svd_path": null,
+    "sdk_header_path": null,
+    "mcu_family": "FT61F14X",
+    "package": "TSSOP20",
+    "pin_count": 20,
+    "pin_defined_count": 20,
+    "register_count": 133,
+    "peripheral_count": 12,
+    "pins_path": "outputs/chip_info/pins.json",
+    "registers_path": "outputs/chip_info/registers.json",
+    "clock_tree_path": "outputs/chip_info/clock_tree.json",
+    "peripherals_path": "outputs/chip_info/peripherals.json",
+    "pin_table_excel_path": "outputs/chip_info/pin_table.xlsx",
+    "register_map_excel_path": "outputs/chip_info/register_map.xlsx",
+    "extract_status": "success",
+    "extract_scope": "all",
+    "error": null,
+    "updated_at": "2026-09-20T11:58:49"
+  },
+  "s5a": {
+    "status": "done",
+    "rtos": "none",
+    "architecture": "flat",
+    "power_enabled": false,
+    "init_sources": [
+      "Drivers/BSP/Src/board_init.c",
+      "Drivers/BSP/Src/clock_init.c",
+      "Drivers/BSP/Src/nvic_init.c",
+      "Drivers/BSP/Src/pwm_init.c",
+      "Drivers/BSP/Src/uart_init.c"
+    ],
+    "init_headers": [
+      "Drivers/BSP/Inc/board_init.h",
+      "Drivers/BSP/Inc/clock_init.h",
+      "Drivers/BSP/Inc/ft61f14x_sfr.h",
+      "Drivers/BSP/Inc/nvic_init.h",
+      "Drivers/BSP/Inc/pwm_init.h",
+      "Drivers/BSP/Inc/uart_init.h"
+    ],
+    "entry_source": "Drivers/BSP/Src/board_init.c",
+    "entry_header": "Drivers/BSP/Inc/board_init.h",
+    "rtos_hw_init": null,
+    "power_init": null,
+    "hardware_capabilities": "outputs/s5a/hardware_capabilities.json",
+    "ide_pending_files": "outputs/s5a/ide_pending_files.json",
+    "error": null,
+    "updated_at": "2026-09-20T12:14:55",
+    "incremental": false,
+    "changed_modules": [
+      "board_init",
+      "clock_init",
+      "nvic_init",
+      "pwm_init",
+      "uart_init"
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "schema": "embedaiassist.s5a.hardware_capabilities.v1",
+  "mcu": "FT61F143A-RB",
+  "platform": "ft61f14x",
+  "rtos": "none",
+  "architecture": "flat",
+  "power_enabled": false,
+  "clocks": {
+    "sysclk_hz": 16000000,
+    "ahb_hz": 16000000,
+    "apb1_hz": 16000000,
+    "apb2_hz": 16000000,
+    "source": "内部 16MHz 直跑（S4 未发现外部晶振，未启 PLL）",
+    "hse_hz": null,
+    "lse_hz": null
+  },
+  "peripherals": [
+    {
+      "type": "uart",
+      "instance": "USART",
+      "pins": {
+        "tx": "PA6",
+        "rx": "PA7"
+      },
+      "dma": null,
+      "irq": null,
+      "capabilities": [
+        "115200-8N1"
+      ]
+    },
+    {
+      "type": "pwm",
+      "instance": "TIM1",
+      "pins": {
+        "out": "PA0"
+      },
+      "dma": null,
+      "irq": null,
+      "capabilities": [
+        "1kHz-default",
+        "50%-default"
+      ]
+    }
+  ],
+  "power": null,
+  "constraints": [
+    "3 个已连接引脚网络名无语义（如 NetC1_2），未生成 GPIO 配置，待 AI/人工补充"
+  ]
+}

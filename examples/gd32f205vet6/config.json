@@ -1,5 +1,13 @@
 {
   "platform": "gd32f205vet6",
+  "project": {
+    "build_target": "App",
+    "architecture": "layered",
+    "rtos": "none",
+    "power": {
+      "enabled": false
+    }
+  },
   "schematic_path": "schematic/gd32f205vet6.SchDoc",
   "datasheet_path": "platforms/gd32f205vet6/datasheets/GD32F205xx_Datasheet_Rev2.4.pdf",
   "datasheet_secondary_path": "platforms/gd32f205vet6/datasheets/GD32F20x 用户手册.pdf",

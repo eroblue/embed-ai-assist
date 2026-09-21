@@ -1,0 +1,258 @@
+{
+  "schema": "embedaiassist.circuit.facts.v1",
+  "mcu": "FT61F143A-RB",
+  "package": "TSSOP20",
+  "platform": "ft61f14x",
+  "verify_status": "success",
+  "verify_scope": "all",
+  "inference_mode": "rule",
+  "pins": [
+    {
+      "pin": "1",
+      "pin_name": "GND",
+      "net": "NetC1_2",
+      "component": "U1",
+      "role": "",
+      "peripheral": "",
+      "config": "",
+      "status": "warning",
+      "note": "网络名无明确语义，无法推断功能角色；网表引脚名 GND ≠ 芯片定义 PA5"
+    },
+    {
+      "pin": "2",
+      "pin_name": "PB4",
+      "net": null,
+      "component": "U1",
+      "role": "",
+      "peripheral": "NC",
+      "config": "未连接",
+      "status": "nc",
+      "note": "网表中无连接（NC）；网表引脚名 PB4 ≠ 芯片定义 PA6"
+    },
+    {
+      "pin": "3",
+      "pin_name": "PB2",
+      "net": null,
+      "component": "U1",
+      "role": "",
+      "peripheral": "NC",
+      "config": "未连接",
+      "status": "nc",
+      "note": "网表中无连接（NC）；网表引脚名 PB2 ≠ 芯片定义 PA7"
+    },
+    {
+      "pin": "4",
+      "pin_name": "PB1/CLKO",
+      "net": null,
+      "component": "U1",
+      "role": "",
+      "peripheral": "NC",
+      "config": "未连接",
+      "status": "nc",
+      "note": "网表中无连接（NC）；网表引脚名 PB1/CLKO ≠ 芯片定义 PC0"
+    },
+    {
+      "pin": "5",
+      "pin_name": "PB0",
+      "net": "Pulse",
+      "component": "U1",
+      "role": "",
+      "peripheral": "",
+      "config": "",
+      "status": "warning",
+      "note": "网络名无明确语义，无法推断功能角色；网表引脚名 PB0 ≠ 芯片定义 PC1"
+    },
+    {
+      "pin": "6",
+      "pin_name": "PA0/T1_CH1",
+      "net": "NetU1_6",
+      "component": "U1",
+      "role": "定时器 PWM 输出",
+      "peripheral": "TIMER PWM",
+      "config": "复用输出",
+      "status": "warning",
+      "note": "按引脚名语义推断（PA0/T1_CH1）；网表引脚名 PA0/T1_CH1 ≠ 芯片定义 PB7"
+    },
+    {
+      "pin": "7",
+      "pin_name": "PA1/T1_CH2",
+      "net": null,
+      "component": "U1",
+      "role": "",
+      "peripheral": "NC",
+      "config": "未连接",
+      "status": "nc",
+      "note": "网表中无连接（NC）；网表引脚名 PA1/T1_CH2 ≠ 芯片定义 GND"
+    },
+    {
+      "pin": "8",
+      "pin_name": "PA4/AN2",
+      "net": null,
+      "component": "U1",
+      "role": "",
+      "peripheral": "NC",
+      "config": "未连接",
+      "status": "nc",
+      "note": "网表中无连接（NC）；网表引脚名 PA4/AN2 ≠ 芯片定义 PB6"
+    },
+    {
+      "pin": "9",
+      "pin_name": "PA2/ISPCK",
+      "net": "ISPCK",
+      "component": "U1",
+      "role": "ISP 下载接口",
+      "peripheral": "ISP",
+      "config": "下载接口，不初始化",
+      "status": "warning",
+      "note": "按引脚名语义推断（PA2/ISPCK）；网表引脚名 PA2/ISPCK ≠ 芯片定义 VDD"
+    },
+    {
+      "pin": "10",
+      "pin_name": "PA6/TX",
+      "net": "NetR3_2",
+      "component": "U1",
+      "role": "串口发送",
+      "peripheral": "USART",
+      "config": "复用输出",
+      "status": "warning",
+      "note": "按引脚名语义推断（PA6/TX）；网表引脚名 PA6/TX ≠ 芯片定义 PB5"
+    },
+    {
+      "pin": "11",
+      "pin_name": "PA7/RX",
+      "net": "NetR2_2",
+      "component": "U1",
+      "role": "串口接收",
+      "peripheral": "USART",
+      "config": "复用输入",
+      "status": "warning",
+      "note": "按引脚名语义推断（PA7/RX）；网表引脚名 PA7/RX ≠ 芯片定义 PB4"
+    },
+    {
+      "pin": "12",
+      "pin_name": "PC1",
+      "net": null,
+      "component": "U1",
+      "role": "",
+      "peripheral": "NC",
+      "config": "未连接",
+      "status": "nc",
+      "note": "网表中无连接（NC）；网表引脚名 PC1 ≠ 芯片定义 PB3"
+    },
+    {
+      "pin": "13",
+      "pin_name": "PB7",
+      "net": null,
+      "component": "U1",
+      "role": "",
+      "peripheral": "NC",
+      "config": "未连接",
+      "status": "nc",
+      "note": "网表中无连接（NC）；网表引脚名 PB7 ≠ 芯片定义 PB2"
+    },
+    {
+      "pin": "14",
+      "pin_name": "PB6/ISPDAT",
+      "net": "ISPDAT",
+      "component": "U1",
+      "role": "ISP 下载接口",
+      "peripheral": "ISP",
+      "config": "下载接口，不初始化",
+      "status": "warning",
+      "note": "按引脚名语义推断（PB6/ISPDAT）；网表引脚名 PB6/ISPDAT ≠ 芯片定义 PB1"
+    },
+    {
+      "pin": "15",
+      "pin_name": "PC0/MCLRB",
+      "net": null,
+      "component": "U1",
+      "role": "",
+      "peripheral": "NC",
+      "config": "未连接",
+      "status": "nc",
+      "note": "网表中无连接（NC）；网表引脚名 PC0/MCLRB ≠ 芯片定义 PB0"
+    },
+    {
+      "pin": "16",
+      "pin_name": "VCC",
+      "net": "NetC1_1",
+      "component": "U1",
+      "role": "",
+      "peripheral": "",
+      "config": "",
+      "status": "warning",
+      "note": "网络名无明确语义，无法推断功能角色；网表引脚名 VCC ≠ 芯片定义 PA0"
+    }
+  ],
+  "power": {},
+  "clocks": {
+    "HSE": "未连接",
+    "LSE": "未连接",
+    "PLL": "待定",
+    "AHB": "待定",
+    "APB1": "待定",
+    "APB2": "待定"
+  },
+  "conflicts": [],
+  "warnings": [
+    {
+      "pin": "6",
+      "issue": "网表引脚名 PA0/T1_CH1 与芯片定义 PB7 不一致",
+      "severity": "warning"
+    },
+    {
+      "pin": "9",
+      "issue": "网表引脚名 PA2/ISPCK 与芯片定义 VDD 不一致",
+      "severity": "warning"
+    },
+    {
+      "pin": "10",
+      "issue": "网表引脚名 PA6/TX 与芯片定义 PB5 不一致",
+      "severity": "warning"
+    },
+    {
+      "pin": "11",
+      "issue": "网表引脚名 PA7/RX 与芯片定义 PB4 不一致",
+      "severity": "warning"
+    },
+    {
+      "pin": "14",
+      "issue": "网表引脚名 PB6/ISPDAT 与芯片定义 PB1 不一致",
+      "severity": "warning"
+    },
+    {
+      "pin": "1",
+      "issue": "网络名 NetC1_2 无明确语义，无法推断功能角色",
+      "severity": "warning"
+    },
+    {
+      "pin": "5",
+      "issue": "网络名 Pulse 无明确语义，无法推断功能角色",
+      "severity": "warning"
+    },
+    {
+      "pin": "16",
+      "issue": "网络名 NetC1_1 无明确语义，无法推断功能角色",
+      "severity": "warning"
+    }
+  ],
+  "nc_pins": [
+    "PB4",
+    "PB2",
+    "PB1/CLKO",
+    "PA1/T1_CH2",
+    "PA4/AN2",
+    "PC1",
+    "PB7",
+    "PC0/MCLRB"
+  ],
+  "verified_pin_count": 8,
+  "conflict_count": 0,
+  "warning_count": 8,
+  "nc_pin_count": 8,
+  "source": {
+    "netlist": "E:\\skills\\EmbedSoftAutomaticProject\\embed-ai-assist\\examples\\ft61f14x\\App\\outputs\\circuit_netlist.json",
+    "chip_pins": "E:\\skills\\EmbedSoftAutomaticProject\\embed-ai-assist\\examples\\ft61f14x\\App\\outputs\\chip_info\\pins.json",
+    "investigated_at": "2026-09-20T12:05:50"
+  }
+}

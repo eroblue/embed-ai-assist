@@ -1,7 +1,7 @@
 {
   "name": "stm32_full_flow",
-  "description": "STM32 全流程示例：原理图解析 -> 芯片手册提取 -> 电路验证 -> 代码生成 -> 合并 -> 编译 -> 固件合并 -> 烧录 -> 串口监控 -> 日志分析",
-  "version": "1.0",
+  "description": "STM32 全流程设计示例（目标态编排，含规划中 skill，待 S12 workflow-runner 实现后生效）：原理图解析 -> 规格解析 -> 芯片手册提取 -> 电路验证 -> 硬件初始化/Port 契约/Port 实现 -> 编译 -> 固件合并 -> 单元测试 -> 烧录 -> 串口监控 -> 日志分析",
+  "version": "1.1",
   "steps": [
     {
       "id": "S1",
@@ -26,16 +26,19 @@
       "params": {}
     },
     {
-      "id": "S5",
-      "skill": "code-generator",
+      "id": "S5a",
+      "skill": "hardware-initializer",
       "params": {}
     },
     {
-      "id": "S6",
-      "skill": "code-merger",
-      "params": {
-        "mode": "source"
-      }
+      "id": "S5b",
+      "skill": "port-contract-and-app",
+      "params": {}
+    },
+    {
+      "id": "S5c",
+      "skill": "port-implementer",
+      "params": {}
     },
     {
       "id": "S7",
@@ -43,29 +46,29 @@
       "params": {}
     },
     {
-      "id": "S8",
-      "skill": "code-merger",
+      "id": "S6",
+      "skill": "firmware-merger",
       "params": {
         "mode": "firmware"
       }
     },
     {
-      "id": "S9",
+      "id": "S8",
       "skill": "unit-test",
       "params": {}
     },
     {
-      "id": "S10",
+      "id": "S9",
       "skill": "flash",
       "params": {}
     },
     {
-      "id": "S11",
+      "id": "S10",
       "skill": "serial-monitor",
       "params": {}
     },
     {
-      "id": "S12",
+      "id": "S11",
       "skill": "log-analyzer",
       "params": {}
     }

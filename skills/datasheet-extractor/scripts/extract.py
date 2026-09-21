@@ -23,6 +23,21 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
+if sys.version_info < (3, 10):  # 版本守卫：本框架需 3.10+（如 Path.write_text(newline=)）
+    import json as _json
+    from pathlib import Path as _Path
+    try:
+        _root_cfg = _json.loads(
+            (_Path(__file__).resolve().parents[3] / "config.json").read_text(encoding="utf-8"))
+        _py = _root_cfg.get("tool_paths", {}).get("python", "")
+    except Exception:
+        _py = ""
+    print(f"[错误] 本框架需要 Python 3.10+，当前解释器为 {sys.version.split()[0]}。"
+          + (f"请使用项目配置的解释器：{_py}" if _py
+             else "项目配置的解释器见根目录 config.json 的 tool_paths.python"),
+          file=sys.stderr)
+    sys.exit(2)
+
 SCRIPT_DIR = Path(__file__).resolve().parent
 SKILL_DIR = SCRIPT_DIR.parent
 ROOT_DIR = SKILL_DIR.parent.parent  # embed-ai-assist/（根目录）
@@ -186,6 +201,12 @@ def main(argv: list[str] | None = None) -> int:
     for note in notes:
         _log(note)
 
+    # ---- 1b. 合并配置契约校验（根目录 schemas/config.schema.json，全流水线统一拦截）----
+    cfg_errors = _validate(config, ROOT_DIR / "schemas" / "config.schema.json", "config")
+    if cfg_errors:
+        _log("配置契约校验失败: " + "; ".join(cfg_errors))
+        return EXIT_CONFIG_ERROR
+
     # 命令行覆盖（仅本次生效，不回写 config.json）
     if args.platform:
         config["platform"] = args.platform
@@ -201,7 +222,8 @@ def main(argv: list[str] | None = None) -> int:
         config["extract_scope"] = args.scope
 
     project_dir = config_path.parent
-    workspace = project_dir
+    # 目标工程根（App/BootLoader 双工程）：state/outputs 归目标工程（project.build_target，缺省 App）
+    workspace = project_dir / ((config.get("project") or {}).get("build_target") or "App")
     state_path = workspace / "state.json"
 
     # ---- 2. 输入契约校验 ----
@@ -297,7 +319,7 @@ def main(argv: list[str] | None = None) -> int:
 
     # ---- 5. 逐产物校验并写入（校验失败的不写，不留半成品） ----
     output_dir_raw = (config.get("output_dir") or "outputs/").strip()
-    output_dir = (project_dir / output_dir_raw).resolve()
+    output_dir = (workspace / output_dir_raw).resolve()
     chip_dir = output_dir / "chip_info"
     now = datetime.now().isoformat(timespec="seconds")
 

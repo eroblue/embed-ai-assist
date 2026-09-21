@@ -1,0 +1,978 @@
+{
+  "schema": "embedaiassist.chip.peripherals.v1",
+  "mcu_family": "GD32F205XX",
+  "source": {
+    "svd": "E:\\skills\\EmbedSoftAutomaticProject\\embed-ai-assist\\platforms\\gd32f205vet6\\svd\\GD32F20x.svd",
+    "sdk_header": "E:\\skills\\EmbedSoftAutomaticProject\\embed-ai-assist\\platforms\\gd32f205vet6\\sdk\\cmsis\\gd32f20x.h",
+    "reference_manual": "E:\\skills\\EmbedSoftAutomaticProject\\embed-ai-assist\\platforms\\gd32f205vet6\\datasheets\\GD32F20x 用户手册.pdf",
+    "extracted_at": "2026-09-19T15:28:02"
+  },
+  "peripherals": [
+    {
+      "name": "ADC0",
+      "base_address": "0x40012400",
+      "end_address": null,
+      "bus": "APB2",
+      "irqs": [
+        {
+          "name": "ADC0_1",
+          "number": 18
+        }
+      ],
+      "description": "Analog to digital converter"
+    },
+    {
+      "name": "ADC1",
+      "base_address": "0x40012800",
+      "end_address": null,
+      "bus": "APB2",
+      "irqs": [
+        {
+          "name": "ADC0_1",
+          "number": 18
+        }
+      ],
+      "description": "Analog to digital converter"
+    },
+    {
+      "name": "ADC2",
+      "base_address": "0x40013c00",
+      "end_address": null,
+      "bus": "APB2",
+      "irqs": [
+        {
+          "name": "ADC2",
+          "number": 47
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "AFIO",
+      "base_address": "0x40010000",
+      "end_address": null,
+      "bus": "APB2",
+      "irqs": [],
+      "description": "Alternate-function I/Os"
+    },
+    {
+      "name": "BKP",
+      "base_address": "0x40006c00",
+      "end_address": null,
+      "bus": "APB1",
+      "irqs": [
+        {
+          "name": "Tamper",
+          "number": 2
+        }
+      ],
+      "description": "Backup registers"
+    },
+    {
+      "name": "CAN0",
+      "base_address": "0x40006400",
+      "end_address": null,
+      "bus": "APB1",
+      "irqs": [
+        {
+          "name": "CAN0_TX",
+          "number": 19
+        },
+        {
+          "name": "CAN0_RX0",
+          "number": 20
+        },
+        {
+          "name": "CAN0_RX1",
+          "number": 21
+        },
+        {
+          "name": "CAN0_EWMC",
+          "number": 22
+        }
+      ],
+      "description": "Controller area network"
+    },
+    {
+      "name": "CAN1",
+      "base_address": "0x40006800",
+      "end_address": null,
+      "bus": "APB1",
+      "irqs": [
+        {
+          "name": "CAN1_TX",
+          "number": 63
+        },
+        {
+          "name": "CAN1_RX0",
+          "number": 64
+        },
+        {
+          "name": "CAN1_RX1",
+          "number": 65
+        },
+        {
+          "name": "CAN1_EWMC",
+          "number": 66
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "CAU",
+      "base_address": "0x50060000",
+      "end_address": null,
+      "bus": "AHB",
+      "irqs": [
+        {
+          "name": "CAU",
+          "number": 79
+        }
+      ],
+      "description": "Cryptographic acceleration unit"
+    },
+    {
+      "name": "CRC",
+      "base_address": "0x40023000",
+      "end_address": null,
+      "bus": "AHB",
+      "irqs": [],
+      "description": "CRC calculation unit"
+    },
+    {
+      "name": "DAC",
+      "base_address": "0x40007400",
+      "end_address": null,
+      "bus": "APB1",
+      "irqs": [],
+      "description": "Digital to analog converter"
+    },
+    {
+      "name": "DBG",
+      "base_address": "0xe0042000",
+      "end_address": null,
+      "bus": null,
+      "irqs": [],
+      "description": "Debug support"
+    },
+    {
+      "name": "DCI",
+      "base_address": "0x50050000",
+      "end_address": null,
+      "bus": "AHB",
+      "irqs": [
+        {
+          "name": "DCI",
+          "number": 78
+        }
+      ],
+      "description": "Digital Camera Interface"
+    },
+    {
+      "name": "DMA0",
+      "base_address": "0x40020000",
+      "end_address": null,
+      "bus": "AHB",
+      "irqs": [
+        {
+          "name": "DMA0_Channel0",
+          "number": 11
+        },
+        {
+          "name": "DMA0_Channel1",
+          "number": 12
+        },
+        {
+          "name": "DMA0_Channel2",
+          "number": 13
+        },
+        {
+          "name": "DMA0_Channel3",
+          "number": 14
+        },
+        {
+          "name": "DMA0_Channel4",
+          "number": 15
+        },
+        {
+          "name": "DMA0_Channel5",
+          "number": 16
+        },
+        {
+          "name": "DMA0_Channel6",
+          "number": 17
+        }
+      ],
+      "description": "DMA controller"
+    },
+    {
+      "name": "DMA1",
+      "base_address": "0x40020400",
+      "end_address": null,
+      "bus": "AHB",
+      "irqs": [
+        {
+          "name": "DMA1_Channel0",
+          "number": 56
+        },
+        {
+          "name": "DMA1_Channel1",
+          "number": 57
+        },
+        {
+          "name": "DMA1_Channel2",
+          "number": 58
+        },
+        {
+          "name": "DMA1_Channel3",
+          "number": 59
+        },
+        {
+          "name": "DMA1_Channel4",
+          "number": 60
+        }
+      ],
+      "description": "DMA controller"
+    },
+    {
+      "name": "ENET_MAC",
+      "base_address": "0x40028000",
+      "end_address": null,
+      "bus": "AHB",
+      "irqs": [
+        {
+          "name": "ENET",
+          "number": 61
+        },
+        {
+          "name": "ENET_WKUP",
+          "number": 62
+        }
+      ],
+      "description": "Ethernet: media access control"
+    },
+    {
+      "name": "ENET_MSC",
+      "base_address": "0x40028100",
+      "end_address": null,
+      "bus": "AHB",
+      "irqs": [],
+      "description": "Ethernet: MAC statistics counters"
+    },
+    {
+      "name": "ENET_PTP",
+      "base_address": "0x40028700",
+      "end_address": null,
+      "bus": "AHB",
+      "irqs": [],
+      "description": "Ethernet: Precision time protocol"
+    },
+    {
+      "name": "ENET_DMA",
+      "base_address": "0x40029000",
+      "end_address": null,
+      "bus": "AHB",
+      "irqs": [],
+      "description": "Ethernet: DMA controller operation"
+    },
+    {
+      "name": "EXMC",
+      "base_address": "0xa0000000",
+      "end_address": null,
+      "bus": null,
+      "irqs": [
+        {
+          "name": "EXMC",
+          "number": 48
+        }
+      ],
+      "description": "External memory controller"
+    },
+    {
+      "name": "EXTI",
+      "base_address": "0x40010400",
+      "end_address": null,
+      "bus": "APB2",
+      "irqs": [
+        {
+          "name": "EXTI_Line0",
+          "number": 6
+        },
+        {
+          "name": "EXTI_Line1",
+          "number": 7
+        },
+        {
+          "name": "EXTI_Line2",
+          "number": 8
+        },
+        {
+          "name": "EXTI_Line3",
+          "number": 9
+        },
+        {
+          "name": "EXTI_Line4",
+          "number": 10
+        },
+        {
+          "name": "EXTI_line5_9",
+          "number": 23
+        },
+        {
+          "name": "EXTI_line10_15",
+          "number": 40
+        }
+      ],
+      "description": "External interrupt/event"
+    },
+    {
+      "name": "FMC",
+      "base_address": "0x40022000",
+      "end_address": null,
+      "bus": "AHB",
+      "irqs": [
+        {
+          "name": "FMC",
+          "number": 4
+        }
+      ],
+      "description": "FMC"
+    },
+    {
+      "name": "FWDGT",
+      "base_address": "0x40003000",
+      "end_address": null,
+      "bus": "APB1",
+      "irqs": [],
+      "description": "free watchdog timer"
+    },
+    {
+      "name": "GPIOA",
+      "base_address": "0x40010800",
+      "end_address": null,
+      "bus": "APB2",
+      "irqs": [],
+      "description": "General-purpose I/Os"
+    },
+    {
+      "name": "GPIOB",
+      "base_address": "0x40010c00",
+      "end_address": null,
+      "bus": "APB2",
+      "irqs": [],
+      "description": ""
+    },
+    {
+      "name": "GPIOC",
+      "base_address": "0x40011000",
+      "end_address": null,
+      "bus": "APB2",
+      "irqs": [],
+      "description": ""
+    },
+    {
+      "name": "GPIOD",
+      "base_address": "0x40011400",
+      "end_address": null,
+      "bus": "APB2",
+      "irqs": [],
+      "description": ""
+    },
+    {
+      "name": "GPIOE",
+      "base_address": "0x40011800",
+      "end_address": null,
+      "bus": "APB2",
+      "irqs": [],
+      "description": ""
+    },
+    {
+      "name": "GPIOF",
+      "base_address": "0x40011c00",
+      "end_address": null,
+      "bus": "APB2",
+      "irqs": [],
+      "description": ""
+    },
+    {
+      "name": "GPIOG",
+      "base_address": "0x40012000",
+      "end_address": null,
+      "bus": "APB2",
+      "irqs": [],
+      "description": ""
+    },
+    {
+      "name": "GPIOH",
+      "base_address": "0x40017400",
+      "end_address": null,
+      "bus": null,
+      "irqs": [],
+      "description": ""
+    },
+    {
+      "name": "GPIOI",
+      "base_address": "0x40017800",
+      "end_address": null,
+      "bus": null,
+      "irqs": [],
+      "description": ""
+    },
+    {
+      "name": "HAU",
+      "base_address": "0x50060400",
+      "end_address": null,
+      "bus": "AHB",
+      "irqs": [
+        {
+          "name": "HAU_TRNG",
+          "number": 80
+        }
+      ],
+      "description": "HAU acceleration unit"
+    },
+    {
+      "name": "I2C0",
+      "base_address": "0x40005400",
+      "end_address": null,
+      "bus": "APB1",
+      "irqs": [
+        {
+          "name": "I2C0_EV",
+          "number": 31
+        },
+        {
+          "name": "I2C0_ER",
+          "number": 32
+        }
+      ],
+      "description": "Inter integrated circuit"
+    },
+    {
+      "name": "I2C1",
+      "base_address": "0x40005800",
+      "end_address": null,
+      "bus": "APB1",
+      "irqs": [
+        {
+          "name": "I2C1_EV",
+          "number": 33
+        },
+        {
+          "name": "I2C1_ER",
+          "number": 34
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "I2C2",
+      "base_address": "0x4000c000",
+      "end_address": null,
+      "bus": "APB1",
+      "irqs": [
+        {
+          "name": "I2C2_EV",
+          "number": 72
+        },
+        {
+          "name": "I2C2_ER",
+          "number": 73
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "NVIC",
+      "base_address": "0xe000e000",
+      "end_address": null,
+      "bus": null,
+      "irqs": [],
+      "description": "Nested Vectored Interrupt Controller"
+    },
+    {
+      "name": "PMU",
+      "base_address": "0x40007000",
+      "end_address": null,
+      "bus": "APB1",
+      "irqs": [],
+      "description": "Power management unit"
+    },
+    {
+      "name": "RCU",
+      "base_address": "0x40021000",
+      "end_address": null,
+      "bus": "AHB",
+      "irqs": [
+        {
+          "name": "RCU",
+          "number": 5
+        }
+      ],
+      "description": "Reset and clock unit"
+    },
+    {
+      "name": "RTC",
+      "base_address": "0x40002800",
+      "end_address": null,
+      "bus": "APB1",
+      "irqs": [
+        {
+          "name": "RTC",
+          "number": 3
+        },
+        {
+          "name": "RTC_Alarm",
+          "number": 41
+        }
+      ],
+      "description": "Real-time clock"
+    },
+    {
+      "name": "SDIO",
+      "base_address": "0x40018000",
+      "end_address": null,
+      "bus": "AHB",
+      "irqs": [
+        {
+          "name": "SDIO",
+          "number": 49
+        }
+      ],
+      "description": "Secure digital input/output interface"
+    },
+    {
+      "name": "SPI0",
+      "base_address": "0x40013000",
+      "end_address": null,
+      "bus": "APB2",
+      "irqs": [
+        {
+          "name": "SPI0",
+          "number": 35
+        }
+      ],
+      "description": "Serial peripheral interface"
+    },
+    {
+      "name": "SPI1",
+      "base_address": "0x40003800",
+      "end_address": null,
+      "bus": "APB1",
+      "irqs": [
+        {
+          "name": "SPI1",
+          "number": 36
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "SPI2",
+      "base_address": "0x40003c00",
+      "end_address": null,
+      "bus": "APB1",
+      "irqs": [
+        {
+          "name": "SPI2",
+          "number": 51
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "TIMER0",
+      "base_address": "0x40012c00",
+      "end_address": null,
+      "bus": "APB2",
+      "irqs": [
+        {
+          "name": "TIMER0_BRK_TIMER8",
+          "number": 24
+        },
+        {
+          "name": "TIMER0_UP_TIMER9",
+          "number": 25
+        },
+        {
+          "name": "TIMER0_TRG_CMT_TIMER10",
+          "number": 26
+        },
+        {
+          "name": "TIMER0_Channel",
+          "number": 27
+        }
+      ],
+      "description": "Advanced timer"
+    },
+    {
+      "name": "TIMER1",
+      "base_address": "0x40000000",
+      "end_address": null,
+      "bus": "APB1",
+      "irqs": [
+        {
+          "name": "TIMER1",
+          "number": 28
+        }
+      ],
+      "description": "General-purpose-timers"
+    },
+    {
+      "name": "TIMER2",
+      "base_address": "0x40000400",
+      "end_address": null,
+      "bus": "APB1",
+      "irqs": [
+        {
+          "name": "TIMER2",
+          "number": 29
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "TIMER3",
+      "base_address": "0x40000800",
+      "end_address": null,
+      "bus": "APB1",
+      "irqs": [
+        {
+          "name": "TIMER3",
+          "number": 30
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "TIMER4",
+      "base_address": "0x40000c00",
+      "end_address": null,
+      "bus": "APB1",
+      "irqs": [
+        {
+          "name": "TIMER4",
+          "number": 50
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "TIMER5",
+      "base_address": "0x40001000",
+      "end_address": null,
+      "bus": "APB1",
+      "irqs": [
+        {
+          "name": "TIMER5",
+          "number": 54
+        }
+      ],
+      "description": "Basic-timers"
+    },
+    {
+      "name": "TIMER6",
+      "base_address": "0x40001400",
+      "end_address": null,
+      "bus": "APB1",
+      "irqs": [
+        {
+          "name": "TIMER6",
+          "number": 55
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "TIMER7",
+      "base_address": "0x40013400",
+      "end_address": null,
+      "bus": "APB2",
+      "irqs": [
+        {
+          "name": "TIMER7_BRK_TIMER11",
+          "number": 43
+        },
+        {
+          "name": "TIMER7_UP_TIMER12",
+          "number": 44
+        },
+        {
+          "name": "TIMER7_TRG_CMT_TIMER13",
+          "number": 45
+        },
+        {
+          "name": "TIMER7_Channel",
+          "number": 46
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "TIMER8",
+      "base_address": "0x40014c00",
+      "end_address": null,
+      "bus": null,
+      "irqs": [
+        {
+          "name": "TIMER0_BRK_TIMER8",
+          "number": 24
+        }
+      ],
+      "description": "General-purpose-timers"
+    },
+    {
+      "name": "TIMER9",
+      "base_address": "0x40015000",
+      "end_address": null,
+      "bus": null,
+      "irqs": [
+        {
+          "name": "TIMER0_UP_TIMER9",
+          "number": 25
+        }
+      ],
+      "description": "General-purpose-timers"
+    },
+    {
+      "name": "TIMER10",
+      "base_address": "0x40015400",
+      "end_address": null,
+      "bus": null,
+      "irqs": [
+        {
+          "name": "TIMER0_TRG_CMT_TIMER10",
+          "number": 26
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "TIMER11",
+      "base_address": "0x40001800",
+      "end_address": null,
+      "bus": "APB1",
+      "irqs": [
+        {
+          "name": "TIMER7_BRK_TIMER11",
+          "number": 43
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "TIMER12",
+      "base_address": "0x40001c00",
+      "end_address": null,
+      "bus": "APB1",
+      "irqs": [
+        {
+          "name": "TIMER7_UP_TIMER12",
+          "number": 44
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "TIMER13",
+      "base_address": "0x40002000",
+      "end_address": null,
+      "bus": "APB1",
+      "irqs": [
+        {
+          "name": "TIMER7_TRG_CMT_TIMER13",
+          "number": 45
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "TLI",
+      "base_address": "0x40016800",
+      "end_address": null,
+      "bus": null,
+      "irqs": [
+        {
+          "name": "TLI_ER",
+          "number": 89
+        },
+        {
+          "name": "TLI",
+          "number": 88
+        }
+      ],
+      "description": "TFT-LCD interface"
+    },
+    {
+      "name": "TRNG",
+      "base_address": "0x50060800",
+      "end_address": null,
+      "bus": "AHB",
+      "irqs": [
+        {
+          "name": "HAU_TRNG",
+          "number": 80
+        }
+      ],
+      "description": "Ture random number generator"
+    },
+    {
+      "name": "USART0",
+      "base_address": "0x40013800",
+      "end_address": null,
+      "bus": "APB2",
+      "irqs": [
+        {
+          "name": "USART0",
+          "number": 37
+        }
+      ],
+      "description": "Universal synchronous asynchronous receiver  transmitter"
+    },
+    {
+      "name": "USART1",
+      "base_address": "0x40004400",
+      "end_address": null,
+      "bus": "APB1",
+      "irqs": [
+        {
+          "name": "USART1",
+          "number": 38
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "USART2",
+      "base_address": "0x40004800",
+      "end_address": null,
+      "bus": "APB1",
+      "irqs": [
+        {
+          "name": "USART2",
+          "number": 39
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "USART5",
+      "base_address": "0x40017000",
+      "end_address": null,
+      "bus": null,
+      "irqs": [
+        {
+          "name": "USART5",
+          "number": 71
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "UART3",
+      "base_address": "0x40004c00",
+      "end_address": null,
+      "bus": "APB1",
+      "irqs": [
+        {
+          "name": "UART3",
+          "number": 52
+        }
+      ],
+      "description": "Universal asynchronous receiver transmitter"
+    },
+    {
+      "name": "UART4",
+      "base_address": "0x40005000",
+      "end_address": null,
+      "bus": "APB1",
+      "irqs": [
+        {
+          "name": "UART4",
+          "number": 53
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "UART6",
+      "base_address": "0x40007800",
+      "end_address": null,
+      "bus": "APB1",
+      "irqs": [
+        {
+          "name": "UART6",
+          "number": 82
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "UART7",
+      "base_address": "0x40007c00",
+      "end_address": null,
+      "bus": "APB1",
+      "irqs": [
+        {
+          "name": "UART7",
+          "number": 83
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "USBFS_GLOBAL",
+      "base_address": "0x50000000",
+      "end_address": null,
+      "bus": "AHB",
+      "irqs": [
+        {
+          "name": "USBFS_WKUP",
+          "number": 42
+        },
+        {
+          "name": "USBFS",
+          "number": 67
+        }
+      ],
+      "description": "USB full speed global registers"
+    },
+    {
+      "name": "USBFS_HOST",
+      "base_address": "0x50000400",
+      "end_address": null,
+      "bus": "AHB",
+      "irqs": [],
+      "description": "USB on the go full speed host"
+    },
+    {
+      "name": "USBFS_DEVICE",
+      "base_address": "0x50000800",
+      "end_address": null,
+      "bus": "AHB",
+      "irqs": [],
+      "description": "USB on the go full speed device"
+    },
+    {
+      "name": "USBFS_PWRCLK",
+      "base_address": "0x50000e00",
+      "end_address": null,
+      "bus": "AHB",
+      "irqs": [],
+      "description": "USB on the go full speed"
+    },
+    {
+      "name": "WWDGT",
+      "base_address": "0x40002c00",
+      "end_address": null,
+      "bus": "APB1",
+      "irqs": [
+        {
+          "name": "WWDGT",
+          "number": 0
+        }
+      ],
+      "description": "Window watchdog timer"
+    }
+  ]
+}

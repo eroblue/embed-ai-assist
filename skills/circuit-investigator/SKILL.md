@@ -47,7 +47,7 @@ circuit-investigator/
 | circuit.* | state.json（S1 写入） | object | 是 | `netlist_path` / `parse_status` |
 | chip.* | state.json（S3 写入） | object | 是 | `pins_path` / `extract_status` |
 | platform | config.json（项目层） | string | 是 | 芯片平台名，用于识别主控元件（value 匹配） |
-| workspace | config.json（项目层） | string | 是 | 项目目录（state.json 与 outputs/ 所在） |
+| workspace | config.json（项目层） | string | 是 | 目标工程根 = 项目根 / `project.build_target`（缺省 App），state.json 与 outputs/ 所在；docs/references 共享于项目根 |
 | verify_scope | config.json 或 --scope | enum | 否 | pins / power / clocks / peripherals / all（默认 all） |
 | inference_mode | config.json 或 --inference-mode | enum | 否 | rule / ai（默认 rule；ai 未接入自动降级 rule） |
 

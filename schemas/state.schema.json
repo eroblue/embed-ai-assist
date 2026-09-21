@@ -44,6 +44,10 @@
         "error": {
           "type": ["string", "null"],
           "description": "解析失败或部分失败时的错误信息"
+        },
+        "facts": {
+          "type": "object",
+          "description": "circuit-investigator (S4) 写入：硬件事实指针与统计（facts_path/verify_status 等，结构见该 Skill 的 schemas/output.schema.json）"
         }
       },
       "required": ["netlist_path", "parse_status"]
@@ -56,17 +60,17 @@
       "type": ["object", "null"],
       "description": "datasheet-extractor (S3) 写入：芯片信息 chip.info"
     },
-    "facts": {
+    "s5a": {
       "type": ["object", "null"],
-      "description": "circuit-investigator (S4) 写入：验证后的硬件事实 circuit.facts"
+      "description": "hardware-initializer (S5a) 写入：硬件初始化状态 s5a.status 等（详见该 Skill 的 output.schema.json）"
     },
-    "code": {
+    "s5b": {
       "type": ["object", "null"],
-      "description": "code-generator (S5) 写入：代码生成状态 code.app.status / code.boot.status"
+      "description": "port-contract-and-app (S5b) 写入：Port 契约与 APP 生成状态 s5b.status 等"
     },
-    "project": {
+    "s5c": {
       "type": ["object", "null"],
-      "description": "code-merger (S6) 写入：合并工程路径 project.merged.path"
+      "description": "port-implementer (S5c) 写入：Port 实现与 IDE 更新状态 s5c.status 等"
     },
     "build": {
       "type": ["object", "null"],
@@ -74,27 +78,27 @@
     },
     "firmware": {
       "type": ["object", "null"],
-      "description": "code-merger (S8) 写入：合并固件路径 firmware.merged.path"
+      "description": "firmware-merger (S6) 写入：合并固件路径 firmware.merged.path（Boot + App、多核、OTA 包等）"
     },
     "test": {
       "type": ["object", "null"],
-      "description": "unit-test (S9) 写入：测试结果 test.result"
+      "description": "unit-test (S8) 写入：测试结果 test.result"
     },
     "flash": {
       "type": ["object", "null"],
-      "description": "flash (S10) 写入：烧录状态 flash.status"
+      "description": "flash (S9) 写入：烧录状态 flash.status"
     },
     "log": {
       "type": ["object", "null"],
-      "description": "serial-monitor (S11) 写入：日志路径 log.path"
+      "description": "serial-monitor (S10) 写入：日志路径 log.path"
     },
     "analysis": {
       "type": ["object", "null"],
-      "description": "log-analyzer (S12) 写入：分析结果 error_report / workflow.status"
+      "description": "log-analyzer (S11) 写入：分析结果 error_report / workflow.status"
     },
     "workflow": {
       "type": ["object", "null"],
-      "description": "workflow-runner (S13) 写入：工作流执行状态"
+      "description": "workflow-runner (S12) 写入：工作流执行状态"
     }
   }
 }

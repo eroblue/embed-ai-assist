@@ -1,0 +1,151 @@
+[p PRO_MODE GLOBOPT AUTOSTATIC RSC14 RSC14E SPACEOPT ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip FT61F14X ]
+[d frameptr 6 ]
+"62 d:\ide3.0.3_6c03\data\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 d:\ide3.0.3_6c03\data\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"60 D:\FMD DEMO CODE(word+pdf)\C ÐÞ¸Ä\FT61F14x\test_61f14x_IR\test_61f14x_IR_Send\test_61f14x_IR_Send.C
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+"98
+[v _TIMER4_INITIAL TIMER4_INITIAL `(v  1 e 1 0 ]
+"163
+[v _TIMER2_INITIAL TIMER2_INITIAL `(v  1 e 1 0 ]
+"273
+[v _SendCtrl SendCtrl `(v  1 e 1 0 ]
+"396
+[v _ISR ISR `II(v  1 e 1 0 ]
+"419
+[v _main main `(v  1 e 1 0 ]
+"97 d:\ide3.0.3_6c03\data\include\FT61F14X.h
+[v _INTCON INTCON `VEuc  1 e 1 @11 ]
+"106
+[v _GIE GIE `VEb  1 e 0 @95 ]
+"123
+[v _PORTA PORTA `VEuc  1 e 1 @12 ]
+"168
+[v _PORTB PORTB `VEuc  1 e 1 @13 ]
+"182
+[v _PB3 PB3 `VEb  1 e 0 @107 ]
+"213
+[v _PORTC PORTC `VEuc  1 e 1 @14 ]
+"262
+[v _TRISA TRISA `VEuc  1 e 1 @140 ]
+"289
+[v _TRISB TRISB `VEuc  1 e 1 @141 ]
+"316
+[v _TRISC TRISC `VEuc  1 e 1 @142 ]
+"353
+[v _CKOCON CKOCON `VEuc  1 e 1 @149 ]
+"475
+[v _OSCCON OSCCON `VEuc  1 e 1 @153 ]
+"506
+[v _PCKEN PCKEN `VEuc  1 e 1 @154 ]
+"718
+[v _TIM4CR1 TIM4CR1 `VEuc  1 e 1 @273 ]
+"743
+[v _TIM4IER TIM4IER `VEuc  1 e 1 @274 ]
+"745
+[v _T4UIE T4UIE `VEb  1 e 0 @2192 ]
+"755
+[v _TIM4SR TIM4SR `VEuc  1 e 1 @275 ]
+"757
+[v _T4UIF T4UIF `VEb  1 e 0 @2200 ]
+"768
+[v _TIM4EGR TIM4EGR `VEuc  1 e 1 @276 ]
+"781
+[v _TIM4CNTR TIM4CNTR `VEuc  1 e 1 @277 ]
+"786
+[v _TIM4PSCR TIM4PSCR `VEuc  1 e 1 @278 ]
+"806
+[v _TIM4ARR TIM4ARR `VEuc  1 e 1 @279 ]
+"821
+[v _PSRC0 PSRC0 `VEuc  1 e 1 @282 ]
+"826
+[v _PSRC1 PSRC1 `VEuc  1 e 1 @283 ]
+"869
+[v _WPUA WPUA `VEuc  1 e 1 @396 ]
+"873
+[v _WPUB WPUB `VEuc  1 e 1 @397 ]
+"877
+[v _WPUC WPUC `VEuc  1 e 1 @398 ]
+"966
+[v _ANSELA ANSELA `VEuc  1 e 1 @407 ]
+"1001
+[v _PSINK0 PSINK0 `VEuc  1 e 1 @410 ]
+"1005
+[v _PSINK1 PSINK1 `VEuc  1 e 1 @411 ]
+"1008
+[v _PSINK2 PSINK2 `VEuc  1 e 1 @412 ]
+"1043
+[v _WPDA WPDA `VEuc  1 e 1 @524 ]
+"1070
+[v _WPDB WPDB `VEuc  1 e 1 @525 ]
+"1096
+[v _WPDC WPDC `VEuc  1 e 1 @526 ]
+"1745
+[v _TIM2CR1 TIM2CR1 `VEuc  1 e 1 @780 ]
+"1766
+[v _TIM2IER TIM2IER `VEuc  1 e 1 @781 ]
+"1768
+[v _T2UIE T2UIE `VEb  1 e 0 @6248 ]
+"1787
+[v _T2UIF T2UIF `VEb  1 e 0 @6256 ]
+"2058
+[v _TIM2ARRH TIM2ARRH `VEuc  1 e 1 @793 ]
+"2062
+[v _TIM2ARRL TIM2ARRL `VEuc  1 e 1 @794 ]
+"2082
+[v _TCKSRC TCKSRC `VEuc  1 e 1 @799 ]
+"44 D:\FMD DEMO CODE(word+pdf)\C ÐÞ¸Ä\FT61F14x\test_61f14x_IR\test_61f14x_IR_Send\test_61f14x_IR_Send.C
+[v _IRSendStatus IRSendStatus `uc  1 e 1 0 ]
+"45
+[v _IRSendData IRSendData `uc  1 e 1 0 ]
+"46
+[v _TxBit TxBit `uc  1 e 1 0 ]
+[v _TxTime TxTime `uc  1 e 1 0 ]
+"47
+[v _SendBit SendBit `uc  1 e 1 0 ]
+"48
+[v _level0 level0 `uc  1 e 1 0 ]
+[v _level1 level1 `uc  1 e 1 0 ]
+"49
+[v _SendLastBit SendLastBit `b  1 e 0 0 ]
+"50
+[v _SaveLastBit SaveLastBit `uc  1 e 1 0 ]
+"51
+[v _SYSTime5S SYSTime5S `ui  1 e 2 0 ]
+"53
+[v _IRData IRData `[4]uc  1 e 4 0 ]
+"419
+[v _main main `(v  1 e 1 0 ]
+{
+"434
+} 0
+"98
+[v _TIMER4_INITIAL TIMER4_INITIAL `(v  1 e 1 0 ]
+{
+"157
+} 0
+"163
+[v _TIMER2_INITIAL TIMER2_INITIAL `(v  1 e 1 0 ]
+{
+"266
+} 0
+"60
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+{
+"91
+} 0
+"396
+[v _ISR ISR `II(v  1 e 1 0 ]
+{
+"412
+} 0
+"273
+[v _SendCtrl SendCtrl `(v  1 e 1 0 ]
+{
+"389
+} 0

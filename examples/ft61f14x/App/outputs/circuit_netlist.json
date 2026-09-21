@@ -1,0 +1,1071 @@
+{
+  "schema": "embedaiassist.netlist.v1",
+  "generator": "schematic-reader",
+  "eda_tool": "altium",
+  "source_file": "E:\\skills\\EmbedSoftAutomaticProject\\embed-ai-assist\\examples\\ft61f14x\\schematic\\ft61f14x_test.SchDoc",
+  "parse_status": "success",
+  "generated_at": "2026-09-20T11:42:42",
+  "statistics": {
+    "component_count": 18,
+    "net_count": 19,
+    "pin_count": 48
+  },
+  "warnings": [],
+  "components": [
+    {
+      "designator": "C1",
+      "value": "2.2uF/25V",
+      "footprint": "CE-1.5*4*8",
+      "library_ref": "CE",
+      "description": "Ö±²åµç½âµçÈÝ",
+      "parameters": {
+        "BOMÃû³Æ": "Ö±²åµç½âµçÈÝ",
+        "Comment": "2.2uF/25V",
+        "µ±Ç°¿â°æ±¾V2022.12.25 @ÌÔ±|Âô¼Ò:»Æ¾§±|Ê¯": "×îÐÂ°æ±¾·¢²¼https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "NetC1_1"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "NetC1_2"
+        }
+      ]
+    },
+    {
+      "designator": "C2",
+      "value": "102",
+      "footprint": "C0805_L",
+      "library_ref": "C",
+      "description": "ÌùÆ¬µçÈÝ/MLCCµçÈÝ",
+      "parameters": {
+        "BOMÃû³Æ": "ÎÞ¼«ÐÔÌùÆ¬µçÈÝ",
+        "Comment": "102",
+        "µ±Ç°¿â°æ±¾V2022.12.25 @ÌÔ±|Âô¼Ò:»Æ¾§±|Ê¯": "×îÐÂ°æ±¾·¢²¼https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "NetC1_2"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "NetC1_1"
+        }
+      ]
+    },
+    {
+      "designator": "C3",
+      "value": "220uF/25V",
+      "footprint": "CE-1.5*4*8",
+      "library_ref": "CE",
+      "description": "Ö±²åµç½âµçÈÝ",
+      "parameters": {
+        "BOMÃû³Æ": "Ö±²åµç½âµçÈÝ",
+        "Comment": "220uF/25V",
+        "µ±Ç°¿â°æ±¾V2022.12.25 @ÌÔ±|Âô¼Ò:»Æ¾§±|Ê¯": "×îÐÂ°æ±¾·¢²¼https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "NetC1_1"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "NetC1_2"
+        }
+      ]
+    },
+    {
+      "designator": "C4",
+      "value": "102",
+      "footprint": "C0805_L",
+      "library_ref": "C",
+      "description": "ÌùÆ¬µçÈÝ/MLCCµçÈÝ",
+      "parameters": {
+        "BOMÃû³Æ": "ÎÞ¼«ÐÔÌùÆ¬µçÈÝ",
+        "Comment": "102",
+        "µ±Ç°¿â°æ±¾V2022.12.25 @ÌÔ±|Âô¼Ò:»Æ¾§±|Ê¯": "×îÐÂ°æ±¾·¢²¼https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "NetC1_2"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "NetC1_1"
+        }
+      ]
+    },
+    {
+      "designator": "D1",
+      "value": "ºìÉ«",
+      "footprint": "LED0805_G",
+      "library_ref": "LED",
+      "description": "ÌùÆ¬LED",
+      "parameters": {
+        "BOMÃû³Æ": "ÌùÆ¬LED",
+        "Comment": "ºìÉ«",
+        "·â×°¿âÀ´×ÔÌÔ±|Âô¼Ò£º»Æ¾§±|Ê¯": "ÆäËûµêÆÌ¹ºÈë¾ùÎªµÁ°æ·â×°¿â£¬ÎÞ¸üÐÂÈ¨Òæ£¬ÇëÁ¢¼´ÉêÇëÍË¿î£¬±¾µêÏÖ½ð½±Àø200~1000Ôª"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "A",
+          "pin_type": "PASSIVE",
+          "net": "NetD1_1"
+        },
+        {
+          "pin": "2",
+          "pin_name": "K",
+          "pin_type": "PASSIVE",
+          "net": "NetC1_2"
+        }
+      ]
+    },
+    {
+      "designator": "D3",
+      "value": "ÂÌÉ«",
+      "footprint": "LED0805_G",
+      "library_ref": "LED",
+      "description": "ÌùÆ¬LED",
+      "parameters": {
+        "BOMÃû³Æ": "ÌùÆ¬LED",
+        "Comment": "ÂÌÉ«",
+        "·â×°¿âÀ´×ÔÌÔ±|Âô¼Ò£º»Æ¾§±|Ê¯": "ÆäËûµêÆÌ¹ºÈë¾ùÎªµÁ°æ·â×°¿â£¬ÎÞ¸üÐÂÈ¨Òæ£¬ÇëÁ¢¼´ÉêÇëÍË¿î£¬±¾µêÏÖ½ð½±Àø200~1000Ôª"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "A",
+          "pin_type": "PASSIVE",
+          "net": "NetD3_1"
+        },
+        {
+          "pin": "2",
+          "pin_name": "K",
+          "pin_type": "PASSIVE",
+          "net": "NetD3_2"
+        }
+      ]
+    },
+    {
+      "designator": "JP1",
+      "value": "HDR-1X2",
+      "footprint": "XH2.54-LI-2P",
+      "library_ref": "Header 2",
+      "description": "2P½Ó²å¼þ",
+      "parameters": {
+        "BOMÃû³Æ": "2P½Ó²å¼þ",
+        "Comment": "HDR-1X2",
+        "·â×°¿âÀ´×ÔÌÔ±|Âô¼ÒID£º»Æ¾§±|Ê¯": "ÆäËûµêÆÌ¹ºÈë¾ùÎªµÁ°æ·â×°¿â£¬ÇëÁ¢¼´ÉêÇëÍË¿î£¬±¾µêÏÖ½ð½±Àø50~200Ôª",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "Î¨Ò»³öÊÛµêÆÌÍøÖ·https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "VCC"
+        }
+      ]
+    },
+    {
+      "designator": "JP2",
+      "value": "HDR-1X2",
+      "footprint": "XH2.54-LI-2P",
+      "library_ref": "Header 2",
+      "description": "2P½Ó²å¼þ",
+      "parameters": {
+        "BOMÃû³Æ": "2P½Ó²å¼þ",
+        "Comment": "HDR-1X2",
+        "·â×°¿âÀ´×ÔÌÔ±|Âô¼ÒID£º»Æ¾§±|Ê¯": "ÆäËûµêÆÌ¹ºÈë¾ùÎªµÁ°æ·â×°¿â£¬ÇëÁ¢¼´ÉêÇëÍË¿î£¬±¾µêÏÖ½ð½±Àø50~200Ôª",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "Î¨Ò»³öÊÛµêÆÌÍøÖ·https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "Input-"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "Inuput+"
+        }
+      ]
+    },
+    {
+      "designator": "JP3",
+      "value": "HDR-1X4",
+      "footprint": "XH2.54-LI-4P",
+      "library_ref": "Header 4",
+      "description": "4P½Ó²å¼þ",
+      "parameters": {
+        "BOMÃû³Æ": "4P½Ó²å¼þ",
+        "Comment": "HDR-1X4",
+        "·â×°¿âÀ´×ÔÌÔ±|Âô¼ÒID£º»Æ¾§±|Ê¯": "ÆäËûµêÆÌ¹ºÈë¾ùÎªµÁ°æ·â×°¿â£¬ÇëÁ¢¼´ÉêÇëÍË¿î£¬±¾µêÏÖ½ð½±Àø50~200Ôª",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "Î¨Ò»³öÊÛµêÆÌÍøÖ·https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "ISPDAT"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "ISPCK"
+        },
+        {
+          "pin": "3",
+          "pin_name": "3",
+          "pin_type": "PASSIVE",
+          "net": "VCC"
+        },
+        {
+          "pin": "4",
+          "pin_name": "4",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        }
+      ]
+    },
+    {
+      "designator": "JP4",
+      "value": "HDR-1X4",
+      "footprint": "XH2.54-LI-4P",
+      "library_ref": "Header 4",
+      "description": "4P½Ó²å¼þ",
+      "parameters": {
+        "BOMÃû³Æ": "4P½Ó²å¼þ",
+        "Comment": "HDR-1X4",
+        "·â×°¿âÀ´×ÔÌÔ±|Âô¼ÒID£º»Æ¾§±|Ê¯": "ÆäËûµêÆÌ¹ºÈë¾ùÎªµÁ°æ·â×°¿â£¬ÇëÁ¢¼´ÉêÇëÍË¿î£¬±¾µêÏÖ½ð½±Àø50~200Ôª",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "Î¨Ò»³öÊÛµêÆÌÍøÖ·https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "TX"
+        },
+        {
+          "pin": "3",
+          "pin_name": "3",
+          "pin_type": "PASSIVE",
+          "net": "RX"
+        },
+        {
+          "pin": "4",
+          "pin_name": "4",
+          "pin_type": "PASSIVE",
+          "net": "VCC"
+        }
+      ]
+    },
+    {
+      "designator": "R1",
+      "value": "510",
+      "footprint": "R0805_L",
+      "library_ref": "R",
+      "description": "ÌùÆ¬µç×è",
+      "parameters": {
+        "BOMÃû³Æ": "ÌùÆ¬µç×è",
+        "Comment": "510",
+        "ÁªÏµÏÂµ¥µêÆÌÂô¼Ò Ãâ·Ñ°ïÄã²éÕÒ·â×°": "ÁªÏµÏÂµ¥µêÆÌÂô¼Ò Ãâ·Ñ¼¼ÊõÖ§³Ö"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "NetC1_1"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "NetD1_1"
+        }
+      ]
+    },
+    {
+      "designator": "R2",
+      "value": "100",
+      "footprint": "R0805_L",
+      "library_ref": "R",
+      "description": "ÌùÆ¬µç×è",
+      "parameters": {
+        "BOMÃû³Æ": "ÌùÆ¬µç×è",
+        "Comment": "100",
+        "ÁªÏµÏÂµ¥µêÆÌÂô¼Ò Ãâ·Ñ°ïÄã²éÕÒ·â×°": "ÁªÏµÏÂµ¥µêÆÌÂô¼Ò Ãâ·Ñ¼¼ÊõÖ§³Ö"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "RX"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "NetR2_2"
+        }
+      ]
+    },
+    {
+      "designator": "R3",
+      "value": "100",
+      "footprint": "R0805_L",
+      "library_ref": "R",
+      "description": "ÌùÆ¬µç×è",
+      "parameters": {
+        "BOMÃû³Æ": "ÌùÆ¬µç×è",
+        "Comment": "100",
+        "ÁªÏµÏÂµ¥µêÆÌÂô¼Ò Ãâ·Ñ°ïÄã²éÕÒ·â×°": "ÁªÏµÏÂµ¥µêÆÌÂô¼Ò Ãâ·Ñ¼¼ÊõÖ§³Ö"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "TX"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "NetR3_2"
+        }
+      ]
+    },
+    {
+      "designator": "R4",
+      "value": "510",
+      "footprint": "R0805_L",
+      "library_ref": "R",
+      "description": "ÌùÆ¬µç×è",
+      "parameters": {
+        "BOMÃû³Æ": "ÌùÆ¬µç×è",
+        "Comment": "510",
+        "ÁªÏµÏÂµ¥µêÆÌÂô¼Ò Ãâ·Ñ°ïÄã²éÕÒ·â×°": "ÁªÏµÏÂµ¥µêÆÌÂô¼Ò Ãâ·Ñ¼¼ÊõÖ§³Ö"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "NetR4_1"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "NetR4_2"
+        }
+      ]
+    },
+    {
+      "designator": "R5",
+      "value": "330",
+      "footprint": "R0805_L",
+      "library_ref": "R",
+      "description": "ÌùÆ¬µç×è",
+      "parameters": {
+        "BOMÃû³Æ": "ÌùÆ¬µç×è",
+        "Comment": "330",
+        "ÁªÏµÏÂµ¥µêÆÌÂô¼Ò Ãâ·Ñ°ïÄã²éÕÒ·â×°": "ÁªÏµÏÂµ¥µêÆÌÂô¼Ò Ãâ·Ñ¼¼ÊõÖ§³Ö"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "Pulse"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "NetC1_1"
+        }
+      ]
+    },
+    {
+      "designator": "R7",
+      "value": "2.2K",
+      "footprint": "R0805_L",
+      "library_ref": "R",
+      "description": "ÌùÆ¬µç×è",
+      "parameters": {
+        "BOMÃû³Æ": "ÌùÆ¬µç×è",
+        "Comment": "2.2K",
+        "ÁªÏµÏÂµ¥µêÆÌÂô¼Ò Ãâ·Ñ°ïÄã²éÕÒ·â×°": "ÁªÏµÏÂµ¥µêÆÌÂô¼Ò Ãâ·Ñ¼¼ÊõÖ§³Ö"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "NetR4_1"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "NetD3_1"
+        }
+      ]
+    },
+    {
+      "designator": "U1",
+      "value": "FT61F143A-RB",
+      "footprint": "SO14",
+      "library_ref": "FT61F143A-RB",
+      "description": "FT61F143A-RB",
+      "parameters": {
+        "Comment": "FT61F143A-RB"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "GND",
+          "pin_type": "PASSIVE",
+          "net": "NetC1_2"
+        },
+        {
+          "pin": "2",
+          "pin_name": "PB4",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "3",
+          "pin_name": "PB2",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "4",
+          "pin_name": "PB1/CLKO",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "5",
+          "pin_name": "PB0",
+          "pin_type": "PASSIVE",
+          "net": "Pulse"
+        },
+        {
+          "pin": "6",
+          "pin_name": "PA0/T1_CH1",
+          "pin_type": "PASSIVE",
+          "net": "NetU1_6"
+        },
+        {
+          "pin": "7",
+          "pin_name": "PA1/T1_CH2",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "8",
+          "pin_name": "PA4/AN2",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "9",
+          "pin_name": "PA2/ISPCK",
+          "pin_type": "PASSIVE",
+          "net": "ISPCK"
+        },
+        {
+          "pin": "10",
+          "pin_name": "PA6/TX",
+          "pin_type": "PASSIVE",
+          "net": "NetR3_2"
+        },
+        {
+          "pin": "11",
+          "pin_name": "PA7/RX",
+          "pin_type": "PASSIVE",
+          "net": "NetR2_2"
+        },
+        {
+          "pin": "12",
+          "pin_name": "PC1",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "13",
+          "pin_name": "PB7",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "14",
+          "pin_name": "PB6/ISPDAT",
+          "pin_type": "PASSIVE",
+          "net": "ISPDAT"
+        },
+        {
+          "pin": "15",
+          "pin_name": "PC0/MCLRB",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "16",
+          "pin_name": "VCC",
+          "pin_type": "PASSIVE",
+          "net": "NetC1_1"
+        }
+      ]
+    },
+    {
+      "designator": "U2",
+      "value": "EL817C",
+      "footprint": "DIP-4",
+      "library_ref": "Optoisolator1",
+      "description": "4-Pin Phototransistor Optocoupler",
+      "parameters": {
+        "Comment": "EL817C",
+        "DatasheetVersion": "Nov-2003",
+        "LatestRevisionDate": "04-Mar-2005",
+        "LatestRevisionNote": "Sch pins 3 & 4 Swapped.",
+        "PackageReference": "DIP-4",
+        "Published": "24-Mar-1999",
+        "Publisher": "Altium Limited"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "A",
+          "pin_type": "PASSIVE",
+          "net": "NetR4_2"
+        },
+        {
+          "pin": "2",
+          "pin_name": "K",
+          "pin_type": "PASSIVE",
+          "net": "NetD3_2"
+        },
+        {
+          "pin": "3",
+          "pin_name": "E",
+          "pin_type": "PASSIVE",
+          "net": "NetC1_2"
+        },
+        {
+          "pin": "4",
+          "pin_name": "C",
+          "pin_type": "PASSIVE",
+          "net": "Pulse"
+        }
+      ]
+    }
+  ],
+  "nets": [
+    {
+      "name": "GND",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/ft61f14x/schematic/ft61f14x_test.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "JP1",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "JP3",
+          "pin": "4",
+          "pin_name": "4",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "JP4",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "ISPCK",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/ft61f14x/schematic/ft61f14x_test.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "JP3",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U1",
+          "pin": "9",
+          "pin_name": "PA2/ISPCK",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "ISPDAT",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/ft61f14x/schematic/ft61f14x_test.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "JP3",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U1",
+          "pin": "14",
+          "pin_name": "PB6/ISPDAT",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "Input-",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/ft61f14x/schematic/ft61f14x_test.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "JP2",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "Inuput+",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/ft61f14x/schematic/ft61f14x_test.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "JP2",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "NetC1_1",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/ft61f14x/schematic/ft61f14x_test.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "C1",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C2",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C3",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C4",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R1",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R5",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U1",
+          "pin": "16",
+          "pin_name": "VCC",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "NetC1_2",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/ft61f14x/schematic/ft61f14x_test.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "C1",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C2",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C3",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C4",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "D1",
+          "pin": "2",
+          "pin_name": "K",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U1",
+          "pin": "1",
+          "pin_name": "GND",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "3",
+          "pin_name": "E",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "NetD1_1",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/ft61f14x/schematic/ft61f14x_test.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "D1",
+          "pin": "1",
+          "pin_name": "A",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R1",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "NetD3_1",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/ft61f14x/schematic/ft61f14x_test.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "D3",
+          "pin": "1",
+          "pin_name": "A",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R7",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "NetD3_2",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/ft61f14x/schematic/ft61f14x_test.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "D3",
+          "pin": "2",
+          "pin_name": "K",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "2",
+          "pin_name": "K",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "NetR2_2",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/ft61f14x/schematic/ft61f14x_test.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "R2",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U1",
+          "pin": "11",
+          "pin_name": "PA7/RX",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "NetR3_2",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/ft61f14x/schematic/ft61f14x_test.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "R3",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U1",
+          "pin": "10",
+          "pin_name": "PA6/TX",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "NetR4_1",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/ft61f14x/schematic/ft61f14x_test.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "R4",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R7",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "NetR4_2",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/ft61f14x/schematic/ft61f14x_test.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "R4",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "1",
+          "pin_name": "A",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "NetU1_6",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/ft61f14x/schematic/ft61f14x_test.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U1",
+          "pin": "6",
+          "pin_name": "PA0/T1_CH1",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "Pulse",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/ft61f14x/schematic/ft61f14x_test.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "R5",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U1",
+          "pin": "5",
+          "pin_name": "PB0",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "4",
+          "pin_name": "C",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "RX",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/ft61f14x/schematic/ft61f14x_test.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "JP4",
+          "pin": "3",
+          "pin_name": "3",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R2",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "TX",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/ft61f14x/schematic/ft61f14x_test.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "JP4",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R3",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "VCC",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/ft61f14x/schematic/ft61f14x_test.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "JP1",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "JP3",
+          "pin": "3",
+          "pin_name": "3",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "JP4",
+          "pin": "4",
+          "pin_name": "4",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    }
+  ]
+}

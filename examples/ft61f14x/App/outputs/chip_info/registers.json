@@ -1,0 +1,3708 @@
+{
+  "schema": "embedaiassist.chip.registers.v1",
+  "mcu_family": "FT61F14X",
+  "source": {
+    "svd": null,
+    "sdk_header": null,
+    "reference_manual": null,
+    "extracted_at": "2026-09-20T11:58:47"
+  },
+  "registers": [
+    {
+      "peripheral": "RSTC",
+      "name": "LVDCON0",
+      "address": "0x199",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 4.8.4",
+      "bitfields": [
+        {
+          "name": "LVDL",
+          "bits": "0:2",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "低电压侦测选择位值 检测电压000保留001010 2.0V011 2.4V100 2.8V101 3.0V110 3.（bit 2:0）"
+        },
+        {
+          "name": "LVDW",
+          "bits": "3",
+          "access": "r",
+          "reset_value": "0",
+          "description": "低电压标志位，只读当LVDP=0时：1：VDD掉到了LVDL[2:0]所设置的电压0：VDD高于LVDL[2:0]所设置（bit 3）"
+        },
+        {
+          "name": "LVDEN",
+          "bits": "4",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "低电压侦测使能1：开启LVD侦测功能0：关闭LVD侦测功能（bit 4）"
+        },
+        {
+          "name": "LVDM",
+          "bits": "5:6",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "LVD模块检测电压源选择1 = 检测外部管脚PC0（这时如果LVDEN为1，PC0变为模拟管脚）0 = 检测内部电压（bit 6）"
+        },
+        {
+          "name": "SLVREN",
+          "bits": "7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "软件控制LVR使能位，当UCFG1<1:0>为01时：1 = 打开LVR0 = 禁止LVR当UCFG1<1:0>不为01（bit 7）"
+        }
+      ]
+    },
+    {
+      "peripheral": "RSTC",
+      "name": "LVDCON1",
+      "address": "0xF8E",
+      "offset": null,
+      "access": "",
+      "description": "章节 4.8.5",
+      "bitfields": [
+        {
+          "name": "LVDCAL",
+          "bits": "3:",
+          "access": "",
+          "reset_value": "1",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "RSTC",
+      "name": "LVDTUNE",
+      "address": "0xF92",
+      "offset": null,
+      "access": "",
+      "description": "章节 4.8.6",
+      "bitfields": [
+        {
+          "name": "LVDCAL",
+          "bits": "3:",
+          "access": "",
+          "reset_value": "1",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "RSTC",
+      "name": "PCON",
+      "address": "0x96",
+      "offset": null,
+      "access": "",
+      "description": "章节 4.10.1",
+      "bitfields": [
+        {
+          "name": "/BORF",
+          "bits": "0",
+          "access": "",
+          "reset_value": "1",
+          "description": "低电压复位标志，低有效0：发生了低电压复位1：没发生低电压复位或者由软件置1/BOR在上电复位后其值不确定，必须由软件置（bit 0）"
+        },
+        {
+          "name": "/PORF",
+          "bits": "1",
+          "access": "",
+          "reset_value": "0",
+          "description": "上电复位标志，低有效0：发生了上电复位1：没发生上电复位或者由软件置1PORF在上电复位后值为0，此后软件应该将其置1（bit 1）"
+        },
+        {
+          "name": "/SRSTF",
+          "bits": "2",
+          "access": "",
+          "reset_value": "1",
+          "description": "软件复位标志，低有效0：执行了RESET指令1：未执行RESET指令，或由软件置1（bit 2）"
+        },
+        {
+          "name": "/MCLRR",
+          "bits": "3",
+          "access": "",
+          "reset_value": "1",
+          "description": "外部复位标志，低有效0：发生了MCLR复位1：未发生MCLR复位或由软件置1（bit 3）"
+        },
+        {
+          "name": "IERRR",
+          "bits": "4",
+          "access": "",
+          "reset_value": "0",
+          "description": "非法指令复位标志，高有效0：未发生非法指令复位或由软件清01：发生了非法指令复位复位（bit 4）"
+        },
+        {
+          "name": "EMCF",
+          "bits": "5",
+          "access": "",
+          "reset_value": "0",
+          "description": "EMC复位标志，高有效0：未发生EMC复位或由软件清01：发生了EMC复位复位（bit 5）"
+        },
+        {
+          "name": "STKUNF",
+          "bits": "6",
+          "access": "",
+          "reset_value": "0",
+          "description": "堆栈下溢标志位，高有效0：未发生堆栈下溢，或该位由软件清01：发生了堆栈下溢（bit 6）"
+        },
+        {
+          "name": "STKOVF",
+          "bits": "7",
+          "access": "",
+          "reset_value": "0",
+          "description": "堆栈上溢标志位，高有效0：未发生堆栈上溢，或该位由软件清01：发生了堆栈上溢（bit 7）"
+        }
+      ]
+    },
+    {
+      "peripheral": "OSC",
+      "name": "CKAUX",
+      "address": "0xF8D",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 5.6.1",
+      "bitfields": [
+        {
+          "name": "CLKOS",
+          "bits": "0:1",
+          "access": "rw",
+          "reset_value": "1",
+          "description": "时钟输出选择0：时钟从PA7口输出1：时钟从PB1口输出（bit 1）"
+        }
+      ]
+    },
+    {
+      "peripheral": "OSC",
+      "name": "OSCCON",
+      "address": "0x99",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 5.6.2",
+      "bitfields": [
+        {
+          "name": "TUN",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "8’bxxxx_xxxx",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "OSC",
+      "name": "OSCTUNE",
+      "address": "0x98",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 5.6.3",
+      "bitfields": [
+        {
+          "name": "TUN",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "8’bxxxx_xxxx",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "OSC",
+      "name": "PCKEN",
+      "address": "0x9A",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 5.6.4",
+      "bitfields": [
+        {
+          "name": "ADCEN",
+          "bits": "0",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "TIM1EN",
+          "bits": "1",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "TIM2EN",
+          "bits": "2",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "TIM4EN",
+          "bits": "3",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "UARTEN",
+          "bits": "4:5",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "OSC",
+      "name": "CKOCON",
+      "address": "0x95",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 5.6.5",
+      "bitfields": [
+        {
+          "name": "CCOEN",
+          "bits": "0",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "时钟输出使能位：1 = 使能时钟输出0 = 禁止时钟输出（bit 0）"
+        },
+        {
+          "name": "CCOSEL",
+          "bits": "1:3",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "DTYSEL",
+          "bits": "4:5",
+          "access": "rw",
+          "reset_value": "1",
+          "description": "TIM1/TIM2倍频时钟占空比调节位00：2ns 延迟01：3ns 延迟10：4ns 延迟(default)11：7n（bit 5:4）"
+        },
+        {
+          "name": "CCORDY",
+          "bits": "6",
+          "access": "r",
+          "reset_value": "0",
+          "description": "时钟输出标志位，只读1 = 时钟正在输出0 = 时钟未输出（bit 6）"
+        },
+        {
+          "name": "SYSON",
+          "bits": "7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "睡眠状态下的系统时钟控制位1 = 睡眠状态下，系统时钟保持运行0 = 睡眠状态下，系统时钟关闭（bit 7）"
+        }
+      ]
+    },
+    {
+      "peripheral": "OSC",
+      "name": "TCKSRC",
+      "address": "0x31F",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 5.6.6",
+      "bitfields": [
+        {
+          "name": "T1CKSRC",
+          "bits": "0:2",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "TIM1时钟源选择位值 时钟源0 系统时钟/主时钟1 HIRC2 XT时钟/外部时钟3 HIRC的2倍频4 XT时钟/外（bit 2:0）"
+        },
+        {
+          "name": "T2CKSRC",
+          "bits": "3:6",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "TIM2时钟源选择位值 时钟源0 系统时钟/主时钟1 HIRC2 XT时钟/外部时钟3 HIRC的2倍频4 XT时钟/外（bit 6:4）"
+        },
+        {
+          "name": "LFMOD",
+          "bits": "7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "低频内振模式：1 = 256k 振荡频率模式0 = 32k 振荡频率模式（bit 7）"
+        }
+      ]
+    },
+    {
+      "peripheral": "INTC",
+      "name": "INTCON",
+      "address": "0x0B",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 6.5.1",
+      "bitfields": [
+        {
+          "name": "OSFIF",
+          "bits": "0",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "1 = 发生了时钟缺失事件（写1清0，写0无效）0 = 未发生时钟缺失事件，或已由软件清0（bit 0）"
+        },
+        {
+          "name": "LVDIF",
+          "bits": "1",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "LVD中断标志位（写1清0，写0无效）1 = 发生欠压事件0 = 未发生欠压事件，或已由软件清0（bit 1）"
+        },
+        {
+          "name": "EEIF",
+          "bits": "2",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "EEPROM写完成标志位（写1清0，写0无效）1 = EEPROM完成写操作0 = EEPROM写操作未完成，或已由软件（bit 2）"
+        },
+        {
+          "name": "OSFIE",
+          "bits": "3",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "时钟缺失中断使能1 = 使能OSF的中断0 = 禁止OSF的中断（bit 3）"
+        },
+        {
+          "name": "LVDIE",
+          "bits": "4",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "LVD中断使能1 = 使能LVD的中断0 = 禁止LVD的中断（bit 4）"
+        },
+        {
+          "name": "EEIE",
+          "bits": "5",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "EEPROM写完成中断使能1 = 使能EEPROM的中断0 = 禁止EEPROM的中断（bit 5）"
+        },
+        {
+          "name": "PEIE",
+          "bits": "6",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "外设中断使能1 = 使能所有未屏蔽的外设中断0 = 禁止所有的外设中断（bit 6）"
+        },
+        {
+          "name": "GIE",
+          "bits": "7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "全局中断使能1 = 使能所有未屏蔽中断0 = 禁止所有中断（bit 7）"
+        }
+      ]
+    },
+    {
+      "peripheral": "INTC",
+      "name": "PIR1",
+      "address": "0x11",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 6.5.2",
+      "bitfields": [
+        {
+          "name": "ADCIE",
+          "bits": "0",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "ADC转换完成中断使能1 = 允许ADC转换中断0 = 禁止ADC转换中断（bit 0）"
+        },
+        {
+          "name": "CKMIE",
+          "bits": "1",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "慢时钟测量完成中断使能1 = 允许慢时钟测量中断0 = 禁止慢时钟测量中断（bit 1）"
+        }
+      ]
+    },
+    {
+      "peripheral": "INTC",
+      "name": "PIE1",
+      "address": "0x91",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 6.5.3",
+      "bitfields": [
+        {
+          "name": "ADCIE",
+          "bits": "0",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "ADC转换完成中断使能1 = 允许ADC转换中断0 = 禁止ADC转换中断（bit 0）"
+        },
+        {
+          "name": "CKMIE",
+          "bits": "1",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "慢时钟测量完成中断使能1 = 允许慢时钟测量中断0 = 禁止慢时钟测量中断（bit 1）"
+        }
+      ]
+    },
+    {
+      "peripheral": "EEPROM",
+      "name": "EEDAT",
+      "address": "0x193",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 8.8.1",
+      "bitfields": [
+        {
+          "name": "EEDAT",
+          "bits": "0:5",
+          "access": "rw",
+          "reset_value": "x",
+          "description": "EEPROM/PROM读写数据寄存器在写周期（EEPROM: 3 ~ 5ms, PROM: 1.5 ~ 2.5ms）内，（bit 13:0）"
+        }
+      ]
+    },
+    {
+      "peripheral": "EEPROM",
+      "name": "EEADR",
+      "address": "0x191",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 8.8.2",
+      "bitfields": [
+        {
+          "name": "EEADR",
+          "bits": "0:3",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "EEPROM",
+      "name": "EECON1",
+      "address": "0x195",
+      "offset": null,
+      "access": "w",
+      "description": "章节 8.8.3",
+      "bitfields": [
+        {
+          "name": "EEPROM控制寄存器2",
+          "bits": "0:7",
+          "access": "w",
+          "reset_value": "x",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "EEPROM",
+      "name": "EECON2",
+      "address": "0x196",
+      "offset": null,
+      "access": "w",
+      "description": "章节 8.8.4",
+      "bitfields": [
+        {
+          "name": "EEPROM控制寄存器2",
+          "bits": "0:7",
+          "access": "w",
+          "reset_value": "x",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "ADC",
+      "name": "ADRESL",
+      "address": "0x9B",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 9.4.1",
+      "bitfields": [
+        {
+          "name": "ADON",
+          "bits": "0",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "ADC使能位0 = ADC被禁止且不消耗工作电流1 = ADC被使能（bit 0）"
+        },
+        {
+          "name": "GO/DONE",
+          "bits": "1",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "AD转换状态位（硬件触发事件直接置位）将该位置1可启动A/D转换周期。当A/D转换完成以后，该位由硬件自动清零。0 = （bit 1）"
+        },
+        {
+          "name": "ADEX",
+          "bits": "2",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "ADC触发信号类型选择该位决定启动ADC的触发条件0 = 当软件设定GO/DONE位，启动AD转换1 = 需要外部触发信（bit 2）"
+        },
+        {
+          "name": "CHS<2:0>",
+          "bits": "3:6",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "模拟通道选择位000 = AN0001 = AN1010 = AN2011 = AN3100 = AN4101 = AN（bit 6:4）"
+        }
+      ]
+    },
+    {
+      "peripheral": "ADC",
+      "name": "ADRESH",
+      "address": "0x9C",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 9.4.2",
+      "bitfields": [
+        {
+          "name": "ADON",
+          "bits": "0",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "ADC使能位0 = ADC被禁止且不消耗工作电流1 = ADC被使能（bit 0）"
+        },
+        {
+          "name": "GO/DONE",
+          "bits": "1",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "AD转换状态位（硬件触发事件直接置位）将该位置1可启动A/D转换周期。当A/D转换完成以后，该位由硬件自动清零。0 = （bit 1）"
+        },
+        {
+          "name": "ADEX",
+          "bits": "2",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "ADC触发信号类型选择该位决定启动ADC的触发条件0 = 当软件设定GO/DONE位，启动AD转换1 = 需要外部触发信（bit 2）"
+        },
+        {
+          "name": "CHS<2:0>",
+          "bits": "3:6",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "模拟通道选择位000 = AN0001 = AN1010 = AN2011 = AN3100 = AN4101 = AN（bit 6:4）"
+        }
+      ]
+    },
+    {
+      "peripheral": "ADC",
+      "name": "ADCON0",
+      "address": "0x9D",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 9.4.3",
+      "bitfields": [
+        {
+          "name": "ADON",
+          "bits": "0",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "ADC使能位0 = ADC被禁止且不消耗工作电流1 = ADC被使能（bit 0）"
+        },
+        {
+          "name": "GO/DONE",
+          "bits": "1",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "AD转换状态位（硬件触发事件直接置位）将该位置1可启动A/D转换周期。当A/D转换完成以后，该位由硬件自动清零。0 = （bit 1）"
+        },
+        {
+          "name": "ADEX",
+          "bits": "2",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "ADC触发信号类型选择该位决定启动ADC的触发条件0 = 当软件设定GO/DONE位，启动AD转换1 = 需要外部触发信（bit 2）"
+        },
+        {
+          "name": "CHS<2:0>",
+          "bits": "3:6",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "模拟通道选择位000 = AN0001 = AN1010 = AN2011 = AN3100 = AN4101 = AN（bit 6:4）"
+        }
+      ]
+    },
+    {
+      "peripheral": "ADC",
+      "name": "ADCON1",
+      "address": "0x9E",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 9.4.4",
+      "bitfields": [
+        {
+          "name": "ADPREF<1:0>",
+          "bits": "0:1",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "ADNREF<1:0>",
+          "bits": "2:3",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "ADCS<2:0>",
+          "bits": "4:6",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "ADC转换时钟选择位（以下是F 指系统时钟）OSC000 = F /2OSC001 = F /8OSC010 = F /（bit 6:4）"
+        },
+        {
+          "name": "ADFM",
+          "bits": "7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "ADC结果格式选择位1 = 右对齐。装入转换结果时，ADRESH的高4位被设置为0。0 = 左对齐。装入转换结果时，AD（bit 7）"
+        }
+      ]
+    },
+    {
+      "peripheral": "ADC",
+      "name": "ADCON2",
+      "address": "0x9F",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 9.4.5",
+      "bitfields": [
+        {
+          "name": "ADDLY<7:0>",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "ADC外部触发启动延时计数器阈值低位该8位寄存器与ADCON2.7组成9位计数器，用于在外部触发启动ADC之前加入一段延（bit 7:0）"
+        }
+      ]
+    },
+    {
+      "peripheral": "ADC",
+      "name": "ADDLY/LEBPRL",
+      "address": "0x1F",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 9.4.6",
+      "bitfields": [
+        {
+          "name": "ADDLY<7:0>",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "ADC外部触发启动延时计数器阈值低位该8位寄存器与ADCON2.7组成9位计数器，用于在外部触发启动ADC之前加入一段延（bit 7:0）"
+        }
+      ]
+    },
+    {
+      "peripheral": "ADC",
+      "name": "ADCON3",
+      "address": "0x41A",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 9.4.7",
+      "bitfields": [
+        {
+          "name": "ADCMPH<7:0>",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "ADC比较阈值仅8位，用于ADC结果高8位比较。（bit 7:0）"
+        }
+      ]
+    },
+    {
+      "peripheral": "ADC",
+      "name": "ADCMPH",
+      "address": "0x41B",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 9.4.8",
+      "bitfields": [
+        {
+          "name": "ADCMPH<7:0>",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "ADC比较阈值仅8位，用于ADC结果高8位比较。（bit 7:0）"
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM1",
+      "name": "TIM1CR1",
+      "address": "0x211",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 10.4.9",
+      "bitfields": [
+        {
+          "name": "T1CEN",
+          "bits": "0",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1UDIS",
+          "bits": "1",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1URS",
+          "bits": "2",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1OPM",
+          "bits": "3",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1DIR",
+          "bits": "4",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1CMS",
+          "bits": "5:6",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1ARPE",
+          "bits": "7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM1",
+      "name": "TIM1CR2",
+      "address": "0x212",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 10.4.10",
+      "bitfields": [
+        {
+          "name": "T1CCPC",
+          "bits": "0",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "reserved",
+          "bits": ":",
+          "access": "",
+          "reset_value": "－",
+          "description": ""
+        },
+        {
+          "name": "T1COMS",
+          "bits": "1:2",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "reserved",
+          "bits": ":",
+          "access": "",
+          "reset_value": "－",
+          "description": ""
+        },
+        {
+          "name": "T1ENCTRL",
+          "bits": "6:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM1",
+      "name": "TIM1SMCR",
+      "address": "0x213",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 10.4.11",
+      "bitfields": [
+        {
+          "name": "T1SMS",
+          "bits": "0:2",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "reserved",
+          "bits": ":",
+          "access": "",
+          "reset_value": "－",
+          "description": ""
+        },
+        {
+          "name": "T1TS",
+          "bits": "3:6",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "reserved",
+          "bits": ":",
+          "access": "",
+          "reset_value": "－",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM1",
+      "name": "TIM1IER",
+      "address": "0x215",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 10.4.13",
+      "bitfields": [
+        {
+          "name": "T1UIE",
+          "bits": "0",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1CC1IE",
+          "bits": "1",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1CC2IE",
+          "bits": "2",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1CC3IE",
+          "bits": "3",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1CC4IE",
+          "bits": "4",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1COMIE",
+          "bits": ":",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1TIE",
+          "bits": "5:6",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1BIE",
+          "bits": "7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM1",
+      "name": "TIM1SR1",
+      "address": "0x216",
+      "offset": null,
+      "access": "",
+      "description": "章节 10.4.14",
+      "bitfields": [
+        {
+          "name": "T1UIF",
+          "bits": "0",
+          "access": "",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1CC1IF",
+          "bits": "1",
+          "access": "",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1CC2IF",
+          "bits": "2",
+          "access": "",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1CC3IF",
+          "bits": "3",
+          "access": "",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1CC4IF",
+          "bits": "4",
+          "access": "",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1COMIF",
+          "bits": ":",
+          "access": "",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1TIF",
+          "bits": "5:6",
+          "access": "",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1BIF",
+          "bits": "7",
+          "access": "",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM1",
+      "name": "TIM1SR2",
+      "address": "0x217",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 10.4.15",
+      "bitfields": [
+        {
+          "name": "reserved",
+          "bits": ":",
+          "access": "",
+          "reset_value": "－",
+          "description": ""
+        },
+        {
+          "name": "T1CC1OF",
+          "bits": "0:1",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1CC2OF",
+          "bits": "2",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1CC3OF",
+          "bits": "3",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1CC4OF",
+          "bits": "4",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "reserved",
+          "bits": ":",
+          "access": "",
+          "reset_value": "－",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM1",
+      "name": "TIM1EGR",
+      "address": "0x218",
+      "offset": null,
+      "access": "",
+      "description": "章节 10.4.16",
+      "bitfields": [
+        {
+          "name": "T1UG",
+          "bits": ":",
+          "access": "",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1CC1G",
+          "bits": "0:1",
+          "access": "",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1CC2G",
+          "bits": "2",
+          "access": "",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1CC3G",
+          "bits": "3",
+          "access": "",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1CC4G",
+          "bits": "4",
+          "access": "",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1COMG",
+          "bits": ":",
+          "access": "",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1TG",
+          "bits": "5:",
+          "access": "",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1BG",
+          "bits": "6:7",
+          "access": "",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM1",
+      "name": "TIM1CCMR1",
+      "address": "0x219",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 10.4.17",
+      "bitfields": [
+        {
+          "name": "T1CC1S",
+          "bits": "0:1",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1OC1FE",
+          "bits": ":",
+          "access": "",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1OC1PE",
+          "bits": "2:3",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1OC1M",
+          "bits": "4:6",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1OC1CE",
+          "bits": ":",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM1",
+      "name": "TIM1CCMR2",
+      "address": "0x21A",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 10.4.18",
+      "bitfields": [
+        {
+          "name": "T1CC2S",
+          "bits": "0:1",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1OC2FE",
+          "bits": "",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1OC2PE",
+          "bits": "2:3",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1OC2M",
+          "bits": "4:6",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1OC2CE",
+          "bits": "",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM1",
+      "name": "TIM1CCMR3",
+      "address": "0x21B",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 10.4.19",
+      "bitfields": [
+        {
+          "name": "T1CC3S",
+          "bits": "0:1",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1OC3FE",
+          "bits": "",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1OC3PE",
+          "bits": "2:3",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1OC3M",
+          "bits": "4:6",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1OC3CE",
+          "bits": "",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM1",
+      "name": "TIM1CCMR4",
+      "address": "0x21C",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 10.4.20",
+      "bitfields": [
+        {
+          "name": "T1CC4S",
+          "bits": "0:1",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1OC4FE",
+          "bits": "",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1OC4PE",
+          "bits": "2:3",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1OC4M",
+          "bits": "4:6",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1OC4CE",
+          "bits": "7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM1",
+      "name": "TIM1CCER1",
+      "address": "0x21D",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 10.4.21",
+      "bitfields": [
+        {
+          "name": "T1CC1E",
+          "bits": "0",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1CC1P",
+          "bits": "1",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1CC1NE",
+          "bits": "2",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1CC1NP",
+          "bits": "3",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1CC2E",
+          "bits": "4",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1CC2P",
+          "bits": "5",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1CC2NE",
+          "bits": "6",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1CC2NP",
+          "bits": "7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM1",
+      "name": "TIM1CCER2",
+      "address": "0x21E",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 10.4.22",
+      "bitfields": [
+        {
+          "name": "T1CNT",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM1",
+      "name": "TIM1CNTRH",
+      "address": "0x28C",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 10.4.23",
+      "bitfields": [
+        {
+          "name": "T1CNT",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM1",
+      "name": "TIM1CNTRL",
+      "address": "0x28D",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 10.4.24",
+      "bitfields": [
+        {
+          "name": "T1CNT",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM1",
+      "name": "TIM1PSCRH",
+      "address": "0x28E",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 10.4.25",
+      "bitfields": [
+        {
+          "name": "T1ARR",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "1",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM1",
+      "name": "TIM1PSCRL",
+      "address": "0x28F",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 10.4.26",
+      "bitfields": [
+        {
+          "name": "T1ARR",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "1",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM1",
+      "name": "TIM1ARRH",
+      "address": "0x290",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 10.4.27",
+      "bitfields": [
+        {
+          "name": "T1ARR",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "1",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM1",
+      "name": "TIM1ARRL",
+      "address": "0x291",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 10.4.28",
+      "bitfields": [
+        {
+          "name": "T1ARR",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "1",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM1",
+      "name": "TIM1RCR",
+      "address": "0x292",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 10.4.29",
+      "bitfields": [
+        {
+          "name": "T1CCR1",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM1",
+      "name": "TIM1CCR1H",
+      "address": "0x293",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 10.4.30",
+      "bitfields": [
+        {
+          "name": "T1CCR1",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM1",
+      "name": "TIM1CCR1L",
+      "address": "0x294",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 10.4.31",
+      "bitfields": [
+        {
+          "name": "T1CCR1",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM1",
+      "name": "TIM1CCR2H",
+      "address": "0x295",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 10.4.32",
+      "bitfields": [
+        {
+          "name": "T1CCR3",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM1",
+      "name": "TIM1CCR2L",
+      "address": "0x296",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 10.4.33",
+      "bitfields": [
+        {
+          "name": "T1CCR3",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM1",
+      "name": "TIM1CCR3H",
+      "address": "0x297",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 10.4.34",
+      "bitfields": [
+        {
+          "name": "T1CCR3",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM1",
+      "name": "TIM1CCR3L",
+      "address": "0x298",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 10.4.35",
+      "bitfields": [
+        {
+          "name": "T1CCR4",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM1",
+      "name": "TIM1CCR4H",
+      "address": "0x299",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 10.4.36",
+      "bitfields": [
+        {
+          "name": "T1CCR4",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM1",
+      "name": "TIM1CCR4L",
+      "address": "0x29A",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 10.4.37",
+      "bitfields": [
+        {
+          "name": "T1CCR4",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM1",
+      "name": "TIM1BKR",
+      "address": "0x29B",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 10.4.38",
+      "bitfields": [
+        {
+          "name": "T1LOCK",
+          "bits": "0:1",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1OSSI",
+          "bits": "2",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1OSSR",
+          "bits": "3",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1BKE",
+          "bits": "4",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1BKP",
+          "bits": "5",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1AOE",
+          "bits": "6",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1MOE",
+          "bits": "7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM1",
+      "name": "TIM1DTR",
+      "address": "0x29C",
+      "offset": null,
+      "access": "r",
+      "description": "章节 10.4.39",
+      "bitfields": [
+        {
+          "name": "T1OIS1",
+          "bits": "0",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1OIS1N",
+          "bits": "1",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1OIS2",
+          "bits": "2",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1OIS2N",
+          "bits": "3",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1OIS3",
+          "bits": "4",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1OIS3N",
+          "bits": "5",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1OIS4",
+          "bits": "6",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "reserved",
+          "bits": ":7",
+          "access": "r",
+          "reset_value": "－",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM1",
+      "name": "TIM1OISR",
+      "address": "0x29D",
+      "offset": null,
+      "access": "r",
+      "description": "章节 10.4.40",
+      "bitfields": [
+        {
+          "name": "T1OIS1",
+          "bits": "0",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1OIS1N",
+          "bits": "1",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1OIS2",
+          "bits": "2",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1OIS2N",
+          "bits": "3",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1OIS3",
+          "bits": "4",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1OIS3N",
+          "bits": "5",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T1OIS4",
+          "bits": "6",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "reserved",
+          "bits": ":7",
+          "access": "r",
+          "reset_value": "－",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM1",
+      "name": "LEBCON",
+      "address": "0x41C",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 10.4.41",
+      "bitfields": [
+        {
+          "name": "BKS",
+          "bits": "0:2",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "EDGS",
+          "bits": "3",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "PWM消隐沿选择0 = PWM上升沿1 = PWM下降沿（bit 3）"
+        },
+        {
+          "name": "reserved",
+          "bits": ":",
+          "access": "",
+          "reset_value": "－",
+          "description": ""
+        },
+        {
+          "name": "LEBCH",
+          "bits": "4:6",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "LEBEN",
+          "bits": "7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "前沿消隐使能位（仅当ADGO=0时可进行切换，否则ADC工作异常）1 = 使能0 = 禁止（bit 7）"
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM2",
+      "name": "TIM2CR1",
+      "address": "0x30C",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 11.2.5",
+      "bitfields": [
+        {
+          "name": "T2CEN",
+          "bits": "0",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T2UDIS",
+          "bits": "1",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T2URS",
+          "bits": "2",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T2OPM",
+          "bits": "3",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "reversed",
+          "bits": ":",
+          "access": "",
+          "reset_value": "－",
+          "description": ""
+        },
+        {
+          "name": "T2ARPE",
+          "bits": "6:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM2",
+      "name": "TIM2IER",
+      "address": "0x30D",
+      "offset": null,
+      "access": "",
+      "description": "章节 11.2.6",
+      "bitfields": [
+        {
+          "name": "T2UIF",
+          "bits": "0",
+          "access": "",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T2CC1IF",
+          "bits": "1",
+          "access": "",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T2CC2IF",
+          "bits": "2",
+          "access": "",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T2CC3IF",
+          "bits": "3",
+          "access": "",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "reserved",
+          "bits": ":",
+          "access": "",
+          "reset_value": "－",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM2",
+      "name": "TIM2SR1",
+      "address": "0x30E",
+      "offset": null,
+      "access": "",
+      "description": "章节 11.2.7",
+      "bitfields": [
+        {
+          "name": "T2UIF",
+          "bits": "0",
+          "access": "",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T2CC1IF",
+          "bits": "1",
+          "access": "",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T2CC2IF",
+          "bits": "2",
+          "access": "",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T2CC3IF",
+          "bits": "3",
+          "access": "",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "reserved",
+          "bits": ":",
+          "access": "",
+          "reset_value": "－",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM2",
+      "name": "TIM2SR2",
+      "address": "0x30F",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 11.2.8",
+      "bitfields": [
+        {
+          "name": "T2UG",
+          "bits": "0",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T2CC1G",
+          "bits": "1",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T2CC2G",
+          "bits": "2",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T2CC3G",
+          "bits": "3",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "reserved",
+          "bits": ":",
+          "access": "",
+          "reset_value": "－",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM2",
+      "name": "TIM2EGR",
+      "address": "0x310",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 11.2.9",
+      "bitfields": [
+        {
+          "name": "T2UG",
+          "bits": "0",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T2CC1G",
+          "bits": "1",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T2CC2G",
+          "bits": "2",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T2CC3G",
+          "bits": "3",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "reserved",
+          "bits": ":",
+          "access": "",
+          "reset_value": "－",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM2",
+      "name": "TIM2CCMR1",
+      "address": "0x311",
+      "offset": null,
+      "access": "r",
+      "description": "章节 11.2.10",
+      "bitfields": [
+        {
+          "name": "T2CC1S",
+          "bits": "0:1",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "reserved",
+          "bits": ":2",
+          "access": "r",
+          "reset_value": null,
+          "description": ""
+        },
+        {
+          "name": "T2OC1PE",
+          "bits": "3",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T2OC1M",
+          "bits": "4:6",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "reserved",
+          "bits": ":7",
+          "access": "r",
+          "reset_value": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM2",
+      "name": "TIM2CCMR2",
+      "address": "0x312",
+      "offset": null,
+      "access": "r",
+      "description": "章节 11.2.11",
+      "bitfields": [
+        {
+          "name": "T2CC2S",
+          "bits": "0:1",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "reserved",
+          "bits": ":2",
+          "access": "r",
+          "reset_value": null,
+          "description": ""
+        },
+        {
+          "name": "T2OC2PE",
+          "bits": "3",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T2OC2M",
+          "bits": "4:6",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "reserved",
+          "bits": ":7",
+          "access": "r",
+          "reset_value": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM2",
+      "name": "TIM2CCMR3",
+      "address": "0x313",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 11.2.12",
+      "bitfields": [
+        {
+          "name": "T2CC3S",
+          "bits": "0:1",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "reserved",
+          "bits": ":",
+          "access": "",
+          "reset_value": "－",
+          "description": ""
+        },
+        {
+          "name": "T2OC3PE",
+          "bits": "2:3",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T2OC3M",
+          "bits": "4:6",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "reserved",
+          "bits": ":",
+          "access": "",
+          "reset_value": "－",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM2",
+      "name": "TIM2CCER1",
+      "address": "0x314",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 11.2.13",
+      "bitfields": [
+        {
+          "name": "T2CC3E",
+          "bits": "0",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T2CC3P",
+          "bits": "1",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "reserved",
+          "bits": ":",
+          "access": "",
+          "reset_value": "－",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM2",
+      "name": "TIM2CCER2",
+      "address": "0x315",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 11.2.14",
+      "bitfields": [
+        {
+          "name": "T2CC3E",
+          "bits": "0",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "T2CC3P",
+          "bits": "1",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "reserved",
+          "bits": ":",
+          "access": "",
+          "reset_value": "－",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM2",
+      "name": "TIM2CNTRH",
+      "address": "0x316",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 11.2.15",
+      "bitfields": [
+        {
+          "name": "T2ARR",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "1",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM2",
+      "name": "TIM2CNTRL",
+      "address": "0x317",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 11.2.16",
+      "bitfields": [
+        {
+          "name": "T2ARR",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "1",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM2",
+      "name": "TIM2PSCR",
+      "address": "0x318",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 11.2.17",
+      "bitfields": [
+        {
+          "name": "T2ARR",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "1",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM2",
+      "name": "TIM2ARRH",
+      "address": "0x319",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 11.2.18",
+      "bitfields": [
+        {
+          "name": "T2ARR",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "1",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM2",
+      "name": "TIM2ARRL",
+      "address": "0x31A",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 11.2.19",
+      "bitfields": [
+        {
+          "name": "T2CCR2",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM2",
+      "name": "TIM2CCR1H",
+      "address": "0x31B",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 11.2.20",
+      "bitfields": [
+        {
+          "name": "T2CCR2",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM2",
+      "name": "TIM2CCR1L",
+      "address": "0x31C",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 11.2.21",
+      "bitfields": [
+        {
+          "name": "T2CCR2",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM2",
+      "name": "TIM2CCR2H",
+      "address": "0x31D",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 11.2.22",
+      "bitfields": [
+        {
+          "name": "T2CCR2",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM2",
+      "name": "TIM2CCR2L",
+      "address": "0x31E",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 11.2.23",
+      "bitfields": [
+        {
+          "name": "T2CCR3",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM2",
+      "name": "TIM2CCR3H",
+      "address": "0x29E",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 11.2.24",
+      "bitfields": [
+        {
+          "name": "T2CCR3",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM2",
+      "name": "TIM2CCR3L",
+      "address": "0x29F",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 11.2.25",
+      "bitfields": [
+        {
+          "name": "T2CCR3",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM4",
+      "name": "TIM4CR1",
+      "address": "0x111",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 12.6.1",
+      "bitfields": [
+        {
+          "name": "T4UIE",
+          "bits": "0",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "reserved",
+          "bits": ":",
+          "access": "",
+          "reset_value": "－",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM4",
+      "name": "TIM4IER",
+      "address": "0x112",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 12.6.2",
+      "bitfields": [
+        {
+          "name": "T4UIE",
+          "bits": "0",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        },
+        {
+          "name": "reserved",
+          "bits": ":",
+          "access": "",
+          "reset_value": "－",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM4",
+      "name": "TIM4SR",
+      "address": "0x113",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 12.6.3",
+      "bitfields": [
+        {
+          "name": "T4CNT",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM4",
+      "name": "TIM4EGR",
+      "address": "0x114",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 12.6.4",
+      "bitfields": [
+        {
+          "name": "T4CNT",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM4",
+      "name": "TIM4CNTR",
+      "address": "0x115",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 12.6.5",
+      "bitfields": [
+        {
+          "name": "T4CNT",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM4",
+      "name": "TIM4PSCR",
+      "address": "0x116",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 12.6.6",
+      "bitfields": [
+        {
+          "name": "T4ARR",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "1",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "TIM4",
+      "name": "TIM4ARR",
+      "address": "0x117",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 12.6.7",
+      "bitfields": [
+        {
+          "name": "T4ARR",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "1",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "USART",
+      "name": "URDATAL",
+      "address": "0x48C",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 13.3.1",
+      "bitfields": [
+        {
+          "name": "DATAL",
+          "bits": "7:0",
+          "access": "rw",
+          "reset_value": "0x00",
+          "description": "数据发送/接收寄存器低八位，请使用字节传输指令对该寄存器进行操作（bit 7:0）"
+        }
+      ]
+    },
+    {
+      "peripheral": "USART",
+      "name": "URDATAH",
+      "address": "0x48D",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 13.3.2",
+      "bitfields": [
+        {
+          "name": "URRXNE",
+          "bits": "0",
+          "access": "rw",
+          "reset_value": "0x0",
+          "description": "接受到数据中断使能1：使能接收到数据中断0：禁用接收到数据中断（bit 0）"
+        },
+        {
+          "name": "URTE",
+          "bits": "1",
+          "access": "rw",
+          "reset_value": "0x0",
+          "description": "发送buf为空中断使能1：使能发送为空中断0：禁用发送为空中断（bit 1）"
+        },
+        {
+          "name": "RXSE",
+          "bits": "2",
+          "access": "rw",
+          "reset_value": "0x0",
+          "description": "接收状态使能，包括帧断开，帧错误，奇偶校验错误，接收溢出错误1：使能接收到断开帧/帧错误/奇偶校验错误/接收溢出错误状态（bit 2）"
+        },
+        {
+          "name": "IDELE",
+          "bits": "3",
+          "access": "rw",
+          "reset_value": "0x0",
+          "description": "空闲帧中断使能1：使能空闲帧中断0：禁用空闲帧中断（bit 3）"
+        },
+        {
+          "name": "TCIE",
+          "bits": "4:5",
+          "access": "rw",
+          "reset_value": "0x0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "USART",
+      "name": "URIER",
+      "address": "0x48E",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 13.3.3",
+      "bitfields": [
+        {
+          "name": "URRXNE",
+          "bits": "0",
+          "access": "rw",
+          "reset_value": "0x0",
+          "description": "接受到数据中断使能1：使能接收到数据中断0：禁用接收到数据中断（bit 0）"
+        },
+        {
+          "name": "URTE",
+          "bits": "1",
+          "access": "rw",
+          "reset_value": "0x0",
+          "description": "发送buf为空中断使能1：使能发送为空中断0：禁用发送为空中断（bit 1）"
+        },
+        {
+          "name": "RXSE",
+          "bits": "2",
+          "access": "rw",
+          "reset_value": "0x0",
+          "description": "接收状态使能，包括帧断开，帧错误，奇偶校验错误，接收溢出错误1：使能接收到断开帧/帧错误/奇偶校验错误/接收溢出错误状态（bit 2）"
+        },
+        {
+          "name": "IDELE",
+          "bits": "3",
+          "access": "rw",
+          "reset_value": "0x0",
+          "description": "空闲帧中断使能1：使能空闲帧中断0：禁用空闲帧中断（bit 3）"
+        },
+        {
+          "name": "TCIE",
+          "bits": "4:5",
+          "access": "rw",
+          "reset_value": "0x0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "USART",
+      "name": "URLCR",
+      "address": "0x48F",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 13.3.4",
+      "bitfields": [
+        {
+          "name": "EXTEN",
+          "bits": "0",
+          "access": "rw",
+          "reset_value": "0x0",
+          "description": "发送的数据是否时9比特长度1：发送的数据长度是9比特长度0：发送的数据不是9比特长度（bit 0）"
+        },
+        {
+          "name": "RWU",
+          "bits": "1",
+          "access": "rw",
+          "reset_value": "0x0",
+          "description": "多处理器模式接收唤醒1：设置进入哑模式0：未设置进入哑模式或者已经退出哑模式（bit 1）"
+        }
+      ]
+    },
+    {
+      "peripheral": "USART",
+      "name": "URLCREXT",
+      "address": "0x490",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 13.3.5",
+      "bitfields": [
+        {
+          "name": "EXTEN",
+          "bits": "0",
+          "access": "rw",
+          "reset_value": "0x0",
+          "description": "发送的数据是否时9比特长度1：发送的数据长度是9比特长度0：发送的数据不是9比特长度（bit 0）"
+        },
+        {
+          "name": "RWU",
+          "bits": "1",
+          "access": "rw",
+          "reset_value": "0x0",
+          "description": "多处理器模式接收唤醒1：设置进入哑模式0：未设置进入哑模式或者已经退出哑模式（bit 1）"
+        }
+      ]
+    },
+    {
+      "peripheral": "USART",
+      "name": "URMCR",
+      "address": "0x491",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 13.3.6",
+      "bitfields": [
+        {
+          "name": "SIREN",
+          "bits": "0",
+          "access": "rw",
+          "reset_value": "0x0",
+          "description": "红外模式使能1：使能红外模式0：禁用红外模式（bit 0）"
+        },
+        {
+          "name": "HDSEL",
+          "bits": "1",
+          "access": "rw",
+          "reset_value": "0x0",
+          "description": "半双工使能1：使能半双工模式0：禁用半双工模式（bit 1）"
+        },
+        {
+          "name": "WAKE",
+          "bits": "2",
+          "access": "rw",
+          "reset_value": "0x0",
+          "description": "哑模式唤醒方式选择1：选择地址匹配0：选择IDLE帧（bit 2）"
+        },
+        {
+          "name": "RXEN",
+          "bits": "3",
+          "access": "rw",
+          "reset_value": "0x0",
+          "description": "接收使能1：允许接口接收，相应的IO会被用作RX引脚0：禁用接口接收（bit 3）"
+        },
+        {
+          "name": "TXEN",
+          "bits": "4",
+          "access": "rw",
+          "reset_value": "0x0",
+          "description": "发送使能1：使能接口的发送，相应的IO会被用作TX引脚0：禁用接口的发送（bit 4）"
+        },
+        {
+          "name": "SIRLP",
+          "bits": "5",
+          "access": "rw",
+          "reset_value": "0x0",
+          "description": "红外低功耗模式使能1：使能红外低功耗模式0：禁用红外低功耗模式（bit 5）"
+        }
+      ]
+    },
+    {
+      "peripheral": "USART",
+      "name": "URLSR",
+      "address": "0x492",
+      "offset": null,
+      "access": "r",
+      "description": "章节 13.3.7",
+      "bitfields": [
+        {
+          "name": "RXNEF",
+          "bits": "0",
+          "access": "r",
+          "reset_value": "0x0",
+          "description": "在启用9比特数据格式时，读取DATAH寄存器清零，否则读取DATAL寄存器清零1：接收寄存器非空0：接收寄存器为空或已清（bit 0）"
+        },
+        {
+          "name": "OVERF",
+          "bits": "1",
+          "access": "w",
+          "reset_value": "0x0",
+          "description": "溢出错误标志，写0清0，写1无效1：接收寄存器出现溢出0：接收未出现溢出或已清零（bit 1）"
+        },
+        {
+          "name": "PEF",
+          "bits": "2",
+          "access": "w",
+          "reset_value": "0x0",
+          "description": "奇偶校验错误标识，写0清0，写1无效零1：接收到了奇偶校验错误0：未接收到奇偶校验错误或已清零（bit 2）"
+        },
+        {
+          "name": "FEF",
+          "bits": "3",
+          "access": "w",
+          "reset_value": "0x0",
+          "description": "帧错误标志，写0清0，写1无效1：接收出现了帧错误0：未接收到帧错误会已清零（bit 3）"
+        },
+        {
+          "name": "BKF",
+          "bits": "4",
+          "access": "w",
+          "reset_value": "0x0",
+          "description": "断开帧标志，写0清0，写1无效1：接收到了断开帧0：未接收到断开帧或已清零（bit 4）"
+        },
+        {
+          "name": "TXEF",
+          "bits": "5",
+          "access": "r",
+          "reset_value": "0x1",
+          "description": "发送寄存器的状态，在启用了9比特数据格式时，写DATAH寄存器清零，否则写取DATAL寄存器清零1：发送寄存器为空0：发（bit 5）"
+        },
+        {
+          "name": "IDLEF",
+          "bits": "6",
+          "access": "w",
+          "reset_value": "0x0",
+          "description": "空闲帧标志，写0清0，写1无效1：检测到空闲帧0：未检测到空闲帧（bit 6）"
+        },
+        {
+          "name": "ADDRF",
+          "bits": "7",
+          "access": "r",
+          "reset_value": "0x0",
+          "description": "哑模式地址匹配标志位，指示位，软件不可清1：哑模式地址匹配唤醒模式中，匹配到了地址0：哑模式地址匹配唤醒模式中，未匹配到（bit 7）"
+        }
+      ]
+    },
+    {
+      "peripheral": "USART",
+      "name": "URRAR",
+      "address": "0x493",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 13.3.8",
+      "bitfields": [
+        {
+          "name": "DLH",
+          "bits": "7:0",
+          "access": "rw",
+          "reset_value": "0x0",
+          "description": "波特率分频计数器高八位波特率=Fmaster/(16*{DLH,DLL})，默认值{DLH，DLL}为0x0000时，串（bit 7:0）"
+        }
+      ]
+    },
+    {
+      "peripheral": "USART",
+      "name": "URDLL",
+      "address": "0x494",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 13.3.9",
+      "bitfields": [
+        {
+          "name": "DLH",
+          "bits": "7:0",
+          "access": "rw",
+          "reset_value": "0x0",
+          "description": "波特率分频计数器高八位波特率=Fmaster/(16*{DLH,DLL})，默认值{DLH，DLL}为0x0000时，串（bit 7:0）"
+        }
+      ]
+    },
+    {
+      "peripheral": "USART",
+      "name": "URDLH",
+      "address": "0x495",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 13.3.10",
+      "bitfields": [
+        {
+          "name": "DLH",
+          "bits": "7:0",
+          "access": "rw",
+          "reset_value": "0x0",
+          "description": "波特率分频计数器高八位波特率=Fmaster/(16*{DLH,DLL})，默认值{DLH，DLL}为0x0000时，串（bit 7:0）"
+        }
+      ]
+    },
+    {
+      "peripheral": "USART",
+      "name": "URABCR",
+      "address": "0x496",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 13.3.11",
+      "bitfields": [
+        {
+          "name": "ABREN",
+          "bits": "0",
+          "access": "rw",
+          "reset_value": "0x0",
+          "description": "自动波特率检测使能1：使能波特率检测功能0：禁用波特率检测功能（bit 0）"
+        },
+        {
+          "name": "ABRF",
+          "bits": "1",
+          "access": "rw",
+          "reset_value": "0x0",
+          "description": "检测到波特率标识，写零清零；该位在清零后，会立即再次进入波特率检测，为了保证每次检测的都是起始位，可以在RXNEF置位后（bit 1）"
+        },
+        {
+          "name": "ABRM",
+          "bits": "2",
+          "access": "rw",
+          "reset_value": "0x0",
+          "description": "波特率检测模式0：只检测起始位长度；这种模式要求第一比特为11：检测起始位和数据第一位的长度，然后除以2；这种模式要求第（bit 2）"
+        },
+        {
+          "name": "ABRE",
+          "bits": "3",
+          "access": "rw",
+          "reset_value": "0x0",
+          "description": "波特率检测溢出1：波特率检测超出范围0：波特率检测未超出范围（bit 3）"
+        }
+      ]
+    },
+    {
+      "peripheral": "USART",
+      "name": "URSYNCR",
+      "address": "0x497",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 13.3.12",
+      "bitfields": [
+        {
+          "name": "BLTH",
+          "bits": "3:0",
+          "access": "rw",
+          "reset_value": "0x0",
+          "description": "断开帧比特长度，大于零有效，一般设置为12/13比特长度，设置太短会被认为接收到的是正常的帧（bit 3:0）"
+        },
+        {
+          "name": "LINEN",
+          "bits": "4",
+          "access": "rw",
+          "reset_value": "0x0",
+          "description": "Lin模式使能1：使能LIN Master模式0：禁用LIN Master模式（bit 4）"
+        }
+      ]
+    },
+    {
+      "peripheral": "USART",
+      "name": "URLINCR",
+      "address": "0x498",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 13.3.13",
+      "bitfields": [
+        {
+          "name": "BLTH",
+          "bits": "3:0",
+          "access": "rw",
+          "reset_value": "0x0",
+          "description": "断开帧比特长度，大于零有效，一般设置为12/13比特长度，设置太短会被认为接收到的是正常的帧（bit 3:0）"
+        },
+        {
+          "name": "LINEN",
+          "bits": "4",
+          "access": "rw",
+          "reset_value": "0x0",
+          "description": "Lin模式使能1：使能LIN Master模式0：禁用LIN Master模式（bit 4）"
+        }
+      ]
+    },
+    {
+      "peripheral": "USART",
+      "name": "URSDCR0",
+      "address": "0x499",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 13.3.14",
+      "bitfields": [
+        {
+          "name": "GT",
+          "bits": "7:0",
+          "access": "rw",
+          "reset_value": "0x0",
+          "description": "智能卡模式:两字符之间波特间隔，最小为1，即使设置为0，也有一个间隔（bit 7:0）"
+        }
+      ]
+    },
+    {
+      "peripheral": "USART",
+      "name": "URSDCR1",
+      "address": "0x49A",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 13.3.15",
+      "bitfields": [
+        {
+          "name": "GT",
+          "bits": "7:0",
+          "access": "rw",
+          "reset_value": "0x0",
+          "description": "智能卡模式:两字符之间波特间隔，最小为1，即使设置为0，也有一个间隔（bit 7:0）"
+        }
+      ]
+    },
+    {
+      "peripheral": "USART",
+      "name": "URSDCR2",
+      "address": "0x49B",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 13.3.16",
+      "bitfields": [
+        {
+          "name": "TCF",
+          "bits": "0",
+          "access": "rw",
+          "reset_value": "0x1",
+          "description": "发送完成状态标志1：数据发送完成0：数据发送未完成，写1清零或写DATAL/DATAH寄存器后清零（在使能了9比特数据格（bit 0）"
+        }
+      ]
+    },
+    {
+      "peripheral": "USART",
+      "name": "URTC",
+      "address": "0x49C",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 13.3.17",
+      "bitfields": [
+        {
+          "name": "TCF",
+          "bits": "0",
+          "access": "rw",
+          "reset_value": "0x1",
+          "description": "发送完成状态标志1：数据发送完成0：数据发送未完成，写1清零或写DATAL/DATAH寄存器后清零（在使能了9比特数据格（bit 0）"
+        }
+      ]
+    },
+    {
+      "peripheral": "GPIO",
+      "name": "PSRC0",
+      "address": "0x11A",
+      "offset": null,
+      "access": "r",
+      "description": "章节 14.13.1",
+      "bitfields": [
+        {
+          "name": "PSRCC",
+          "bits": "0:1",
+          "access": "rw",
+          "reset_value": "1",
+          "description": "PSRCC[3:2], 控制PORTC[1]源电流能力（bit 3:2）"
+        },
+        {
+          "name": "PSRCC",
+          "bits": "2:3",
+          "access": "rw",
+          "reset_value": "1",
+          "description": "PSRCC[3:2], 控制PORTC[1]源电流能力（bit 3:2）"
+        },
+        {
+          "name": "NA",
+          "bits": ":7",
+          "access": "r",
+          "reset_value": "—",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "GPIO",
+      "name": "PSRC1",
+      "address": "0x11B",
+      "offset": null,
+      "access": "r",
+      "description": "章节 14.13.2",
+      "bitfields": [
+        {
+          "name": "PSRCC",
+          "bits": "0:1",
+          "access": "rw",
+          "reset_value": "1",
+          "description": "PSRCC[3:2], 控制PORTC[1]源电流能力（bit 3:2）"
+        },
+        {
+          "name": "PSRCC",
+          "bits": "2:3",
+          "access": "rw",
+          "reset_value": "1",
+          "description": "PSRCC[3:2], 控制PORTC[1]源电流能力（bit 3:2）"
+        },
+        {
+          "name": "NA",
+          "bits": ":7",
+          "access": "r",
+          "reset_value": "—",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "GPIO",
+      "name": "PSRC2",
+      "address": "0x11C",
+      "offset": null,
+      "access": "r",
+      "description": "章节 14.13.3",
+      "bitfields": [
+        {
+          "name": "PSRCC",
+          "bits": "0:1",
+          "access": "rw",
+          "reset_value": "1",
+          "description": "PSRCC[3:2], 控制PORTC[1]源电流能力（bit 3:2）"
+        },
+        {
+          "name": "PSRCC",
+          "bits": "2:3",
+          "access": "rw",
+          "reset_value": "1",
+          "description": "PSRCC[3:2], 控制PORTC[1]源电流能力（bit 3:2）"
+        },
+        {
+          "name": "NA",
+          "bits": ":7",
+          "access": "r",
+          "reset_value": "—",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "GPIO",
+      "name": "PSINK0",
+      "address": "0x19A",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 14.13.4",
+      "bitfields": [
+        {
+          "name": "PSINK2",
+          "bits": "0:1",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "PORTC的灌电流能力设置0: 53mA（L0）1: 62mA（L1）（bit 1:0）"
+        },
+        {
+          "name": "NA",
+          "bits": ":7",
+          "access": "",
+          "reset_value": "NA",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "GPIO",
+      "name": "PSINK1",
+      "address": "0x19B",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 14.13.5",
+      "bitfields": [
+        {
+          "name": "PSINK2",
+          "bits": "0:1",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "PORTC的灌电流能力设置0: 53mA（L0）1: 62mA（L1）（bit 1:0）"
+        },
+        {
+          "name": "NA",
+          "bits": ":7",
+          "access": "",
+          "reset_value": "NA",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "GPIO",
+      "name": "PSINK2",
+      "address": "0x19C",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 14.13.6",
+      "bitfields": [
+        {
+          "name": "PSINK2",
+          "bits": "0:1",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "PORTC的灌电流能力设置0: 53mA（L0）1: 62mA（L1）（bit 1:0）"
+        },
+        {
+          "name": "NA",
+          "bits": ":7",
+          "access": "",
+          "reset_value": "NA",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "GPIO",
+      "name": "ITYPE0",
+      "address": "0x11E",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 14.13.7",
+      "bitfields": [
+        {
+          "name": "ITYPE1",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "GPIO",
+      "name": "ITYPE1",
+      "address": "0x11F",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 14.13.8",
+      "bitfields": [
+        {
+          "name": "ITYPE1",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "GPIO",
+      "name": "AFP0",
+      "address": "0x19E",
+      "offset": null,
+      "access": "r",
+      "description": "章节 14.13.9",
+      "bitfields": [
+        {
+          "name": "AFP0",
+          "bits": ":7",
+          "access": "r",
+          "reset_value": null,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "GPIO",
+      "name": "AFP1",
+      "address": "0x19F",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 14.13.10",
+      "bitfields": [
+        {
+          "name": "EPS0",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "外部中断EINT3~0的管脚选择EPS0[1:0]值 EINT0管脚 EPS0[3:2]值 EINT1管脚00 PA0 （bit 7:0）"
+        }
+      ]
+    },
+    {
+      "peripheral": "GPIO",
+      "name": "EPS0",
+      "address": "0x118",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 14.13.11",
+      "bitfields": [
+        {
+          "name": "EPS0",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "外部中断EINT3~0的管脚选择EPS0[1:0]值 EINT0管脚 EPS0[3:2]值 EINT1管脚00 PA0 （bit 7:0）"
+        }
+      ]
+    },
+    {
+      "peripheral": "GPIO",
+      "name": "EPS1",
+      "address": "0x119",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 14.13.12",
+      "bitfields": [
+        {
+          "name": "EPIF0",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "外部中断x标志位0：外部管脚x没触发中断，或已由软件清01：外部管脚x触发了中断写操作：写1清0，写1无效。建议只使用S（bit Bit[7:0]）"
+        }
+      ]
+    },
+    {
+      "peripheral": "GPIO",
+      "name": "EPIF0",
+      "address": "0x14",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 14.13.13",
+      "bitfields": [
+        {
+          "name": "EPIF0",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "外部中断x标志位0：外部管脚x没触发中断，或已由软件清01：外部管脚x触发了中断写操作：写1清0，写1无效。建议只使用S（bit Bit[7:0]）"
+        }
+      ]
+    },
+    {
+      "peripheral": "GPIO",
+      "name": "EPIE0",
+      "address": "0x94",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 14.13.14",
+      "bitfields": [
+        {
+          "name": "PORTA",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "x",
+          "description": "PORTA管脚寄存器读返回的是管脚上的电平，写是写到相应的LATA寄存器（bit 7:0）"
+        }
+      ]
+    },
+    {
+      "peripheral": "GPIO",
+      "name": "ODCON0",
+      "address": "0x21F",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 14.13.15",
+      "bitfields": [
+        {
+          "name": "PORTA",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "x",
+          "description": "PORTA管脚寄存器读返回的是管脚上的电平，写是写到相应的LATA寄存器（bit 7:0）"
+        }
+      ]
+    },
+    {
+      "peripheral": "GPIO",
+      "name": "PORTA",
+      "address": "0x0C",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 14.13.16",
+      "bitfields": [
+        {
+          "name": "PORTA",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "x",
+          "description": "PORTA管脚寄存器读返回的是管脚上的电平，写是写到相应的LATA寄存器（bit 7:0）"
+        }
+      ]
+    },
+    {
+      "peripheral": "GPIO",
+      "name": "PORTB",
+      "address": "0x0D",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 14.13.17",
+      "bitfields": [
+        {
+          "name": "TRISA",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "1",
+          "description": "PORTA方向控制寄存器1 = 输入0 = 输出（bit 7:0）"
+        }
+      ]
+    },
+    {
+      "peripheral": "GPIO",
+      "name": "PORTC",
+      "address": "0x0E",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 14.13.18",
+      "bitfields": [
+        {
+          "name": "TRISA",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "1",
+          "description": "PORTA方向控制寄存器1 = 输入0 = 输出（bit 7:0）"
+        }
+      ]
+    },
+    {
+      "peripheral": "GPIO",
+      "name": "TRISA",
+      "address": "0x8C",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 14.13.19",
+      "bitfields": [
+        {
+          "name": "TRISA",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "1",
+          "description": "PORTA方向控制寄存器1 = 输入0 = 输出（bit 7:0）"
+        }
+      ]
+    },
+    {
+      "peripheral": "GPIO",
+      "name": "TRISB",
+      "address": "0x8D",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 14.13.20",
+      "bitfields": [
+        {
+          "name": "LATA",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "x",
+          "description": "PORTA数据寄存器（bit 7:0）"
+        }
+      ]
+    },
+    {
+      "peripheral": "GPIO",
+      "name": "TRISC",
+      "address": "0x8E",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 14.13.21",
+      "bitfields": [
+        {
+          "name": "LATA",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "x",
+          "description": "PORTA数据寄存器（bit 7:0）"
+        }
+      ]
+    },
+    {
+      "peripheral": "GPIO",
+      "name": "LATA",
+      "address": "0x10C",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 14.13.22",
+      "bitfields": [
+        {
+          "name": "LATA",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "x",
+          "description": "PORTA数据寄存器（bit 7:0）"
+        }
+      ]
+    },
+    {
+      "peripheral": "GPIO",
+      "name": "LATB",
+      "address": "0x10D",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 14.13.23",
+      "bitfields": [
+        {
+          "name": "WPUA",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "PORTA弱上拉控制寄存器1 = 使能弱上拉0 = 关闭弱上拉（bit 7:0）"
+        }
+      ]
+    },
+    {
+      "peripheral": "GPIO",
+      "name": "WPUA",
+      "address": "0x18C",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 14.13.25",
+      "bitfields": [
+        {
+          "name": "WPUA",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "PORTA弱上拉控制寄存器1 = 使能弱上拉0 = 关闭弱上拉（bit 7:0）"
+        }
+      ]
+    },
+    {
+      "peripheral": "GPIO",
+      "name": "WPUC",
+      "address": "0x18E",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 14.13.27",
+      "bitfields": [
+        {
+          "name": "WPDA",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "PORTA弱下拉控制寄存器1 = 使能弱下拉0 = 关闭弱下拉（bit 7:0）"
+        }
+      ]
+    },
+    {
+      "peripheral": "GPIO",
+      "name": "WPDA",
+      "address": "0x20C",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 14.13.28",
+      "bitfields": [
+        {
+          "name": "WPDA",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "PORTA弱下拉控制寄存器1 = 使能弱下拉0 = 关闭弱下拉（bit 7:0）"
+        }
+      ]
+    },
+    {
+      "peripheral": "GPIO",
+      "name": "ANSELA",
+      "address": "0x197",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 14.13.31",
+      "bitfields": [
+        {
+          "name": "模拟管脚设置寄存器",
+          "bits": "0:7",
+          "access": "rw",
+          "reset_value": "0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "WDT",
+      "name": "WDTCON",
+      "address": "0x97",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 15.2.1",
+      "bitfields": [
+        {
+          "name": "SWDTEN",
+          "bits": "0",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "看门狗软件使能位1 = 使能0 = 禁止（bit 0）"
+        },
+        {
+          "name": "WDTPS",
+          "bits": "1:4",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "看门狗定时器周期选择：0000 = 1:320001 = 1:640010 = 1:1280011 = 1:256010（bit 4:1）"
+        },
+        {
+          "name": "WDTPRE",
+          "bits": "5:7",
+          "access": "rw",
+          "reset_value": "1",
+          "description": "看门狗预分频设置位000：1:1001：1:2010：1:4011：1:8100：1:16101：1:32110：1:6（bit 7:5）"
+        }
+      ]
+    },
+    {
+      "peripheral": "WDT",
+      "name": "MISC0",
+      "address": "0x19D",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 15.2.2",
+      "bitfields": [
+        {
+          "name": "WCKSEL",
+          "bits": "0:1",
+          "access": "rw",
+          "reset_value": "0",
+          "description": "WDT时钟源选择00 = LIRC01 = HIRC10 = LP，只有当FOSC选择 LP模式时才有效11 = XT，（bit 1:0）"
+        }
+      ]
+    },
+    {
+      "peripheral": "MSCK",
+      "name": "MSCKCON",
+      "address": "0x41D",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 16.4.1",
+      "bitfields": [
+        {
+          "name": "SOSCPR",
+          "bits": "0:3",
+          "access": "rw",
+          "reset_value": "4’hF",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "peripheral": "MSCK",
+      "name": "SOSCPR",
+      "address": "0x41E",
+      "offset": null,
+      "access": "rw",
+      "description": "章节 16.4.2",
+      "bitfields": [
+        {
+          "name": "SOSCPR",
+          "bits": "0:3",
+          "access": "rw",
+          "reset_value": "4’hF",
+          "description": ""
+        }
+      ]
+    }
+  ]
+}

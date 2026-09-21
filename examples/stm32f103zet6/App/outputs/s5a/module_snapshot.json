@@ -1,0 +1,288 @@
+{
+  "platform": "stm32f103zet6",
+  "rtos": "none",
+  "architecture": "layered",
+  "power": false,
+  "modules": [
+    "adc_init",
+    "clock_init",
+    "gpio_init",
+    "i2c_init",
+    "nvic_init",
+    "spi_init",
+    "uart_init"
+  ],
+  "domains": {
+    "clock": {
+      "sysclk_hz": 32000000,
+      "hse_hz": 8000000,
+      "lse_hz": 32768,
+      "ahb_hz": 32000000,
+      "apb1_hz": 32000000,
+      "apb2_hz": 32000000
+    },
+    "gpio": [
+      {
+        "af": null,
+        "mode": "IPU",
+        "name": "PE2",
+        "net": "KEY2",
+        "pin": "1",
+        "pin_no": 2,
+        "port": "PE",
+        "role": "按键/开关输入"
+      },
+      {
+        "af": null,
+        "mode": "IPU",
+        "name": "PE3",
+        "net": "KEY1",
+        "pin": "2",
+        "pin_no": 3,
+        "port": "PE",
+        "role": "按键/开关输入"
+      },
+      {
+        "af": null,
+        "mode": "IPU",
+        "name": "PE4",
+        "net": "KEY0",
+        "pin": "3",
+        "pin_no": 4,
+        "port": "PE",
+        "role": "按键/开关输入"
+      },
+      {
+        "af": null,
+        "mode": "OUT_PP",
+        "name": "PE5",
+        "net": "LED2",
+        "pin": "4",
+        "pin_no": 5,
+        "port": "PE",
+        "role": "LED 指示"
+      },
+      {
+        "af": null,
+        "mode": "IN_FLOATING",
+        "name": "PC13",
+        "net": "PC13",
+        "pin": "7",
+        "pin_no": 13,
+        "port": "PC",
+        "role": "RTC 侵入检测"
+      },
+      {
+        "af": null,
+        "mode": "IN_FLOATING",
+        "name": "PC14",
+        "net": "OSC32_IN",
+        "pin": "8",
+        "pin_no": 14,
+        "port": "PC",
+        "role": "晶振（OSC32_IN）"
+      },
+      {
+        "af": null,
+        "mode": "IN_FLOATING",
+        "name": "PC15",
+        "net": "OSC32_OUT",
+        "pin": "9",
+        "pin_no": 15,
+        "port": "PC",
+        "role": "晶振（OSC32_OUT）"
+      },
+      {
+        "af": null,
+        "mode": "IN_FLOATING",
+        "name": "PA0",
+        "net": "PA0",
+        "pin": "34",
+        "pin_no": 0,
+        "port": "PA",
+        "role": "唤醒输入"
+      },
+      {
+        "af": null,
+        "mode": "IN_FLOATING",
+        "name": "PA15",
+        "net": "JTDI",
+        "pin": "110",
+        "pin_no": 15,
+        "port": "PA",
+        "role": "JTDI"
+      },
+      {
+        "af": null,
+        "mode": "IN_FLOATING",
+        "name": "PB3",
+        "net": "JTDO",
+        "pin": "133",
+        "pin_no": 3,
+        "port": "PB",
+        "role": "JTDO"
+      },
+      {
+        "af": null,
+        "mode": "OUT_PP",
+        "name": "PB5",
+        "net": "LED1",
+        "pin": "135",
+        "pin_no": 5,
+        "port": "PB",
+        "role": "LED 指示"
+      }
+    ],
+    "uart": [
+      {
+        "baud": 115200,
+        "instance": "USART2",
+        "irq": "USART2",
+        "rx": {
+          "name": "PA3",
+          "net": "UART2_RX",
+          "pin": "37",
+          "pin_no": 3,
+          "port": "PA",
+          "role": "接收（USART2_RX）"
+        },
+        "tx": {
+          "name": "PA2",
+          "net": "UART2_TX",
+          "pin": "36",
+          "pin_no": 2,
+          "port": "PA",
+          "role": "发送（USART2_TX）"
+        }
+      },
+      {
+        "baud": 9600,
+        "instance": "USART1",
+        "irq": "USART1",
+        "rx": {
+          "name": "PA10",
+          "net": "UART1_RX",
+          "pin": "102",
+          "pin_no": 10,
+          "port": "PA",
+          "role": "接收（USART1_RX）"
+        },
+        "tx": {
+          "name": "PA9",
+          "net": "UART1_TX",
+          "pin": "101",
+          "pin_no": 9,
+          "port": "PA",
+          "role": "发送（USART1_TX）"
+        }
+      },
+      {
+        "baud": 115200,
+        "instance": "UART4",
+        "irq": "UART4",
+        "rx": {
+          "name": "PC11",
+          "net": "UART4_RX",
+          "pin": "112",
+          "pin_no": 11,
+          "port": "PC",
+          "role": "接收（USART4_RX）"
+        },
+        "tx": {
+          "name": "PC10",
+          "net": "UART4_TX",
+          "pin": "111",
+          "pin_no": 10,
+          "port": "PC",
+          "role": "发送（USART4_TX）"
+        }
+      }
+    ],
+    "spi": [
+      {
+        "instance": "SPI2",
+        "pin_map": {
+          "miso": {
+            "name": "PB14",
+            "net": "SPI2_MISO",
+            "pin": "75",
+            "pin_no": 14,
+            "port": "PB",
+            "role": "SPI（SPI2_MISO）"
+          },
+          "mosi": {
+            "name": "PB15",
+            "net": "SPI2_MOSI",
+            "pin": "76",
+            "pin_no": 15,
+            "port": "PB",
+            "role": "SPI（SPI2_MOSI）"
+          },
+          "nss": {
+            "name": "PB12",
+            "net": "F_CS",
+            "pin": "73",
+            "pin_no": 12,
+            "port": "PB",
+            "role": "SPI 通信"
+          },
+          "sck": {
+            "name": "PB13",
+            "net": "SPI2_SCK",
+            "pin": "74",
+            "pin_no": 13,
+            "port": "PB",
+            "role": "SPI（SPI2_SCK）"
+          }
+        },
+        "remap": false
+      }
+    ],
+    "i2c": [
+      {
+        "instance": "I2C1",
+        "pin_map": {
+          "scl": {
+            "name": "PB6",
+            "net": "IIC_SCL",
+            "pin": "136",
+            "pin_no": 6,
+            "port": "PB",
+            "role": "I2C 通信"
+          },
+          "sda": {
+            "name": "PB7",
+            "net": "IIC_SDA",
+            "pin": "137",
+            "pin_no": 7,
+            "port": "PB",
+            "role": "I2C 通信"
+          }
+        }
+      }
+    ],
+    "adc": [
+      {
+        "instance": "ADC1",
+        "pin_map": {
+          "stm_adc": {
+            "name": "PA1",
+            "net": "STM_ADC",
+            "pin": "35",
+            "pin_no": 1,
+            "port": "PA",
+            "role": "模拟输入"
+          }
+        }
+      }
+    ],
+    "pwm": [],
+    "fsmc": [],
+    "irq_names": [
+      "USART2",
+      "SPI2",
+      "USART1",
+      "UART4"
+    ]
+  }
+}

@@ -1,0 +1,133 @@
+[p PRO_MODE GLOBOPT AUTOSTATIC RSC14 RSC14E SPACEOPT ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip FT61F14X ]
+[d frameptr 6 ]
+"62 d:\ide3.0.3_6c03\data\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 d:\ide3.0.3_6c03\data\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"15 d:\ide3.0.3_6c03\data\sources\common\Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+"37 D:\FMD DEMO CODE(word+pdf)\C ÐÞ¸Ä\FT61F14x\test_61f14x_ADC\test_61f14x_ADC.C
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+"84
+[v _DelayUs DelayUs `(v  1 e 1 0 ]
+"98
+[v _ADC_INITIAL ADC_INITIAL `(v  1 e 1 0 ]
+"229
+[v _GET_ADC_DATA GET_ADC_DATA `(ui  1 e 2 0 ]
+"247
+[v _main main `(v  1 e 1 0 ]
+"97 d:\ide3.0.3_6c03\data\include\FT61F14X.h
+[v _INTCON INTCON `VEuc  1 e 1 @11 ]
+"123
+[v _PORTA PORTA `VEuc  1 e 1 @12 ]
+"168
+[v _PORTB PORTB `VEuc  1 e 1 @13 ]
+"213
+[v _PORTC PORTC `VEuc  1 e 1 @14 ]
+"253
+[v _ADDLY ADDLY `VEuc  1 e 1 @31 ]
+"262
+[v _TRISA TRISA `VEuc  1 e 1 @140 ]
+"289
+[v _TRISB TRISB `VEuc  1 e 1 @141 ]
+"316
+[v _TRISC TRISC `VEuc  1 e 1 @142 ]
+"475
+[v _OSCCON OSCCON `VEuc  1 e 1 @153 ]
+"506
+[v _PCKEN PCKEN `VEuc  1 e 1 @154 ]
+"530
+[v _ADRESL ADRESL `VEuc  1 e 1 @155 ]
+"535
+[v _ADRESH ADRESH `VEuc  1 e 1 @156 ]
+"540
+[v _ADCON0 ADCON0 `VEuc  1 e 1 @157 ]
+"542
+[v _ADON ADON `VEb  1 e 0 @1256 ]
+"543
+[v _GO GO `VEb  1 e 0 @1257 ]
+"573
+[v _ADCON1 ADCON1 `VEuc  1 e 1 @158 ]
+"605
+[v _ADCON2 ADCON2 `VEuc  1 e 1 @159 ]
+"821
+[v _PSRC0 PSRC0 `VEuc  1 e 1 @282 ]
+"826
+[v _PSRC1 PSRC1 `VEuc  1 e 1 @283 ]
+"869
+[v _WPUA WPUA `VEuc  1 e 1 @396 ]
+"873
+[v _WPUB WPUB `VEuc  1 e 1 @397 ]
+"877
+[v _WPUC WPUC `VEuc  1 e 1 @398 ]
+"966
+[v _ANSELA ANSELA `VEuc  1 e 1 @407 ]
+"1001
+[v _PSINK0 PSINK0 `VEuc  1 e 1 @410 ]
+"1005
+[v _PSINK1 PSINK1 `VEuc  1 e 1 @411 ]
+"1008
+[v _PSINK2 PSINK2 `VEuc  1 e 1 @412 ]
+"1043
+[v _WPDA WPDA `VEuc  1 e 1 @524 ]
+"1070
+[v _WPDB WPDB `VEuc  1 e 1 @525 ]
+"1096
+[v _WPDC WPDC `VEuc  1 e 1 @526 ]
+"2118
+[v _ADCON3 ADCON3 `VEuc  1 e 1 @1050 ]
+"2145
+[v _ADCMPH ADCMPH `VEuc  1 e 1 @1051 ]
+"29 D:\FMD DEMO CODE(word+pdf)\C ÐÞ¸Ä\FT61F14x\test_61f14x_ADC\test_61f14x_ADC.C
+[v _adcData adcData `VEui  1 e 2 0 ]
+"30
+[v _theVoltage theVoltage `VEui  1 e 2 0 ]
+"247
+[v _main main `(v  1 e 1 0 ]
+{
+"259
+} 0
+"15 d:\ide3.0.3_6c03\data\sources\common\Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+{
+"17
+[v ___lmul@product product `ul  1 a 4 8 ]
+"15
+[v ___lmul@multiplier multiplier `ul  1 p 4 0 ]
+[v ___lmul@multiplicand multiplicand `ul  1 p 4 4 ]
+"129
+} 0
+"37 D:\FMD DEMO CODE(word+pdf)\C ÐÞ¸Ä\FT61F14x\test_61f14x_ADC\test_61f14x_ADC.C
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+{
+"77
+} 0
+"229
+[v _GET_ADC_DATA GET_ADC_DATA `(ui  1 e 2 0 ]
+{
+[v GET_ADC_DATA@adcChannel adcChannel `uc  1 a 1 wreg ]
+[v GET_ADC_DATA@adcChannel adcChannel `uc  1 a 1 wreg ]
+"231
+[v GET_ADC_DATA@adcChannel adcChannel `uc  1 a 1 5 ]
+"240
+} 0
+"84
+[v _DelayUs DelayUs `(v  1 e 1 0 ]
+{
+[v DelayUs@Time Time `uc  1 a 1 wreg ]
+"86
+[v DelayUs@a a `uc  1 a 1 1 ]
+"84
+[v DelayUs@Time Time `uc  1 a 1 wreg ]
+"87
+[v DelayUs@Time Time `uc  1 a 1 0 ]
+"91
+} 0
+"98
+[v _ADC_INITIAL ADC_INITIAL `(v  1 e 1 0 ]
+{
+"222
+} 0

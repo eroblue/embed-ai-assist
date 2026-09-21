@@ -1,0 +1,17 @@
+{
+  "note": "IDE 工程由公共工具 skills/_shared/scripts/ide_sync.py 自动同步（validate 段调用）；同步失败时见 outputs/_shared/ide_sync_manual.md，可按本清单一并手动处理",
+  "group": "Drivers/BSP",
+  "source_files": [
+    "Drivers/BSP/Src/clock_init.c",
+    "Drivers/BSP/Src/fsmc_init.c",
+    "Drivers/BSP/Src/gpio_init.c",
+    "Drivers/BSP/Src/hal_init.c",
+    "Drivers/BSP/Src/nvic_init.c",
+    "Drivers/BSP/Src/pwm_init.c",
+    "Drivers/BSP/Src/spi_init.c",
+    "Drivers/BSP/Src/uart_init.c"
+  ],
+  "include_paths": [
+    "Drivers/BSP/Inc"
+  ]
+}

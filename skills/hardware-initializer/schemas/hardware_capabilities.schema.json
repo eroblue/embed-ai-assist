@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.s5a.hardware_capabilities.v1",
+  "title": "硬件能力清单（S5a 输出，S5c 实现 Port 的唯一硬件依据）",
+  "type": "object",
+  "required": ["schema", "mcu", "platform", "rtos", "architecture", "power_enabled", "clocks", "peripherals"],
+  "properties": {
+    "schema": {"type": "string", "const": "embedaiassist.s5a.hardware_capabilities.v1"},
+    "mcu": {"type": "string", "description": "MCU 型号（来自 S4 facts）"},
+    "platform": {"type": "string", "description": "平台名（config.platform）"},
+    "rtos": {"type": "string", "enum": ["none", "FreeRTOS", "RT-Thread", "Zephyr"], "description": "RTOS（config 显式值），裸机为 none"},
+    "architecture": {"type": "string", "enum": ["flat", "layered", "full"]},
+    "power_enabled": {"type": "boolean"},
+    "clocks": {
+      "type": "object",
+      "required": ["sysclk_hz", "ahb_hz", "apb1_hz", "apb2_hz", "source"],
+      "properties": {
+        "sysclk_hz": {"type": "integer", "minimum": 1},
+        "ahb_hz": {"type": "integer", "minimum": 1},
+        "apb1_hz": {"type": "integer", "minimum": 1},
+        "apb2_hz": {"type": "integer", "minimum": 1},
+        "source": {"type": "string"},
+        "hse_hz": {"type": ["integer", "null"]},
+        "lse_hz": {"type": ["integer", "null"]}
+      }
+    },
+    "peripherals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "instance", "pins"],
+        "properties": {
+          "type": {"type": "string", "description": "uart / i2c / spi / gpio / adc / timer / pwm / fsmc / ..."},
+          "instance": {"type": "string", "description": "实例名，如 USART5 / SPI0 / GPIOA"},
+          "pins": {
+            "type": "object",
+            "description": "引脚映射，如 {\"tx\": \"PC6\"} / {\"sck\": \"PC10\"} / {\"pin\": \"PE2\"}",
+            "additionalProperties": {"type": "string"}
+          },
+          "dma": {"type": ["object", "null"], "additionalProperties": {"type": "string"}},
+          "irq": {"type": ["string", "null"], "description": "中断名（IRQn 后缀前），无中断为 null"},
+          "capabilities": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "能力标签，如 [\"115200-8N1\"] / [\"master\", \"soft-nss\"]"
+          }
+        }
+      }
+    },
+    "power": {
+      "type": ["object", "null"],
+      "description": "低功耗能力段，未启用为 null",
+      "properties": {
+        "modes": {"type": "array", "items": {"type": "string"}},
+        "wakeup_sources": {"type": "array", "items": {"type": "string"}},
+        "notes": {"type": "string"}
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "约束条件（未配置引脚、频率上限提示等，供 S5c/Agent 参考）"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "platform": "ft61f14x",
+  "rtos": "none",
+  "architecture": "flat",
+  "power": false,
+  "modules": [
+    "clock_init",
+    "nvic_init",
+    "pwm_init",
+    "uart_init"
+  ],
+  "domains": {
+    "clock": {
+      "sysclk_hz": 16000000,
+      "hse_hz": null,
+      "lse_hz": null,
+      "ahb_hz": 16000000,
+      "apb1_hz": 16000000,
+      "apb2_hz": 16000000
+    },
+    "gpio": [],
+    "uart": [
+      {
+        "baud": 115200,
+        "instance": "USART",
+        "irq": null,
+        "rx": {
+          "name": "PA7",
+          "net": "NetR2_2",
+          "pin": "11",
+          "pin_no": 7,
+          "port": "PA",
+          "role": "串口接收"
+        },
+        "tx": {
+          "name": "PA6",
+          "net": "NetR3_2",
+          "pin": "10",
+          "pin_no": 6,
+          "port": "PA",
+          "role": "串口发送"
+        }
+      }
+    ],
+    "spi": [],
+    "i2c": [],
+    "adc": [],
+    "pwm": [
+      {
+        "channel": "CH1",
+        "instance": "TIM1",
+        "pclk_hz": 16000000,
+        "pin": {
+          "name": "PA0",
+          "net": "NetU1_6",
+          "pin": "6",
+          "pin_no": 0,
+          "port": "PA",
+          "role": "定时器 PWM 输出"
+        }
+      }
+    ],
+    "fsmc": [],
+    "irq_names": []
+  }
+}

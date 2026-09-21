@@ -1,0 +1,902 @@
+
+
+GNU Macro Assembler for 8 bit devices.       
+                                                                                               Fri Nov 05 17:25:49 2021
+
+GNU C Code Generator                                                 
+     1                           	processor	FT61F14X
+     2                           	opt	pw 120
+     3                           	opt	pm
+     4                           	psect	intentry,global,class=CODE,delta=2
+     5                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     6                           	psect	bssCOMMON,global,class=COMMON,space=1,delta=1
+     7                           	psect	bssBANK0,global,class=BANK0,space=1,delta=1
+     8                           	psect	clrtext,global,class=CODE,delta=2
+     9                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+    10                           	psect	pa_nodes0,global,class=CODE,delta=2
+    11                           	dabs	1,0x7E,2
+    12  0000                     
+    13                           ; Version 1.45
+    14                           ; Generated 16/11/2017 
+    15                           ; 
+    16                           ; SFR Addresses
+    17  0000                     
+    18                           	psect	intentry
+    19  0004                     __pintentry:	
+    20  000E                     _PORTC	set	14
+    21  000D                     _PORTB	set	13
+    22  000C                     _PORTA	set	12
+    23  000B                     _INTCON	set	11
+    24  006C                     _PB4	set	108
+    25  006B                     _PB3	set	107
+    26  009A                     _PCKEN	set	154
+    27  0099                     _OSCCON	set	153
+    28  0095                     _CKOCON	set	149
+    29  008E                     _TRISC	set	142
+    30  008D                     _TRISB	set	141
+    31  008C                     _TRISA	set	140
+    32  011B                     _PSRC1	set	283
+    33  011A                     _PSRC0	set	282
+    34  0117                     _TIM4ARR	set	279
+    35  0116                     _TIM4PSCR	set	278
+    36  0115                     _TIM4CNTR	set	277
+    37  0114                     _TIM4EGR	set	276
+    38  0113                     _TIM4SR	set	275
+    39  0112                     _TIM4IER	set	274
+    40  0111                     _TIM4CR1	set	273
+    41  0898                     _T4UIF	set	2200
+    42  0890                     _T4UIE	set	2192
+    43  019C                     _PSINK2	set	412
+    44  019B                     _PSINK1	set	411
+    45  019A                     _PSINK0	set	410
+    46  0197                     _ANSELA	set	407
+    47  018E                     _WPUC	set	398
+    48  018D                     _WPUB	set	397
+    49  018C                     _WPUA	set	396
+    50  021E                     _TIM1CCER2	set	542
+    51  021D                     _TIM1CCER1	set	541
+    52  0219                     _TIM1CCMR1	set	537
+    53  0218                     _TIM1EGR	set	536
+    54  0217                     _TIM1SR2	set	535
+    55  0216                     _TIM1SR1	set	534
+    56  0215                     _TIM1IER	set	533
+    57  0214                     _TIM1ETR	set	532
+    58  0213                     _TIM1SMCR	set	531
+    59  0212                     _TIM1CR2	set	530
+    60  0211                     _TIM1CR1	set	529
+    61  020E                     _WPDC	set	526
+    62  020D                     _WPDB	set	525
+    63  020C                     _WPDA	set	524
+    64  10B9                     _T1CC1OF	set	4281
+    65  10B1                     _T1CC1IF	set	4273
+    66  10A9                     _T1CC1IE	set	4265
+    67  1088                     _T1CEN	set	4232
+    68  0294                     _TIM1CCR1L	set	660
+    69  0293                     _TIM1CCR1H	set	659
+    70  028F                     _TIM1PSCRL	set	655
+    71  028E                     _TIM1PSCRH	set	654
+    72  028D                     _TIM1CNTRL	set	653
+    73  028C                     _TIM1CNTRH	set	652
+    74  031F                     _TCKSRC	set	799
+    75                           
+    76 ;; *************** function _ISR *****************
+    77 ;; Defined at:
+    78 ;;		line 45 in file "test_61f14x_TIM1_CAPTURE.C"
+    79 ;; Parameters:    Size  Location     Type
+    80 ;;		None
+    81 ;; Auto vars:     Size  Location     Type
+    82 ;;		None
+    83 ;; Return value:  Size  Location     Type
+    84 ;;                  1    wreg      void 
+    85 ;; Registers used:
+    86 ;;		wreg, fsr1l, fsr1h, status,2, status,0
+    87 ;; Tracked objects:
+    88 ;;		On entry : 0/0
+    89 ;;		On exit  : 0/0
+    90 ;;		Unchanged: 0/0
+    91 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6
+    92 ;;      Params:         0       0       0       0       0       0       0       0
+    93 ;;      Locals:         0       0       0       0       0       0       0       0
+    94 ;;      Temps:          0       0       0       0       0       0       0       0
+    95 ;;      Totals:         0       0       0       0       0       0       0       0
+    96 ;;Total ram usage:        0 bytes
+    97 ;; Hardware stack levels used:    1
+    98 ;; This function calls:
+    99 ;;		Nothing
+   100 ;; This function is called by:
+   101 ;;		Interrupt level 1
+   102 ;; This function uses a non-reentrant model
+   103 ;;
+   104  0004                     _ISR:	
+   105                           
+   106                           ;incstack = 0
+   107  0004  147E               	bsf	126,0	;set compiler interrupt flag (level 1)
+   108                           
+   109                           ; Regs used in _ISR: [wreg+fsr1l+fsr1h+status,2+status,0]
+   110  0005  3180               	pagesel	$
+   111                           
+   112                           ;test_61f14x_TIM1_CAPTURE.C: 47: if(T4UIE && T4UIF)
+   113  0006  0022               	movlb	2	; select bank2
+   114  0007  1812               	btfsc	18,0	;volatile
+   115  0008  1C13               	btfss	19,0	;volatile
+   116  0009  280E               	goto	i1l2073
+   117                           
+   118                           ;test_61f14x_TIM1_CAPTURE.C: 48: {
+   119                           ;test_61f14x_TIM1_CAPTURE.C: 49: T4UIF = 1;
+   120  000A  1413               	bsf	19,0	;volatile
+   121                           
+   122                           ;test_61f14x_TIM1_CAPTURE.C: 50: PB3 = ~PB3;
+   123  000B  3008               	movlw	8
+   124  000C  0020               	movlb	0	; select bank0
+   125  000D  068D               	xorwf	13,f
+   126  000E                     i1l2073:	
+   127                           
+   128                           ;test_61f14x_TIM1_CAPTURE.C: 51: }
+   129                           ;test_61f14x_TIM1_CAPTURE.C: 52: if(T1CC1IE && T1CC1IF)
+   130  000E  0024               	movlb	4	; select bank4
+   131  000F  1895               	btfsc	21,1	;volatile
+   132  0010  1C96               	btfss	22,1	;volatile
+   133  0011  2835               	goto	i1l1612
+   134                           
+   135                           ;test_61f14x_TIM1_CAPTURE.C: 53: {
+   136                           ;test_61f14x_TIM1_CAPTURE.C: 54: T1CC1IF=1;
+   137  0012  1496               	bsf	22,1	;volatile
+   138                           
+   139                           ;test_61f14x_TIM1_CAPTURE.C: 56: T1CC1OF=0;
+   140  0013  1097               	bcf	23,1	;volatile
+   141                           
+   142                           ;test_61f14x_TIM1_CAPTURE.C: 57: PB4 = ~PB4;
+   143  0014  3010               	movlw	16
+   144  0015  0020               	movlb	0	; select bank0
+   145  0016  068D               	xorwf	13,f
+   146                           
+   147                           ;test_61f14x_TIM1_CAPTURE.C: 58: dataH = TIM1CCR1H;
+   148  0017  0025               	movlb	5	; select bank5
+   149  0018  0813               	movf	19,w	;volatile
+   150  0019  00F3               	movwf	_dataH	;volatile
+   151                           
+   152                           ;test_61f14x_TIM1_CAPTURE.C: 59: dataL = TIM1CCR1L;
+   153  001A  0814               	movf	20,w	;volatile
+   154  001B  00F2               	movwf	_dataL	;volatile
+   155                           
+   156                           ;test_61f14x_TIM1_CAPTURE.C: 60: testdata[y++] =(unsigned int)(dataH<<8 | dataL);
+   157  001C  3574               	lslf	_y,w	;volatile
+   158  001D  3E20               	addlw	(low (_testdata| 0))& (0+255)
+   159  001E  0086               	movwf	6
+   160  001F  0187               	clrf	7
+   161  0020  0872               	movf	_dataL,w	;volatile
+   162  0021  3FC0               	movwi [0]fsr1
+   163  0022  0873               	movf	_dataH,w	;volatile
+   164  0023  3FC1               	movwi [1]fsr1
+   165  0024  0AF4               	incf	_y,f	;volatile
+   166                           
+   167                           ;test_61f14x_TIM1_CAPTURE.C: 61: __nop();
+   168  0025  0000               	nop
+   169                           
+   170                           ;test_61f14x_TIM1_CAPTURE.C: 63: if(y>=20)
+   171  0026  3014               	movlw	20
+   172  0027  0274               	subwf	_y,w	;volatile
+   173  0028  1C03               	skipc
+   174  0029  2835               	goto	i1l1612
+   175                           
+   176                           ;test_61f14x_TIM1_CAPTURE.C: 64: {
+   177                           ;test_61f14x_TIM1_CAPTURE.C: 65: y=0;
+   178  002A  01F4               	clrf	_y	;volatile
+   179                           
+   180                           ;test_61f14x_TIM1_CAPTURE.C: 68: period = testdata[1]/32;
+   181  002B  0020               	movlb	0	; select bank0
+   182  002C  0823               	movf	_testdata+3,w	;volatile
+   183  002D  00F1               	movwf	_period+1	;volatile
+   184  002E  0822               	movf	_testdata+2,w	;volatile
+   185  002F  00F0               	movwf	_period	;volatile
+   186  0030  3005               	movlw	5
+   187  0031                     u6_25:	
+   188  0031  36F1               	lsrf	_period+1,f	;volatile
+   189  0032  0CF0               	rrf	_period,f	;volatile
+   190  0033  0B89               	decfsz	9,f
+   191  0034  2831               	goto	u6_25
+   192  0035                     i1l1612:	
+   193  0035  107E               	bcf	126,0	;clear compiler interrupt flag (level 1)
+   194  0036  0009               	retfie
+   195  0037                     __end_of_ISR:	
+   196  007E                     btemp	set	126	;btemp
+   197  007E                     int$flags	set	126
+   198  007E                     wtemp0	set	126
+   199                           
+   200                           	psect	cinit
+   201  0039                     start_initialization:	
+   202                           ; #config settings
+   203                           
+   204  0039                     __initialization:	
+   205  0039  3020               	movlw	low __pbssBANK0
+   206                           
+   207                           ; Clear objects allocated to COMMON
+   208  003A  01F0               	clrf	__pbssCOMMON& (0+127)
+   209  003B  01F1               	clrf	(__pbssCOMMON+1)& (0+127)
+   210  003C  01F2               	clrf	(__pbssCOMMON+2)& (0+127)
+   211  003D  01F3               	clrf	(__pbssCOMMON+3)& (0+127)
+   212  003E  01F4               	clrf	(__pbssCOMMON+4)& (0+127)
+   213                           
+   214                           ; Clear objects allocated to BANK0
+   215  003F  0084               	movwf	4
+   216  0040  3000               	movlw	high __pbssBANK0
+   217  0041  0085               	movwf	5
+   218  0042  3028               	movlw	40
+   219  0043  3180  20A5  3180   	fcall	clear_ram0
+   220  0046                     end_of_initialization:	
+   221                           ;End of C runtime variable initialization code
+   222                           
+   223  0046                     __end_of__initialization:	
+   224  0046  107E               	bcf	126,0	;clear compiler interrupt flag (level 1)
+   225  0047  0020               	movlb	0
+   226  0048  2849               	ljmp	_main	;jump to C main() function
+   227  0049                     __pmaintext:	
+   228                           ; 1 bytes @ 0x0
+   229 ;;
+   230 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   231 ;;
+   232 ;; *************** function _main *****************
+   233 ;; Defined at:
+   234 ;;		line 565 in file "test_61f14x_TIM1_CAPTURE.C"
+   235 ;; Parameters:    Size  Location     Type
+   236 ;;		None
+   237 ;; Auto vars:     Size  Location     Type
+   238 ;;		None
+   239 ;; Return value:  Size  Location     Type
+   240 ;;                  1    wreg      void 
+   241 ;; Registers used:
+   242 ;;		wreg, status,2, status,0, pclath, cstack
+   243 ;; Tracked objects:
+   244 ;;		On entry : B1F/0
+   245 ;;		On exit  : 0/0
+   246 ;;		Unchanged: 0/0
+   247 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6
+   248 ;;      Params:         0       0       0       0       0       0       0       0
+   249 ;;      Locals:         0       0       0       0       0       0       0       0
+   250 ;;      Temps:          0       0       0       0       0       0       0       0
+   251 ;;      Totals:         0       0       0       0       0       0       0       0
+   252 ;;Total ram usage:        0 bytes
+   253 ;; Hardware stack levels required when called:    2
+   254 ;; This function calls:
+   255 ;;		_POWER_INITIAL
+   256 ;;		_Time1_Capture_Initial
+   257 ;;		_Time4Initial
+   258 ;; This function is called by:
+   259 ;;		Startup code after reset
+   260 ;; This function uses a non-reentrant model
+   261 ;;
+   262                           
+   263                           
+   264                           ;psect for function _main
+   265  0049                     _main:	
+   266                           
+   267                           ;test_61f14x_TIM1_CAPTURE.C: 567: POWER_INITIAL();
+   268                           
+   269                           ;incstack = 0
+   270                           ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
+   271  0049  2051  3180         	fcall	_POWER_INITIAL
+   272                           
+   273                           ;test_61f14x_TIM1_CAPTURE.C: 568: Time1_Capture_Initial();
+   274  004B  2074  3180         	fcall	_Time1_Capture_Initial
+   275                           
+   276                           ;test_61f14x_TIM1_CAPTURE.C: 569: Time4Initial();
+   277  004D  2095  3180         	fcall	_Time4Initial
+   278  004F                     l2097:	
+   279                           
+   280                           ;test_61f14x_TIM1_CAPTURE.C: 572: {
+   281                           ;test_61f14x_TIM1_CAPTURE.C: 573: __nop();
+   282  004F  0000               	nop
+   283  0050  284F               	goto	l2097
+   284  0051                     __end_of_main:	
+   285  0051                     __ptext3:	
+   286 ;; *************** function _POWER_INITIAL *****************
+   287 ;; Defined at:
+   288 ;;		line 78 in file "test_61f14x_TIM1_CAPTURE.C"
+   289 ;; Parameters:    Size  Location     Type
+   290 ;;		None
+   291 ;; Auto vars:     Size  Location     Type
+   292 ;;		None
+   293 ;; Return value:  Size  Location     Type
+   294 ;;                  1    wreg      void 
+   295 ;; Registers used:
+   296 ;;		wreg, status,2
+   297 ;; Tracked objects:
+   298 ;;		On entry : B1F/0
+   299 ;;		On exit  : B1F/3
+   300 ;;		Unchanged: B00/0
+   301 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6
+   302 ;;      Params:         0       0       0       0       0       0       0       0
+   303 ;;      Locals:         0       0       0       0       0       0       0       0
+   304 ;;      Temps:          0       0       0       0       0       0       0       0
+   305 ;;      Totals:         0       0       0       0       0       0       0       0
+   306 ;;Total ram usage:        0 bytes
+   307 ;; Hardware stack levels used:    1
+   308 ;; Hardware stack levels required when called:    1
+   309 ;; This function calls:
+   310 ;;		Nothing
+   311 ;; This function is called by:
+   312 ;;		_main
+   313 ;; This function uses a non-reentrant model
+   314 ;;
+   315                           
+   316                           
+   317                           ;psect for function _POWER_INITIAL
+   318  0051                     _POWER_INITIAL:	
+   319                           
+   320                           ;test_61f14x_TIM1_CAPTURE.C: 80: OSCCON = 0B01110001;
+   321                           
+   322                           ;incstack = 0
+   323                           ; Regs used in _POWER_INITIAL: [wreg+status,2]
+   324  0051  3071               	movlw	113
+   325  0052  0021               	movlb	1	; select bank1
+   326  0053  0099               	movwf	25	;volatile
+   327                           
+   328                           ;test_61f14x_TIM1_CAPTURE.C: 81: INTCON = 0;
+   329  0054  018B               	clrf	11	;volatile
+   330                           
+   331                           ;test_61f14x_TIM1_CAPTURE.C: 83: PORTA = 0B00000000;
+   332  0055  0020               	movlb	0	; select bank0
+   333  0056  018C               	clrf	12	;volatile
+   334                           
+   335                           ;test_61f14x_TIM1_CAPTURE.C: 84: TRISA = 0B00000001;
+   336  0057  3001               	movlw	1
+   337  0058  0021               	movlb	1	; select bank1
+   338  0059  008C               	movwf	12	;volatile
+   339                           
+   340                           ;test_61f14x_TIM1_CAPTURE.C: 85: PORTB = 0B00000000;
+   341  005A  0020               	movlb	0	; select bank0
+   342  005B  018D               	clrf	13	;volatile
+   343                           
+   344                           ;test_61f14x_TIM1_CAPTURE.C: 86: TRISB = 0B00000000;
+   345  005C  0021               	movlb	1	; select bank1
+   346  005D  018D               	clrf	13	;volatile
+   347                           
+   348                           ;test_61f14x_TIM1_CAPTURE.C: 87: PORTC = 0B00000000;
+   349  005E  0020               	movlb	0	; select bank0
+   350  005F  018E               	clrf	14	;volatile
+   351                           
+   352                           ;test_61f14x_TIM1_CAPTURE.C: 88: TRISC = 0B00000000;
+   353  0060  0021               	movlb	1	; select bank1
+   354  0061  018E               	clrf	14	;volatile
+   355                           
+   356                           ;test_61f14x_TIM1_CAPTURE.C: 90: WPUA = 0B00000000;
+   357  0062  0023               	movlb	3	; select bank3
+   358  0063  018C               	clrf	12	;volatile
+   359                           
+   360                           ;test_61f14x_TIM1_CAPTURE.C: 91: WPUB = 0B00000000;
+   361  0064  018D               	clrf	13	;volatile
+   362                           
+   363                           ;test_61f14x_TIM1_CAPTURE.C: 92: WPUC = 0B00000000;
+   364  0065  018E               	clrf	14	;volatile
+   365                           
+   366                           ;test_61f14x_TIM1_CAPTURE.C: 94: WPDA = 0B00000000;
+   367  0066  0024               	movlb	4	; select bank4
+   368  0067  018C               	clrf	12	;volatile
+   369                           
+   370                           ;test_61f14x_TIM1_CAPTURE.C: 95: WPDB = 0B00000000;
+   371  0068  018D               	clrf	13	;volatile
+   372                           
+   373                           ;test_61f14x_TIM1_CAPTURE.C: 96: WPDC = 0B00000000;
+   374  0069  018E               	clrf	14	;volatile
+   375                           
+   376                           ;test_61f14x_TIM1_CAPTURE.C: 98: PSRC0 = 0B11111111;
+   377  006A  30FF               	movlw	255
+   378  006B  0022               	movlb	2	; select bank2
+   379  006C  009A               	movwf	26	;volatile
+   380                           
+   381                           ;test_61f14x_TIM1_CAPTURE.C: 99: PSRC1 = 0B11111111;
+   382  006D  009B               	movwf	27	;volatile
+   383                           
+   384                           ;test_61f14x_TIM1_CAPTURE.C: 101: PSINK0 = 0B11111111;
+   385  006E  0023               	movlb	3	; select bank3
+   386  006F  009A               	movwf	26	;volatile
+   387                           
+   388                           ;test_61f14x_TIM1_CAPTURE.C: 102: PSINK1 = 0B11111111;
+   389  0070  009B               	movwf	27	;volatile
+   390                           
+   391                           ;test_61f14x_TIM1_CAPTURE.C: 103: PSINK2 = 0B11111111;
+   392  0071  009C               	movwf	28	;volatile
+   393                           
+   394                           ;test_61f14x_TIM1_CAPTURE.C: 105: ANSELA = 0B00000000;
+   395  0072  0197               	clrf	23	;volatile
+   396  0073  0008               	return
+   397  0074                     __end_of_POWER_INITIAL:	
+   398  0074                     __ptext2:	
+   399 ;; *************** function _Time1_Capture_Initial *****************
+   400 ;; Defined at:
+   401 ;;		line 187 in file "test_61f14x_TIM1_CAPTURE.C"
+   402 ;; Parameters:    Size  Location     Type
+   403 ;;		None
+   404 ;; Auto vars:     Size  Location     Type
+   405 ;;		None
+   406 ;; Return value:  Size  Location     Type
+   407 ;;                  1    wreg      void 
+   408 ;; Registers used:
+   409 ;;		wreg, status,2
+   410 ;; Tracked objects:
+   411 ;;		On entry : B1F/3
+   412 ;;		On exit  : B1F/4
+   413 ;;		Unchanged: B00/0
+   414 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6
+   415 ;;      Params:         0       0       0       0       0       0       0       0
+   416 ;;      Locals:         0       0       0       0       0       0       0       0
+   417 ;;      Temps:          0       0       0       0       0       0       0       0
+   418 ;;      Totals:         0       0       0       0       0       0       0       0
+   419 ;;Total ram usage:        0 bytes
+   420 ;; Hardware stack levels used:    1
+   421 ;; Hardware stack levels required when called:    1
+   422 ;; This function calls:
+   423 ;;		Nothing
+   424 ;; This function is called by:
+   425 ;;		_main
+   426 ;; This function uses a non-reentrant model
+   427 ;;
+   428                           
+   429                           
+   430                           ;psect for function _Time1_Capture_Initial
+   431  0074                     _Time1_Capture_Initial:	
+   432                           
+   433                           ;test_61f14x_TIM1_CAPTURE.C: 189: PCKEN |=0B00000010;
+   434                           
+   435                           ;incstack = 0
+   436                           ; Regs used in _Time1_Capture_Initial: [wreg+status,2]
+   437  0074  0021               	movlb	1	; select bank1
+   438  0075  149A               	bsf	26,1	;volatile
+   439                           
+   440                           ;test_61f14x_TIM1_CAPTURE.C: 190: CKOCON=0B00100000;
+   441  0076  3020               	movlw	32
+   442  0077  0095               	movwf	21	;volatile
+   443                           
+   444                           ;test_61f14x_TIM1_CAPTURE.C: 191: TCKSRC=0B00000011;
+   445  0078  3003               	movlw	3
+   446  0079  0026               	movlb	6	; select bank6
+   447  007A  009F               	movwf	31	;volatile
+   448                           
+   449                           ;test_61f14x_TIM1_CAPTURE.C: 217: TIM1CR1 =0B00000110;
+   450  007B  3006               	movlw	6
+   451  007C  0024               	movlb	4	; select bank4
+   452  007D  0091               	movwf	17	;volatile
+   453                           
+   454                           ;test_61f14x_TIM1_CAPTURE.C: 256: TIM1CR2 =0B01000000;
+   455  007E  3040               	movlw	64
+   456  007F  0092               	movwf	18	;volatile
+   457                           
+   458                           ;test_61f14x_TIM1_CAPTURE.C: 277: TIM1SMCR = 0B01010000;
+   459  0080  3050               	movlw	80
+   460  0081  0093               	movwf	19	;volatile
+   461                           
+   462                           ;test_61f14x_TIM1_CAPTURE.C: 278: TIM1SMCR|= 0B00000100;
+   463  0082  1513               	bsf	19,2	;volatile
+   464                           
+   465                           ;test_61f14x_TIM1_CAPTURE.C: 308: TIM1ETR =0B00000000;
+   466  0083  0194               	clrf	20	;volatile
+   467                           
+   468                           ;test_61f14x_TIM1_CAPTURE.C: 343: TIM1IER =0B00000010;
+   469  0084  3002               	movlw	2
+   470  0085  0095               	movwf	21	;volatile
+   471                           
+   472                           ;test_61f14x_TIM1_CAPTURE.C: 376: TIM1SR1 =0B00000000;
+   473  0086  0196               	clrf	22	;volatile
+   474                           
+   475                           ;test_61f14x_TIM1_CAPTURE.C: 420: TIM1SR2 =0B00000000;
+   476  0087  0197               	clrf	23	;volatile
+   477                           
+   478                           ;test_61f14x_TIM1_CAPTURE.C: 422: TIM1EGR =0B00000000;
+   479  0088  0198               	clrf	24	;volatile
+   480                           
+   481                           ;test_61f14x_TIM1_CAPTURE.C: 459: TIM1CCMR1 =0B00000001;
+   482  0089  3001               	movlw	1
+   483  008A  0099               	movwf	25	;volatile
+   484                           
+   485                           ;test_61f14x_TIM1_CAPTURE.C: 500: TIM1CCER1 =0B00000001;
+   486  008B  009D               	movwf	29	;volatile
+   487                           
+   488                           ;test_61f14x_TIM1_CAPTURE.C: 549: TIM1CCER2 =0B00000000;
+   489  008C  019E               	clrf	30	;volatile
+   490                           
+   491                           ;test_61f14x_TIM1_CAPTURE.C: 551: TIM1CNTRH =0B00000000;
+   492  008D  0025               	movlb	5	; select bank5
+   493  008E  018C               	clrf	12	;volatile
+   494                           
+   495                           ;test_61f14x_TIM1_CAPTURE.C: 552: TIM1CNTRL =0B00000000;
+   496  008F  018D               	clrf	13	;volatile
+   497                           
+   498                           ;test_61f14x_TIM1_CAPTURE.C: 554: TIM1PSCRH =0B00000000;
+   499  0090  018E               	clrf	14	;volatile
+   500                           
+   501                           ;test_61f14x_TIM1_CAPTURE.C: 555: TIM1PSCRL =0B00000000;
+   502  0091  018F               	clrf	15	;volatile
+   503                           
+   504                           ;test_61f14x_TIM1_CAPTURE.C: 557: T1CEN=1;
+   505  0092  0024               	movlb	4	; select bank4
+   506  0093  1411               	bsf	17,0	;volatile
+   507  0094  0008               	return
+   508  0095                     __end_of_Time1_Capture_Initial:	
+   509  0095                     __ptext1:	
+   510 ;; *************** function _Time4Initial *****************
+   511 ;; Defined at:
+   512 ;;		line 113 in file "test_61f14x_TIM1_CAPTURE.C"
+   513 ;; Parameters:    Size  Location     Type
+   514 ;;		None
+   515 ;; Auto vars:     Size  Location     Type
+   516 ;;		None
+   517 ;; Return value:  Size  Location     Type
+   518 ;;                  1    wreg      void 
+   519 ;; Registers used:
+   520 ;;		wreg, status,2, status,0
+   521 ;; Tracked objects:
+   522 ;;		On entry : B1F/4
+   523 ;;		On exit  : B1F/2
+   524 ;;		Unchanged: B00/0
+   525 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6
+   526 ;;      Params:         0       0       0       0       0       0       0       0
+   527 ;;      Locals:         0       0       0       0       0       0       0       0
+   528 ;;      Temps:          0       0       0       0       0       0       0       0
+   529 ;;      Totals:         0       0       0       0       0       0       0       0
+   530 ;;Total ram usage:        0 bytes
+   531 ;; Hardware stack levels used:    1
+   532 ;; Hardware stack levels required when called:    1
+   533 ;; This function calls:
+   534 ;;		Nothing
+   535 ;; This function is called by:
+   536 ;;		_main
+   537 ;; This function uses a non-reentrant model
+   538 ;;
+   539                           
+   540                           
+   541                           ;psect for function _Time4Initial
+   542  0095                     _Time4Initial:	
+   543                           
+   544                           ;test_61f14x_TIM1_CAPTURE.C: 115: PCKEN |=0B00001000;
+   545                           
+   546                           ;incstack = 0
+   547                           ; Regs used in _Time4Initial: [wreg+status,2+status,0]
+   548  0095  0021               	movlb	1	; select bank1
+   549  0096  159A               	bsf	26,3	;volatile
+   550                           
+   551                           ;test_61f14x_TIM1_CAPTURE.C: 117: TIM4CR1 =0B00000001;
+   552  0097  3001               	movlw	1
+   553  0098  0022               	movlb	2	; select bank2
+   554  0099  0091               	movwf	17	;volatile
+   555                           
+   556                           ;test_61f14x_TIM1_CAPTURE.C: 148: TIM4IER =0B00000001;
+   557  009A  0092               	movwf	18	;volatile
+   558                           
+   559                           ;test_61f14x_TIM1_CAPTURE.C: 151: TIM4SR =0B00000000;
+   560  009B  0193               	clrf	19	;volatile
+   561                           
+   562                           ;test_61f14x_TIM1_CAPTURE.C: 160: TIM4EGR =0B00000000;
+   563  009C  0194               	clrf	20	;volatile
+   564                           
+   565                           ;test_61f14x_TIM1_CAPTURE.C: 166: TIM4CNTR=0;
+   566  009D  0195               	clrf	21	;volatile
+   567                           
+   568                           ;test_61f14x_TIM1_CAPTURE.C: 168: TIM4PSCR=0B00000100;
+   569  009E  3004               	movlw	4
+   570  009F  0096               	movwf	22	;volatile
+   571                           
+   572                           ;test_61f14x_TIM1_CAPTURE.C: 175: TIM4ARR =124;
+   573  00A0  307C               	movlw	124
+   574  00A1  0097               	movwf	23	;volatile
+   575                           
+   576                           ;test_61f14x_TIM1_CAPTURE.C: 179: INTCON |= 0B11000000;
+   577  00A2  30C0               	movlw	192
+   578  00A3  048B               	iorwf	11,f	;volatile
+   579  00A4  0008               	return
+   580  00A5                     __end_of_Time4Initial:	
+   581                           
+   582                           	psect	bssCOMMON
+   583  0070                     __pbssCOMMON:	
+   584  0070                     _period:	
+   585  0070                     	ds	2
+   586  0072                     _dataL:	
+   587  0072                     	ds	1
+   588  0073                     _dataH:	
+   589  0073                     	ds	1
+   590  0074                     _y:	
+   591  0074                     	ds	1
+   592                           
+   593                           	psect	bssBANK0
+   594  0020                     __pbssBANK0:	
+   595  0020                     _testdata:	
+   596  0020                     	ds	40
+   597                           
+   598                           	psect	clrtext
+   599  00A5                     clear_ram0:	
+   600                           ;	Called with FSR0 containing the base address, and
+   601                           ;	WREG with the size to clear
+   602                           
+   603  00A5  0064               	clrwdt	;clear the watchdog before getting into this loop
+   604  00A6                     clrloop0:	
+   605  00A6  0180               	clrf	0	;clear RAM location pointed to by FSR
+   606  00A7  3101               	addfsr 0,1
+   607  00A8  0B89               	decfsz	9,f	;Have we reached the end of clearing yet?
+   608  00A9  28A6               	goto	clrloop0	;have we reached the end yet?
+   609  00AA  3400               	retlw	0	;all done for this memory range, return
+   610                           
+   611                           	psect	cstackCOMMON
+   612  0000                     __pcstackCOMMON:	
+   613  0000                     ?_ISR:	
+   614  0000                     ??_ISR:	
+   615                           ; 1 bytes @ 0x0
+   616                           
+   617  0000                     ?_POWER_INITIAL:	
+   618                           ; 1 bytes @ 0x0
+   619                           
+   620  0000                     ??_POWER_INITIAL:	
+   621                           ; 1 bytes @ 0x0
+   622                           
+   623  0000                     ?_Time4Initial:	
+   624                           ; 1 bytes @ 0x0
+   625                           
+   626  0000                     ??_Time4Initial:	
+   627                           ; 1 bytes @ 0x0
+   628                           
+   629  0000                     ?_Time1_Capture_Initial:	
+   630                           ; 1 bytes @ 0x0
+   631                           
+   632  0000                     ??_Time1_Capture_Initial:	
+   633                           ; 1 bytes @ 0x0
+   634                           
+   635  0000                     ?_main:	
+   636                           ; 1 bytes @ 0x0
+   637                           
+   638  0000                     ??_main:	
+   639                           ; 1 bytes @ 0x0
+   640                           
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         45
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON           14      0       5
+    BANK0            80      0      40
+    BANK1            80      0       0
+    BANK2            80      0       0
+    BANK3            80      0       0
+    BANK4            80      0       0
+    BANK5            80      0       0
+    BANK6            16      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMMON
+
+    None.
+
+Critical Paths under _ISR in COMMON
+
+    None.
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _ISR in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _ISR in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _ISR in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _ISR in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _ISR in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Critical Paths under _ISR in BANK5
+
+    None.
+
+Critical Paths under _main in BANK6
+
+    None.
+
+Critical Paths under _ISR in BANK6
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0       0
+                      _POWER_INITIAL
+              _Time1_Capture_Initial
+                       _Time4Initial
+ ---------------------------------------------------------------------------------
+ (1) _Time4Initial                                         0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _Time1_Capture_Initial                                0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _POWER_INITIAL                                        0     0      0       0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 1
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (2) _ISR                                                  0     0      0       0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 2
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _POWER_INITIAL
+   _Time1_Capture_Initial
+   _Time4Initial
+
+ _ISR (ROOT)
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BIGRAM             1F0      0       0       0        0.0%
+EEDATA              80      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+BITCOMMON            E      0       0       1        0.0%
+BITSFR0              0      0       0       1        0.0%
+SFR0                 0      0       0       1        0.0%
+COMMON               E      0       5       2       35.7%
+BITSFR1              0      0       0       2        0.0%
+SFR1                 0      0       0       2        0.0%
+BITSFR2              0      0       0       3        0.0%
+SFR2                 0      0       0       3        0.0%
+STACK                0      0       0       3        0.0%
+BITSFR3              0      0       0       4        0.0%
+SFR3                 0      0       0       4        0.0%
+ABS                  0      0      2D       4        0.0%
+BITBANK0            50      0       0       5        0.0%
+BITSFR4              0      0       0       5        0.0%
+SFR4                 0      0       0       5        0.0%
+BANK0               50      0      28       6       50.0%
+BITSFR5              0      0       0       6        0.0%
+SFR5                 0      0       0       6        0.0%
+BITBANK1            50      0       0       7        0.0%
+BITSFR6              0      0       0       7        0.0%
+SFR6                 0      0       0       7        0.0%
+BANK1               50      0       0       8        0.0%
+BITSFR7              0      0       0       8        0.0%
+SFR7                 0      0       0       8        0.0%
+BITBANK2            50      0       0       9        0.0%
+BITSFR8              0      0       0       9        0.0%
+SFR8                 0      0       0       9        0.0%
+BANK2               50      0       0      10        0.0%
+BITSFR9              0      0       0      10        0.0%
+SFR9                 0      0       0      10        0.0%
+BITBANK3            50      0       0      11        0.0%
+BITSFR10             0      0       0      11        0.0%
+SFR10                0      0       0      11        0.0%
+BANK3               50      0       0      12        0.0%
+BITSFR11             0      0       0      12        0.0%
+SFR11                0      0       0      12        0.0%
+BITBANK4            50      0       0      13        0.0%
+BITSFR12             0      0       0      13        0.0%
+SFR12                0      0       0      13        0.0%
+BANK4               50      0       0      14        0.0%
+BITSFR13             0      0       0      14        0.0%
+SFR13                0      0       0      14        0.0%
+BITBANK5            50      0       0      15        0.0%
+BITSFR14             0      0       0      15        0.0%
+SFR14                0      0       0      15        0.0%
+BANK5               50      0       0      16        0.0%
+BITSFR15             0      0       0      16        0.0%
+SFR15                0      0       0      16        0.0%
+BITBANK6            10      0       0      17        0.0%
+BITSFR16             0      0       0      17        0.0%
+SFR16                0      0       0      17        0.0%
+BANK6               10      0       0      18        0.0%
+BITSFR17             0      0       0      18        0.0%
+SFR17                0      0       0      18        0.0%
+BITSFR18             0      0       0      19        0.0%
+SFR18                0      0       0      19        0.0%
+DATA                 0      0      2D      19        0.0%
+BITSFR19             0      0       0      20        0.0%
+SFR19                0      0       0      20        0.0%
+BITSFR20             0      0       0      21        0.0%
+SFR20                0      0       0      21        0.0%
+BITSFR21             0      0       0      22        0.0%
+SFR21                0      0       0      22        0.0%
+BITSFR22             0      0       0      23        0.0%
+SFR22                0      0       0      23        0.0%
+BITSFR23             0      0       0      24        0.0%
+SFR23                0      0       0      24        0.0%
+BITSFR24             0      0       0      25        0.0%
+SFR24                0      0       0      25        0.0%
+BITSFR25             0      0       0      26        0.0%
+SFR25                0      0       0      26        0.0%
+BITSFR26             0      0       0      27        0.0%
+SFR26                0      0       0      27        0.0%
+BITSFR27             0      0       0      28        0.0%
+SFR27                0      0       0      28        0.0%
+BITSFR28             0      0       0      29        0.0%
+SFR28                0      0       0      29        0.0%
+BITSFR29             0      0       0      30        0.0%
+SFR29                0      0       0      30        0.0%
+BITSFR30             0      0       0      31        0.0%
+SFR30                0      0       0      31        0.0%
+BITSFR31             0      0       0      32        0.0%
+SFR31                0      0       0      32        0.0%
+
+
+GNU Macro Assembler for 8 bit devices.     
+Symbol Table                                                                                   Fri Nov 05 17:25:49 2021
+
+                             _y 0074                             _PB3 006B                             _PB4 006C  
+                           _ISR 0004                             wreg 0009                            ?_ISR 0000  
+                          l2097 004F                            _WPDA 020C                            _WPDB 020D  
+                          _WPDC 020E                            _WPUA 018C                            _WPUB 018D  
+                          _WPUC 018E                            u6_25 0031                            _main 0049  
+                          fsr0h 0005                            fsr1h 0007                            indf0 0000  
+                          fsr0l 0004                            fsr1l 0006                            btemp 007E  
+                          start 0037                           ??_ISR 0000                           ?_main 0000  
+                         _T1CEN 1088                           _T4UIE 0890                           _T4UIF 0898  
+                         _PCKEN 009A                           _PSRC0 011A                           _PSRC1 011B  
+                         _PORTA 000C                           _PORTB 000D                           _PORTC 000E  
+                         _TRISA 008C                           _TRISB 008D                           _TRISC 008E  
+                         _dataH 0073                           _dataL 0072                           wtemp0 007E  
+               __initialization 0039                    __end_of_main 0051                          ??_main 0000  
+       ??_Time1_Capture_Initial 0000                          _CKOCON 0095                          _ANSELA 0197  
+                        i1l2073 000E                          i1l1612 0035                          _INTCON 000B  
+                        _OSCCON 0099                          _TCKSRC 031F                          _TIM4SR 0113  
+                        _PSINK0 019A                          _PSINK1 019B                          _PSINK2 019C  
+                        _period 0070                   ?_Time4Initial 0000           __end_of_POWER_INITIAL 0074  
+       __end_of__initialization 0046                  __pcstackCOMMON 0000                  ??_Time4Initial 0000  
+                    __pbssBANK0 0020                      __pmaintext 0049                      __pintentry 0004  
+                       _T1CC1IE 10A9                         _T1CC1IF 10B1                         _T1CC1OF 10B9  
+                       _TIM1CR1 0211                         _TIM1CR2 0212                         _TIM1EGR 0218  
+                       _TIM4CR1 0111                         _TIM1IER 0215                         _TIM4EGR 0114  
+                       _TIM1ETR 0214                         _TIM4ARR 0117                         _TIM4IER 0112  
+                       _TIM1SR1 0216                         _TIM1SR2 0217                         __ptext1 0095  
+                       __ptext2 0074                         __ptext3 0051                    __size_of_ISR 0033  
+                       clrloop0 00A6            end_of_initialization 0046  __size_of_Time1_Capture_Initial 0021  
+ __end_of_Time1_Capture_Initial 0095                       _TIM1CCER1 021D                       _TIM1CCER2 021E  
+                     _TIM1CCR1H 0293                       _TIM1CCR1L 0294                       _TIM1CCMR1 0219  
+                     _TIM1CNTRH 028C                       _TIM1CNTRL 028D                       _TIM1PSCRH 028E  
+                     _TIM1PSCRL 028F            __end_of_Time4Initial 00A5             start_initialization 0039  
+                   __end_of_ISR 0037          __size_of_POWER_INITIAL 0023                     __pbssCOMMON 0070  
+                     ___latbits 0001           __size_of_Time4Initial 0010                    _Time4Initial 0095  
+                 _POWER_INITIAL 0051                       clear_ram0 00A5                        _TIM4CNTR 0115  
+                      _TIM1SMCR 0213                        _TIM4PSCR 0116                  ?_POWER_INITIAL 0000  
+         _Time1_Capture_Initial 0074                   __size_of_main 0008                        _testdata 0020  
+                      int$flags 007E                 ??_POWER_INITIAL 0000                        intlevel1 0000  
+        ?_Time1_Capture_Initial 0000  

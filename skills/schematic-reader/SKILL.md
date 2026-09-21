@@ -54,7 +54,9 @@ schematic-reader/
 | `output_dir` | 项目 `config.json` | string | 否 | 输出目录（默认 `outputs/`，相对项目目录） |
 | `eda_tool` | 项目 `config.json` 或命令行 | string | 否 | `altium` \| `kicad`；缺省按扩展名自动判断（默认 `altium`） |
 
-工作区 = 项目 config.json 所在目录：`state.json` 与 `outputs/` 均位于该目录。
+目标工程根 = 项目根 / `project.build_target`（`App` / `BootLoader`，缺省 `App`）：
+`state.json` 与 `outputs/` 均位于目标工程根；`config.json` / `docs/` / `references/`
+等共享资源位于项目根（config.json 所在目录）。
 
 输入契约见 [schemas/input.schema.json](schemas/input.schema.json)。
 

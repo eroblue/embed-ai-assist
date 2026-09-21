@@ -1,0 +1,128 @@
+{
+  "schema": "embedaiassist.s5a.hardware_capabilities.v1",
+  "mcu": "GD32F205VET6,LQFP100",
+  "platform": "gd32f205vet6",
+  "rtos": "none",
+  "architecture": "layered",
+  "power_enabled": false,
+  "clocks": {
+    "sysclk_hz": 32000000,
+    "ahb_hz": 32000000,
+    "apb1_hz": 32000000,
+    "apb2_hz": 32000000,
+    "source": "HSE 16MHz × 2",
+    "hse_hz": 16000000,
+    "lse_hz": 32768
+  },
+  "peripherals": [
+    {
+      "type": "uart",
+      "instance": "USART5",
+      "pins": {
+        "tx": "PC6"
+      },
+      "dma": null,
+      "irq": "USART5",
+      "capabilities": [
+        "115200-8N1"
+      ]
+    },
+    {
+      "type": "spi",
+      "instance": "SPI2",
+      "pins": {
+        "nss": "PA15",
+        "sck": "PC10",
+        "miso": "PC11",
+        "mosi": "PC12"
+      },
+      "dma": null,
+      "irq": null,
+      "capabilities": [
+        "master",
+        "soft-nss",
+        "af-remap"
+      ]
+    },
+    {
+      "type": "pwm",
+      "instance": "TIMER0",
+      "pins": {
+        "out": "PA8"
+      },
+      "dma": null,
+      "irq": null,
+      "capabilities": [
+        "1kHz-default",
+        "50%-default"
+      ]
+    },
+    {
+      "type": "fsmc",
+      "instance": "FSMC/EXMC",
+      "pins": {
+        "LCD_DB4": "PE7",
+        "LCD_DB5": "PE8",
+        "LCD_DB6": "PE9",
+        "LCD_DB7": "PE10",
+        "LCD_DB0": "PD14",
+        "LCD_DB1": "PD15",
+        "LCD_DB2": "PD0",
+        "LCD_DB3": "PD1",
+        "LCD_CS": "PD7"
+      },
+      "dma": null,
+      "irq": null,
+      "capabilities": [
+        "lcd-parallel-bus"
+      ]
+    },
+    {
+      "type": "gpio",
+      "instance": "GPIOA",
+      "pins": {
+        "PA0": "IN_FLOATING"
+      },
+      "dma": null,
+      "irq": null,
+      "capabilities": [
+        "1-pins"
+      ]
+    },
+    {
+      "type": "gpio",
+      "instance": "GPIOD",
+      "pins": {
+        "PD14": "AF_PP",
+        "PD15": "AF_PP",
+        "PD0": "AF_PP",
+        "PD1": "AF_PP",
+        "PD7": "AF_PP"
+      },
+      "dma": null,
+      "irq": null,
+      "capabilities": [
+        "5-pins"
+      ]
+    },
+    {
+      "type": "gpio",
+      "instance": "GPIOE",
+      "pins": {
+        "PE7": "AF_PP",
+        "PE8": "AF_PP",
+        "PE9": "AF_PP",
+        "PE10": "AF_PP"
+      },
+      "dma": null,
+      "irq": null,
+      "capabilities": [
+        "4-pins"
+      ]
+    }
+  ],
+  "power": null,
+  "constraints": [
+    "7 个已连接引脚网络名无语义（如 NetU1_15），未生成 GPIO 配置，待 AI/人工补充"
+  ]
+}

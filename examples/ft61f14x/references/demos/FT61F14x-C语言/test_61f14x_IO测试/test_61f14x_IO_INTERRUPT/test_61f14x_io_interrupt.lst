@@ -1,0 +1,605 @@
+
+
+HI-TECH Software PIC PRO Macro Assembler V9.83 build 10920 
+                                                                                               Wed Dec 08 08:57:34 2021
+
+HI-TECH Software Omniscient Code Generator (PRO mode) build 10920
+     1                           	processor	16F1938
+     2                           	opt	pw 120
+     3                           	opt	pm
+     4                           	psect	intentry,global,class=CODE,delta=2
+     5                           	psect	cinit,global,class=CODE,delta=2
+     6                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+     7                           	psect	pa_nodes,global,class=CODE,delta=2
+     8                           	dabs	1,0x7E,2
+     9  000A                     
+    10                           	psect	intentry
+    11  0004                     __pintentry:	
+    12  0014                     _EPIF0	set	20
+    13  000B                     _INTCON	set	11
+    14  000C                     _PORTA	set	12
+    15  000D                     _PORTB	set	13
+    16  000E                     _PORTC	set	14
+    17  006B                     _PB3	set	107
+    18  0094                     _EPIE0	set	148
+    19  0099                     _OSCCON	set	153
+    20  008C                     _TRISA	set	140
+    21  008D                     _TRISB	set	141
+    22  008E                     _TRISC	set	142
+    23  0118                     _EPS0	set	280
+    24  0119                     _EPS1	set	281
+    25  011E                     _ITYPE0	set	286
+    26  011F                     _ITYPE1	set	287
+    27  011A                     _PSRC0	set	282
+    28  011B                     _PSRC1	set	283
+    29  0197                     _ANSELA	set	407
+    30  019A                     _PSINK0	set	410
+    31  019B                     _PSINK1	set	411
+    32  019C                     _PSINK2	set	412
+    33  018C                     _WPUA	set	396
+    34  018D                     _WPUB	set	397
+    35  018E                     _WPUC	set	398
+    36  020C                     _WPDA	set	524
+    37  020D                     _WPDB	set	525
+    38  020E                     _WPDC	set	526
+    39                           
+    40 ;; =============== function _POWER_INITIAL ends ============
+    41 ;; *************** function _ISR *****************
+    42 ;; Defined at:
+    43 ;;		line 38 in file "test_61f14x_IO_INTERRUPT.C"
+    44 ;; Parameters:    Size  Location     Type
+    45 ;;		None
+    46 ;; Auto vars:     Size  Location     Type
+    47 ;;		None
+    48 ;; Return value:  Size  Location     Type
+    49 ;;		None               void
+    50 ;; Registers used:
+    51 ;;		wreg
+    52 ;; Tracked objects:
+    53 ;;		On entry : 0/0
+    54 ;;		On exit  : 1F/0
+    55 ;;		Unchanged: 0/0
+    56 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6
+    57 ;;      Params:         0       0       0       0       0       0       0       0
+    58 ;;      Locals:         0       0       0       0       0       0       0       0
+    59 ;;      Temps:          0       0       0       0       0       0       0       0
+    60 ;;      Totals:         0       0       0       0       0       0       0       0
+    61 ;;Total ram usage:        0 bytes
+    62 ;; Hardware stack levels used:    1
+    63 ;; This function calls:
+    64 ;;		Nothing
+    65 ;; This function is called by:
+    66 ;;		Interrupt level 1
+    67 ;; This function uses a non-reentrant model
+    68 ;;
+    69  0004                     _ISR:	
+    70                           
+    71                           ; Regs used in _ISR: [wreg]
+    72  0004  3180               	pagesel	$
+    73                           
+    74                           ;test_61f14x_IO_INTERRUPT.C: 39: if(EPIF0 & 0x02)
+    75  0005  0020               	movlb	0	; select bank0
+    76  0006  1C94               	btfss	20,1
+    77  0007  0009               	retfie
+    78                           
+    79                           ;test_61f14x_IO_INTERRUPT.C: 40: {
+    80                           ;test_61f14x_IO_INTERRUPT.C: 41: EPIF0 = 0x02;
+    81  0008  3002               	movlw	2
+    82  0009  0094               	movwf	20	;volatile
+    83                           
+    84                           ;test_61f14x_IO_INTERRUPT.C: 43: PB3=1;
+    85  000A  158D               	bsf	13,3
+    86                           
+    87                           ;test_61f14x_IO_INTERRUPT.C: 44: _nop();
+    88  000B  0000               	nop
+    89                           
+    90                           ;test_61f14x_IO_INTERRUPT.C: 45: _nop();
+    91  000C  0000               	nop
+    92                           
+    93                           ;test_61f14x_IO_INTERRUPT.C: 46: _nop();
+    94  000D  0000               	nop
+    95                           
+    96                           ;test_61f14x_IO_INTERRUPT.C: 47: _nop();
+    97  000E  0000               	nop
+    98                           
+    99                           ;test_61f14x_IO_INTERRUPT.C: 48: _nop();
+   100  000F  0000               	nop
+   101                           
+   102                           ;test_61f14x_IO_INTERRUPT.C: 49: PB3=0;
+   103  0010  0020               	movlb	0	; select bank0
+   104  0011  118D               	bcf	13,3
+   105  0012  0009               	retfie
+   106  0013                     __end_of_ISR:	
+   107                           
+   108 ;; =============== function _ISR ends ============
+   109  007E                     btemp	set	126	;btemp
+   110  007E                     wtemp0	set	126
+   111                           
+   112                           	psect	cinit
+   113  0016                     start_initialization:	
+   114  0016                     end_of_initialization:	
+   115                           ;End of C runtime variable initialization code
+   116                           
+   117  0016  0020               	movlb	0
+   118  0017  2818               	ljmp	_main	;jump to C main() function
+   119  0018                     __pmaintext:	
+   120                           ; 0 bytes @ 0x0
+   121 ;;Data sizes: Strings 0, constant 0, data 0, bss 0, persistent 0 stack 0
+   122 ;;Auto spaces:   Size  Autos    Used
+   123 ;; COMMON          14      0       0
+   124 ;; BANK0           80      0       0
+   125 ;; BANK1           80      0       0
+   126 ;; BANK2           80      0       0
+   127 ;; BANK3           80      0       0
+   128 ;; BANK4           80      0       0
+   129 ;; BANK5           80      0       0
+   130 ;; BANK6           16      0       0
+   131 ;;
+   132 ;; Pointer list with targets:
+   133 ;;
+   134 ;; Critical Paths under _main in COMMON
+   135 ;;
+   136 ;;   None.
+   137 ;;
+   138 ;; Critical Paths under _ISR in COMMON
+   139 ;;
+   140 ;;   None.
+   141 ;;
+   142 ;; Critical Paths under _main in BANK0
+   143 ;;
+   144 ;;   None.
+   145 ;;
+   146 ;; Critical Paths under _ISR in BANK0
+   147 ;;
+   148 ;;   None.
+   149 ;;
+   150 ;; Critical Paths under _main in BANK1
+   151 ;;
+   152 ;;   None.
+   153 ;;
+   154 ;; Critical Paths under _ISR in BANK1
+   155 ;;
+   156 ;;   None.
+   157 ;;
+   158 ;; Critical Paths under _main in BANK2
+   159 ;;
+   160 ;;   None.
+   161 ;;
+   162 ;; Critical Paths under _ISR in BANK2
+   163 ;;
+   164 ;;   None.
+   165 ;;
+   166 ;; Critical Paths under _main in BANK3
+   167 ;;
+   168 ;;   None.
+   169 ;;
+   170 ;; Critical Paths under _ISR in BANK3
+   171 ;;
+   172 ;;   None.
+   173 ;;
+   174 ;; Critical Paths under _main in BANK4
+   175 ;;
+   176 ;;   None.
+   177 ;;
+   178 ;; Critical Paths under _ISR in BANK4
+   179 ;;
+   180 ;;   None.
+   181 ;;
+   182 ;; Critical Paths under _main in BANK5
+   183 ;;
+   184 ;;   None.
+   185 ;;
+   186 ;; Critical Paths under _ISR in BANK5
+   187 ;;
+   188 ;;   None.
+   189 ;;
+   190 ;; Critical Paths under _main in BANK6
+   191 ;;
+   192 ;;   None.
+   193 ;;
+   194 ;; Critical Paths under _ISR in BANK6
+   195 ;;
+   196 ;;   None.
+   197 ;;
+   198 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   199 ;;
+   200 ;;
+   201 ;;Call Graph Tables:
+   202 ;;
+   203 ;; ---------------------------------------------------------------------------------
+   204 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   205 ;; ---------------------------------------------------------------------------------
+   206 ;; (0) _main                                                 0     0      0       0
+   207 ;;                      _POWER_INITIAL
+   208 ;;                     _IO_INT_INITIAL
+   209 ;; ---------------------------------------------------------------------------------
+   210 ;; (1) _IO_INT_INITIAL                                       0     0      0       0
+   211 ;; ---------------------------------------------------------------------------------
+   212 ;; (1) _POWER_INITIAL                                        0     0      0       0
+   213 ;; ---------------------------------------------------------------------------------
+   214 ;; Estimated maximum stack depth 1
+   215 ;; ---------------------------------------------------------------------------------
+   216 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   217 ;; ---------------------------------------------------------------------------------
+   218 ;; (2) _ISR                                                  0     0      0       0
+   219 ;; ---------------------------------------------------------------------------------
+   220 ;; Estimated maximum stack depth 2
+   221 ;; ---------------------------------------------------------------------------------
+   222 ;; Call Graph Graphs:
+   223 ;; _main (ROOT)
+   224 ;;   _POWER_INITIAL
+   225 ;;   _IO_INT_INITIAL
+   226 ;;
+   227 ;; _ISR (ROOT)
+   228 ;;
+   229 ;; Address spaces:
+   230 ;;Name               Size   Autos  Total    Cost      Usage
+   231 ;;BIGRAM             1F0      0       0       0        0.0%
+   232 ;;EEDATA              80      0       0       0        0.0%
+   233 ;;NULL                 0      0       0       0        0.0%
+   234 ;;CODE                 0      0       0       0        0.0%
+   235 ;;BITCOMMON            E      0       0       1        0.0%
+   236 ;;BITSFR0              0      0       0       1        0.0%
+   237 ;;SFR0                 0      0       0       1        0.0%
+   238 ;;COMMON               E      0       0       2        0.0%
+   239 ;;BITSFR1              0      0       0       2        0.0%
+   240 ;;SFR1                 0      0       0       2        0.0%
+   241 ;;BITSFR2              0      0       0       3        0.0%
+   242 ;;SFR2                 0      0       0       3        0.0%
+   243 ;;STACK                0      0       1       3        0.0%
+   244 ;;BITSFR3              0      0       0       4        0.0%
+   245 ;;SFR3                 0      0       0       4        0.0%
+   246 ;;ABS                  0      0       0       4        0.0%
+   247 ;;BITBANK0            50      0       0       5        0.0%
+   248 ;;BITSFR4              0      0       0       5        0.0%
+   249 ;;SFR4                 0      0       0       5        0.0%
+   250 ;;BANK0               50      0       0       6        0.0%
+   251 ;;BITSFR5              0      0       0       6        0.0%
+   252 ;;SFR5                 0      0       0       6        0.0%
+   253 ;;BITBANK1            50      0       0       7        0.0%
+   254 ;;BITSFR6              0      0       0       7        0.0%
+   255 ;;SFR6                 0      0       0       7        0.0%
+   256 ;;BANK1               50      0       0       8        0.0%
+   257 ;;BITSFR7              0      0       0       8        0.0%
+   258 ;;SFR7                 0      0       0       8        0.0%
+   259 ;;BITBANK2            50      0       0       9        0.0%
+   260 ;;BITSFR8              0      0       0       9        0.0%
+   261 ;;SFR8                 0      0       0       9        0.0%
+   262 ;;BANK2               50      0       0      10        0.0%
+   263 ;;BITSFR9              0      0       0      10        0.0%
+   264 ;;SFR9                 0      0       0      10        0.0%
+   265 ;;BITBANK3            50      0       0      11        0.0%
+   266 ;;BITSFR10             0      0       0      11        0.0%
+   267 ;;SFR10                0      0       0      11        0.0%
+   268 ;;BANK3               50      0       0      12        0.0%
+   269 ;;BITSFR11             0      0       0      12        0.0%
+   270 ;;SFR11                0      0       0      12        0.0%
+   271 ;;BITBANK4            50      0       0      13        0.0%
+   272 ;;BITSFR12             0      0       0      13        0.0%
+   273 ;;SFR12                0      0       0      13        0.0%
+   274 ;;BANK4               50      0       0      14        0.0%
+   275 ;;BITSFR13             0      0       0      14        0.0%
+   276 ;;SFR13                0      0       0      14        0.0%
+   277 ;;BITBANK5            50      0       0      15        0.0%
+   278 ;;BITSFR14             0      0       0      15        0.0%
+   279 ;;SFR14                0      0       0      15        0.0%
+   280 ;;BANK5               50      0       0      16        0.0%
+   281 ;;BITSFR15             0      0       0      16        0.0%
+   282 ;;SFR15                0      0       0      16        0.0%
+   283 ;;BITBANK6            10      0       0      17        0.0%
+   284 ;;BITSFR16             0      0       0      17        0.0%
+   285 ;;SFR16                0      0       0      17        0.0%
+   286 ;;BANK6               10      0       0      18        0.0%
+   287 ;;BITSFR17             0      0       0      18        0.0%
+   288 ;;SFR17                0      0       0      18        0.0%
+   289 ;;BITSFR18             0      0       0      19        0.0%
+   290 ;;SFR18                0      0       0      19        0.0%
+   291 ;;DATA                 0      0       0      19        0.0%
+   292 ;;BITSFR19             0      0       0      20        0.0%
+   293 ;;SFR19                0      0       0      20        0.0%
+   294 ;;BITSFR20             0      0       0      21        0.0%
+   295 ;;SFR20                0      0       0      21        0.0%
+   296 ;;BITSFR21             0      0       0      22        0.0%
+   297 ;;SFR21                0      0       0      22        0.0%
+   298 ;;BITSFR22             0      0       0      23        0.0%
+   299 ;;SFR22                0      0       0      23        0.0%
+   300 ;;BITSFR23             0      0       0      24        0.0%
+   301 ;;SFR23                0      0       0      24        0.0%
+   302 ;;BITSFR24             0      0       0      25        0.0%
+   303 ;;SFR24                0      0       0      25        0.0%
+   304 ;;BITSFR25             0      0       0      26        0.0%
+   305 ;;SFR25                0      0       0      26        0.0%
+   306 ;;BITSFR26             0      0       0      27        0.0%
+   307 ;;SFR26                0      0       0      27        0.0%
+   308 ;;BITSFR27             0      0       0      28        0.0%
+   309 ;;SFR27                0      0       0      28        0.0%
+   310 ;;BITSFR28             0      0       0      29        0.0%
+   311 ;;SFR28                0      0       0      29        0.0%
+   312 ;;BITSFR29             0      0       0      30        0.0%
+   313 ;;SFR29                0      0       0      30        0.0%
+   314 ;;BITSFR30             0      0       0      31        0.0%
+   315 ;;SFR30                0      0       0      31        0.0%
+   316 ;;BITSFR31             0      0       0      32        0.0%
+   317 ;;SFR31                0      0       0      32        0.0%
+   318                           
+   319                           
+   320 ;; *************** function _main *****************
+   321 ;; Defined at:
+   322 ;;		line 163 in file "test_61f14x_IO_INTERRUPT.C"
+   323 ;; Parameters:    Size  Location     Type
+   324 ;;		None
+   325 ;; Auto vars:     Size  Location     Type
+   326 ;;		None
+   327 ;; Return value:  Size  Location     Type
+   328 ;;		None               void
+   329 ;; Registers used:
+   330 ;;		wreg, status,2, status,0, pclath, cstack
+   331 ;; Tracked objects:
+   332 ;;		On entry : 17F/0
+   333 ;;		On exit  : 0/0
+   334 ;;		Unchanged: 0/0
+   335 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6
+   336 ;;      Params:         0       0       0       0       0       0       0       0
+   337 ;;      Locals:         0       0       0       0       0       0       0       0
+   338 ;;      Temps:          0       0       0       0       0       0       0       0
+   339 ;;      Totals:         0       0       0       0       0       0       0       0
+   340 ;;Total ram usage:        0 bytes
+   341 ;; Hardware stack levels required when called:    2
+   342 ;; This function calls:
+   343 ;;		_POWER_INITIAL
+   344 ;;		_IO_INT_INITIAL
+   345 ;; This function is called by:
+   346 ;;		Startup code after reset
+   347 ;; This function uses a non-reentrant model
+   348 ;;
+   349  0018                     _main:	
+   350                           
+   351                           ;test_61f14x_IO_INTERRUPT.C: 164: POWER_INITIAL();
+   352                           
+   353                           ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
+   354  0018  201E  3180         	fcall	_POWER_INITIAL
+   355                           
+   356                           ;test_61f14x_IO_INTERRUPT.C: 165: IO_INT_INITIAL();
+   357  001A  2041  3180         	fcall	_IO_INT_INITIAL
+   358  001C                     l3733:	
+   359                           
+   360                           ;test_61f14x_IO_INTERRUPT.C: 168: {
+   361                           ;test_61f14x_IO_INTERRUPT.C: 169: _nop();
+   362  001C  0000               	nop
+   363  001D  281C               	goto	l3733
+   364  001E                     __end_of_main:	
+   365  001E                     __ptext51:	
+   366 ;; =============== function _IO_INT_INITIAL ends ============
+   367                           
+   368                           
+   369 ;; *************** function _POWER_INITIAL *****************
+   370 ;; Defined at:
+   371 ;;		line 59 in file "test_61f14x_IO_INTERRUPT.C"
+   372 ;; Parameters:    Size  Location     Type
+   373 ;;		None
+   374 ;; Auto vars:     Size  Location     Type
+   375 ;;		None
+   376 ;; Return value:  Size  Location     Type
+   377 ;;		None               void
+   378 ;; Registers used:
+   379 ;;		wreg, status,2
+   380 ;; Tracked objects:
+   381 ;;		On entry : 17F/0
+   382 ;;		On exit  : 17F/3
+   383 ;;		Unchanged: FFE80/0
+   384 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6
+   385 ;;      Params:         0       0       0       0       0       0       0       0
+   386 ;;      Locals:         0       0       0       0       0       0       0       0
+   387 ;;      Temps:          0       0       0       0       0       0       0       0
+   388 ;;      Totals:         0       0       0       0       0       0       0       0
+   389 ;;Total ram usage:        0 bytes
+   390 ;; Hardware stack levels used:    1
+   391 ;; Hardware stack levels required when called:    1
+   392 ;; This function calls:
+   393 ;;		Nothing
+   394 ;; This function is called by:
+   395 ;;		_main
+   396 ;; This function uses a non-reentrant model
+   397 ;;
+   398  001E                     _POWER_INITIAL:	
+   399                           
+   400                           ;test_61f14x_IO_INTERRUPT.C: 60: OSCCON = 0B01110001;
+   401                           
+   402                           ; Regs used in _POWER_INITIAL: [wreg+status,2]
+   403  001E  3071               	movlw	113
+   404  001F  0021               	movlb	1	; select bank1
+   405  0020  0099               	movwf	25	;volatile
+   406                           
+   407                           ;test_61f14x_IO_INTERRUPT.C: 61: INTCON = 0;
+   408  0021  018B               	clrf	11	;volatile
+   409                           
+   410                           ;test_61f14x_IO_INTERRUPT.C: 63: PORTA = 0B00000000;
+   411  0022  0020               	movlb	0	; select bank0
+   412  0023  018C               	clrf	12	;volatile
+   413                           
+   414                           ;test_61f14x_IO_INTERRUPT.C: 64: TRISA = 0B00000000;
+   415  0024  0021               	movlb	1	; select bank1
+   416  0025  018C               	clrf	12	;volatile
+   417                           
+   418                           ;test_61f14x_IO_INTERRUPT.C: 65: PORTB = 0B00000000;
+   419  0026  0020               	movlb	0	; select bank0
+   420  0027  018D               	clrf	13	;volatile
+   421                           
+   422                           ;test_61f14x_IO_INTERRUPT.C: 66: TRISB = 0B00000000;
+   423  0028  0021               	movlb	1	; select bank1
+   424  0029  018D               	clrf	13	;volatile
+   425                           
+   426                           ;test_61f14x_IO_INTERRUPT.C: 67: PORTC = 0B00000000;
+   427  002A  0020               	movlb	0	; select bank0
+   428  002B  018E               	clrf	14	;volatile
+   429                           
+   430                           ;test_61f14x_IO_INTERRUPT.C: 68: TRISC = 0B00000010;
+   431  002C  3002               	movlw	2
+   432  002D  0021               	movlb	1	; select bank1
+   433  002E  008E               	movwf	14	;volatile
+   434                           
+   435                           ;test_61f14x_IO_INTERRUPT.C: 71: WPUA = 0B00000000;
+   436  002F  0023               	movlb	3	; select bank3
+   437  0030  018C               	clrf	12	;volatile
+   438                           
+   439                           ;test_61f14x_IO_INTERRUPT.C: 72: WPUB = 0B00000000;
+   440  0031  018D               	clrf	13	;volatile
+   441                           
+   442                           ;test_61f14x_IO_INTERRUPT.C: 73: WPUC = 0B00000010;
+   443  0032  008E               	movwf	14	;volatile
+   444                           
+   445                           ;test_61f14x_IO_INTERRUPT.C: 75: WPDA = 0B00000000;
+   446  0033  0024               	movlb	4	; select bank4
+   447  0034  018C               	clrf	12	;volatile
+   448                           
+   449                           ;test_61f14x_IO_INTERRUPT.C: 76: WPDB = 0B00000000;
+   450  0035  018D               	clrf	13	;volatile
+   451                           
+   452                           ;test_61f14x_IO_INTERRUPT.C: 77: WPDC = 0B00000000;
+   453  0036  018E               	clrf	14	;volatile
+   454                           
+   455                           ;test_61f14x_IO_INTERRUPT.C: 79: PSRC0 = 0B11111111;
+   456  0037  30FF               	movlw	255
+   457  0038  0022               	movlb	2	; select bank2
+   458  0039  009A               	movwf	26	;volatile
+   459                           
+   460                           ;test_61f14x_IO_INTERRUPT.C: 80: PSRC1 = 0B11111111;
+   461  003A  009B               	movwf	27	;volatile
+   462                           
+   463                           ;test_61f14x_IO_INTERRUPT.C: 82: PSINK0 = 0B11111111;
+   464  003B  0023               	movlb	3	; select bank3
+   465  003C  009A               	movwf	26	;volatile
+   466                           
+   467                           ;test_61f14x_IO_INTERRUPT.C: 83: PSINK1 = 0B11111111;
+   468  003D  009B               	movwf	27	;volatile
+   469                           
+   470                           ;test_61f14x_IO_INTERRUPT.C: 84: PSINK2 = 0B11111111;
+   471  003E  009C               	movwf	28	;volatile
+   472                           
+   473                           ;test_61f14x_IO_INTERRUPT.C: 86: ANSELA = 0B00000000;
+   474  003F  0197               	clrf	23	;volatile
+   475  0040  0008               	return
+   476  0041                     __end_of_POWER_INITIAL:	
+   477  0041                     __ptext50:	
+   478 ;; =============== function _main ends ============
+   479                           
+   480                           
+   481 ;; *************** function _IO_INT_INITIAL *****************
+   482 ;; Defined at:
+   483 ;;		line 143 in file "test_61f14x_IO_INTERRUPT.C"
+   484 ;; Parameters:    Size  Location     Type
+   485 ;;		None
+   486 ;; Auto vars:     Size  Location     Type
+   487 ;;		None
+   488 ;; Return value:  Size  Location     Type
+   489 ;;		None               void
+   490 ;; Registers used:
+   491 ;;		wreg, status,2
+   492 ;; Tracked objects:
+   493 ;;		On entry : 17F/3
+   494 ;;		On exit  : 17F/1
+   495 ;;		Unchanged: FFE80/0
+   496 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6
+   497 ;;      Params:         0       0       0       0       0       0       0       0
+   498 ;;      Locals:         0       0       0       0       0       0       0       0
+   499 ;;      Temps:          0       0       0       0       0       0       0       0
+   500 ;;      Totals:         0       0       0       0       0       0       0       0
+   501 ;;Total ram usage:        0 bytes
+   502 ;; Hardware stack levels used:    1
+   503 ;; Hardware stack levels required when called:    1
+   504 ;; This function calls:
+   505 ;;		Nothing
+   506 ;; This function is called by:
+   507 ;;		_main
+   508 ;; This function uses a non-reentrant model
+   509 ;;
+   510  0041                     _IO_INT_INITIAL:	
+   511                           
+   512                           ;test_61f14x_IO_INTERRUPT.C: 144: EPS0=0B00001000;
+   513                           
+   514                           ; Regs used in _IO_INT_INITIAL: [wreg+status,2]
+   515  0041  3008               	movlw	8
+   516  0042  0022               	movlb	2	; select bank2
+   517  0043  0098               	movwf	24	;volatile
+   518                           
+   519                           ;test_61f14x_IO_INTERRUPT.C: 146: EPS1=0B00000000;
+   520  0044  0199               	clrf	25	;volatile
+   521                           
+   522                           ;test_61f14x_IO_INTERRUPT.C: 149: ITYPE0 = 0B00001100;
+   523  0045  300C               	movlw	12
+   524  0046  009E               	movwf	30	;volatile
+   525                           
+   526                           ;test_61f14x_IO_INTERRUPT.C: 150: ITYPE1 = 0B00000000;
+   527  0047  019F               	clrf	31	;volatile
+   528                           
+   529                           ;test_61f14x_IO_INTERRUPT.C: 152: EPIE0 = 0B00000010;
+   530  0048  3002               	movlw	2
+   531  0049  0021               	movlb	1	; select bank1
+   532  004A  0094               	movwf	20	;volatile
+   533                           
+   534                           ;test_61f14x_IO_INTERRUPT.C: 154: INTCON = 0B11000000;
+   535  004B  30C0               	movlw	192
+   536  004C  008B               	movwf	11	;volatile
+   537  004D  0008               	return
+   538  004E                     __end_of_IO_INT_INITIAL:	
+   539                           
+   540                           	psect	cstackCOMMON
+   541  0000                     __pcstackCOMMON:	
+   542  0000                     ?_ISR:	
+   543  0000                     ??_ISR:	
+   544                           ; 0 bytes @ 0x0
+   545                           
+   546  0000                     ?_POWER_INITIAL:	
+   547                           ; 0 bytes @ 0x0
+   548                           
+   549  0000                     ??_POWER_INITIAL:	
+   550                           ; 0 bytes @ 0x0
+   551                           
+   552  0000                     ?_IO_INT_INITIAL:	
+   553                           ; 0 bytes @ 0x0
+   554                           
+   555  0000                     ??_IO_INT_INITIAL:	
+   556                           ; 0 bytes @ 0x0
+   557                           
+   558  0000                     ?_main:	
+   559                           ; 0 bytes @ 0x0
+   560                           
+   561  0000                     ??_main:	
+   562                           ; 0 bytes @ 0x0
+   563                           
+
+
+HI-TECH Software PICC Macro Assembler V9.83 build 10920 
+Symbol Table                                                                                   Wed Dec 08 08:57:34 2021
+
+                    _PB3 006B                      _ISR 0004                     ?_ISR 0000  
+                   l1624 0000                     l3701 0000                     l1599 0000  
+                   l3711 0000                     l3703 0000                     l3713 0000  
+                   l3705 0000                     l3721 0000                     l3715 0000  
+                   l3707 0000                     l3723 0000                     l3731 0000  
+                   l3717 0000                     l3709 0000                     l3725 0000  
+                   l3733 001C                     l3719 0000                     l3727 0000  
+                   l3729 0000                     l3691 0000                     l3693 0000  
+                   l3695 0000                     l3687 0000                     l3697 0000  
+                   l3689 0000                     l3699 0000                     _EPS0 0118  
+                   _EPS1 0119                     _WPDA 020C                     _WPDB 020D  
+                   _WPDC 020E                     _WPUA 018C                     _WPUB 018D  
+                   _WPUC 018E                     _main 0018                     btemp 007E  
+                   start 0013                    ??_ISR 0000                    ?_main 0000  
+                  _EPIE0 0094                    _EPIF0 0014                    _PSRC0 011A  
+                  _PSRC1 011B                    _PORTA 000C                    _PORTB 000D  
+                  _PORTC 000E                    _TRISA 008C                    _TRISB 008D  
+                  _TRISC 008E                    wtemp0 007E             __end_of_main 001E  
+                 ??_main 0000         ??_IO_INT_INITIAL 0000                   _ANSELA 0197  
+                 i1l3681 0000                   i1l3673 0000                   i1l3683 0000  
+                 i1l3675 0000                   i1l3685 0000                   i1l3677 0000  
+                 i1l3669 0000                   i1l3679 0000                   _INTCON 000B  
+                 _OSCCON 0099                   _ITYPE0 011E                   _ITYPE1 011F  
+                 _PSINK0 019A                   _PSINK1 019B                   _PSINK2 019C  
+  __end_of_POWER_INITIAL 0041           __pcstackCOMMON 0000               __pmaintext 0018  
+             __pintentry 0004             __size_of_ISR 000F     end_of_initialization 0016  
+    start_initialization 0016              __end_of_ISR 0013  __size_of_IO_INT_INITIAL 000D  
+ __size_of_POWER_INITIAL 0023            _POWER_INITIAL 001E           ?_POWER_INITIAL 0000  
+         _IO_INT_INITIAL 0041                 __ptext50 0041                 __ptext51 001E  
+ __end_of_IO_INT_INITIAL 004E            __size_of_main 0006          ??_POWER_INITIAL 0000  
+               intlevel1 0000          ?_IO_INT_INITIAL 0000  

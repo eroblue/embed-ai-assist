@@ -68,6 +68,15 @@ _PIN_NAME_RULES: list[tuple[re.Pattern, tuple[str, str, str]]] = [
     (re.compile(r"NJTRST|JTRST", re.I), ("JTAG 复位", "JTAG", "调试接口")),
     (re.compile(r"TAMPER", re.I), ("RTC 侵入检测", "GPIO 输入", "可作 RTC 侵入检测")),
     (re.compile(r"WKUP|WAKEUP", re.I), ("唤醒输入", "GPIO 输入", "可作唤醒源")),
+    # 8 位机引脚名短名（FT61F 等：PA6/TX、PA0/T1_CH1、PA4/AN2、PB6/ISPDAT）
+    # ISP 规则最优先：下载口引脚名携带 ISPDAT/ISPCK，早于 AN/AF 匹配防误判
+    (re.compile(r"ISPDA|ISPDAT|ISPCK|ISP_EN", re.I),
+     ("ISP 下载接口", "ISP", "下载接口，不初始化")),
+    (re.compile(r"(?:^|[/_])TX(?:[/_]|$)", re.I), ("串口发送", "USART", "复用输出")),
+    (re.compile(r"(?:^|[/_])RX(?:[/_]|$)", re.I), ("串口接收", "USART", "复用输入")),
+    (re.compile(r"(?:^|[/_])T\d+_CH\d+N?(?:[/_]|$)", re.I),
+     ("定时器 PWM 输出", "TIMER PWM", "复用输出")),
+    (re.compile(r"(?:^|[/_])AN\d+(?:[/_]|$)", re.I), ("模拟输入", "ADC", "模拟输入模式")),
 ]
 
 # ---- 网络名语义规则（优先级 2）----
@@ -92,7 +101,7 @@ _NET_RULES: list[tuple[re.Pattern, tuple[str, str, str], bool]] = [
      ("调试接口", "SWD", "调试接口"), False),
     (re.compile(r"BOOT", re.I), ("启动配置", "BOOT", "启动模式选择"), False),
     (re.compile(r"RESET|NRST|_RST", re.I), ("复位", "复位", "低电平有效"), False),
-    (re.compile(r"32K|OSC32|LSE|LXTAL", re.I),
+    (re.compile(r"32K|OSC32|\bLSE\b|LXTAL", re.I),
      ("32.768kHz RTC 晶振", "LXTAL", "低速晶振"), False),
     (re.compile(r"OSC|XTAL|CRYSTAL|MCO|8M|HSE|HXTAL", re.I),
      ("晶振/时钟", "HXTAL", "时钟"), False),

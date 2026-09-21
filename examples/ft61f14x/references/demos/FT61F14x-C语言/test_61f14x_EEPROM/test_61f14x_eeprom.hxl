@@ -1,0 +1,26 @@
+### HEX     logfile and output summary ###
+### Memory Usage ###
+ Unused memory ranges:
+  8h - F21h
+  
+ test_61f14x_eeprom.hex ranges:
+  0h - 7h
+  F22h - FFFh
+  
+### Hex Memory Map ###
+ Legend:
+  - = Unused memory
+  F = Filled ROM
+  S = Stored serial code
+  A = Stored ASCII string
+  R = Reserved for checksum
+  C = Stored checksum result
+  T = Trailing code
+  & = Find & replace opcode
+  X = Find & delete opcode
+  1 = test_61f14x_eeprom.hex
+00000000: 11111111--------------------------------------------------------
+00000F00: ----------------------------------111111111111111111111111111111
+00000F40: 1111111111111111111111111111111111111111111111111111111111111111
+00000F80: 1111111111111111111111111111111111111111111111111111111111111111
+00000FC0: 1111111111111111111111111111111111111111111111111111111111111111

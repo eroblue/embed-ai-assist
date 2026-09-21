@@ -20,6 +20,21 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
+if sys.version_info < (3, 10):  # 版本守卫：本框架需 3.10+（如 Path.write_text(newline=)）
+    import json as _json
+    from pathlib import Path as _Path
+    try:
+        _root_cfg = _json.loads(
+            (_Path(__file__).resolve().parents[3] / "config.json").read_text(encoding="utf-8"))
+        _py = _root_cfg.get("tool_paths", {}).get("python", "")
+    except Exception:
+        _py = ""
+    print(f"[错误] 本框架需要 Python 3.10+，当前解释器为 {sys.version.split()[0]}。"
+          + (f"请使用项目配置的解释器：{_py}" if _py
+             else "项目配置的解释器见根目录 config.json 的 tool_paths.python"),
+          file=sys.stderr)
+    sys.exit(2)
+
 SCRIPT_DIR = Path(__file__).resolve().parent
 SKILL_DIR = SCRIPT_DIR.parent
 ROOT_DIR = SKILL_DIR.parent.parent  # embed-ai-assist/（根目录，含全局 config.json）
@@ -184,12 +199,20 @@ def main(argv: list[str] | None = None) -> int:
     for note in config_notes:
         _log(note)
 
+    # ---- 1b. 合并配置契约校验（根目录 schemas/config.schema.json，全流水线统一拦截）----
+    cfg_errors = _validate(config, ROOT_DIR / "schemas" / "config.schema.json", "config")
+    if cfg_errors:
+        _log("配置契约校验失败: " + "; ".join(cfg_errors))
+        return EXIT_CONFIG_ERROR
+
     schematic_raw = args.schematic or config.get("schematic_path") or ""
     schematic_path = Path(schematic_raw).expanduser()
     # 工作区 = 项目目录（--config 所在目录）；--workspace 可覆盖
     workspace = Path(args.workspace or ".").expanduser()
     if not workspace.is_absolute():
         workspace = (config_path.parent / workspace).resolve()
+    # 目标工程根（App/BootLoader 双工程）：state/outputs 归目标工程（project.build_target，缺省 App）
+    workspace = workspace / ((config.get("project") or {}).get("build_target") or "App")
     state_path = workspace / "state.json"
     outputs_dir_name = (config.get("output_dir") or "outputs").rstrip("/\\")
     outputs_dir = workspace / outputs_dir_name

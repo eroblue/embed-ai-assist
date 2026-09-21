@@ -1,0 +1,28 @@
+### HEX     logfile and output summary ###
+### Memory Usage ###
+ Unused memory ranges:
+  4h - 7h
+  142h - 17Fh
+  
+ test_61f14x_tim2_capture.hex ranges:
+  0h - 3h
+  8h - 141h
+  
+### Hex Memory Map ###
+ Legend:
+  - = Unused memory
+  F = Filled ROM
+  S = Stored serial code
+  A = Stored ASCII string
+  R = Reserved for checksum
+  C = Stored checksum result
+  T = Trailing code
+  & = Find & replace opcode
+  X = Find & delete opcode
+  1 = test_61f14x_tim2_capture.hex
+00000000: 1111----11111111111111111111111111111111111111111111111111111111
+00000040: 1111111111111111111111111111111111111111111111111111111111111111
+00000080: 1111111111111111111111111111111111111111111111111111111111111111
+000000C0: 1111111111111111111111111111111111111111111111111111111111111111
+00000100: 1111111111111111111111111111111111111111111111111111111111111111
+00000140: 11--------------------------------------------------------------

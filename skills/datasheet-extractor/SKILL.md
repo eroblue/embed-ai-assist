@@ -68,7 +68,7 @@ datasheet-extractor/
 | svd_path | config.json（项目层） | string | 否（推荐） | CMSIS-SVD 文件；**数据源优先级 1**，寄存器/位域/中断/复位值/时钟树从此提取 |
 | sdk_header_path | config.json（项目层） | string | 否 | 厂商 SDK 设备头文件（如 stm32f10x.h）；**数据源优先级 2**（无 SVD 时使用，覆盖无 SVD 的芯片） |
 | datasheet_secondary_path | config.json（项目层） | string | 否 | 参考手册 PDF；**数据源优先级 3**（无 SVD 且无 SDK 时解析 PDF） |
-| workspace | config.json（项目层） | string | 是 | 输出目录（项目目录，state.json 与 outputs/ 所在） |
+| workspace | config.json（项目层） | string | 是 | 目标工程根 = 项目根 / `project.build_target`（缺省 App），state.json 与 outputs/ 所在；docs/references 共享于项目根 |
 | extract_scope | config.json 或 --scope | enum | 否 | pins / registers / clocks / peripherals / all（默认 all） |
 
 命令行覆盖参数（仅本次生效，不回写 config.json）：

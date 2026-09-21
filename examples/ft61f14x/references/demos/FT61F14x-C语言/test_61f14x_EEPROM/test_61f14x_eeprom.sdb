@@ -1,0 +1,120 @@
+[p PRO_MODE GLOBOPT AUTOSTATIC RSC14 RSC14E SPACEOPT ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip FT61F14X ]
+[d frameptr 6 ]
+"62 D:\IDE3.0.3_6C03\data\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 D:\IDE3.0.3_6C03\data\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"35 D:\FMD demo 11-24 改中断\C(Word+PDF)\FT61F14x\test_61f14x_EEPROM\test_61f14x_EEPROM.C
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+"70
+[v _EEPROMread EEPROMread `(uc  1 e 1 0 ]
+"98
+[v _Unlock_Flash Unlock_Flash `(v  1 e 1 0 ]
+"119
+[v _EEPROMwrite EEPROMwrite `(v  1 e 1 0 ]
+"151
+[v _main main `(v  1 e 1 0 ]
+"59 D:\IDE3.0.3_6C03\data\include\FT61F14X.h
+[v _BSREG BSREG `VEuc  1 e 1 @8 ]
+"97
+[v _INTCON INTCON `VEuc  1 e 1 @11 ]
+"101
+[v _EEIF EEIF `VEb  1 e 0 @90 ]
+"106
+[v _GIE GIE `VEb  1 e 0 @95 ]
+"123
+[v _PORTA PORTA `VEuc  1 e 1 @12 ]
+"168
+[v _PORTB PORTB `VEuc  1 e 1 @13 ]
+"213
+[v _PORTC PORTC `VEuc  1 e 1 @14 ]
+"262
+[v _TRISA TRISA `VEuc  1 e 1 @140 ]
+"289
+[v _TRISB TRISB `VEuc  1 e 1 @141 ]
+"316
+[v _TRISC TRISC `VEuc  1 e 1 @142 ]
+"475
+[v _OSCCON OSCCON `VEuc  1 e 1 @153 ]
+"821
+[v _PSRC0 PSRC0 `VEuc  1 e 1 @282 ]
+"826
+[v _PSRC1 PSRC1 `VEuc  1 e 1 @283 ]
+"869
+[v _WPUA WPUA `VEuc  1 e 1 @396 ]
+"873
+[v _WPUB WPUB `VEuc  1 e 1 @397 ]
+"877
+[v _WPUC WPUC `VEuc  1 e 1 @398 ]
+"881
+[v _EEADRL EEADRL `VEuc  1 e 1 @401 ]
+"906
+[v _EEDATL EEDATL `VEuc  1 e 1 @403 ]
+"928
+[v _EECON1 EECON1 `VEuc  1 e 1 @405 ]
+"930
+[v _RD RD `VEb  1 e 0 @3240 ]
+"931
+[v _WR WR `VEb  1 e 0 @3241 ]
+"932
+[v _WREN WREN `VEb  1 e 0 @3242 ]
+"935
+[v _CFGS CFGS `VEb  1 e 0 @3246 ]
+"936
+[v _EEPGD EEPGD `VEb  1 e 0 @3247 ]
+"962
+[v _EECON2 EECON2 `VEuc  1 e 1 @406 ]
+"966
+[v _ANSELA ANSELA `VEuc  1 e 1 @407 ]
+"1001
+[v _PSINK0 PSINK0 `VEuc  1 e 1 @410 ]
+"1005
+[v _PSINK1 PSINK1 `VEuc  1 e 1 @411 ]
+"1008
+[v _PSINK2 PSINK2 `VEuc  1 e 1 @412 ]
+"1043
+[v _WPDA WPDA `VEuc  1 e 1 @524 ]
+"1070
+[v _WPDB WPDB `VEuc  1 e 1 @525 ]
+"1096
+[v _WPDC WPDC `VEuc  1 e 1 @526 ]
+"28 D:\FMD demo 11-24 改中断\C(Word+PDF)\FT61F14x\test_61f14x_EEPROM\test_61f14x_EEPROM.C
+[v _EEReadData EEReadData `VEuc  1 e 1 0 ]
+"151
+[v _main main `(v  1 e 1 0 ]
+{
+"164
+} 0
+"35
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+{
+"63
+} 0
+"119
+[v _EEPROMwrite EEPROMwrite `(v  1 e 1 0 ]
+{
+[v EEPROMwrite@EEAddr EEAddr `uc  1 a 1 wreg ]
+[v EEPROMwrite@EEAddr EEAddr `uc  1 a 1 wreg ]
+[v EEPROMwrite@Data Data `uc  1 p 1 0 ]
+[v EEPROMwrite@EEAddr EEAddr `uc  1 a 1 1 ]
+"144
+} 0
+"98
+[v _Unlock_Flash Unlock_Flash `(v  1 e 1 0 ]
+{
+"111
+} 0
+"70
+[v _EEPROMread EEPROMread `(uc  1 e 1 0 ]
+{
+[v EEPROMread@EEAddr EEAddr `uc  1 a 1 wreg ]
+"72
+[v EEPROMread@ReEEPROMread ReEEPROMread `uc  1 a 1 1 ]
+"70
+[v EEPROMread@EEAddr EEAddr `uc  1 a 1 wreg ]
+[v EEPROMread@EEAddr EEAddr `uc  1 a 1 0 ]
+"90
+} 0

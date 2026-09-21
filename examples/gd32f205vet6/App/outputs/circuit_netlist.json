@@ -1,0 +1,3329 @@
+{
+  "schema": "embedaiassist.netlist.v1",
+  "generator": "schematic-reader",
+  "eda_tool": "altium",
+  "source_file": "E:\\skills\\EmbedSoftAutomaticProject\\embed-ai-assist\\examples\\gd32f205vet6\\schematic\\gd32f205vet6.SchDoc",
+  "parse_status": "success",
+  "generated_at": "2026-09-19T15:27:55",
+  "statistics": {
+    "component_count": 44,
+    "net_count": 43,
+    "pin_count": 157
+  },
+  "warnings": [],
+  "components": [
+    {
+      "designator": "C1",
+      "value": "10V/220uF",
+      "footprint": "CAP-SMD_BD6.3-L6.6-W6.6-FD",
+      "library_ref": "Cap Pol2",
+      "description": "Polarized Capacitor (Axial)",
+      "parameters": {
+        "Comment": "10V/220uF"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "+3.3V-T"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        }
+      ]
+    },
+    {
+      "designator": "C2",
+      "value": "2.2uF,±10%,0603,X7R,25V",
+      "footprint": "R0603",
+      "library_ref": "Cap",
+      "description": "Capacitor",
+      "parameters": {
+        "Comment": "2.2uF,±10%,0603,X7R,25V",
+        "LatestRevisionDate": "17-Jul-2002",
+        "LatestRevisionNote": "Re-released for DXP Platform.",
+        "PackageDescription": "Radial Cap, Thru-Hole; 2 Leads; 0.3 in Pin Spacing",
+        "PackageReference": "RAD-0.3",
+        "Published": "8-Jun-2000",
+        "Publisher": "Altium Limited",
+        "Value": ""
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "+3.3V-T"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        }
+      ]
+    },
+    {
+      "designator": "C3",
+      "value": "100nF 50V 0603 ±10%",
+      "footprint": "R0603",
+      "library_ref": "Cap",
+      "description": "Capacitor",
+      "parameters": {
+        "Comment": "100nF 50V 0603 ±10%",
+        "LatestRevisionDate": "17-Jul-2002",
+        "LatestRevisionNote": "Re-released for DXP Platform.",
+        "PackageDescription": "Radial Cap, Thru-Hole; 2 Leads; 0.3 in Pin Spacing",
+        "PackageReference": "RAD-0.3",
+        "Published": "8-Jun-2000",
+        "Publisher": "Altium Limited",
+        "Value": ""
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "+3.3V-T"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        }
+      ]
+    },
+    {
+      "designator": "C4",
+      "value": "100nF 50V 0603 ±10%",
+      "footprint": "R0603",
+      "library_ref": "Cap",
+      "description": "Capacitor",
+      "parameters": {
+        "Comment": "100nF 50V 0603 ±10%",
+        "LatestRevisionDate": "17-Jul-2002",
+        "LatestRevisionNote": "Re-released for DXP Platform.",
+        "PackageDescription": "Radial Cap, Thru-Hole; 2 Leads; 0.3 in Pin Spacing",
+        "PackageReference": "RAD-0.3",
+        "Published": "8-Jun-2000",
+        "Publisher": "Altium Limited",
+        "Value": ""
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "NetC4_1"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        }
+      ]
+    },
+    {
+      "designator": "C5",
+      "value": "100nF 50V 0603 ±10%",
+      "footprint": "R0603",
+      "library_ref": "100nF,X7R,¡À5%,25V,SMD0603",
+      "description": "CAP SMD 0603 100nF 5% 25V X7R",
+      "parameters": {
+        "China Supplier 1": "no record",
+        "China material number": "142302000178",
+        "Comment": "100nF 50V 0603 ±10%",
+        "Taiwan Secondary Source": "*",
+        "Taiwan Supplier 1": "*",
+        "Taiwan Supplier Part Number 1": "*",
+        "Taiwan material number": "*",
+        "USA material number": "*",
+        "Value1": "100nF,X7R",
+        "Value2": "±5%,25V",
+        "Value3": "C0603"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "+3.3V-T"
+        }
+      ]
+    },
+    {
+      "designator": "C7",
+      "value": "100nF 50V 0603 ±10%",
+      "footprint": "R0603",
+      "library_ref": "CAP",
+      "description": "Capacitor",
+      "parameters": {
+        "Comment": "100nF 50V 0603 ±10%"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "+3.3V-T"
+        }
+      ]
+    },
+    {
+      "designator": "C8",
+      "value": "2.2uF,±10%,0603,X7R,25V",
+      "footprint": "R0603",
+      "library_ref": "Cap",
+      "description": "Capacitor",
+      "parameters": {
+        "Comment": "2.2uF,±10%,0603,X7R,25V",
+        "LatestRevisionDate": "17-Jul-2002",
+        "LatestRevisionNote": "Re-released for DXP Platform.",
+        "PackageDescription": "Radial Cap, Thru-Hole; 2 Leads; 0.3 in Pin Spacing",
+        "PackageReference": "RAD-0.3",
+        "Published": "8-Jun-2000",
+        "Publisher": "Altium Limited",
+        "Value": ""
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "+3.3V-T"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        }
+      ]
+    },
+    {
+      "designator": "C13",
+      "value": "2.2uF,±10%,0805,X7R,16V",
+      "footprint": "R0603",
+      "library_ref": "CAP",
+      "description": "Capacitor",
+      "parameters": {
+        "Comment": "2.2uF,±10%,0805,X7R,16V"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "+3.3V-T"
+        }
+      ]
+    },
+    {
+      "designator": "C15",
+      "value": "6 pF  0603 ±2%",
+      "footprint": "C0603",
+      "library_ref": "Cap",
+      "description": "Capacitor",
+      "parameters": {
+        "Comment": "6 pF  0603 ±2%",
+        "LatestRevisionDate": "17-Jul-2002",
+        "LatestRevisionNote": "Re-released for DXP Platform.",
+        "Number": "30405009",
+        "PackageReference": "RAD-0.3",
+        "Published": "8-Jun-2000",
+        "Publisher": "Altium Limited",
+        "Value": ""
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "NetC15_1"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        }
+      ]
+    },
+    {
+      "designator": "C16",
+      "value": "2.2uF,±10%,0603,X7R,25V",
+      "footprint": "R0603",
+      "library_ref": "Cap",
+      "description": "Capacitor",
+      "parameters": {
+        "Comment": "2.2uF,±10%,0603,X7R,25V",
+        "LatestRevisionDate": "17-Jul-2002",
+        "LatestRevisionNote": "Re-released for DXP Platform.",
+        "PackageDescription": "Radial Cap, Thru-Hole; 2 Leads; 0.3 in Pin Spacing",
+        "PackageReference": "RAD-0.3",
+        "Published": "8-Jun-2000",
+        "Publisher": "Altium Limited",
+        "Value": ""
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "+3.3V-T"
+        }
+      ]
+    },
+    {
+      "designator": "C17",
+      "value": "100nF 50V 0603 ±10%",
+      "footprint": "R0603",
+      "library_ref": "CAP",
+      "description": "Capacitor",
+      "parameters": {
+        "Comment": "100nF 50V 0603 ±10%"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "+3.3V-T"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        }
+      ]
+    },
+    {
+      "designator": "C18",
+      "value": "6pF  0603 ±2%",
+      "footprint": "C0603",
+      "library_ref": "Cap",
+      "description": "Capacitor",
+      "parameters": {
+        "Comment": "6pF  0603 ±2%",
+        "LatestRevisionDate": "17-Jul-2002",
+        "LatestRevisionNote": "Re-released for DXP Platform.",
+        "Number": "30405009",
+        "PackageReference": "RAD-0.3",
+        "Published": "8-Jun-2000",
+        "Publisher": "Altium Limited",
+        "Value": ""
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "NetC18_1"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        }
+      ]
+    },
+    {
+      "designator": "C19",
+      "value": "2.2uF,±10%,0603,X7R,25V",
+      "footprint": "R0603",
+      "library_ref": "Cap",
+      "description": "Capacitor",
+      "parameters": {
+        "Comment": "2.2uF,±10%,0603,X7R,25V",
+        "LatestRevisionDate": "17-Jul-2002",
+        "LatestRevisionNote": "Re-released for DXP Platform.",
+        "PackageDescription": "Radial Cap, Thru-Hole; 2 Leads; 0.3 in Pin Spacing",
+        "PackageReference": "RAD-0.3",
+        "Published": "8-Jun-2000",
+        "Publisher": "Altium Limited",
+        "Value": ""
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "+3.3V-T"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        }
+      ]
+    },
+    {
+      "designator": "C20",
+      "value": "100nF 50V 0603 ±10%",
+      "footprint": "R0603",
+      "library_ref": "CAP",
+      "description": "Capacitor",
+      "parameters": {
+        "Comment": "100nF 50V 0603 ±10%"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "+3.3V-T"
+        }
+      ]
+    },
+    {
+      "designator": "C21",
+      "value": "6pF 50V 0603 ±5%",
+      "footprint": "C0603",
+      "library_ref": "Cap",
+      "description": "Capacitor",
+      "parameters": {
+        "Comment": "6pF 50V 0603 ±5%",
+        "LatestRevisionDate": "17-Jul-2002",
+        "LatestRevisionNote": "Re-released for DXP Platform.",
+        "Number": "30405009",
+        "PackageReference": "RAD-0.3",
+        "Published": "8-Jun-2000",
+        "Publisher": "Altium Limited",
+        "Value": ""
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "32K-IN"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        }
+      ]
+    },
+    {
+      "designator": "C23",
+      "value": "6pF 50V 0603 ±5%",
+      "footprint": "C0603",
+      "library_ref": "Cap",
+      "description": "Capacitor",
+      "parameters": {
+        "Comment": "6pF 50V 0603 ±5%",
+        "LatestRevisionDate": "17-Jul-2002",
+        "LatestRevisionNote": "Re-released for DXP Platform.",
+        "Number": "30405009",
+        "PackageReference": "RAD-0.3",
+        "Published": "8-Jun-2000",
+        "Publisher": "Altium Limited",
+        "Value": ""
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "32K-OUT"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        }
+      ]
+    },
+    {
+      "designator": "C24",
+      "value": "100nF 50V 0603 ±10%",
+      "footprint": "R0603",
+      "library_ref": "CAP",
+      "description": "Capacitor",
+      "parameters": {
+        "Comment": "100nF 50V 0603 ±10%"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "+3.3V-T"
+        }
+      ]
+    },
+    {
+      "designator": "C25",
+      "value": "100nF 50V 0603 ±10%",
+      "footprint": "R0603",
+      "library_ref": "CAP",
+      "description": "Capacitor",
+      "parameters": {
+        "Comment": "100nF 50V 0603 ±10%"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "+3.3V-T"
+        }
+      ]
+    },
+    {
+      "designator": "C27",
+      "value": "2.2uF,±10%,0603,X7R,25V",
+      "footprint": "R0603",
+      "library_ref": "Cap",
+      "description": "Capacitor",
+      "parameters": {
+        "Comment": "2.2uF,±10%,0603,X7R,25V",
+        "LatestRevisionDate": "17-Jul-2002",
+        "LatestRevisionNote": "Re-released for DXP Platform.",
+        "PackageDescription": "Radial Cap, Thru-Hole; 2 Leads; 0.3 in Pin Spacing",
+        "PackageReference": "RAD-0.3",
+        "Published": "8-Jun-2000",
+        "Publisher": "Altium Limited",
+        "Value": ""
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "+3.3V-T"
+        }
+      ]
+    },
+    {
+      "designator": "C33",
+      "value": "1uF 50V 0603 ±10%",
+      "footprint": "R0603",
+      "library_ref": "Cap",
+      "description": "Capacitor",
+      "parameters": {
+        "Comment": "1uF 50V 0603 ±10%",
+        "LatestRevisionDate": "17-Jul-2002",
+        "LatestRevisionNote": "Re-released for DXP Platform.",
+        "Number": "30405001",
+        "PackageReference": "RAD-0.3",
+        "Published": "8-Jun-2000",
+        "Publisher": "Altium Limited",
+        "Value": ""
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "NRST"
+        }
+      ]
+    },
+    {
+      "designator": "C?",
+      "value": "2.2uF,±10%,0603,X7R,25V",
+      "footprint": "R0603",
+      "library_ref": "Cap",
+      "description": "Capacitor",
+      "parameters": {
+        "Comment": "2.2uF,±10%,0603,X7R,25V",
+        "LatestRevisionDate": "17-Jul-2002",
+        "LatestRevisionNote": "Re-released for DXP Platform.",
+        "PackageDescription": "Radial Cap, Thru-Hole; 2 Leads; 0.3 in Pin Spacing",
+        "PackageReference": "RAD-0.3",
+        "Published": "8-Jun-2000",
+        "Publisher": "Altium Limited",
+        "Value": ""
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "NetC?_1"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        }
+      ]
+    },
+    {
+      "designator": "D1",
+      "value": "ESDBKV3V3D3",
+      "footprint": "SOD323",
+      "library_ref": "TVS_1",
+      "description": "TVS_1",
+      "parameters": {
+        "Comment": "ESDBKV3V3D3",
+        "Part Number": "",
+        "Value": "ESDBKV5V0D3",
+        "Æ÷¼þ¸ß¶È": "1mm",
+        "ÎïÁÏÃèÊö": "TVS 管;ESDBKV5V0D3;1路;6V;750W;双向;SOD-323;贴片",
+        "ÖÆÔìÉÌ": "江苏长电",
+        "ÖÆÔìÉÌÐÍºÅ": "ESDBKV5V0D3，SOD-323"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "NetC4_1"
+        }
+      ]
+    },
+    {
+      "designator": "D6",
+      "value": "1N4148W",
+      "footprint": "SOD-123A",
+      "library_ref": "DIODE1",
+      "description": "1N5819",
+      "parameters": {
+        "Comment": "1N4148W",
+        "ÎïÁÏ±àºÅ": "30409017"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "NRST"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "+3.3V-T"
+        }
+      ]
+    },
+    {
+      "designator": "D8",
+      "value": "SE03D3D01GE",
+      "footprint": "SOD323",
+      "library_ref": "TVS_1",
+      "description": "TVS_1",
+      "parameters": {
+        "Comment": "SE03D3D01GE",
+        "Part Number": "",
+        "Value": "ESDBKV5V0D3",
+        "Æ÷¼þ¸ß¶È": "1mm",
+        "ÎïÁÏÃèÊö": "TVS 管;ESDBKV5V0D3;1路;6V;750W;双向;SOD-323;贴片",
+        "ÖÆÔìÉÌ": "江苏长电",
+        "ÖÆÔìÉÌÐÍºÅ": "ESDBKV5V0D3，SOD-323"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "NRST"
+        }
+      ]
+    },
+    {
+      "designator": "LCD1",
+      "value": "CH12864I",
+      "footprint": "LCD-12864A",
+      "library_ref": "CH12864I",
+      "description": "12864 点阵屏",
+      "parameters": {
+        "BOMÃû³Æ": "12864 点阵屏",
+        "Comment": "CH12864I",
+        "ÁªÏµÂô¼Ò Ãâ·Ñ¼¼ÊõÖ§³Ö": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "VDD",
+          "pin_type": "PASSIVE",
+          "net": "+3.3V-T"
+        },
+        {
+          "pin": "2",
+          "pin_name": "VSS",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        },
+        {
+          "pin": "3",
+          "pin_name": "V0",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "4",
+          "pin_name": "DB0",
+          "pin_type": "PASSIVE",
+          "net": "LCD_DB0"
+        },
+        {
+          "pin": "5",
+          "pin_name": "DB1",
+          "pin_type": "PASSIVE",
+          "net": "LCD_DB1"
+        },
+        {
+          "pin": "6",
+          "pin_name": "DB2",
+          "pin_type": "PASSIVE",
+          "net": "LCD_DB2"
+        },
+        {
+          "pin": "7",
+          "pin_name": "DB3",
+          "pin_type": "PASSIVE",
+          "net": "LCD_DB3"
+        },
+        {
+          "pin": "8",
+          "pin_name": "DB4",
+          "pin_type": "PASSIVE",
+          "net": "LCD_DB4"
+        },
+        {
+          "pin": "9",
+          "pin_name": "DB5",
+          "pin_type": "PASSIVE",
+          "net": "LCD_DB5"
+        },
+        {
+          "pin": "10",
+          "pin_name": "DB6",
+          "pin_type": "PASSIVE",
+          "net": "LCD_DB6"
+        },
+        {
+          "pin": "11",
+          "pin_name": "DB7",
+          "pin_type": "PASSIVE",
+          "net": "LCD_DB7"
+        },
+        {
+          "pin": "12",
+          "pin_name": "CS1",
+          "pin_type": "PASSIVE",
+          "net": "LCD_CS"
+        },
+        {
+          "pin": "13",
+          "pin_name": "CS2",
+          "pin_type": "PASSIVE",
+          "net": "LCD_CS"
+        },
+        {
+          "pin": "14",
+          "pin_name": "/RST",
+          "pin_type": "PASSIVE",
+          "net": "NRST"
+        },
+        {
+          "pin": "15",
+          "pin_name": "R/W",
+          "pin_type": "PASSIVE",
+          "net": "LCD_WR"
+        },
+        {
+          "pin": "16",
+          "pin_name": "RS",
+          "pin_type": "PASSIVE",
+          "net": "NetC?_1"
+        },
+        {
+          "pin": "17",
+          "pin_name": "E",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "18",
+          "pin_name": "VEE",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "19",
+          "pin_name": "LED-A",
+          "pin_type": "PASSIVE",
+          "net": "LED_A"
+        },
+        {
+          "pin": "20",
+          "pin_name": "LED-K",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        }
+      ]
+    },
+    {
+      "designator": "P1",
+      "value": "Header 5",
+      "footprint": "HDR1X5",
+      "library_ref": "Header 5",
+      "description": "Header, 5-Pin",
+      "parameters": {
+        "Comment": "Header 5",
+        "LatestRevisionDate": "17-Jul-2002",
+        "LatestRevisionNote": "Re-released for DXP Platform.",
+        "Publisher": "Altium Limited"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "DEBUG-TXD"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        },
+        {
+          "pin": "3",
+          "pin_name": "3",
+          "pin_type": "PASSIVE",
+          "net": "SWCLK"
+        },
+        {
+          "pin": "4",
+          "pin_name": "4",
+          "pin_type": "PASSIVE",
+          "net": "SWDIO"
+        },
+        {
+          "pin": "5",
+          "pin_name": "5",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        }
+      ]
+    },
+    {
+      "designator": "Q1",
+      "value": "CJ2301",
+      "footprint": "SOT-23-3",
+      "library_ref": "PMOS-2",
+      "description": "P-Channel Power MOSFET",
+      "parameters": {
+        "Comment": "CJ2301",
+        "ComponentLink1Description": "Manufacturer Link",
+        "ComponentLink1URL": "http://www.irf.com/",
+        "DatasheetVersion": "PD-9.390D",
+        "LatestRevisionDate": "17-Jul-2002",
+        "LatestRevisionNote": "Re-released for DXP Platform.",
+        "Note": "Pin 4 not drawn and electrically connected to Pin 2.",
+        "PackageDescription": "TO, Thru-Hole, Vertical, Heatsink Mounted; 3 In-Line Leads; Pitch 2.54 mm",
+        "PackageReference": "TO-220AB",
+        "PackageVersion": "Feb-1997",
+        "Published": "8-Jun-2000",
+        "Publisher": "Altium Limited"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "G",
+          "pin_type": "PASSIVE",
+          "net": "NetQ1_1"
+        },
+        {
+          "pin": "2",
+          "pin_name": "S",
+          "pin_type": "PASSIVE",
+          "net": "+3.3V-T"
+        },
+        {
+          "pin": "3",
+          "pin_name": "D",
+          "pin_type": "PASSIVE",
+          "net": "LED_A"
+        }
+      ]
+    },
+    {
+      "designator": "Q2",
+      "value": "KST8050D",
+      "footprint": "SOT23-3",
+      "library_ref": "2N3904",
+      "description": "NPN General Purpose Amplifier",
+      "parameters": {
+        "Code_JEDEC": "TO-92A",
+        "Comment": "KST8050D",
+        "DatasheetDocument": "1997",
+        "LatestRevisionDate": "15-Jan-2003",
+        "LatestRevisionNote": "PCB Footprint 'BCY-W3/D4.7' replaced",
+        "PackageReference": "TO-92A",
+        "Published": "8-Jun-2000",
+        "Publisher": "Altium Limited"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "B",
+          "pin_type": "PASSIVE",
+          "net": "NetQ2_1"
+        },
+        {
+          "pin": "2",
+          "pin_name": "E",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        },
+        {
+          "pin": "3",
+          "pin_name": "C",
+          "pin_type": "PASSIVE",
+          "net": "NetQ2_3"
+        }
+      ]
+    },
+    {
+      "designator": "R1",
+      "value": "10K",
+      "footprint": "R0603",
+      "library_ref": "RES2",
+      "description": "RES2",
+      "parameters": {
+        "Comment": "10K"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "NetR1_2"
+        }
+      ]
+    },
+    {
+      "designator": "R2",
+      "value": "10k 0603 ±1%",
+      "footprint": "R0603",
+      "library_ref": "RES2",
+      "description": "RES2",
+      "parameters": {
+        "Comment": "10k 0603 ±1%"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "SWDIO"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "+3.3V-T"
+        }
+      ]
+    },
+    {
+      "designator": "R3",
+      "value": "10k 0603 ±1%",
+      "footprint": "R0603",
+      "library_ref": "RES2",
+      "description": "RES2",
+      "parameters": {
+        "Comment": "10k 0603 ±1%"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "SWCLK"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        }
+      ]
+    },
+    {
+      "designator": "R4",
+      "value": "10K 0603  ±1%",
+      "footprint": "R0603",
+      "library_ref": "RES2",
+      "description": "RES2",
+      "parameters": {
+        "Comment": "10K 0603  ±1%"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "+3.3V-T"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "NetQ1_1"
+        }
+      ]
+    },
+    {
+      "designator": "R5",
+      "value": "1K 0603  ±1%",
+      "footprint": "R0603",
+      "library_ref": "RES2",
+      "description": "RES2",
+      "parameters": {
+        "Comment": "1K 0603  ±1%"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "NetQ1_1"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "NetQ2_3"
+        }
+      ]
+    },
+    {
+      "designator": "R6",
+      "value": "10K 0603  ±1%",
+      "footprint": "R0603",
+      "library_ref": "RES2",
+      "description": "RES2",
+      "parameters": {
+        "Comment": "10K 0603  ±1%"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "LCD-PWM"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "NetQ2_1"
+        }
+      ]
+    },
+    {
+      "designator": "R7",
+      "value": "10k 0603 ±1%",
+      "footprint": "R0603",
+      "library_ref": "RES2",
+      "description": "RES2",
+      "parameters": {
+        "Comment": "10k 0603 ±1%"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "+3.3V-T"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "NetR7_2"
+        }
+      ]
+    },
+    {
+      "designator": "R8",
+      "value": "10K 0603  ±1%",
+      "footprint": "R0603",
+      "library_ref": "RES2",
+      "description": "RES2",
+      "parameters": {
+        "Comment": "10K 0603  ±1%"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "+3.3V-T"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "NetR8_2"
+        }
+      ]
+    },
+    {
+      "designator": "R15",
+      "value": "10k 0603 ±1%",
+      "footprint": "R0603",
+      "library_ref": "Res2",
+      "description": "Resistor",
+      "parameters": {
+        "Comment": "10k 0603 ±1%",
+        "LatestRevisionDate": "17-Jul-2002",
+        "LatestRevisionNote": "Re-released for DXP Platform.",
+        "Number": "30403017",
+        "Published": "8-Jun-2000",
+        "Publisher": "Altium Limited",
+        "Value": "221"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "NRST"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "+3.3V-T"
+        }
+      ]
+    },
+    {
+      "designator": "S1",
+      "value": "",
+      "footprint": "AN6*6-SMD-1",
+      "library_ref": "SW-AN6*6-SMD",
+      "description": "SW-AN6*6-SMD",
+      "parameters": {
+        "Comment": ""
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "NetC4_1"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        },
+        {
+          "pin": "3",
+          "pin_name": "3",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        },
+        {
+          "pin": "4",
+          "pin_name": "4",
+          "pin_type": "PASSIVE",
+          "net": "NetC4_1"
+        }
+      ]
+    },
+    {
+      "designator": "S5",
+      "value": "SW-AN6*6-SMD-90",
+      "footprint": "SW-SMD_TS-1095F-A5BX-DX-P",
+      "library_ref": "SW-AN6*6-SMD-90",
+      "description": "SW-AN6*6-SMD-90",
+      "parameters": {
+        "Comment": "SW-AN6*6-SMD-90"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "NRST"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        },
+        {
+          "pin": "3",
+          "pin_name": "3",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        }
+      ]
+    },
+    {
+      "designator": "TP13",
+      "value": "",
+      "footprint": "POINT-2P0",
+      "library_ref": "TEST",
+      "description": "TEST",
+      "parameters": {
+        "Comment": ""
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "NRST"
+        }
+      ]
+    },
+    {
+      "designator": "U1",
+      "value": "GD32F205VET6,LQFP100",
+      "footprint": "LQFP-100_L14.0-W14.0-P0.50-LS16.0-BL",
+      "library_ref": "GD32F205VET6,LQFP100",
+      "description": "GD32F205VET6,LQFP100",
+      "parameters": {
+        "Comment": "GD32F205VET6,LQFP100"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "PE2",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "2",
+          "pin_name": "PE3",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "3",
+          "pin_name": "PE4",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "4",
+          "pin_name": "PE5",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "5",
+          "pin_name": "PE6",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "6",
+          "pin_name": "VBAT",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "7",
+          "pin_name": "PC13-RTC_AF1",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "8",
+          "pin_name": " PC14-OSC32IN",
+          "pin_type": "PASSIVE",
+          "net": "32K-IN"
+        },
+        {
+          "pin": "9",
+          "pin_name": "PC15-OSC32OUT",
+          "pin_type": "PASSIVE",
+          "net": "32K-OUT"
+        },
+        {
+          "pin": "10",
+          "pin_name": " VSS_5",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        },
+        {
+          "pin": "11",
+          "pin_name": " VDD_5",
+          "pin_type": "PASSIVE",
+          "net": "+3.3V-T"
+        },
+        {
+          "pin": "12",
+          "pin_name": "OSC_IN",
+          "pin_type": "PASSIVE",
+          "net": "16M-IN"
+        },
+        {
+          "pin": "13",
+          "pin_name": "OSC_OUT",
+          "pin_type": "PASSIVE",
+          "net": "16M-OUT"
+        },
+        {
+          "pin": "14",
+          "pin_name": "NRST",
+          "pin_type": "PASSIVE",
+          "net": "NRST"
+        },
+        {
+          "pin": "15",
+          "pin_name": "PC0",
+          "pin_type": "PASSIVE",
+          "net": "NetU1_15"
+        },
+        {
+          "pin": "16",
+          "pin_name": "PC1",
+          "pin_type": "PASSIVE",
+          "net": "NetU1_16"
+        },
+        {
+          "pin": "17",
+          "pin_name": "PC2",
+          "pin_type": "PASSIVE",
+          "net": "NetU1_17"
+        },
+        {
+          "pin": "18",
+          "pin_name": "PC3",
+          "pin_type": "PASSIVE",
+          "net": "NetU1_18"
+        },
+        {
+          "pin": "19",
+          "pin_name": "VSSA",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        },
+        {
+          "pin": "20",
+          "pin_name": "VREF-",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        },
+        {
+          "pin": "21",
+          "pin_name": "VREF+",
+          "pin_type": "PASSIVE",
+          "net": "+3.3V-T"
+        },
+        {
+          "pin": "22",
+          "pin_name": "VDDA",
+          "pin_type": "PASSIVE",
+          "net": "+3.3V-T"
+        },
+        {
+          "pin": "23",
+          "pin_name": "PA0-WKUP",
+          "pin_type": "PASSIVE",
+          "net": "NetU1_23"
+        },
+        {
+          "pin": "24",
+          "pin_name": "PA1",
+          "pin_type": "PASSIVE",
+          "net": "NetU1_24"
+        },
+        {
+          "pin": "25",
+          "pin_name": "PA2",
+          "pin_type": "PASSIVE",
+          "net": "NetU1_25"
+        },
+        {
+          "pin": "26",
+          "pin_name": "PA3",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "27",
+          "pin_name": "VSS_4",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        },
+        {
+          "pin": "28",
+          "pin_name": "VDD_4",
+          "pin_type": "PASSIVE",
+          "net": "+3.3V-T"
+        },
+        {
+          "pin": "29",
+          "pin_name": "PA4",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "30",
+          "pin_name": "PA5",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "31",
+          "pin_name": "PA6",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "32",
+          "pin_name": "PA7",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "33",
+          "pin_name": "PC4",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "34",
+          "pin_name": "PC5",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "35",
+          "pin_name": "PB0",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "36",
+          "pin_name": "PB1",
+          "pin_type": "PASSIVE",
+          "net": "NetC4_1"
+        },
+        {
+          "pin": "37",
+          "pin_name": "PB2",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "38",
+          "pin_name": "PE7",
+          "pin_type": "PASSIVE",
+          "net": "LCD_DB4"
+        },
+        {
+          "pin": "39",
+          "pin_name": "PE8",
+          "pin_type": "PASSIVE",
+          "net": "LCD_DB5"
+        },
+        {
+          "pin": "40",
+          "pin_name": "PE9",
+          "pin_type": "PASSIVE",
+          "net": "LCD_DB6"
+        },
+        {
+          "pin": "41",
+          "pin_name": "PE10",
+          "pin_type": "PASSIVE",
+          "net": "LCD_DB7"
+        },
+        {
+          "pin": "42",
+          "pin_name": "PE11",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "43",
+          "pin_name": "PE12",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "44",
+          "pin_name": "PE13",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "45",
+          "pin_name": "PE14",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "46",
+          "pin_name": "PE15",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "47",
+          "pin_name": "PB10",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "48",
+          "pin_name": "PB11",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "49",
+          "pin_name": "VSS_1",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        },
+        {
+          "pin": "50",
+          "pin_name": "VDD_1",
+          "pin_type": "PASSIVE",
+          "net": "+3.3V-T"
+        },
+        {
+          "pin": "51",
+          "pin_name": "PB12",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "52",
+          "pin_name": "PB13",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "53",
+          "pin_name": "PB14",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "54",
+          "pin_name": "PB15",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "55",
+          "pin_name": "PD8/ USART2_TX ",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "56",
+          "pin_name": "PD9/USART2_RX ",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "57",
+          "pin_name": "PD10",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "58",
+          "pin_name": "PD11",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "59",
+          "pin_name": "PD12",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "60",
+          "pin_name": "PD13",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "61",
+          "pin_name": "PD14",
+          "pin_type": "PASSIVE",
+          "net": "LCD_DB0"
+        },
+        {
+          "pin": "62",
+          "pin_name": "PD15",
+          "pin_type": "PASSIVE",
+          "net": "LCD_DB1"
+        },
+        {
+          "pin": "63",
+          "pin_name": "PC6/USART5_TX",
+          "pin_type": "PASSIVE",
+          "net": "DEBUG-TXD"
+        },
+        {
+          "pin": "64",
+          "pin_name": "PC7/USART5_RX ",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "65",
+          "pin_name": "PC8",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "66",
+          "pin_name": "PC9",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "67",
+          "pin_name": "PA8",
+          "pin_type": "PASSIVE",
+          "net": "LCD-PWM"
+        },
+        {
+          "pin": "68",
+          "pin_name": "PA9/USART0_TX",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "69",
+          "pin_name": "PA10/USART0_RX",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "70",
+          "pin_name": "PA11",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "71",
+          "pin_name": "PA12",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "72",
+          "pin_name": "PA13",
+          "pin_type": "PASSIVE",
+          "net": "SWDIO"
+        },
+        {
+          "pin": "73",
+          "pin_name": "NC",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "74",
+          "pin_name": "VSS_2",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        },
+        {
+          "pin": "75",
+          "pin_name": "VDD_2",
+          "pin_type": "PASSIVE",
+          "net": "+3.3V-T"
+        },
+        {
+          "pin": "76",
+          "pin_name": "PA14",
+          "pin_type": "PASSIVE",
+          "net": "SWCLK"
+        },
+        {
+          "pin": "77",
+          "pin_name": "PA15",
+          "pin_type": "PASSIVE",
+          "net": "SPI-CS"
+        },
+        {
+          "pin": "78",
+          "pin_name": "PC10",
+          "pin_type": "PASSIVE",
+          "net": "SPI-CLK"
+        },
+        {
+          "pin": "79",
+          "pin_name": "PC11",
+          "pin_type": "PASSIVE",
+          "net": "SPI-DO"
+        },
+        {
+          "pin": "80",
+          "pin_name": "PC12",
+          "pin_type": "PASSIVE",
+          "net": "SPI-DI"
+        },
+        {
+          "pin": "81",
+          "pin_name": "PD0",
+          "pin_type": "PASSIVE",
+          "net": "LCD_DB2"
+        },
+        {
+          "pin": "82",
+          "pin_name": "PD1",
+          "pin_type": "PASSIVE",
+          "net": "LCD_DB3"
+        },
+        {
+          "pin": "83",
+          "pin_name": "PD2",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "84",
+          "pin_name": "PD3",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "85",
+          "pin_name": "PD4",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "86",
+          "pin_name": "PD5",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "87",
+          "pin_name": "PD6",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "88",
+          "pin_name": "PD7",
+          "pin_type": "PASSIVE",
+          "net": "LCD_CS"
+        },
+        {
+          "pin": "89",
+          "pin_name": "PB3",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "90",
+          "pin_name": "PB4",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "91",
+          "pin_name": "PB5",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "92",
+          "pin_name": "PB6",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "93",
+          "pin_name": "PB7",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "94",
+          "pin_name": "BOOT0",
+          "pin_type": "PASSIVE",
+          "net": "NetR1_2"
+        },
+        {
+          "pin": "95",
+          "pin_name": "PB8",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "96",
+          "pin_name": "PB9",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "97",
+          "pin_name": "PE0/UART7_RX ",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "98",
+          "pin_name": "PE1/UART7_TX ",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "99",
+          "pin_name": " VSS_3",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "100",
+          "pin_name": " VDD_3",
+          "pin_type": "PASSIVE",
+          "net": null
+        }
+      ]
+    },
+    {
+      "designator": "U2",
+      "value": "W25Q16JV",
+      "footprint": "SOIC-8_5.3-5.3P1.27",
+      "library_ref": "IC_W25Q64FVSSIG",
+      "description": "IC_W25Q64FVSSIG",
+      "parameters": {
+        "AOI Part Number": "142101000713",
+        "Comment": "W25Q16JV",
+        "Descriptions": "64M × 1 FLASH 3V 可编程只读存储器, PDSO8",
+        "Footprint": "IC",
+        "HelpURL": "\\\\172.30.1.168\\rd资料库\\PCB Datasheet\\ICS\\W25Q64FVSSIG.pdf",
+        "MPN": "W25Q64FVSSIG",
+        "Manufacture": "Winbond Electronics Corporation America",
+        "Temperature": "-40degC to +85degC"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "/CS",
+          "pin_type": "INPUT",
+          "net": "SPI-CS"
+        },
+        {
+          "pin": "2",
+          "pin_name": "DO(IO1)",
+          "pin_type": "IO",
+          "net": "SPI-DO"
+        },
+        {
+          "pin": "3",
+          "pin_name": "/WP#(IO2)",
+          "pin_type": "IO",
+          "net": "NetR7_2"
+        },
+        {
+          "pin": "4",
+          "pin_name": "GND",
+          "pin_type": "PASSIVE",
+          "net": "GND-T"
+        },
+        {
+          "pin": "5",
+          "pin_name": "DI(IO0)",
+          "pin_type": "IO",
+          "net": "SPI-DI"
+        },
+        {
+          "pin": "6",
+          "pin_name": "CLK",
+          "pin_type": "INPUT",
+          "net": "SPI-CLK"
+        },
+        {
+          "pin": "7",
+          "pin_name": "/HOLD(IO3)",
+          "pin_type": "IO",
+          "net": "NetR8_2"
+        },
+        {
+          "pin": "8",
+          "pin_name": "VCC",
+          "pin_type": "PASSIVE",
+          "net": "+3.3V-T"
+        }
+      ]
+    },
+    {
+      "designator": "X1",
+      "value": "16MHZ ±10PPM 12.5pF",
+      "footprint": "Y3225",
+      "library_ref": "CRYSTAL",
+      "description": "Crystal",
+      "parameters": {
+        "Comment": "16MHZ ±10PPM 12.5pF",
+        "Number": "30411007"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "NetC18_1"
+        },
+        {
+          "pin": "3",
+          "pin_name": "3",
+          "pin_type": "PASSIVE",
+          "net": "NetC15_1"
+        }
+      ]
+    },
+    {
+      "designator": "X2",
+      "value": "32.768kHZ ±20PPM",
+      "footprint": "SMD-7510",
+      "library_ref": "CRYSTAL",
+      "description": "Crystal",
+      "parameters": {
+        "Comment": "32.768kHZ ±20PPM",
+        "Number": "30411007"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "32K-OUT"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "32K-IN"
+        }
+      ]
+    }
+  ],
+  "nets": [
+    {
+      "name": "+3.3V-T",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "C1",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C13",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C16",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C17",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C19",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C2",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C20",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C24",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C25",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C27",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C3",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C5",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C7",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C8",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "D6",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "LCD1",
+          "pin": "1",
+          "pin_name": "VDD",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "Q1",
+          "pin": "2",
+          "pin_name": "S",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R15",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R2",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R4",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R7",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R8",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U1",
+          "pin": "11",
+          "pin_name": " VDD_5",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U1",
+          "pin": "21",
+          "pin_name": "VREF+",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U1",
+          "pin": "22",
+          "pin_name": "VDDA",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U1",
+          "pin": "28",
+          "pin_name": "VDD_4",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U1",
+          "pin": "50",
+          "pin_name": "VDD_1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U1",
+          "pin": "75",
+          "pin_name": "VDD_2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "8",
+          "pin_name": "VCC",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "16M-IN",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U1",
+          "pin": "12",
+          "pin_name": "OSC_IN",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "16M-OUT",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U1",
+          "pin": "13",
+          "pin_name": "OSC_OUT",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "32K-IN",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "C21",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U1",
+          "pin": "8",
+          "pin_name": " PC14-OSC32IN",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "X2",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "32K-OUT",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "C23",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U1",
+          "pin": "9",
+          "pin_name": "PC15-OSC32OUT",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "X2",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "DEBUG-TXD",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "P1",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U1",
+          "pin": "63",
+          "pin_name": "PC6/USART5_TX",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "GND-T",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "C1",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C13",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C15",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C16",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C17",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C18",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C19",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C2",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C20",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C21",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C23",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C24",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C25",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C27",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C3",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C33",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C4",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C5",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C7",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C8",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C?",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "D1",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "D8",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "LCD1",
+          "pin": "2",
+          "pin_name": "VSS",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "LCD1",
+          "pin": "20",
+          "pin_name": "LED-K",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "P1",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "P1",
+          "pin": "5",
+          "pin_name": "5",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "Q2",
+          "pin": "2",
+          "pin_name": "E",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R1",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R3",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "S1",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "S1",
+          "pin": "3",
+          "pin_name": "3",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "S5",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "S5",
+          "pin": "3",
+          "pin_name": "3",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U1",
+          "pin": "10",
+          "pin_name": " VSS_5",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U1",
+          "pin": "19",
+          "pin_name": "VSSA",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U1",
+          "pin": "20",
+          "pin_name": "VREF-",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U1",
+          "pin": "27",
+          "pin_name": "VSS_4",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U1",
+          "pin": "49",
+          "pin_name": "VSS_1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U1",
+          "pin": "74",
+          "pin_name": "VSS_2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "4",
+          "pin_name": "GND",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "LCD-PWM",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "R6",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U1",
+          "pin": "67",
+          "pin_name": "PA8",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "LCD_CS",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "LCD1",
+          "pin": "12",
+          "pin_name": "CS1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "LCD1",
+          "pin": "13",
+          "pin_name": "CS2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U1",
+          "pin": "88",
+          "pin_name": "PD7",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "LCD_DB0",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "LCD1",
+          "pin": "4",
+          "pin_name": "DB0",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U1",
+          "pin": "61",
+          "pin_name": "PD14",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "LCD_DB1",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "LCD1",
+          "pin": "5",
+          "pin_name": "DB1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U1",
+          "pin": "62",
+          "pin_name": "PD15",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "LCD_DB2",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "LCD1",
+          "pin": "6",
+          "pin_name": "DB2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U1",
+          "pin": "81",
+          "pin_name": "PD0",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "LCD_DB3",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "LCD1",
+          "pin": "7",
+          "pin_name": "DB3",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U1",
+          "pin": "82",
+          "pin_name": "PD1",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "LCD_DB4",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "LCD1",
+          "pin": "8",
+          "pin_name": "DB4",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U1",
+          "pin": "38",
+          "pin_name": "PE7",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "LCD_DB5",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "LCD1",
+          "pin": "9",
+          "pin_name": "DB5",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U1",
+          "pin": "39",
+          "pin_name": "PE8",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "LCD_DB6",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "LCD1",
+          "pin": "10",
+          "pin_name": "DB6",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U1",
+          "pin": "40",
+          "pin_name": "PE9",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "LCD_DB7",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "LCD1",
+          "pin": "11",
+          "pin_name": "DB7",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U1",
+          "pin": "41",
+          "pin_name": "PE10",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "LCD_WR",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "LCD1",
+          "pin": "15",
+          "pin_name": "R/W",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "LED_A",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "LCD1",
+          "pin": "19",
+          "pin_name": "LED-A",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "Q1",
+          "pin": "3",
+          "pin_name": "D",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "NRST",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "C33",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "D6",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "D8",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "LCD1",
+          "pin": "14",
+          "pin_name": "/RST",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R15",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "S5",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "TP13",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U1",
+          "pin": "14",
+          "pin_name": "NRST",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "NetC15_1",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "C15",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "X1",
+          "pin": "3",
+          "pin_name": "3",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "NetC18_1",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "C18",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "X1",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "NetC4_1",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "C4",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "D1",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "S1",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "S1",
+          "pin": "4",
+          "pin_name": "4",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U1",
+          "pin": "36",
+          "pin_name": "PB1",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "NetC?_1",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "C?",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "LCD1",
+          "pin": "16",
+          "pin_name": "RS",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "NetQ1_1",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "Q1",
+          "pin": "1",
+          "pin_name": "G",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R4",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R5",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "NetQ2_1",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "Q2",
+          "pin": "1",
+          "pin_name": "B",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R6",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "NetQ2_3",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "Q2",
+          "pin": "3",
+          "pin_name": "C",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R5",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "NetR1_2",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "R1",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U1",
+          "pin": "94",
+          "pin_name": "BOOT0",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "NetR7_2",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "R7",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "3",
+          "pin_name": "/WP#(IO2)",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "NetR8_2",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "R8",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "7",
+          "pin_name": "/HOLD(IO3)",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "NetU1_15",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U1",
+          "pin": "15",
+          "pin_name": "PC0",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "NetU1_16",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U1",
+          "pin": "16",
+          "pin_name": "PC1",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "NetU1_17",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U1",
+          "pin": "17",
+          "pin_name": "PC2",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "NetU1_18",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U1",
+          "pin": "18",
+          "pin_name": "PC3",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "NetU1_23",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U1",
+          "pin": "23",
+          "pin_name": "PA0-WKUP",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "NetU1_24",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U1",
+          "pin": "24",
+          "pin_name": "PA1",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "NetU1_25",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U1",
+          "pin": "25",
+          "pin_name": "PA2",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "SPI-CLK",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U1",
+          "pin": "78",
+          "pin_name": "PC10",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "6",
+          "pin_name": "CLK",
+          "pin_type": "INPUT"
+        }
+      ]
+    },
+    {
+      "name": "SPI-CS",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U1",
+          "pin": "77",
+          "pin_name": "PA15",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "1",
+          "pin_name": "/CS",
+          "pin_type": "INPUT"
+        }
+      ]
+    },
+    {
+      "name": "SPI-DI",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U1",
+          "pin": "80",
+          "pin_name": "PC12",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "5",
+          "pin_name": "DI(IO0)",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "SPI-DO",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U1",
+          "pin": "79",
+          "pin_name": "PC11",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "2",
+          "pin_name": "DO(IO1)",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "SWCLK",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "P1",
+          "pin": "3",
+          "pin_name": "3",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R3",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U1",
+          "pin": "76",
+          "pin_name": "PA14",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "SWDIO",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/gd32f205vet6/schematic/gd32f205vet6.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "P1",
+          "pin": "4",
+          "pin_name": "4",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R2",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U1",
+          "pin": "72",
+          "pin_name": "PA13",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    }
+  ]
+}

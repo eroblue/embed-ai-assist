@@ -1,0 +1,158 @@
+{
+  "schema": "embedaiassist.s5a.hardware_capabilities.v1",
+  "mcu": "STM32F103ZET6",
+  "platform": "stm32f103zet6",
+  "rtos": "none",
+  "architecture": "layered",
+  "power_enabled": false,
+  "clocks": {
+    "sysclk_hz": 32000000,
+    "ahb_hz": 32000000,
+    "apb1_hz": 32000000,
+    "apb2_hz": 32000000,
+    "source": "HSE 8MHz × 4",
+    "hse_hz": 8000000,
+    "lse_hz": 32768
+  },
+  "peripherals": [
+    {
+      "type": "uart",
+      "instance": "USART2",
+      "pins": {
+        "tx": "PA2",
+        "rx": "PA3"
+      },
+      "dma": null,
+      "irq": "USART2",
+      "capabilities": [
+        "115200-8N1"
+      ]
+    },
+    {
+      "type": "uart",
+      "instance": "USART1",
+      "pins": {
+        "tx": "PA9",
+        "rx": "PA10"
+      },
+      "dma": null,
+      "irq": "USART1",
+      "capabilities": [
+        "9600-8N1"
+      ]
+    },
+    {
+      "type": "uart",
+      "instance": "UART4",
+      "pins": {
+        "tx": "PC10",
+        "rx": "PC11"
+      },
+      "dma": null,
+      "irq": "UART4",
+      "capabilities": [
+        "115200-8N1"
+      ]
+    },
+    {
+      "type": "spi",
+      "instance": "SPI2",
+      "pins": {
+        "nss": "PB12",
+        "sck": "PB13",
+        "miso": "PB14",
+        "mosi": "PB15"
+      },
+      "dma": null,
+      "irq": null,
+      "capabilities": [
+        "master",
+        "soft-nss"
+      ]
+    },
+    {
+      "type": "i2c",
+      "instance": "I2C1",
+      "pins": {
+        "scl": "PB6",
+        "sda": "PB7"
+      },
+      "dma": null,
+      "irq": null,
+      "capabilities": [
+        "100kHz-standard"
+      ]
+    },
+    {
+      "type": "adc",
+      "instance": "ADC1",
+      "pins": {
+        "stm_adc": "PA1"
+      },
+      "dma": null,
+      "irq": null,
+      "capabilities": [
+        "12bit-right-align"
+      ]
+    },
+    {
+      "type": "gpio",
+      "instance": "GPIOA",
+      "pins": {
+        "PA0": "IN_FLOATING",
+        "PA15": "IN_FLOATING"
+      },
+      "dma": null,
+      "irq": null,
+      "capabilities": [
+        "2-pins"
+      ]
+    },
+    {
+      "type": "gpio",
+      "instance": "GPIOB",
+      "pins": {
+        "PB3": "IN_FLOATING",
+        "PB5": "OUT_PP"
+      },
+      "dma": null,
+      "irq": null,
+      "capabilities": [
+        "2-pins"
+      ]
+    },
+    {
+      "type": "gpio",
+      "instance": "GPIOC",
+      "pins": {
+        "PC13": "IN_FLOATING",
+        "PC14": "IN_FLOATING",
+        "PC15": "IN_FLOATING"
+      },
+      "dma": null,
+      "irq": null,
+      "capabilities": [
+        "3-pins"
+      ]
+    },
+    {
+      "type": "gpio",
+      "instance": "GPIOE",
+      "pins": {
+        "PE2": "IPU",
+        "PE3": "IPU",
+        "PE4": "IPU",
+        "PE5": "OUT_PP"
+      },
+      "dma": null,
+      "irq": null,
+      "capabilities": [
+        "4-pins"
+      ]
+    }
+  ],
+  "power": null,
+  "constraints": [
+    "82 个已连接引脚网络名无语义（如 PE6），未生成 GPIO 配置，待 AI/人工补充"
+  ]
+}

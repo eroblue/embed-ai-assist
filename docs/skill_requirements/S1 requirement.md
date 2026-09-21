@@ -85,7 +85,7 @@ schematic-reader/
 - 输入输出JSON Schema格式参考项目根目录文件：input.schema.json、output.schema.json，
   重新定义合理的JSON Schema，并写入到对应的skill目录里面
 - skill通用模板已提取到 `EmbedAIAssist/docs/skill_template.md`，后续skill清单中的
-  13个skill都按该模板生成（标准目录结构：SKILL.md + schemas/ + scripts/ +
+  14个skill都按该模板生成（标准目录结构：SKILL.md + schemas/ + scripts/ +
   references/ + assets/）
 
 ### 配置分层加载机制

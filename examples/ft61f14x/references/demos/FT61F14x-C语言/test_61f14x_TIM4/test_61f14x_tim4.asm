@@ -1,0 +1,163 @@
+//Deviec:FT61F14X
+//-----------------------Variable---------------------------------
+//-----------------------Variable END---------------------------------
+		ORG		0000H
+		MOVLP 	0H 			//0000 	0180
+		LJUMP 	10H 			//0001 	3810
+		ORG		0004H
+		BSR 	7EH, 0H 			//0004 	247E
+		MOVLP 	0H 			//0005 	0180
+
+		//;test_61f14x_TIM4.C: 34: if(T4UIE && T4UIF)
+		MOVLB 	2H 			//0006 	1022
+		BTSC 	12H, 0H 		//0007 	2812
+		BTSS 	13H, 0H 		//0008 	2C13
+		LJUMP 	EH 			//0009 	380E
+
+		//;test_61f14x_TIM4.C: 35: {
+		//;test_61f14x_TIM4.C: 36: T4UIF = 1;
+		BSR 	13H, 0H 			//000A 	2413
+
+		//;test_61f14x_TIM4.C: 37: RB3 = ~RB3;
+		LDWI 	8H 			//000B 	0008
+		ORG		000CH
+		MOVLB 	0H 			//000C 	1020
+		XORWR 	DH, 1H 		//000D 	168D
+		BCR 	7EH, 0H 			//000E 	207E
+		RETI 					//000F 	1009
+		MOVLP 	0H 			//0010 	0180
+		LJUMP 	12H 			//0011 	3812
+		BCR 	7EH, 0H 			//0012 	207E
+		MOVLB 	0H 			//0013 	1020
+		ORG		0014H
+		LJUMP 	15H 			//0014 	3815
+
+		//;test_61f14x_TIM4.C: 157: POWER_INITIAL();
+		LCALL 	1BH 			//0015 	301B
+		MOVLP 	0H 			//0016 	0180
+
+		//;test_61f14x_TIM4.C: 158: Time4Initial();
+		LCALL 	3DH 			//0017 	303D
+		MOVLP 	0H 			//0018 	0180
+
+		//;test_61f14x_TIM4.C: 161: {
+		//;test_61f14x_TIM4.C: 162: __nop();
+		NOP 					//0019 	1000
+		LJUMP 	19H 			//001A 	3819
+
+		//;test_61f14x_TIM4.C: 48: OSCCON = 0B01110001;
+		LDWI 	71H 			//001B 	0071
+		ORG		001CH
+		MOVLB 	1H 			//001C 	1021
+		STR 	19H 			//001D 	1099
+
+		//;test_61f14x_TIM4.C: 49: INTCON = 0;
+		CLRF 	BH 			//001E 	118B
+
+		//;test_61f14x_TIM4.C: 51: PORTA = 0B00000000;
+		MOVLB 	0H 			//001F 	1020
+		CLRF 	CH 			//0020 	118C
+
+		//;test_61f14x_TIM4.C: 52: TRISA = 0B00000000;
+		MOVLB 	1H 			//0021 	1021
+		CLRF 	CH 			//0022 	118C
+
+		//;test_61f14x_TIM4.C: 53: PORTB = 0B00000000;
+		MOVLB 	0H 			//0023 	1020
+		ORG		0024H
+		CLRF 	DH 			//0024 	118D
+
+		//;test_61f14x_TIM4.C: 54: TRISB = 0B00000000;
+		MOVLB 	1H 			//0025 	1021
+		CLRF 	DH 			//0026 	118D
+
+		//;test_61f14x_TIM4.C: 55: PORTC = 0B00000000;
+		MOVLB 	0H 			//0027 	1020
+		CLRF 	EH 			//0028 	118E
+
+		//;test_61f14x_TIM4.C: 56: TRISC = 0B00000000;
+		MOVLB 	1H 			//0029 	1021
+		CLRF 	EH 			//002A 	118E
+
+		//;test_61f14x_TIM4.C: 58: WPUA = 0B00000000;
+		MOVLB 	3H 			//002B 	1023
+		ORG		002CH
+		CLRF 	CH 			//002C 	118C
+
+		//;test_61f14x_TIM4.C: 59: WPUB = 0B00000000;
+		CLRF 	DH 			//002D 	118D
+
+		//;test_61f14x_TIM4.C: 60: WPUC = 0B00000000;
+		CLRF 	EH 			//002E 	118E
+
+		//;test_61f14x_TIM4.C: 62: WPDA = 0B00000000;
+		MOVLB 	4H 			//002F 	1024
+		CLRF 	CH 			//0030 	118C
+
+		//;test_61f14x_TIM4.C: 63: WPDB = 0B00000000;
+		CLRF 	DH 			//0031 	118D
+
+		//;test_61f14x_TIM4.C: 64: WPDC = 0B00000000;
+		CLRF 	EH 			//0032 	118E
+
+		//;test_61f14x_TIM4.C: 66: PSRC0 = 0B11111111;
+		LDWI 	FFH 			//0033 	00FF
+		ORG		0034H
+		MOVLB 	2H 			//0034 	1022
+		STR 	1AH 			//0035 	109A
+
+		//;test_61f14x_TIM4.C: 67: PSRC1 = 0B11111111;
+		STR 	1BH 			//0036 	109B
+
+		//;test_61f14x_TIM4.C: 69: PSINK0 = 0B11111111;
+		MOVLB 	3H 			//0037 	1023
+		STR 	1AH 			//0038 	109A
+
+		//;test_61f14x_TIM4.C: 70: PSINK1 = 0B11111111;
+		STR 	1BH 			//0039 	109B
+
+		//;test_61f14x_TIM4.C: 71: PSINK2 = 0B11111111;
+		STR 	1CH 			//003A 	109C
+
+		//;test_61f14x_TIM4.C: 73: ANSELA = 0B00000000;
+		CLRF 	17H 			//003B 	1197
+		ORG		003CH
+		RET 					//003C 	1008
+
+		//;test_61f14x_TIM4.C: 84: PCKEN |=0B00001000;
+		MOVLB 	1H 			//003D 	1021
+		BSR 	1AH, 3H 			//003E 	259A
+
+		//;test_61f14x_TIM4.C: 88: TIM4CR1 =0B00000101;
+		LDWI 	5H 			//003F 	0005
+		MOVLB 	2H 			//0040 	1022
+		STR 	11H 			//0041 	1091
+
+		//;test_61f14x_TIM4.C: 119: TIM4IER =0B00000001;
+		LDWI 	1H 			//0042 	0001
+		STR 	12H 			//0043 	1092
+		ORG		0044H
+
+		//;test_61f14x_TIM4.C: 122: TIM4SR =0B00000000;
+		CLRF 	13H 			//0044 	1193
+
+		//;test_61f14x_TIM4.C: 131: TIM4EGR =0B00000000;
+		CLRF 	14H 			//0045 	1194
+
+		//;test_61f14x_TIM4.C: 136: TIM4CNTR=0;
+		CLRF 	15H 			//0046 	1195
+
+		//;test_61f14x_TIM4.C: 138: TIM4PSCR=0B00000100;
+		LDWI 	4H 			//0047 	0004
+		STR 	16H 			//0048 	1096
+
+		//;test_61f14x_TIM4.C: 143: TIM4ARR =124;
+		LDWI 	7CH 			//0049 	007C
+		STR 	17H 			//004A 	1097
+
+		//;test_61f14x_TIM4.C: 147: INTCON |= 0B11000000;
+		LDWI 	C0H 			//004B 	00C0
+		ORG		004CH
+		IORWR 	BH, 1H 		//004C 	148B
+		RET 					//004D 	1008
+			END

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.s5a.output.v1",
+  "title": "S5a hardware-initializer 输出契约（state.json 的 s5a 字段）",
+  "type": "object",
+  "required": ["status", "error", "updated_at"],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["running", "done", "error", "skipped"],
+      "description": "running=prepare 已出任务书待 Agent 生成代码；done=产物校验通过"
+    },
+    "rtos": {"type": "string", "enum": ["none", "FreeRTOS", "RT-Thread", "Zephyr"], "description": "本次生成使用的 RTOS（config 显式值），裸机为 none"},
+    "architecture": {"type": "string", "enum": ["flat", "layered", "full"]},
+    "power_enabled": {"type": "boolean"},
+    "generation_brief": {"type": "string", "description": "outputs/s5a/generation_brief.md 路径（prepare 段写入，Agent 代码生成任务书）"},
+    "incremental": {"type": "boolean", "description": "true=增量模式（存在上轮模块快照并已 diff）；false=全量（首次/配置大变）"},
+    "changed_modules": {"type": "array", "items": {"type": "string"}, "description": "增量模式本轮需重写的模块清单（含总入口 hal_init/board_init）；全量模式为全部模块；无变更时为空数组"},
+    "init_sources": {"type": "array", "items": {"type": "string"}, "description": "S5a 产物源文件相对路径列表（目录由 PROJECT_LAYOUT.md 解析，如 Drivers/BSP/Src/）"},
+    "init_headers": {"type": "array", "items": {"type": "string"}, "description": "S5a 产物头文件相对路径列表（目录由 PROJECT_LAYOUT.md 解析，如 Drivers/BSP/Inc/）"},
+    "entry_source": {"type": "string", "description": "总入口源文件（hal_init.c 或 board_init.c）"},
+    "entry_header": {"type": "string"},
+    "rtos_hw_init": {"type": ["string", "null"], "description": "rtos_hw_init.c 路径，裸机为 null"},
+    "power_init": {"type": ["string", "null"], "description": "power_init.c 路径，未启用低功耗为 null"},
+    "hardware_capabilities": {"type": "string", "description": "outputs/s5a/hardware_capabilities.json 路径"},
+    "ide_pending_files": {"type": ["string", "null"], "description": "outputs/s5a/ide_pending_files.json 路径（IDE 同步由公共工具 skills/_shared/scripts/ide_sync.py 完成，失败时见 outputs/_shared/ide_sync_manual.md），失败时为 null"},
+    "error": {"type": ["string", "null"]},
+    "updated_at": {"type": "string"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "done"}}},
+      "then": {
+        "required": [
+          "rtos", "architecture", "power_enabled",
+          "init_sources", "init_headers", "entry_source", "entry_header",
+          "rtos_hw_init", "power_init", "hardware_capabilities", "ide_pending_files"
+        ]
+      }
+    }
+  ]
+}

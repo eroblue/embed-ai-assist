@@ -1,0 +1,117 @@
+[p PRO_MODE GLOBOPT AUTOSTATIC RSC14 RSC14E SPACEOPT ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip FT61F14X ]
+[d frameptr 6 ]
+"62 d:\ide3.0.3_6c03\data\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 d:\ide3.0.3_6c03\data\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"34 D:\FMD DEMO CODE(word+pdf)\C ÐÞ¸Ä\FT61F14x\test_61f14x_MSCK\test_61f14x_MSCK.C
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+"70
+[v _DelayUs DelayUs `(v  1 e 1 0 ]
+"84
+[v _DelayMs DelayMs `(v  1 e 1 0 ]
+"103
+[v _SlowTimeTest SlowTimeTest `(ui  1 e 2 0 ]
+"122
+[v _main main `(v  1 e 1 0 ]
+"97 d:\ide3.0.3_6c03\data\include\FT61F14X.h
+[v _INTCON INTCON `VEuc  1 e 1 @11 ]
+"123
+[v _PORTA PORTA `VEuc  1 e 1 @12 ]
+"168
+[v _PORTB PORTB `VEuc  1 e 1 @13 ]
+"213
+[v _PORTC PORTC `VEuc  1 e 1 @14 ]
+"237
+[v _CKMIF CKMIF `VEb  1 e 0 @137 ]
+"262
+[v _TRISA TRISA `VEuc  1 e 1 @140 ]
+"289
+[v _TRISB TRISB `VEuc  1 e 1 @141 ]
+"316
+[v _TRISC TRISC `VEuc  1 e 1 @142 ]
+"475
+[v _OSCCON OSCCON `VEuc  1 e 1 @153 ]
+"506
+[v _PCKEN PCKEN `VEuc  1 e 1 @154 ]
+"821
+[v _PSRC0 PSRC0 `VEuc  1 e 1 @282 ]
+"826
+[v _PSRC1 PSRC1 `VEuc  1 e 1 @283 ]
+"869
+[v _WPUA WPUA `VEuc  1 e 1 @396 ]
+"873
+[v _WPUB WPUB `VEuc  1 e 1 @397 ]
+"877
+[v _WPUC WPUC `VEuc  1 e 1 @398 ]
+"966
+[v _ANSELA ANSELA `VEuc  1 e 1 @407 ]
+"1001
+[v _PSINK0 PSINK0 `VEuc  1 e 1 @410 ]
+"1005
+[v _PSINK1 PSINK1 `VEuc  1 e 1 @411 ]
+"1008
+[v _PSINK2 PSINK2 `VEuc  1 e 1 @412 ]
+"1043
+[v _WPDA WPDA `VEuc  1 e 1 @524 ]
+"1070
+[v _WPDB WPDB `VEuc  1 e 1 @525 ]
+"1096
+[v _WPDC WPDC `VEuc  1 e 1 @526 ]
+"1747
+[v _T2CEN T2CEN `VEb  1 e 0 @6240 ]
+"2082
+[v _TCKSRC TCKSRC `VEuc  1 e 1 @799 ]
+"2180
+[v _CKCNTI CKCNTI `VEb  1 e 0 @8424 ]
+"2181
+[v _CKMAVG CKMAVG `VEb  1 e 0 @8425 ]
+"2194
+[v _SOSCPRL SOSCPRL `VEuc  1 e 1 @1054 ]
+"2214
+[v _SOSCPRH SOSCPRH `VEuc  1 e 1 @1055 ]
+"27 D:\FMD DEMO CODE(word+pdf)\C ÐÞ¸Ä\FT61F14x\test_61f14x_MSCK\test_61f14x_MSCK.C
+[v _TestBuff TestBuff `VEui  1 e 2 0 ]
+"122
+[v _main main `(v  1 e 1 0 ]
+{
+"135
+} 0
+"103
+[v _SlowTimeTest SlowTimeTest `(ui  1 e 2 0 ]
+{
+"115
+} 0
+"34
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+{
+"63
+} 0
+"84
+[v _DelayMs DelayMs `(v  1 e 1 0 ]
+{
+[v DelayMs@Time Time `uc  1 a 1 wreg ]
+"86
+[v DelayMs@b b `uc  1 a 1 4 ]
+[v DelayMs@a a `uc  1 a 1 3 ]
+"84
+[v DelayMs@Time Time `uc  1 a 1 wreg ]
+"87
+[v DelayMs@Time Time `uc  1 a 1 2 ]
+"94
+} 0
+"70
+[v _DelayUs DelayUs `(v  1 e 1 0 ]
+{
+[v DelayUs@Time Time `uc  1 a 1 wreg ]
+"72
+[v DelayUs@a a `uc  1 a 1 1 ]
+"70
+[v DelayUs@Time Time `uc  1 a 1 wreg ]
+"73
+[v DelayUs@Time Time `uc  1 a 1 0 ]
+"77
+} 0

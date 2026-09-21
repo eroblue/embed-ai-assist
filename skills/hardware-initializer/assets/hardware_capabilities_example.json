@@ -1,0 +1,55 @@
+{
+  "schema": "embedaiassist.s5a.hardware_capabilities.v1",
+  "mcu": "GD32F205VET6,LQFP100",
+  "platform": "gd32f205vet6",
+  "rtos": "none",
+  "architecture": "layered",
+  "power_enabled": false,
+  "clocks": {
+    "sysclk_hz": 112000000,
+    "ahb_hz": 112000000,
+    "apb1_hz": 56000000,
+    "apb2_hz": 112000000,
+    "source": "HXTAL 16MHz x7",
+    "hse_hz": 16000000,
+    "lse_hz": 32768
+  },
+  "peripherals": [
+    {
+      "type": "uart",
+      "instance": "USART5",
+      "pins": {"tx": "PC6"},
+      "dma": null,
+      "irq": "USART5",
+      "capabilities": ["115200-8N1"]
+    },
+    {
+      "type": "spi",
+      "instance": "SPI0",
+      "pins": {"nss": "PA15", "sck": "PC10", "miso": "PC11", "mosi": "PC12"},
+      "dma": null,
+      "irq": null,
+      "capabilities": ["master", "soft-nss"]
+    },
+    {
+      "type": "pwm",
+      "instance": "TIMER0",
+      "pins": {"out": "PA8"},
+      "dma": null,
+      "irq": null,
+      "capabilities": ["1kHz-default", "50%-default"]
+    },
+    {
+      "type": "fsmc",
+      "instance": "FSMC/EXMC",
+      "pins": {"LCD_DB0": "PD14", "LCD_DB1": "PD15"},
+      "dma": null,
+      "irq": null,
+      "capabilities": ["lcd-parallel-bus"]
+    }
+  ],
+  "power": null,
+  "constraints": [
+    "3 个已连接引脚网络名无语义（如 NetU1_15），未生成 GPIO 配置，待 AI/人工补充"
+  ]
+}

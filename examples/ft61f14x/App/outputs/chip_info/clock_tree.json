@@ -1,0 +1,40 @@
+{
+  "clock_sources": [
+    {
+      "name": "HIRC",
+      "typical": "16 MHz",
+      "frequency_range": "16 MHz",
+      "notes": "内部高速精准振荡器，上电默认时钟源"
+    },
+    {
+      "name": "LIRC",
+      "typical": "32 kHz / 256 kHz",
+      "frequency_range": "32 kHz / 256 kHz",
+      "notes": "内部低速低功耗振荡器，双档可选"
+    },
+    {
+      "name": "HXTAL",
+      "typical": "外部输入，未限定",
+      "frequency_range": "外部时钟/晶体，未限定",
+      "notes": "EC 模式外部时钟灌入 / XT 模式外部晶体（OSCCON.SCS 选择）"
+    },
+    {
+      "name": "LXTAL",
+      "typical": "32.768 kHz",
+      "frequency_range": "32.768 kHz",
+      "notes": "XT 模式音叉式晶振（手表晶振）"
+    }
+  ],
+  "bus_prescalers": [],
+  "peripheral_clock_enables": [],
+  "notes": "8 位机 SFR 直访，无总线分频/外设时钟门控；系统时钟源与频率由 OSCCON.MCKCF 位段选择（地址 0x99）",
+  "schema": "embedaiassist.chip.clocktree.v1",
+  "mcu_family": "FT61F14X",
+  "source": {
+    "svd": null,
+    "sdk_header": null,
+    "reference_manual": null,
+    "datasheet": "E:\\skills\\EmbedSoftAutomaticProject\\embed-ai-assist\\platforms\\ft61f14x\\datasheets\\ft61f14x_ds_rev1p09_cn.pdf",
+    "extracted_at": "2026-09-20T11:58:47"
+  }
+}

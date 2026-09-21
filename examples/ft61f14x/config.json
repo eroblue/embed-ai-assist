@@ -1,0 +1,14 @@
+{
+  "platform": "ft61f14x",
+  "project": {
+    "build_target": "App",
+    "architecture": "flat",
+    "arch_family": "mcu8",
+    "rtos": "none",
+    "power": {
+      "enabled": false
+    }
+  },
+  "schematic_path": "schematic/ft61f14x_test.SchDoc",
+  "datasheet_path": "platforms/ft61f14x/datasheets/ft61f14x_ds_rev1p09_cn.pdf"
+}

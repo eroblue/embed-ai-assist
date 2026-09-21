@@ -1,0 +1,1834 @@
+{
+  "schema": "embedaiassist.chip.pins.v1",
+  "mcu_family": "STM32F1",
+  "package": "LQFP144",
+  "pin_count": 144,
+  "source": {
+    "datasheet": "E:\\skills\\EmbedSoftAutomaticProject\\embed-ai-assist\\platforms\\stm32f103zet6\\datasheets\\STM32F103ZET6.pdf",
+    "extracted_at": "2026-09-16T15:52:08"
+  },
+  "pins": [
+    {
+      "pin": 1,
+      "name": "PE2",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PE2",
+      "alternate_functions": [
+        "TRACECK",
+        "FSMC_A23"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 2,
+      "name": "PE3",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PE3",
+      "alternate_functions": [
+        "TRACED0",
+        "FSMC_A19"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 3,
+      "name": "PE4",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PE4",
+      "alternate_functions": [
+        "TRACED1",
+        "FSMC_A20"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 4,
+      "name": "PE5",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PE5",
+      "alternate_functions": [
+        "TRACED2",
+        "FSMC_A21"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 5,
+      "name": "PE6",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PE6",
+      "alternate_functions": [
+        "TRACED3",
+        "FSMC_A22"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 6,
+      "name": "VBAT",
+      "pin_type": "POWER",
+      "pin_type_raw": "S",
+      "io_level": "",
+      "main_function": "VBAT",
+      "alternate_functions": [],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 7,
+      "name": "PC13-TAMPER-RTC(5)",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "",
+      "main_function": "PC13(6)",
+      "alternate_functions": [
+        "TAMPER-RTC"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 8,
+      "name": "PC14-OSC32_IN(5)",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "",
+      "main_function": "PC14(6)",
+      "alternate_functions": [
+        "OSC32_IN"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 9,
+      "name": "PC15-OSC32_OUT(5)",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "",
+      "main_function": "PC15(6)",
+      "alternate_functions": [
+        "OSC32_OUT"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 10,
+      "name": "PF0",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PF0",
+      "alternate_functions": [
+        "FSMC_A0"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 11,
+      "name": "PF1",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PF1",
+      "alternate_functions": [
+        "FSMC_A1"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 12,
+      "name": "PF2",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PF2",
+      "alternate_functions": [
+        "FSMC_A2"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 13,
+      "name": "PF3",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PF3",
+      "alternate_functions": [
+        "FSMC_A3"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 14,
+      "name": "PF4",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PF4",
+      "alternate_functions": [
+        "FSMC_A4"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 15,
+      "name": "PF5",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PF5",
+      "alternate_functions": [
+        "FSMC_A5"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 16,
+      "name": "VSS_5",
+      "pin_type": "POWER",
+      "pin_type_raw": "S",
+      "io_level": "",
+      "main_function": "VSS_5",
+      "alternate_functions": [],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 17,
+      "name": "VDD_5",
+      "pin_type": "POWER",
+      "pin_type_raw": "S",
+      "io_level": "",
+      "main_function": "VDD_5",
+      "alternate_functions": [],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 18,
+      "name": "PF6",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "",
+      "main_function": "PF6",
+      "alternate_functions": [
+        "ADC3_IN4",
+        "FSMC_NIORD"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 19,
+      "name": "PF7",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "",
+      "main_function": "PF7",
+      "alternate_functions": [
+        "ADC3_IN5",
+        "FSMC_NREG"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 20,
+      "name": "PF8",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "",
+      "main_function": "PF8",
+      "alternate_functions": [
+        "ADC3_IN6",
+        "FSMC_NIOWR"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 21,
+      "name": "PF9",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "",
+      "main_function": "PF9",
+      "alternate_functions": [
+        "ADC3_IN7",
+        "FSMC_CD"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 22,
+      "name": "PF10",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "",
+      "main_function": "PF10",
+      "alternate_functions": [
+        "ADC3_IN8",
+        "FSMC_INTR"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 23,
+      "name": "OSC_IN",
+      "pin_type": "INPUT",
+      "pin_type_raw": "I",
+      "io_level": "",
+      "main_function": "OSC_IN",
+      "alternate_functions": [],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 24,
+      "name": "OSC_OUT",
+      "pin_type": "OUTPUT",
+      "pin_type_raw": "O",
+      "io_level": "",
+      "main_function": "OSC_OUT",
+      "alternate_functions": [],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 25,
+      "name": "NRST",
+      "pin_type": "NRST",
+      "pin_type_raw": "I/O",
+      "io_level": "",
+      "main_function": "NRST",
+      "alternate_functions": [],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 26,
+      "name": "PC0",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "",
+      "main_function": "PC0",
+      "alternate_functions": [
+        "ADC123_IN10"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 27,
+      "name": "PC1",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "",
+      "main_function": "PC1",
+      "alternate_functions": [
+        "ADC123_IN11"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 28,
+      "name": "PC2",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "",
+      "main_function": "PC2",
+      "alternate_functions": [
+        "ADC123_IN12"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 29,
+      "name": "PC3",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "",
+      "main_function": "PC3",
+      "alternate_functions": [
+        "ADC123_IN13"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 30,
+      "name": "VSSA",
+      "pin_type": "POWER",
+      "pin_type_raw": "S",
+      "io_level": "",
+      "main_function": "VSSA",
+      "alternate_functions": [],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 31,
+      "name": "VREF-",
+      "pin_type": "POWER",
+      "pin_type_raw": "S",
+      "io_level": "",
+      "main_function": "VREF-",
+      "alternate_functions": [],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 32,
+      "name": "VREF+",
+      "pin_type": "POWER",
+      "pin_type_raw": "S",
+      "io_level": "",
+      "main_function": "VREF+",
+      "alternate_functions": [],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 33,
+      "name": "VDDA",
+      "pin_type": "POWER",
+      "pin_type_raw": "S",
+      "io_level": "",
+      "main_function": "VDDA",
+      "alternate_functions": [],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 34,
+      "name": "PA0-WKUP",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "",
+      "main_function": "PA0",
+      "alternate_functions": [
+        "WKUP",
+        "USART2_CTS(8)ADC123_IN0TIM2_CH1_ETRTIM5_CH1",
+        "TIM8_ETR"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 35,
+      "name": "PA1",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "",
+      "main_function": "PA1",
+      "alternate_functions": [
+        "USART2_RTS(8)ADC123_IN1",
+        "TIM5_CH2",
+        "TIM2_CH2(8)"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 36,
+      "name": "PA2",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "",
+      "main_function": "PA2",
+      "alternate_functions": [
+        "USART2_TX(8)",
+        "TIM5_CH3ADC123_IN2",
+        "TIM2_CH3 (8)"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 37,
+      "name": "PA3",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "",
+      "main_function": "PA3",
+      "alternate_functions": [
+        "USART2_RX(8)",
+        "TIM5_CH4ADC123_IN3",
+        "TIM2_CH4(8)"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 38,
+      "name": "VSS_4",
+      "pin_type": "POWER",
+      "pin_type_raw": "S",
+      "io_level": "",
+      "main_function": "VSS_4",
+      "alternate_functions": [],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 39,
+      "name": "VDD_4",
+      "pin_type": "POWER",
+      "pin_type_raw": "S",
+      "io_level": "",
+      "main_function": "VDD_4",
+      "alternate_functions": [],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 40,
+      "name": "PA4",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "",
+      "main_function": "PA4",
+      "alternate_functions": [
+        "SPI1_NSS(8)",
+        "USART2_CK(8)DAC_OUT1",
+        "ADC12_IN4"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 41,
+      "name": "PA5",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "",
+      "main_function": "PA5",
+      "alternate_functions": [
+        "SPI1_SCK(8)DAC_OUT2 ADC12_IN5"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 42,
+      "name": "PA6",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "",
+      "main_function": "PA6",
+      "alternate_functions": [
+        "SPI1_MISO(8)TIM8_BKIN",
+        "ADC12_IN6TIM3_CH1(8)"
+      ],
+      "alternate_functions_remap": [
+        "TIM1_BKIN"
+      ]
+    },
+    {
+      "pin": 43,
+      "name": "PA7",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "",
+      "main_function": "PA7",
+      "alternate_functions": [
+        "SPI1_MOSI(8)",
+        "TIM8_CH1N",
+        "ADC12_IN7TIM3_CH2(8)"
+      ],
+      "alternate_functions_remap": [
+        "TIM1_CH1N"
+      ]
+    },
+    {
+      "pin": 44,
+      "name": "PC4",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "",
+      "main_function": "PC4",
+      "alternate_functions": [
+        "ADC12_IN14"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 45,
+      "name": "PC5",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "",
+      "main_function": "PC5",
+      "alternate_functions": [
+        "ADC12_IN15"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 46,
+      "name": "PB0",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "",
+      "main_function": "PB0",
+      "alternate_functions": [
+        "ADC12_IN8",
+        "TIM3_CH3TIM8_CH2N"
+      ],
+      "alternate_functions_remap": [
+        "TIM1_CH2N"
+      ]
+    },
+    {
+      "pin": 47,
+      "name": "PB1",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "",
+      "main_function": "PB1",
+      "alternate_functions": [
+        "ADC12_IN9",
+        "TIM3_CH4(8)TIM8_CH3N"
+      ],
+      "alternate_functions_remap": [
+        "TIM1_CH3N"
+      ]
+    },
+    {
+      "pin": 48,
+      "name": "PB2",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PB2/BOOT1",
+      "alternate_functions": [],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 49,
+      "name": "PF11",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PF11",
+      "alternate_functions": [
+        "FSMC_NIOS16"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 50,
+      "name": "PF12",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PF12",
+      "alternate_functions": [
+        "FSMC_A6"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 51,
+      "name": "VSS_6",
+      "pin_type": "POWER",
+      "pin_type_raw": "S",
+      "io_level": "",
+      "main_function": "VSS_6",
+      "alternate_functions": [],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 52,
+      "name": "VDD_6",
+      "pin_type": "POWER",
+      "pin_type_raw": "S",
+      "io_level": "",
+      "main_function": "VDD_6",
+      "alternate_functions": [],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 53,
+      "name": "PF13",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PF13",
+      "alternate_functions": [
+        "FSMC_A7"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 54,
+      "name": "PF14",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PF14",
+      "alternate_functions": [
+        "FSMC_A8"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 55,
+      "name": "PF15",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PF15",
+      "alternate_functions": [
+        "FSMC_A9"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 56,
+      "name": "PG0",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PG0",
+      "alternate_functions": [
+        "FSMC_A10"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 57,
+      "name": "PG1",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PG1",
+      "alternate_functions": [
+        "FSMC_A11"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 58,
+      "name": "PE7",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PE7",
+      "alternate_functions": [
+        "FSMC_D4"
+      ],
+      "alternate_functions_remap": [
+        "TIM1_ETR"
+      ]
+    },
+    {
+      "pin": 59,
+      "name": "PE8",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PE8",
+      "alternate_functions": [
+        "FSMC_D5"
+      ],
+      "alternate_functions_remap": [
+        "TIM1_CH1N"
+      ]
+    },
+    {
+      "pin": 60,
+      "name": "PE9",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PE9",
+      "alternate_functions": [
+        "FSMC_D6"
+      ],
+      "alternate_functions_remap": [
+        "TIM1_CH1"
+      ]
+    },
+    {
+      "pin": 61,
+      "name": "VSS_7",
+      "pin_type": "POWER",
+      "pin_type_raw": "S",
+      "io_level": "",
+      "main_function": "VSS_7",
+      "alternate_functions": [],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 62,
+      "name": "VDD_7",
+      "pin_type": "POWER",
+      "pin_type_raw": "S",
+      "io_level": "",
+      "main_function": "VDD_7",
+      "alternate_functions": [],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 63,
+      "name": "PE10",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PE10",
+      "alternate_functions": [
+        "FSMC_D7"
+      ],
+      "alternate_functions_remap": [
+        "TIM1_CH2N"
+      ]
+    },
+    {
+      "pin": 64,
+      "name": "PE11",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PE11",
+      "alternate_functions": [
+        "FSMC_D8"
+      ],
+      "alternate_functions_remap": [
+        "TIM1_CH2"
+      ]
+    },
+    {
+      "pin": 65,
+      "name": "PE12",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PE12",
+      "alternate_functions": [
+        "FSMC_D9"
+      ],
+      "alternate_functions_remap": [
+        "TIM1_CH3N"
+      ]
+    },
+    {
+      "pin": 66,
+      "name": "PE13",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PE13",
+      "alternate_functions": [
+        "FSMC_D10"
+      ],
+      "alternate_functions_remap": [
+        "TIM1_CH3"
+      ]
+    },
+    {
+      "pin": 67,
+      "name": "PE14",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PE14",
+      "alternate_functions": [
+        "FSMC_D11"
+      ],
+      "alternate_functions_remap": [
+        "TIM1_CH4"
+      ]
+    },
+    {
+      "pin": 68,
+      "name": "PE15",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PE15",
+      "alternate_functions": [
+        "FSMC_D12"
+      ],
+      "alternate_functions_remap": [
+        "TIM1_BKIN"
+      ]
+    },
+    {
+      "pin": 69,
+      "name": "PB10",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PB10",
+      "alternate_functions": [
+        "I2C2_SCL",
+        "USART3_TX(8)"
+      ],
+      "alternate_functions_remap": [
+        "TIM2_CH3"
+      ]
+    },
+    {
+      "pin": 70,
+      "name": "PB11",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PB11",
+      "alternate_functions": [
+        "I2C2_SDA",
+        "USART3_RX(8)"
+      ],
+      "alternate_functions_remap": [
+        "TIM2_CH4"
+      ]
+    },
+    {
+      "pin": 71,
+      "name": "VSS_1",
+      "pin_type": "POWER",
+      "pin_type_raw": "S",
+      "io_level": "",
+      "main_function": "VSS_1",
+      "alternate_functions": [],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 72,
+      "name": "VDD_1",
+      "pin_type": "POWER",
+      "pin_type_raw": "S",
+      "io_level": "",
+      "main_function": "VDD_1",
+      "alternate_functions": [],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 73,
+      "name": "PB12",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PB12",
+      "alternate_functions": [
+        "SPI2_NSS",
+        "I2S2_WS",
+        "I2C2_SMBA",
+        "USART3_CK(8)",
+        "TIM1_BKIN(8)"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 74,
+      "name": "PB13",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PB13",
+      "alternate_functions": [
+        "SPI2_SCK",
+        "I2S2_CKUSART3_CTS(8)",
+        "TIM1_CH1N"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 75,
+      "name": "PB14",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PB14",
+      "alternate_functions": [
+        "SPI2_MISO",
+        "TIM1_CH2NUSART3_RTS(8)"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 76,
+      "name": "PB15",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PB15",
+      "alternate_functions": [
+        "SPI2_MOSI",
+        "I2S2_SDTIM1_CH3N(8)"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 77,
+      "name": "PD8",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PD8",
+      "alternate_functions": [
+        "FSMC_D13"
+      ],
+      "alternate_functions_remap": [
+        "USART3_TX"
+      ]
+    },
+    {
+      "pin": 78,
+      "name": "PD9",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PD9",
+      "alternate_functions": [
+        "FSMC_D14"
+      ],
+      "alternate_functions_remap": [
+        "USART3_RX"
+      ]
+    },
+    {
+      "pin": 79,
+      "name": "PD10",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PD10",
+      "alternate_functions": [
+        "FSMC_D15"
+      ],
+      "alternate_functions_remap": [
+        "USART3_CK"
+      ]
+    },
+    {
+      "pin": 80,
+      "name": "PD11",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PD11",
+      "alternate_functions": [
+        "FSMC_A16"
+      ],
+      "alternate_functions_remap": [
+        "USART3_CTS"
+      ]
+    },
+    {
+      "pin": 81,
+      "name": "PD12",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PD12",
+      "alternate_functions": [
+        "FSMC_A17"
+      ],
+      "alternate_functions_remap": [
+        "TIM4_CH1",
+        "USART3_RTS"
+      ]
+    },
+    {
+      "pin": 82,
+      "name": "PD13",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PD13",
+      "alternate_functions": [
+        "FSMC_A18"
+      ],
+      "alternate_functions_remap": [
+        "TIM4_CH2"
+      ]
+    },
+    {
+      "pin": 83,
+      "name": "VSS_8",
+      "pin_type": "POWER",
+      "pin_type_raw": "S",
+      "io_level": "",
+      "main_function": "VSS_8",
+      "alternate_functions": [],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 84,
+      "name": "VDD_8",
+      "pin_type": "POWER",
+      "pin_type_raw": "S",
+      "io_level": "",
+      "main_function": "VDD_8",
+      "alternate_functions": [],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 85,
+      "name": "PD14",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PD14",
+      "alternate_functions": [
+        "FSMC_D0"
+      ],
+      "alternate_functions_remap": [
+        "TIM4_CH3"
+      ]
+    },
+    {
+      "pin": 86,
+      "name": "PD15",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PD15",
+      "alternate_functions": [
+        "FSMC_D1"
+      ],
+      "alternate_functions_remap": [
+        "TIM4_CH4"
+      ]
+    },
+    {
+      "pin": 87,
+      "name": "PG2",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PG2",
+      "alternate_functions": [
+        "FSMC_A12"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 88,
+      "name": "PG3",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PG3",
+      "alternate_functions": [
+        "FSMC_A13"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 89,
+      "name": "PG4",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PG4",
+      "alternate_functions": [
+        "FSMC_A14"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 90,
+      "name": "PG5",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PG5",
+      "alternate_functions": [
+        "FSMC_A15"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 91,
+      "name": "PG6",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PG6",
+      "alternate_functions": [
+        "FSMC_INT2"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 92,
+      "name": "PG7",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PG7",
+      "alternate_functions": [
+        "FSMC_INT3"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 93,
+      "name": "PG8",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PG8",
+      "alternate_functions": [],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 94,
+      "name": "VSS_9",
+      "pin_type": "POWER",
+      "pin_type_raw": "S",
+      "io_level": "",
+      "main_function": "VSS_9",
+      "alternate_functions": [],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 95,
+      "name": "VDD_9",
+      "pin_type": "POWER",
+      "pin_type_raw": "S",
+      "io_level": "",
+      "main_function": "VDD_9",
+      "alternate_functions": [],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 96,
+      "name": "PC6",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PC6",
+      "alternate_functions": [
+        "I2S2_MCK",
+        "TIM8_CH1",
+        "SDIO_D6"
+      ],
+      "alternate_functions_remap": [
+        "TIM3_CH1"
+      ]
+    },
+    {
+      "pin": 97,
+      "name": "PC7",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PC7",
+      "alternate_functions": [
+        "I2S3_MCK",
+        "TIM8_CH2",
+        "SDIO_D7"
+      ],
+      "alternate_functions_remap": [
+        "TIM3_CH2"
+      ]
+    },
+    {
+      "pin": 98,
+      "name": "PC8",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PC8",
+      "alternate_functions": [
+        "TIM8_CH3",
+        "SDIO_D0"
+      ],
+      "alternate_functions_remap": [
+        "TIM3_CH3"
+      ]
+    },
+    {
+      "pin": 99,
+      "name": "PC9",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PC9",
+      "alternate_functions": [
+        "TIM8_CH4",
+        "SDIO_D1"
+      ],
+      "alternate_functions_remap": [
+        "TIM3_CH4"
+      ]
+    },
+    {
+      "pin": 100,
+      "name": "PA8",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PA8",
+      "alternate_functions": [
+        "USART1_CK",
+        "TIM1_CH1(8)",
+        "MCO"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 101,
+      "name": "PA9",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PA9",
+      "alternate_functions": [
+        "USART1_TX(8)",
+        "TIM1_CH2(8)"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 102,
+      "name": "PA10",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PA10",
+      "alternate_functions": [
+        "USART1_RX(8)",
+        "TIM1_CH3(8)"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 103,
+      "name": "PA11",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PA11",
+      "alternate_functions": [
+        "USART1_CTS",
+        "USBDMCAN_RX(8)",
+        "TIM1_CH4(8)"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 104,
+      "name": "PA12",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PA12",
+      "alternate_functions": [
+        "USART1_RTS",
+        "USBDP",
+        "CAN_TX(8)",
+        "TIM1_ETR(8)"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 105,
+      "name": "PA13",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "JTMS-SWDIO",
+      "alternate_functions": [],
+      "alternate_functions_remap": [
+        "PA13"
+      ]
+    },
+    {
+      "pin": 106,
+      "name": "Not connected",
+      "pin_type": "UNKNOWN",
+      "pin_type_raw": "",
+      "io_level": "",
+      "main_function": "",
+      "alternate_functions": [],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 107,
+      "name": "VSS_2",
+      "pin_type": "POWER",
+      "pin_type_raw": "S",
+      "io_level": "",
+      "main_function": "VSS_2",
+      "alternate_functions": [],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 108,
+      "name": "VDD_2",
+      "pin_type": "POWER",
+      "pin_type_raw": "S",
+      "io_level": "",
+      "main_function": "VDD_2",
+      "alternate_functions": [],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 109,
+      "name": "PA14",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "JTCK-SWCLK",
+      "alternate_functions": [],
+      "alternate_functions_remap": [
+        "PA14"
+      ]
+    },
+    {
+      "pin": 110,
+      "name": "PA15",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "JTDI",
+      "alternate_functions": [
+        "SPI3_NSS",
+        "I2S3_WS"
+      ],
+      "alternate_functions_remap": [
+        "TIM2_CH1_ETRPA15",
+        "SPI1_NSS"
+      ]
+    },
+    {
+      "pin": 111,
+      "name": "PC10",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PC10",
+      "alternate_functions": [
+        "UART4_TX",
+        "SDIO_D2"
+      ],
+      "alternate_functions_remap": [
+        "USART3_TX"
+      ]
+    },
+    {
+      "pin": 112,
+      "name": "PC11",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PC11",
+      "alternate_functions": [
+        "UART4_RX",
+        "SDIO_D3"
+      ],
+      "alternate_functions_remap": [
+        "USART3_RX"
+      ]
+    },
+    {
+      "pin": 113,
+      "name": "PC12",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PC12",
+      "alternate_functions": [
+        "UART5_TX",
+        "SDIO_CK"
+      ],
+      "alternate_functions_remap": [
+        "USART3_CK"
+      ]
+    },
+    {
+      "pin": 114,
+      "name": "PD0",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "OSC_IN(9)",
+      "alternate_functions": [
+        "FSMC_D2(10)"
+      ],
+      "alternate_functions_remap": [
+        "CAN_RX"
+      ]
+    },
+    {
+      "pin": 115,
+      "name": "PD1",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "OSC_OUT(9)",
+      "alternate_functions": [
+        "FSMC_D3(10)"
+      ],
+      "alternate_functions_remap": [
+        "CAN_TX"
+      ]
+    },
+    {
+      "pin": 116,
+      "name": "PD2",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PD2",
+      "alternate_functions": [
+        "TIM3_ETR",
+        "UART5_RXSDIO_CMD"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 117,
+      "name": "PD3",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PD3",
+      "alternate_functions": [
+        "FSMC_CLK"
+      ],
+      "alternate_functions_remap": [
+        "USART2_CTS"
+      ]
+    },
+    {
+      "pin": 118,
+      "name": "PD4",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PD4",
+      "alternate_functions": [
+        "FSMC_NOE"
+      ],
+      "alternate_functions_remap": [
+        "USART2_RTS"
+      ]
+    },
+    {
+      "pin": 119,
+      "name": "PD5",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PD5",
+      "alternate_functions": [
+        "FSMC_NWE"
+      ],
+      "alternate_functions_remap": [
+        "USART2_TX"
+      ]
+    },
+    {
+      "pin": 120,
+      "name": "VSS_10",
+      "pin_type": "POWER",
+      "pin_type_raw": "S",
+      "io_level": "",
+      "main_function": "VSS_10",
+      "alternate_functions": [],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 121,
+      "name": "VDD_10",
+      "pin_type": "POWER",
+      "pin_type_raw": "S",
+      "io_level": "",
+      "main_function": "VDD_10",
+      "alternate_functions": [],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 122,
+      "name": "PD6",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PD6",
+      "alternate_functions": [
+        "FSMC_NWAIT"
+      ],
+      "alternate_functions_remap": [
+        "USART2_RX"
+      ]
+    },
+    {
+      "pin": 123,
+      "name": "PD7",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PD7",
+      "alternate_functions": [
+        "FSMC_NE1",
+        "FSMC_NCE2"
+      ],
+      "alternate_functions_remap": [
+        "USART2_CK"
+      ]
+    },
+    {
+      "pin": 124,
+      "name": "PG9",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PG9",
+      "alternate_functions": [
+        "FSMC_NE2",
+        "FSMC_NCE3"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 125,
+      "name": "PG10",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PG10",
+      "alternate_functions": [
+        "FSMC_NCE4_1",
+        "FSMC_NE3"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 126,
+      "name": "PG11",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PG11",
+      "alternate_functions": [
+        "FSMC_NCE4_2"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 127,
+      "name": "PG12",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PG12",
+      "alternate_functions": [
+        "FSMC_NE4"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 128,
+      "name": "PG13",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PG13",
+      "alternate_functions": [
+        "FSMC_A24"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 129,
+      "name": "PG14",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PG14",
+      "alternate_functions": [
+        "FSMC_A25"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 130,
+      "name": "VSS_11",
+      "pin_type": "POWER",
+      "pin_type_raw": "S",
+      "io_level": "",
+      "main_function": "VSS_11",
+      "alternate_functions": [],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 131,
+      "name": "VDD_11",
+      "pin_type": "POWER",
+      "pin_type_raw": "S",
+      "io_level": "",
+      "main_function": "VDD_11",
+      "alternate_functions": [],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 132,
+      "name": "PG15",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PG15",
+      "alternate_functions": [],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 133,
+      "name": "PB3",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "JTDO",
+      "alternate_functions": [
+        "SPI3_SCK",
+        "I2S3_CK"
+      ],
+      "alternate_functions_remap": [
+        "PB3",
+        "TRACESWOTIM2_CH2",
+        "SPI1_SCK"
+      ]
+    },
+    {
+      "pin": 134,
+      "name": "PB4",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "NJTRST",
+      "alternate_functions": [
+        "SPI3_MISO"
+      ],
+      "alternate_functions_remap": [
+        "PB4",
+        "TIM3_CH1SPI1_MISO"
+      ]
+    },
+    {
+      "pin": 135,
+      "name": "PB5",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "",
+      "main_function": "PB5",
+      "alternate_functions": [
+        "I2C1_SMBA",
+        "SPI3_MOSII2S3_SD"
+      ],
+      "alternate_functions_remap": [
+        "TIM3_CH2",
+        "SPI1_MOSI"
+      ]
+    },
+    {
+      "pin": 136,
+      "name": "PB6",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PB6",
+      "alternate_functions": [
+        "I2C1_SCL(8)",
+        "TIM4_CH1(8)"
+      ],
+      "alternate_functions_remap": [
+        "USART1_TX"
+      ]
+    },
+    {
+      "pin": 137,
+      "name": "PB7",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PB7",
+      "alternate_functions": [
+        "I2C1_SDA(8)",
+        "FSMC_NADV",
+        "TIM4_CH2(8)"
+      ],
+      "alternate_functions_remap": [
+        "USART1_RX"
+      ]
+    },
+    {
+      "pin": 138,
+      "name": "BOOT0",
+      "pin_type": "BOOT",
+      "pin_type_raw": "I",
+      "io_level": "",
+      "main_function": "BOOT0",
+      "alternate_functions": [],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 139,
+      "name": "PB8",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PB8",
+      "alternate_functions": [
+        "TIM4_CH3(8)",
+        "SDIO_D4"
+      ],
+      "alternate_functions_remap": [
+        "I2C1_SCL",
+        "CAN_RX"
+      ]
+    },
+    {
+      "pin": 140,
+      "name": "PB9",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PB9",
+      "alternate_functions": [
+        "TIM4_CH4(8)",
+        "SDIO_D5"
+      ],
+      "alternate_functions_remap": [
+        "I2C1_SDA",
+        "CAN_TX"
+      ]
+    },
+    {
+      "pin": 141,
+      "name": "PE0",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PE0",
+      "alternate_functions": [
+        "TIM4_ETR",
+        "FSMC_NBL0"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 142,
+      "name": "PE1",
+      "pin_type": "IO",
+      "pin_type_raw": "I/O",
+      "io_level": "FT",
+      "main_function": "PE1",
+      "alternate_functions": [
+        "FSMC_NBL1"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 143,
+      "name": "VSS_3",
+      "pin_type": "POWER",
+      "pin_type_raw": "S",
+      "io_level": "",
+      "main_function": "VSS_3",
+      "alternate_functions": [],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 144,
+      "name": "VDD_3",
+      "pin_type": "POWER",
+      "pin_type_raw": "S",
+      "io_level": "",
+      "main_function": "VDD_3",
+      "alternate_functions": [],
+      "alternate_functions_remap": []
+    }
+  ]
+}

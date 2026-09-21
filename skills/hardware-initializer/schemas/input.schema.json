@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.s5a.input.v1",
+  "title": "S5a hardware-initializer 输入契约（state.json 就绪性检查）",
+  "type": "object",
+  "required": ["chip", "circuit"],
+  "properties": {
+    "chip": {
+      "type": "object",
+      "required": ["extract_status", "pins_path", "registers_path", "clock_tree_path", "peripherals_path"],
+      "properties": {
+        "extract_status": {"type": "string", "enum": ["success", "partial", "failed"]},
+        "pins_path": {"type": "string", "minLength": 1},
+        "registers_path": {"type": "string"},
+        "clock_tree_path": {"type": "string"},
+        "peripherals_path": {"type": "string"},
+        "mcu_family": {"type": "string"},
+        "pin_count": {"type": "integer", "minimum": 1}
+      }
+    },
+    "circuit": {
+      "type": "object",
+      "required": ["parse_status", "facts"],
+      "properties": {
+        "parse_status": {"type": "string", "enum": ["success", "partial", "failed"]},
+        "facts": {
+          "type": "object",
+          "required": ["verify_status", "facts_path"],
+          "properties": {
+            "verify_status": {"type": "string", "enum": ["success", "partial", "failed"]},
+            "facts_path": {"type": "string", "minLength": 1}
+          }
+        }
+      }
+    }
+  }
+}

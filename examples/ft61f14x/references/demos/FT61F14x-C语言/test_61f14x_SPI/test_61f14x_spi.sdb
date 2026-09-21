@@ -1,0 +1,137 @@
+[p PRO_MODE GLOBOPT AUTOSTATIC RSC14 RSC14E SPACEOPT ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip FT61F14X ]
+[d frameptr 6 ]
+"62 D:\IDE3.0.3_6C03\data\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 D:\IDE3.0.3_6C03\data\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"41 D:\FMD demo 11-11总修改\C\FT61F14x\test_61f14x_SPI\test_61f14x_SPI.C
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+"76
+[v _init_25c64_io init_25c64_io `(v  1 e 1 0 ]
+"88
+[v _SPI_RW SPI_RW `(uc  1 e 1 0 ]
+"114
+[v _WriteEnable WriteEnable `(v  1 e 1 0 ]
+"124
+[v _WriteDisable WriteDisable `(v  1 e 1 0 ]
+"136
+[v _SPI_ReadStatus SPI_ReadStatus `(uc  1 e 1 0 ]
+"164
+[v _SPI_Read SPI_Read `(uc  1 e 1 0 ]
+"181
+[v _SPI_Write SPI_Write `(v  1 e 1 0 ]
+"201
+[v _main main `(v  1 e 1 0 ]
+"97 D:\IDE3.0.3_6C03\data\include\FT61F14X.h
+[v _INTCON INTCON `VEuc  1 e 1 @11 ]
+"123
+[v _PORTA PORTA `VEuc  1 e 1 @12 ]
+"168
+[v _PORTB PORTB `VEuc  1 e 1 @13 ]
+"179
+[v _PB0 PB0 `VEb  1 e 0 @104 ]
+"181
+[v _PB2 PB2 `VEb  1 e 0 @106 ]
+"183
+[v _PB4 PB4 `VEb  1 e 0 @108 ]
+"184
+[v _PB5 PB5 `VEb  1 e 0 @109 ]
+"213
+[v _PORTC PORTC `VEuc  1 e 1 @14 ]
+"262
+[v _TRISA TRISA `VEuc  1 e 1 @140 ]
+"289
+[v _TRISB TRISB `VEuc  1 e 1 @141 ]
+"316
+[v _TRISC TRISC `VEuc  1 e 1 @142 ]
+"475
+[v _OSCCON OSCCON `VEuc  1 e 1 @153 ]
+"821
+[v _PSRC0 PSRC0 `VEuc  1 e 1 @282 ]
+"826
+[v _PSRC1 PSRC1 `VEuc  1 e 1 @283 ]
+"869
+[v _WPUA WPUA `VEuc  1 e 1 @396 ]
+"873
+[v _WPUB WPUB `VEuc  1 e 1 @397 ]
+"877
+[v _WPUC WPUC `VEuc  1 e 1 @398 ]
+"966
+[v _ANSELA ANSELA `VEuc  1 e 1 @407 ]
+"1001
+[v _PSINK0 PSINK0 `VEuc  1 e 1 @410 ]
+"1005
+[v _PSINK1 PSINK1 `VEuc  1 e 1 @411 ]
+"1008
+[v _PSINK2 PSINK2 `VEuc  1 e 1 @412 ]
+"1043
+[v _WPDA WPDA `VEuc  1 e 1 @524 ]
+"1070
+[v _WPDB WPDB `VEuc  1 e 1 @525 ]
+"1096
+[v _WPDC WPDC `VEuc  1 e 1 @526 ]
+"34 D:\FMD demo 11-11总修改\C\FT61F14x\test_61f14x_SPI\test_61f14x_SPI.C
+[v _SPIReadData SPIReadData `VEuc  1 e 1 0 ]
+"201
+[v _main main `(v  1 e 1 0 ]
+{
+"213
+} 0
+"76
+[v _init_25c64_io init_25c64_io `(v  1 e 1 0 ]
+{
+"81
+} 0
+"181
+[v _SPI_Write SPI_Write `(v  1 e 1 0 ]
+{
+[v SPI_Write@addr addr `ui  1 p 2 3 ]
+[v SPI_Write@dat dat `uc  1 p 1 5 ]
+"194
+} 0
+"114
+[v _WriteEnable WriteEnable `(v  1 e 1 0 ]
+{
+"119
+} 0
+"124
+[v _WriteDisable WriteDisable `(v  1 e 1 0 ]
+{
+"129
+} 0
+"164
+[v _SPI_Read SPI_Read `(uc  1 e 1 0 ]
+{
+"166
+[v SPI_Read@spidata spidata `uc  1 a 1 5 ]
+"164
+[v SPI_Read@addr addr `ui  1 p 2 3 ]
+"175
+} 0
+"136
+[v _SPI_ReadStatus SPI_ReadStatus `(uc  1 e 1 0 ]
+{
+"138
+[v SPI_ReadStatus@status status `uc  1 a 1 2 ]
+"144
+} 0
+"88
+[v _SPI_RW SPI_RW `(uc  1 e 1 0 ]
+{
+[v SPI_RW@data data `uc  1 a 1 wreg ]
+"90
+[v SPI_RW@i i `uc  1 a 1 0 ]
+"88
+[v SPI_RW@data data `uc  1 a 1 wreg ]
+"91
+[v SPI_RW@data data `uc  1 a 1 1 ]
+"109
+} 0
+"41
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+{
+"69
+} 0

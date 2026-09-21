@@ -1,6 +1,6 @@
 # embed-ai-assist Skill 通用模板
 
-> 后续 13 个 skill 均按本模板生成。第一个 skill（schematic-reader）为本模板的参考实现，
+> 后续 14 个 skill 均按本模板生成。第一个 skill（schematic-reader）为本模板的参考实现，
 > 位于 `skills/schematic-reader/`。
 
 ## 一、标准目录结构

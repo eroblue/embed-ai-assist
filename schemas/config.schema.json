@@ -27,6 +27,63 @@
       "type": "string",
       "description": "目标芯片平台名，对应 platforms/ 下目录（项目层）"
     },
+    "project": {
+      "type": "object",
+      "description": "项目工程选项（项目层；S5a 校验后写入 state.json，S5b/S5c 消费。各 Skill 加载合并配置时统一按本 schema 拦截非法值）",
+      "properties": {
+        "target": {
+          "type": "string",
+          "description": "目标平台名（platform 字段的备选写法）"
+        },
+        "build_target": {
+          "type": "string",
+          "enum": ["App", "BootLoader"],
+          "default": "App",
+          "description": "当前开发目标工程（项目层）：决定 state.json/源码目录/outputs/IDE 工程目录归属 Examples/<project>/App/ 或 BootLoader/；docs/schematic/references 为项目根共享，不随目标切换"
+        },
+        "architecture": {
+          "type": "string",
+          "enum": ["flat", "layered", "full"],
+          "default": "layered",
+          "description": "软件分层程度：flat=单层平铺；layered=HAL+APP 分层（32 位惯例，缺省）；full=HAL+Port+APP 全分层"
+        },
+        "arch_family": {
+          "type": "string",
+          "enum": ["cortex_m", "mcu8"],
+          "description": "平台架构族（项目层，可选）：cortex_m=32 位 Cortex-M；mcu8=8 位 MCU。显式指定优先于型号前缀推断（见 docs/PROJECT_LAYOUT.md 2.3 目录选择逻辑）"
+        },
+        "rtos": {
+          "type": "string",
+          "enum": ["none", "FreeRTOS", "RT-Thread", "Zephyr"],
+          "default": "none",
+          "description": "RTOS 类型：none=裸机（缺省）"
+        },
+        "power": {
+          "type": "object",
+          "description": "低功耗设计选项",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": false,
+              "description": "是否启用低功耗设计（缺省 false）"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "s5a": {
+      "type": "object",
+      "description": "S5a hardware-initializer 专属选项（项目层）",
+      "properties": {
+        "uart_baudrate": {
+          "type": "integer",
+          "default": 115200,
+          "description": "调试串口波特率（缺省 115200）"
+        }
+      }
+    },
     "schematic_path": {
       "type": "string",
       "description": "原理图文件路径（项目层，相对项目目录）"
@@ -49,11 +106,11 @@
     },
     "stdperiph_lib_path": {
       "type": "string",
-      "description": "MCU 标准外设库路径（项目层，S5 code-generator 使用；以 platforms/ 开头时相对根目录，否则相对项目目录；留空时按 platforms/<platform>/sdk/std_periph_lib/ 约定自动发现）"
+      "description": "MCU 标准外设库路径（项目层，S5a hardware-initializer 使用；以 platforms/ 开头时相对根目录，否则相对项目目录；留空时按 platforms/<platform>/sdk/std_periph_lib/ 约定自动发现）"
     },
     "output_dir": {
       "type": "string",
-      "description": "输出目录（项目层，相对项目目录，默认 outputs/）"
+      "description": "输出目录（项目层，相对目标工程目录 App/BootLoader，默认 outputs/）"
     },
     "eda_tool": {
       "type": "string",

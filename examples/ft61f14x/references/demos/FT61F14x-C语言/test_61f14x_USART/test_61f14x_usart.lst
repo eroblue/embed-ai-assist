@@ -1,0 +1,930 @@
+
+
+HI-TECH Software PIC PRO Macro Assembler V9.83 build 10920 
+                                                                                               Wed Dec 22 19:15:57 2021
+
+HI-TECH Software Omniscient Code Generator (PRO mode) build 10920
+     1                           	processor	16F1938
+     2                           	opt	pw 120
+     3                           	opt	pm
+     4                           	psect	idataBANK0,global,class=CODE,delta=2
+     5                           	psect	cinit,global,class=CODE,delta=2
+     6                           	psect	bssCOMMON,global,class=COMMON,space=1,delta=1
+     7                           	psect	bssBANK0,global,class=BANK0,space=1,delta=1
+     8                           	psect	dataBANK0,global,class=BANK0,space=1,delta=1
+     9                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+    10                           	psect	intentry,global,class=CODE,delta=2
+    11                           	psect	pa_nodes,global,class=CODE,delta=2
+    12                           	dabs	1,0x7E,2
+    13  000A                     
+    14                           	psect	idataBANK0
+    15  0000                     __pidataBANK0:	
+    16  000B                     _INTCON	set	11
+    17  000C                     _PORTA	set	12
+    18  000D                     _PORTB	set	13
+    19  000E                     _PORTC	set	14
+    20  0099                     _OSCCON	set	153
+    21  009A                     _PCKEN	set	154
+    22  008C                     _TRISA	set	140
+    23  008D                     _TRISB	set	141
+    24  008E                     _TRISC	set	142
+    25  011A                     _PSRC0	set	282
+    26  011B                     _PSRC1	set	283
+    27  0197                     _ANSELA	set	407
+    28  019A                     _PSINK0	set	410
+    29  019B                     _PSINK1	set	411
+    30  019C                     _PSINK2	set	412
+    31  018C                     _WPUA	set	396
+    32  018D                     _WPUB	set	397
+    33  018E                     _WPUC	set	398
+    34  020C                     _WPDA	set	524
+    35  020D                     _WPDB	set	525
+    36  020E                     _WPDC	set	526
+    37  048C                     _URDATAL	set	1164
+    38  0495                     _URDLH	set	1173
+    39  0494                     _URDLL	set	1172
+    40  048E                     _URIER	set	1166
+    41  048F                     _URLCR	set	1167
+    42  0491                     _URMCR	set	1169
+    43  2490                     _RXNEF	set	9360
+    44  2475                     _TCEN	set	9333
+    45  24E0                     _TCF	set	9440
+    46  2495                     _TXEF	set	9365
+    47  2470                     _URRXNE	set	9328
+    48                           
+    49                           	psect	cinit
+    50  002E                     start_initialization:	
+    51  002E  3011               	movlw	17
+    52                           
+    53                           ; Clear objects allocated to COMMON
+    54  002F  01F5               	clrf	__pbssCOMMON& (0+127)
+    55  0030  01F6               	clrf	(__pbssCOMMON+1)& (0+127)
+    56  0031  01F7               	clrf	(__pbssCOMMON+2)& (0+127)
+    57  0032  01F8               	clrf	(__pbssCOMMON+3)& (0+127)
+    58                           
+    59                           ; Clear objects allocated to BANK0
+    60  0033  01AB               	clrf	__pbssBANK0& (0+127)
+    61  0034  01AC               	clrf	(__pbssBANK0+1)& (0+127)
+    62  0035  01AD               	clrf	(__pbssBANK0+2)& (0+127)
+    63  0036  01AE               	clrf	(__pbssBANK0+3)& (0+127)
+    64  0037  01AF               	clrf	(__pbssBANK0+4)& (0+127)
+    65  0038  01B0               	clrf	(__pbssBANK0+5)& (0+127)
+    66  0039  01B1               	clrf	(__pbssBANK0+6)& (0+127)
+    67  003A  01B2               	clrf	(__pbssBANK0+7)& (0+127)
+    68  003B  01B3               	clrf	(__pbssBANK0+8)& (0+127)
+    69  003C  01B4               	clrf	(__pbssBANK0+9)& (0+127)
+    70                           
+    71                           ;initializer for _toSend
+    72  003D  00A0               	movwf	__pdataBANK0& (0+127)
+    73  003E  3022               	movlw	34
+    74  003F  00A1               	movwf	(__pdataBANK0+1)& (0+127)
+    75  0040  3033               	movlw	51
+    76  0041  00A2               	movwf	(__pdataBANK0+2)& (0+127)
+    77  0042  3044               	movlw	68
+    78  0043  00A3               	movwf	(__pdataBANK0+3)& (0+127)
+    79  0044  3055               	movlw	85
+    80  0045  00A4               	movwf	(__pdataBANK0+4)& (0+127)
+    81  0046  3066               	movlw	102
+    82  0047  00A5               	movwf	(__pdataBANK0+5)& (0+127)
+    83  0048  3077               	movlw	119
+    84  0049  00A6               	movwf	(__pdataBANK0+6)& (0+127)
+    85  004A  3088               	movlw	136
+    86  004B  00A7               	movwf	(__pdataBANK0+7)& (0+127)
+    87  004C  3099               	movlw	153
+    88  004D  00A8               	movwf	(__pdataBANK0+8)& (0+127)
+    89  004E  30AA               	movlw	170
+    90  004F  00A9               	movwf	(__pdataBANK0+9)& (0+127)
+    91  0050  3000               	movlw	0
+    92  0051  00AA               	movwf	(__pdataBANK0+10)& (0+127)
+    93  0052                     end_of_initialization:	
+    94                           ;End of C runtime variable initialization code
+    95                           
+    96  0052  0020               	movlb	0
+    97  0053  2854               	ljmp	_main	;jump to C main() function
+    98  0054                     __pmaintext:	
+    99                           ; 0 bytes @ 0x5
+   100 ;;Data sizes: Strings 0, constant 0, data 11, bss 14, persistent 0 stack 0
+   101 ;;Auto spaces:   Size  Autos    Used
+   102 ;; COMMON          14      5       9
+   103 ;; BANK0           80      0      21
+   104 ;; BANK1           80      0       0
+   105 ;; BANK2           80      0       0
+   106 ;; BANK3           80      0       0
+   107 ;; BANK4           80      0       0
+   108 ;; BANK5           80      0       0
+   109 ;; BANK6           16      0       0
+   110 ;;
+   111 ;; Pointer list with targets:
+   112 ;;
+   113 ;; Critical Paths under _main in COMMON
+   114 ;;
+   115 ;;   _main->_DelayMs
+   116 ;;   _DelayMs->_DelayUs
+   117 ;;
+   118 ;; Critical Paths under _ISR in COMMON
+   119 ;;
+   120 ;;   None.
+   121 ;;
+   122 ;; Critical Paths under _main in BANK0
+   123 ;;
+   124 ;;   None.
+   125 ;;
+   126 ;; Critical Paths under _ISR in BANK0
+   127 ;;
+   128 ;;   None.
+   129 ;;
+   130 ;; Critical Paths under _main in BANK1
+   131 ;;
+   132 ;;   None.
+   133 ;;
+   134 ;; Critical Paths under _ISR in BANK1
+   135 ;;
+   136 ;;   None.
+   137 ;;
+   138 ;; Critical Paths under _main in BANK2
+   139 ;;
+   140 ;;   None.
+   141 ;;
+   142 ;; Critical Paths under _ISR in BANK2
+   143 ;;
+   144 ;;   None.
+   145 ;;
+   146 ;; Critical Paths under _main in BANK3
+   147 ;;
+   148 ;;   None.
+   149 ;;
+   150 ;; Critical Paths under _ISR in BANK3
+   151 ;;
+   152 ;;   None.
+   153 ;;
+   154 ;; Critical Paths under _main in BANK4
+   155 ;;
+   156 ;;   None.
+   157 ;;
+   158 ;; Critical Paths under _ISR in BANK4
+   159 ;;
+   160 ;;   None.
+   161 ;;
+   162 ;; Critical Paths under _main in BANK5
+   163 ;;
+   164 ;;   None.
+   165 ;;
+   166 ;; Critical Paths under _ISR in BANK5
+   167 ;;
+   168 ;;   None.
+   169 ;;
+   170 ;; Critical Paths under _main in BANK6
+   171 ;;
+   172 ;;   None.
+   173 ;;
+   174 ;; Critical Paths under _ISR in BANK6
+   175 ;;
+   176 ;;   None.
+   177 ;;
+   178 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   179 ;;
+   180 ;;
+   181 ;;Call Graph Tables:
+   182 ;;
+   183 ;; ---------------------------------------------------------------------------------
+   184 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   185 ;; ---------------------------------------------------------------------------------
+   186 ;; (0) _main                                                 0     0      0      90
+   187 ;;                      _POWER_INITIAL
+   188 ;;                       _UART_INITIAL
+   189 ;;                            _DelayMs
+   190 ;; ---------------------------------------------------------------------------------
+   191 ;; (1) _DelayMs                                              3     3      0      90
+   192 ;;                                              2 COMMON     3     3      0
+   193 ;;                            _DelayUs
+   194 ;; ---------------------------------------------------------------------------------
+   195 ;; (2) _DelayUs                                              2     2      0      30
+   196 ;;                                              0 COMMON     2     2      0
+   197 ;; ---------------------------------------------------------------------------------
+   198 ;; (1) _UART_INITIAL                                         0     0      0       0
+   199 ;; ---------------------------------------------------------------------------------
+   200 ;; (1) _POWER_INITIAL                                        0     0      0       0
+   201 ;; ---------------------------------------------------------------------------------
+   202 ;; Estimated maximum stack depth 2
+   203 ;; ---------------------------------------------------------------------------------
+   204 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   205 ;; ---------------------------------------------------------------------------------
+   206 ;; (3) _ISR                                                  0     0      0       0
+   207 ;; ---------------------------------------------------------------------------------
+   208 ;; Estimated maximum stack depth 3
+   209 ;; ---------------------------------------------------------------------------------
+   210 ;; Call Graph Graphs:
+   211 ;; _main (ROOT)
+   212 ;;   _POWER_INITIAL
+   213 ;;   _UART_INITIAL
+   214 ;;   _DelayMs
+   215 ;;     _DelayUs
+   216 ;;
+   217 ;; _ISR (ROOT)
+   218 ;;
+   219 ;; Address spaces:
+   220 ;;Name               Size   Autos  Total    Cost      Usage
+   221 ;;BIGRAM             1F0      0       0       0        0.0%
+   222 ;;EEDATA              80      0       0       0        0.0%
+   223 ;;NULL                 0      0       0       0        0.0%
+   224 ;;CODE                 0      0       0       0        0.0%
+   225 ;;BITCOMMON            E      0       0       1        0.0%
+   226 ;;BITSFR0              0      0       0       1        0.0%
+   227 ;;SFR0                 0      0       0       1        0.0%
+   228 ;;COMMON               E      5       9       2       64.3%
+   229 ;;BITSFR1              0      0       0       2        0.0%
+   230 ;;SFR1                 0      0       0       2        0.0%
+   231 ;;BITSFR2              0      0       0       3        0.0%
+   232 ;;SFR2                 0      0       0       3        0.0%
+   233 ;;STACK                0      0       2       3        0.0%
+   234 ;;BITSFR3              0      0       0       4        0.0%
+   235 ;;SFR3                 0      0       0       4        0.0%
+   236 ;;ABS                  0      0      1E       4        0.0%
+   237 ;;BITBANK0            50      0       0       5        0.0%
+   238 ;;BITSFR4              0      0       0       5        0.0%
+   239 ;;SFR4                 0      0       0       5        0.0%
+   240 ;;BANK0               50      0      15       6       26.3%
+   241 ;;BITSFR5              0      0       0       6        0.0%
+   242 ;;SFR5                 0      0       0       6        0.0%
+   243 ;;BITBANK1            50      0       0       7        0.0%
+   244 ;;BITSFR6              0      0       0       7        0.0%
+   245 ;;SFR6                 0      0       0       7        0.0%
+   246 ;;BANK1               50      0       0       8        0.0%
+   247 ;;BITSFR7              0      0       0       8        0.0%
+   248 ;;SFR7                 0      0       0       8        0.0%
+   249 ;;BITBANK2            50      0       0       9        0.0%
+   250 ;;BITSFR8              0      0       0       9        0.0%
+   251 ;;SFR8                 0      0       0       9        0.0%
+   252 ;;BANK2               50      0       0      10        0.0%
+   253 ;;BITSFR9              0      0       0      10        0.0%
+   254 ;;SFR9                 0      0       0      10        0.0%
+   255 ;;BITBANK3            50      0       0      11        0.0%
+   256 ;;BITSFR10             0      0       0      11        0.0%
+   257 ;;SFR10                0      0       0      11        0.0%
+   258 ;;BANK3               50      0       0      12        0.0%
+   259 ;;BITSFR11             0      0       0      12        0.0%
+   260 ;;SFR11                0      0       0      12        0.0%
+   261 ;;BITBANK4            50      0       0      13        0.0%
+   262 ;;BITSFR12             0      0       0      13        0.0%
+   263 ;;SFR12                0      0       0      13        0.0%
+   264 ;;BANK4               50      0       0      14        0.0%
+   265 ;;BITSFR13             0      0       0      14        0.0%
+   266 ;;SFR13                0      0       0      14        0.0%
+   267 ;;BITBANK5            50      0       0      15        0.0%
+   268 ;;BITSFR14             0      0       0      15        0.0%
+   269 ;;SFR14                0      0       0      15        0.0%
+   270 ;;BANK5               50      0       0      16        0.0%
+   271 ;;BITSFR15             0      0       0      16        0.0%
+   272 ;;SFR15                0      0       0      16        0.0%
+   273 ;;BITBANK6            10      0       0      17        0.0%
+   274 ;;BITSFR16             0      0       0      17        0.0%
+   275 ;;SFR16                0      0       0      17        0.0%
+   276 ;;BANK6               10      0       0      18        0.0%
+   277 ;;BITSFR17             0      0       0      18        0.0%
+   278 ;;SFR17                0      0       0      18        0.0%
+   279 ;;BITSFR18             0      0       0      19        0.0%
+   280 ;;SFR18                0      0       0      19        0.0%
+   281 ;;DATA                 0      0      20      19        0.0%
+   282 ;;BITSFR19             0      0       0      20        0.0%
+   283 ;;SFR19                0      0       0      20        0.0%
+   284 ;;BITSFR20             0      0       0      21        0.0%
+   285 ;;SFR20                0      0       0      21        0.0%
+   286 ;;BITSFR21             0      0       0      22        0.0%
+   287 ;;SFR21                0      0       0      22        0.0%
+   288 ;;BITSFR22             0      0       0      23        0.0%
+   289 ;;SFR22                0      0       0      23        0.0%
+   290 ;;BITSFR23             0      0       0      24        0.0%
+   291 ;;SFR23                0      0       0      24        0.0%
+   292 ;;BITSFR24             0      0       0      25        0.0%
+   293 ;;SFR24                0      0       0      25        0.0%
+   294 ;;BITSFR25             0      0       0      26        0.0%
+   295 ;;SFR25                0      0       0      26        0.0%
+   296 ;;BITSFR26             0      0       0      27        0.0%
+   297 ;;SFR26                0      0       0      27        0.0%
+   298 ;;BITSFR27             0      0       0      28        0.0%
+   299 ;;SFR27                0      0       0      28        0.0%
+   300 ;;BITSFR28             0      0       0      29        0.0%
+   301 ;;SFR28                0      0       0      29        0.0%
+   302 ;;BITSFR29             0      0       0      30        0.0%
+   303 ;;SFR29                0      0       0      30        0.0%
+   304 ;;BITSFR30             0      0       0      31        0.0%
+   305 ;;SFR30                0      0       0      31        0.0%
+   306 ;;BITSFR31             0      0       0      32        0.0%
+   307 ;;SFR31                0      0       0      32        0.0%
+   308                           
+   309                           
+   310 ;; *************** function _main *****************
+   311 ;; Defined at:
+   312 ;;		line 163 in file "test_61f14x_USART.C"
+   313 ;; Parameters:    Size  Location     Type
+   314 ;;		None
+   315 ;; Auto vars:     Size  Location     Type
+   316 ;;		None
+   317 ;; Return value:  Size  Location     Type
+   318 ;;		None               void
+   319 ;; Registers used:
+   320 ;;		wreg, status,2, status,0, pclath, cstack
+   321 ;; Tracked objects:
+   322 ;;		On entry : 17F/0
+   323 ;;		On exit  : 0/0
+   324 ;;		Unchanged: 0/0
+   325 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6
+   326 ;;      Params:         0       0       0       0       0       0       0       0
+   327 ;;      Locals:         0       0       0       0       0       0       0       0
+   328 ;;      Temps:          0       0       0       0       0       0       0       0
+   329 ;;      Totals:         0       0       0       0       0       0       0       0
+   330 ;;Total ram usage:        0 bytes
+   331 ;; Hardware stack levels required when called:    3
+   332 ;; This function calls:
+   333 ;;		_POWER_INITIAL
+   334 ;;		_UART_INITIAL
+   335 ;;		_DelayMs
+   336 ;; This function is called by:
+   337 ;;		Startup code after reset
+   338 ;; This function uses a non-reentrant model
+   339 ;;
+   340  0054                     _main:	
+   341                           
+   342                           ;test_61f14x_USART.C: 164: POWER_INITIAL();
+   343                           
+   344                           ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
+   345  0054  207A  3180         	fcall	_POWER_INITIAL
+   346                           
+   347                           ;test_61f14x_USART.C: 165: UART_INITIAL();
+   348  0056  209D  3180         	fcall	_UART_INITIAL
+   349                           
+   350                           ;test_61f14x_USART.C: 166: DelayMs(100);
+   351  0058  3064               	movlw	100
+   352  0059  2069  3180         	fcall	_DelayMs
+   353                           
+   354                           ;test_61f14x_USART.C: 168: if(TXEF)
+   355  005B  0029               	movlb	9	; select bank9
+   356  005C  1E92               	btfss	18,5
+   357  005D  2861               	goto	l3785
+   358  005E                     l3783:	
+   359                           
+   360                           ;test_61f14x_USART.C: 169: {
+   361                           ;test_61f14x_USART.C: 170: URDATAL =0xaa;
+   362  005E  30AA               	movlw	170
+   363  005F  0029               	movlb	9	; select bank9
+   364  0060  008C               	movwf	12	;volatile
+   365  0061                     l3785:	
+   366                           
+   367                           ;test_61f14x_USART.C: 174: {
+   368                           ;test_61f14x_USART.C: 175: _nop();
+   369  0061  0000               	nop
+   370                           
+   371                           ;test_61f14x_USART.C: 176: DelayMs(250);
+   372  0062  30FA               	movlw	250
+   373  0063  2069  3180         	fcall	_DelayMs
+   374                           
+   375                           ;test_61f14x_USART.C: 178: if(receive_flag == 1)
+   376  0065  0B77               	decfsz	_receive_flag,w	;volatile
+   377  0066  2861               	goto	l3785
+   378                           
+   379                           ;test_61f14x_USART.C: 179: {
+   380                           ;test_61f14x_USART.C: 180: receive_flag = 0;
+   381  0067  01F7               	clrf	_receive_flag	;volatile
+   382  0068  285E               	goto	l3783
+   383  0069                     __end_of_main:	
+   384  0069                     __ptext113:	
+   385 ;; =============== function _main ends ============
+   386                           
+   387                           
+   388 ;; *************** function _DelayMs *****************
+   389 ;; Defined at:
+   390 ;;		line 123 in file "test_61f14x_USART.C"
+   391 ;; Parameters:    Size  Location     Type
+   392 ;;  Time            1    wreg     unsigned char 
+   393 ;; Auto vars:     Size  Location     Type
+   394 ;;  Time            1    2[COMMON] unsigned char 
+   395 ;;  b               1    4[COMMON] unsigned char 
+   396 ;;  a               1    3[COMMON] unsigned char 
+   397 ;; Return value:  Size  Location     Type
+   398 ;;		None               void
+   399 ;; Registers used:
+   400 ;;		wreg, status,2, status,0, pclath, cstack
+   401 ;; Tracked objects:
+   402 ;;		On entry : 0/9
+   403 ;;		On exit  : 0/0
+   404 ;;		Unchanged: 0/0
+   405 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6
+   406 ;;      Params:         0       0       0       0       0       0       0       0
+   407 ;;      Locals:         3       0       0       0       0       0       0       0
+   408 ;;      Temps:          0       0       0       0       0       0       0       0
+   409 ;;      Totals:         3       0       0       0       0       0       0       0
+   410 ;;Total ram usage:        3 bytes
+   411 ;; Hardware stack levels used:    1
+   412 ;; Hardware stack levels required when called:    2
+   413 ;; This function calls:
+   414 ;;		_DelayUs
+   415 ;; This function is called by:
+   416 ;;		_main
+   417 ;; This function uses a non-reentrant model
+   418 ;;
+   419  0069                     _DelayMs:	
+   420                           
+   421                           ; Regs used in _DelayMs: [wreg+status,2+status,0+pclath+cstack]
+   422                           ;DelayMs@Time stored from wreg
+   423  0069  00F2               	movwf	DelayMs@Time
+   424                           
+   425                           ;test_61f14x_USART.C: 124: unsigned char a,b;
+   426                           ;test_61f14x_USART.C: 125: for(a=0;a<Time;a++)
+   427  006A  01F3               	clrf	DelayMs@a
+   428  006B                     l3777:	
+   429  006B  0872               	movf	DelayMs@Time,w
+   430  006C  0273               	subwf	DelayMs@a,w
+   431  006D  1803               	btfsc	3,0
+   432  006E  0008               	return
+   433                           
+   434                           ;test_61f14x_USART.C: 126: {
+   435                           ;test_61f14x_USART.C: 127: for(b=0;b<5;b++)
+   436  006F  01F4               	clrf	DelayMs@b
+   437  0070                     l3769:	
+   438                           
+   439                           ;test_61f14x_USART.C: 128: {
+   440                           ;test_61f14x_USART.C: 129: DelayUs(197);
+   441  0070  30C5               	movlw	197
+   442  0071  20AD  3180         	fcall	_DelayUs
+   443  0073  3005               	movlw	5
+   444  0074  0AF4               	incf	DelayMs@b,f
+   445  0075  0274               	subwf	DelayMs@b,w
+   446  0076  1C03               	skipc
+   447  0077  2870               	goto	l3769
+   448  0078  0AF3               	incf	DelayMs@a,f
+   449  0079  286B               	goto	l3777
+   450  007A                     __end_of_DelayMs:	
+   451  007A                     __ptext116:	
+   452 ;; =============== function _UART_INITIAL ends ============
+   453                           
+   454                           
+   455 ;; *************** function _POWER_INITIAL *****************
+   456 ;; Defined at:
+   457 ;;		line 74 in file "test_61f14x_USART.C"
+   458 ;; Parameters:    Size  Location     Type
+   459 ;;		None
+   460 ;; Auto vars:     Size  Location     Type
+   461 ;;		None
+   462 ;; Return value:  Size  Location     Type
+   463 ;;		None               void
+   464 ;; Registers used:
+   465 ;;		wreg, status,2
+   466 ;; Tracked objects:
+   467 ;;		On entry : 17F/0
+   468 ;;		On exit  : 17F/3
+   469 ;;		Unchanged: FFE80/0
+   470 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6
+   471 ;;      Params:         0       0       0       0       0       0       0       0
+   472 ;;      Locals:         0       0       0       0       0       0       0       0
+   473 ;;      Temps:          0       0       0       0       0       0       0       0
+   474 ;;      Totals:         0       0       0       0       0       0       0       0
+   475 ;;Total ram usage:        0 bytes
+   476 ;; Hardware stack levels used:    1
+   477 ;; Hardware stack levels required when called:    1
+   478 ;; This function calls:
+   479 ;;		Nothing
+   480 ;; This function is called by:
+   481 ;;		_main
+   482 ;; This function uses a non-reentrant model
+   483 ;;
+   484  007A                     _POWER_INITIAL:	
+   485                           
+   486                           ;test_61f14x_USART.C: 75: OSCCON = 0B01110001;
+   487                           
+   488                           ; Regs used in _POWER_INITIAL: [wreg+status,2]
+   489  007A  3071               	movlw	113
+   490  007B  0021               	movlb	1	; select bank1
+   491  007C  0099               	movwf	25	;volatile
+   492                           
+   493                           ;test_61f14x_USART.C: 76: INTCON = 0;
+   494  007D  018B               	clrf	11	;volatile
+   495                           
+   496                           ;test_61f14x_USART.C: 78: PORTA = 0B00000000;
+   497  007E  0020               	movlb	0	; select bank0
+   498  007F  018C               	clrf	12	;volatile
+   499                           
+   500                           ;test_61f14x_USART.C: 79: TRISA = 0B10000000;
+   501  0080  3080               	movlw	128
+   502  0081  0021               	movlb	1	; select bank1
+   503  0082  008C               	movwf	12	;volatile
+   504                           
+   505                           ;test_61f14x_USART.C: 80: PORTB = 0B00000000;
+   506  0083  0020               	movlb	0	; select bank0
+   507  0084  018D               	clrf	13	;volatile
+   508                           
+   509                           ;test_61f14x_USART.C: 81: TRISB = 0B00000000;
+   510  0085  0021               	movlb	1	; select bank1
+   511  0086  018D               	clrf	13	;volatile
+   512                           
+   513                           ;test_61f14x_USART.C: 82: PORTC = 0B00000000;
+   514  0087  0020               	movlb	0	; select bank0
+   515  0088  018E               	clrf	14	;volatile
+   516                           
+   517                           ;test_61f14x_USART.C: 83: TRISC = 0B00000000;
+   518  0089  0021               	movlb	1	; select bank1
+   519  008A  018E               	clrf	14	;volatile
+   520                           
+   521                           ;test_61f14x_USART.C: 85: WPUA = 0B00000000;
+   522  008B  0023               	movlb	3	; select bank3
+   523  008C  018C               	clrf	12	;volatile
+   524                           
+   525                           ;test_61f14x_USART.C: 86: WPUB = 0B00000000;
+   526  008D  018D               	clrf	13	;volatile
+   527                           
+   528                           ;test_61f14x_USART.C: 87: WPUC = 0B00000000;
+   529  008E  018E               	clrf	14	;volatile
+   530                           
+   531                           ;test_61f14x_USART.C: 89: WPDA = 0B10000000;
+   532  008F  0024               	movlb	4	; select bank4
+   533  0090  008C               	movwf	12	;volatile
+   534                           
+   535                           ;test_61f14x_USART.C: 90: WPDB = 0B00000000;
+   536  0091  018D               	clrf	13	;volatile
+   537                           
+   538                           ;test_61f14x_USART.C: 91: WPDC = 0B00000000;
+   539  0092  018E               	clrf	14	;volatile
+   540                           
+   541                           ;test_61f14x_USART.C: 93: PSRC0 = 0B11111111;
+   542  0093  30FF               	movlw	255
+   543  0094  0022               	movlb	2	; select bank2
+   544  0095  009A               	movwf	26	;volatile
+   545                           
+   546                           ;test_61f14x_USART.C: 94: PSRC1 = 0B11111111;
+   547  0096  009B               	movwf	27	;volatile
+   548                           
+   549                           ;test_61f14x_USART.C: 96: PSINK0 = 0B11111111;
+   550  0097  0023               	movlb	3	; select bank3
+   551  0098  009A               	movwf	26	;volatile
+   552                           
+   553                           ;test_61f14x_USART.C: 97: PSINK1 = 0B11111111;
+   554  0099  009B               	movwf	27	;volatile
+   555                           
+   556                           ;test_61f14x_USART.C: 98: PSINK2 = 0B11111111;
+   557  009A  009C               	movwf	28	;volatile
+   558                           
+   559                           ;test_61f14x_USART.C: 100: ANSELA = 0B00000000;
+   560  009B  0197               	clrf	23	;volatile
+   561  009C  0008               	return
+   562  009D                     __end_of_POWER_INITIAL:	
+   563  009D                     __ptext115:	
+   564 ;; =============== function _DelayUs ends ============
+   565                           
+   566                           
+   567 ;; *************** function _UART_INITIAL *****************
+   568 ;; Defined at:
+   569 ;;		line 140 in file "test_61f14x_USART.C"
+   570 ;; Parameters:    Size  Location     Type
+   571 ;;		None
+   572 ;; Auto vars:     Size  Location     Type
+   573 ;;		None
+   574 ;; Return value:  Size  Location     Type
+   575 ;;		None               void
+   576 ;; Registers used:
+   577 ;;		wreg, status,2
+   578 ;; Tracked objects:
+   579 ;;		On entry : 17F/3
+   580 ;;		On exit  : 17F/9
+   581 ;;		Unchanged: FFE80/0
+   582 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6
+   583 ;;      Params:         0       0       0       0       0       0       0       0
+   584 ;;      Locals:         0       0       0       0       0       0       0       0
+   585 ;;      Temps:          0       0       0       0       0       0       0       0
+   586 ;;      Totals:         0       0       0       0       0       0       0       0
+   587 ;;Total ram usage:        0 bytes
+   588 ;; Hardware stack levels used:    1
+   589 ;; Hardware stack levels required when called:    1
+   590 ;; This function calls:
+   591 ;;		Nothing
+   592 ;; This function is called by:
+   593 ;;		_main
+   594 ;; This function uses a non-reentrant model
+   595 ;;
+   596  009D                     _UART_INITIAL:	
+   597                           
+   598                           ;test_61f14x_USART.C: 141: PCKEN |=0B00100000;
+   599                           
+   600                           ; Regs used in _UART_INITIAL: [wreg+status,2]
+   601  009D  0021               	movlb	1	; select bank1
+   602  009E  169A               	bsf	26,5	;volatile
+   603                           
+   604                           ;test_61f14x_USART.C: 143: URIER =0B00100001;
+   605  009F  3021               	movlw	33
+   606  00A0  0029               	movlb	9	; select bank9
+   607  00A1  008E               	movwf	14	;volatile
+   608                           
+   609                           ;test_61f14x_USART.C: 144: URLCR =0B00000001;
+   610  00A2  3001               	movlw	1
+   611  00A3  008F               	movwf	15	;volatile
+   612                           
+   613                           ;test_61f14x_USART.C: 145: URMCR =0B00011000;
+   614  00A4  3018               	movlw	24
+   615  00A5  0091               	movwf	17	;volatile
+   616                           
+   617                           ;test_61f14x_USART.C: 147: URDLL =104;
+   618  00A6  3068               	movlw	104
+   619  00A7  0094               	movwf	20	;volatile
+   620                           
+   621                           ;test_61f14x_USART.C: 148: URDLH =0;
+   622  00A8  0195               	clrf	21	;volatile
+   623  00A9  30C0               	movlw	192
+   624                           
+   625                           ;test_61f14x_USART.C: 149: TCF=1;
+   626  00AA  141C               	bsf	28,0
+   627                           
+   628                           ;test_61f14x_USART.C: 150: INTCON=0B11000000;
+   629  00AB  008B               	movwf	11	;volatile
+   630  00AC  0008               	return
+   631  00AD                     __end_of_UART_INITIAL:	
+   632  00AD                     __ptext114:	
+   633 ;; =============== function _DelayMs ends ============
+   634                           
+   635                           
+   636 ;; *************** function _DelayUs *****************
+   637 ;; Defined at:
+   638 ;;		line 109 in file "test_61f14x_USART.C"
+   639 ;; Parameters:    Size  Location     Type
+   640 ;;  Time            1    wreg     unsigned char 
+   641 ;; Auto vars:     Size  Location     Type
+   642 ;;  Time            1    0[COMMON] unsigned char 
+   643 ;;  a               1    1[COMMON] unsigned char 
+   644 ;; Return value:  Size  Location     Type
+   645 ;;		None               void
+   646 ;; Registers used:
+   647 ;;		wreg, status,2, status,0
+   648 ;; Tracked objects:
+   649 ;;		On entry : 0/9
+   650 ;;		On exit  : 0/0
+   651 ;;		Unchanged: 0/0
+   652 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6
+   653 ;;      Params:         0       0       0       0       0       0       0       0
+   654 ;;      Locals:         2       0       0       0       0       0       0       0
+   655 ;;      Temps:          0       0       0       0       0       0       0       0
+   656 ;;      Totals:         2       0       0       0       0       0       0       0
+   657 ;;Total ram usage:        2 bytes
+   658 ;; Hardware stack levels used:    1
+   659 ;; Hardware stack levels required when called:    1
+   660 ;; This function calls:
+   661 ;;		Nothing
+   662 ;; This function is called by:
+   663 ;;		_DelayMs
+   664 ;; This function uses a non-reentrant model
+   665 ;;
+   666  00AD                     _DelayUs:	
+   667                           
+   668                           ; Regs used in _DelayUs: [wreg+status,2+status,0]
+   669                           ;DelayUs@Time stored from wreg
+   670  00AD  00F0               	movwf	DelayUs@Time
+   671                           
+   672                           ;test_61f14x_USART.C: 110: unsigned char a;
+   673                           ;test_61f14x_USART.C: 111: for(a=0;a<Time;a++)
+   674  00AE  01F1               	clrf	DelayUs@a
+   675  00AF                     l3759:	
+   676  00AF  0870               	movf	DelayUs@Time,w
+   677  00B0  0271               	subwf	DelayUs@a,w
+   678  00B1  1803               	btfsc	3,0
+   679  00B2  0008               	return
+   680                           
+   681                           ;test_61f14x_USART.C: 112: {
+   682                           ;test_61f14x_USART.C: 113: _nop();
+   683  00B3  0000               	nop
+   684  00B4  0AF1               	incf	DelayUs@a,f
+   685  00B5  28AF               	goto	l3759
+   686  00B6                     __end_of_DelayUs:	
+   687                           
+   688                           	psect	bssCOMMON
+   689  0075                     __pbssCOMMON:	
+   690  0075                     _i:	
+   691  0075                     	ds	1
+   692  0076                     _mmm:	
+   693  0076                     	ds	1
+   694  0077                     _receive_flag:	
+   695  0077                     	ds	1
+   696  0078                     _senddata:	
+   697  0078                     	ds	1
+   698                           
+   699                           	psect	bssBANK0
+   700  002B                     __pbssBANK0:	
+   701  002B                     _receivedata:	
+   702  002B                     	ds	10
+   703                           
+   704                           	psect	dataBANK0
+   705  0020                     __pdataBANK0:	
+   706  0020                     _toSend:	
+   707  0020                     	ds	11
+   708                           
+   709                           	psect	cstackCOMMON
+   710  0070                     __pcstackCOMMON:	
+   711  0070                     ?_ISR:	
+   712  0070                     ??_ISR:	
+   713                           ; 0 bytes @ 0x0
+   714                           
+   715  0070                     ?_POWER_INITIAL:	
+   716                           ; 0 bytes @ 0x0
+   717                           
+   718  0070                     ??_POWER_INITIAL:	
+   719                           ; 0 bytes @ 0x0
+   720                           
+   721  0070                     ?_DelayUs:	
+   722                           ; 0 bytes @ 0x0
+   723                           
+   724  0070                     ??_DelayUs:	
+   725                           ; 0 bytes @ 0x0
+   726                           
+   727  0070                     ?_DelayMs:	
+   728                           ; 0 bytes @ 0x0
+   729                           
+   730  0070                     ?_UART_INITIAL:	
+   731                           ; 0 bytes @ 0x0
+   732                           
+   733  0070                     ??_UART_INITIAL:	
+   734                           ; 0 bytes @ 0x0
+   735                           
+   736  0070                     ?_main:	
+   737                           ; 0 bytes @ 0x0
+   738                           
+   739  0070                     DelayUs@Time:	
+   740                           ; 0 bytes @ 0x0
+   741                           
+   742                           
+   743                           ; 1 bytes @ 0x0
+   744  0070                     	ds	1
+   745  0071                     DelayUs@a:	
+   746                           
+   747                           ; 1 bytes @ 0x1
+   748  0071                     	ds	1
+   749  0072                     ??_DelayMs:	
+   750  0072                     DelayMs@Time:	
+   751                           ; 0 bytes @ 0x2
+   752                           
+   753                           
+   754                           ; 1 bytes @ 0x2
+   755  0072                     	ds	1
+   756  0073                     DelayMs@a:	
+   757                           
+   758                           ; 1 bytes @ 0x3
+   759  0073                     	ds	1
+   760  0074                     DelayMs@b:	
+   761                           
+   762                           ; 1 bytes @ 0x4
+   763  0074                     	ds	1
+   764  0075                     ??_main:	
+   765                           
+   766                           	psect	intentry
+   767  0004                     __pintentry:	
+   768 ;; =============== function _POWER_INITIAL ends ============
+   769                           
+   770                           
+   771 ;; *************** function _ISR *****************
+   772 ;; Defined at:
+   773 ;;		line 40 in file "test_61f14x_USART.C"
+   774 ;; Parameters:    Size  Location     Type
+   775 ;;		None
+   776 ;; Auto vars:     Size  Location     Type
+   777 ;;		None
+   778 ;; Return value:  Size  Location     Type
+   779 ;;		None               void
+   780 ;; Registers used:
+   781 ;;		wreg, fsr1l, fsr1h, status,2, status,0
+   782 ;; Tracked objects:
+   783 ;;		On entry : 0/0
+   784 ;;		On exit  : 0/0
+   785 ;;		Unchanged: 0/0
+   786 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6
+   787 ;;      Params:         0       0       0       0       0       0       0       0
+   788 ;;      Locals:         0       0       0       0       0       0       0       0
+   789 ;;      Temps:          0       0       0       0       0       0       0       0
+   790 ;;      Totals:         0       0       0       0       0       0       0       0
+   791 ;;Total ram usage:        0 bytes
+   792 ;; Hardware stack levels used:    1
+   793 ;; This function calls:
+   794 ;;		Nothing
+   795 ;; This function is called by:
+   796 ;;		Interrupt level 1
+   797 ;; This function uses a non-reentrant model
+   798 ;;
+   799  0004                     _ISR:	
+   800                           
+   801                           ; Regs used in _ISR: [wreg+fsr1l-status,0]
+   802  0004  3180               	pagesel	$
+   803                           
+   804                           ;test_61f14x_USART.C: 41: if(URRXNE && RXNEF)
+   805  0005  0029               	movlb	9	; select bank9
+   806  0006  180E               	btfsc	14,0
+   807  0007  1C12               	btfss	18,0
+   808  0008  2817               	goto	i1l3811
+   809                           
+   810                           ;test_61f14x_USART.C: 42: {
+   811                           ;test_61f14x_USART.C: 43: receivedata[mmm++] =URDATAL;
+   812  0009  0876               	movf	_mmm,w
+   813  000A  3E2B               	addlw	_receivedata& (0+255)
+   814  000B  0086               	movwf	6
+   815  000C  0187               	clrf	7
+   816  000D  080C               	movf	12,w	;volatile
+   817  000E  0081               	movwf	1
+   818  000F  0AF6               	incf	_mmm,f
+   819                           
+   820                           ;test_61f14x_USART.C: 44: receive_flag = 1;
+   821  0010  01F7               	clrf	_receive_flag	;volatile
+   822  0011  0AF7               	incf	_receive_flag,f	;volatile
+   823                           
+   824                           ;test_61f14x_USART.C: 45: if(mmm>=10)
+   825  0012  300A               	movlw	10
+   826  0013  0276               	subwf	_mmm,w
+   827  0014  1803               	btfsc	3,0
+   828                           
+   829                           ;test_61f14x_USART.C: 46: {
+   830                           ;test_61f14x_USART.C: 47: mmm=0;
+   831  0015  01F6               	clrf	_mmm
+   832                           
+   833                           ;test_61f14x_USART.C: 48: }
+   834                           ;test_61f14x_USART.C: 49: _nop();
+   835  0016  0000               	nop
+   836  0017                     i1l3811:	
+   837                           
+   838                           ;test_61f14x_USART.C: 50: }
+   839                           ;test_61f14x_USART.C: 52: if(TCEN && TCF)
+   840  0017  0029               	movlb	9	; select bank9
+   841  0018  1A8E               	btfsc	14,5
+   842  0019  1C1C               	btfss	28,0
+   843  001A  0009               	retfie
+   844  001B  300A               	movlw	10
+   845                           
+   846                           ;test_61f14x_USART.C: 53: {
+   847                           ;test_61f14x_USART.C: 54: TCF=1;
+   848  001C  141C               	bsf	28,0
+   849                           
+   850                           ;test_61f14x_USART.C: 56: if(i<10)
+   851  001D  0275               	subwf	_i,w
+   852  001E  1803               	skipnc
+   853  001F  2828               	goto	i1l3823
+   854                           
+   855                           ;test_61f14x_USART.C: 57: {
+   856                           ;test_61f14x_USART.C: 58: URDATAL =toSend[i++];
+   857  0020  0875               	movf	_i,w
+   858  0021  3E20               	addlw	_toSend& (0+255)
+   859  0022  0086               	movwf	6
+   860  0023  0187               	clrf	7
+   861  0024  0801               	movf	1,w
+   862  0025  008C               	movwf	12	;volatile
+   863  0026  0AF5               	incf	_i,f
+   864                           
+   865                           ;test_61f14x_USART.C: 59: }
+   866  0027  2829               	goto	i1l3825
+   867  0028                     i1l3823:	
+   868                           
+   869                           ;test_61f14x_USART.C: 60: else
+   870                           ;test_61f14x_USART.C: 61: {
+   871                           ;test_61f14x_USART.C: 62: i=0;
+   872  0028  01F5               	clrf	_i
+   873  0029                     i1l3825:	
+   874                           
+   875                           ;test_61f14x_USART.C: 63: }
+   876                           ;test_61f14x_USART.C: 64: _nop();
+   877  0029  0000               	nop
+   878  002A  0009               	retfie
+   879  002B                     __end_of_ISR:	
+   880                           
+   881 ;; =============== function _ISR ends ============
+   882  007E                     btemp	set	126	;btemp
+   883  007E                     wtemp0	set	126
+
+
+HI-TECH Software PICC Macro Assembler V9.83 build 10920 
+Symbol Table                                                                                   Wed Dec 22 19:15:57 2021
+
+                     _i 0075                     _TCF 24E0                     _ISR 0004                     _mmm 0076  
+                  ?_ISR 0070                    l1621 0000                    l1615 0000                    l1632 0000  
+                  l1629 0000                    l3711 0000                    l3721 0000                    l3713 0000  
+                  l3731 0000                    l3723 0000                    l3715 0000                    l3741 0000  
+                  l3733 0000                    l3725 0000                    l3717 0000                    l3743 0000  
+                  l3735 0000                    l3727 0000                    l3719 0000                    l3751 0000  
+                  l3737 0000                    l3729 0000                    l3753 0000                    l3745 0000  
+                  l3761 0000                    l3739 0000                    l3747 0000                    l3755 0000  
+                  l3771 0000                    l3749 0000                    l3757 0000                    l3773 0000  
+                  l3781 0000                    l3759 00AF                    l3791 0000                    l3783 005E  
+                  l3769 0070                    l3777 006B                    l3785 0061                    l3787 0000  
+                  l3779 0000                    l3789 0000                    _TCEN 2475                    _WPDA 020C  
+                  _WPDB 020D                    _WPDC 020E                    _TXEF 2495                    _WPUA 018C  
+                  _WPUB 018D                    _WPUC 018E                    _main 0054                    fsr1h 0007  
+                  indf1 0001                    fsr1l 0006                    btemp 007E                    start 002B  
+       __end_of_DelayMs 007A         __end_of_DelayUs 00B6                   ??_ISR 0070                   ?_main 0070  
+                 _PCKEN 009A                   _PSRC0 011A                   _PSRC1 011B                   _PORTA 000C  
+                 _PORTB 000D                   _PORTC 000E                   _URDLH 0495                   _URDLL 0494  
+                 _TRISA 008C                   _TRISB 008D                   _TRISC 008E                   _URIER 048E  
+                 _RXNEF 2490                   _URLCR 048F                   _URMCR 0491                   wtemp0 007E  
+          __end_of_main 0069                  ??_main 0075                  _ANSELA 0197                  i1l3801 0000  
+                i1l3803 0000                  i1l3811 0017                  i1l3821 0000                  i1l3805 0000  
+                i1l3823 0028                  i1l3825 0029                  i1l3817 0000                  i1l3795 0000  
+                _INTCON 000B               ??_DelayMs 0072               ??_DelayUs 0070                  _OSCCON 0099  
+                _PSINK0 019A                  _PSINK1 019B                  _PSINK2 019C                  _URRXNE 2470  
+                _toSend 0020   __end_of_POWER_INITIAL 009D          __pcstackCOMMON 0070            __pidataBANK0 0000  
+            __pbssBANK0 002B              __pmaintext 0054              __pintentry 0004           ?_UART_INITIAL 0070  
+               _URDATAL 048C                 _DelayMs 0069                 _DelayUs 00AD          ??_UART_INITIAL 0070  
+          __size_of_ISR 0027    end_of_initialization 0052     start_initialization 002E             __end_of_ISR 002B  
+  __end_of_UART_INITIAL 00AD             __pdataBANK0 0020  __size_of_POWER_INITIAL 0023             __pbssCOMMON 0075  
+              ?_DelayMs 0070                ?_DelayUs 0070               __ptext113 0069               __ptext114 00AD  
+             __ptext115 009D               __ptext116 007A            _receive_flag 0077           _POWER_INITIAL 007A  
+              DelayMs@a 0073                DelayMs@b 0074                DelayUs@a 0071   __size_of_UART_INITIAL 0010  
+           DelayMs@Time 0072          ?_POWER_INITIAL 0070             DelayUs@Time 0070        __size_of_DelayMs 0011  
+      __size_of_DelayUs 0009            _UART_INITIAL 009D           __size_of_main 0015             _receivedata 002B  
+              _senddata 0078         ??_POWER_INITIAL 0070                intlevel1 0000  

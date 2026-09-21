@@ -1,0 +1,271 @@
+{
+  "schema": "embedaiassist.chip.pins.v1",
+  "mcu_family": "FT61F14X",
+  "package": "TSSOP20",
+  "pin_count": 20,
+  "source": {
+    "datasheet": "E:\\skills\\EmbedSoftAutomaticProject\\embed-ai-assist\\platforms\\ft61f14x\\datasheets\\ft61f14x_ds_rev1p09_cn.pdf",
+    "extracted_at": "2026-09-20T11:58:47"
+  },
+  "pins": [
+    {
+      "pin": 1,
+      "name": "PA5",
+      "pin_type": "IO",
+      "pin_type_raw": "IO",
+      "main_function": "PA5",
+      "alternate_functions": [
+        "LVDOUT",
+        "UART_CK",
+        "TIM2_CH1"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 2,
+      "name": "PA6",
+      "pin_type": "IO",
+      "pin_type_raw": "IO",
+      "main_function": "PA6",
+      "alternate_functions": [
+        "UART_TX",
+        "AN3"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 3,
+      "name": "PA7",
+      "pin_type": "IO",
+      "pin_type_raw": "IO",
+      "main_function": "PA7",
+      "alternate_functions": [
+        "UART_RX",
+        "ELVD0",
+        "AN4",
+        "CLKO"
+      ],
+      "alternate_functions_remap": [
+        "CLKO",
+        "TIM1_CH4",
+        "AT0"
+      ]
+    },
+    {
+      "pin": 4,
+      "name": "PC0",
+      "pin_type": "IO",
+      "pin_type_raw": "IO",
+      "main_function": "PC0",
+      "alternate_functions": [
+        "TIM1_CH1N",
+        "MCLRB",
+        "ELVD1",
+        "AN5"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 5,
+      "name": "PC1",
+      "pin_type": "IO",
+      "pin_type_raw": "IO",
+      "main_function": "PC1",
+      "alternate_functions": [
+        "OSC1",
+        "ELVD2"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 6,
+      "name": "PB7",
+      "pin_type": "IO",
+      "pin_type_raw": "IO",
+      "main_function": "PB7",
+      "alternate_functions": [
+        "OSC2",
+        "ELVD3"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 7,
+      "name": "GND",
+      "pin_type": "POWER",
+      "pin_type_raw": "Ground",
+      "main_function": "Ground",
+      "alternate_functions": [],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 8,
+      "name": "PB6",
+      "pin_type": "IO",
+      "pin_type_raw": "IO",
+      "main_function": "PB6",
+      "alternate_functions": [
+        "ISPDAT",
+        "AN6",
+        "UART_TX"
+      ],
+      "alternate_functions_remap": [
+        "UART_TX"
+      ]
+    },
+    {
+      "pin": 9,
+      "name": "VDD",
+      "pin_type": "POWER",
+      "pin_type_raw": "Supply",
+      "main_function": "Power",
+      "alternate_functions": [],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 10,
+      "name": "PB5",
+      "pin_type": "IO",
+      "pin_type_raw": "IO",
+      "main_function": "PB5",
+      "alternate_functions": [
+        "TIM2_CH3"
+      ],
+      "alternate_functions_remap": [
+        "LVDOUT"
+      ]
+    },
+    {
+      "pin": 11,
+      "name": "PB4",
+      "pin_type": "IO",
+      "pin_type_raw": "IO",
+      "main_function": "PB4",
+      "alternate_functions": [
+        "TIM1_BKIN"
+      ],
+      "alternate_functions_remap": [
+        "LVDOUT"
+      ]
+    },
+    {
+      "pin": 12,
+      "name": "PB3",
+      "pin_type": "IO",
+      "pin_type_raw": "IO",
+      "main_function": "PB3",
+      "alternate_functions": [
+        "TIM1_ETR"
+      ],
+      "alternate_functions_remap": [
+        "LVDOUT",
+        "ADC_ETR"
+      ]
+    },
+    {
+      "pin": 13,
+      "name": "PB2",
+      "pin_type": "IO",
+      "pin_type_raw": "IO",
+      "main_function": "PB2",
+      "alternate_functions": [
+        "TIM1_CH3"
+      ],
+      "alternate_functions_remap": [
+        "TIM1_CHIN"
+      ]
+    },
+    {
+      "pin": 14,
+      "name": "PB1",
+      "pin_type": "IO",
+      "pin_type_raw": "IO",
+      "main_function": "PB1",
+      "alternate_functions": [
+        "TIM1_CH2N",
+        "TIM1_CH4",
+        "CLKO",
+        "AN0"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 15,
+      "name": "PB0",
+      "pin_type": "IO",
+      "pin_type_raw": "IO",
+      "main_function": "PB0",
+      "alternate_functions": [
+        "TIM1_CH3N"
+      ],
+      "alternate_functions_remap": [
+        "TIM1_CH2",
+        "TIM2_CH1"
+      ]
+    },
+    {
+      "pin": 16,
+      "name": "PA0",
+      "pin_type": "IO",
+      "pin_type_raw": "IO",
+      "main_function": "PA0",
+      "alternate_functions": [
+        "TIM1_CH1",
+        "VREFN"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 17,
+      "name": "PA1",
+      "pin_type": "IO",
+      "pin_type_raw": "IO",
+      "main_function": "PA1",
+      "alternate_functions": [
+        "TIM1_CH2",
+        "VREFP"
+      ],
+      "alternate_functions_remap": []
+    },
+    {
+      "pin": 18,
+      "name": "PA2",
+      "pin_type": "IO",
+      "pin_type_raw": "IO",
+      "main_function": "PA2",
+      "alternate_functions": [
+        "ISPCK"
+      ],
+      "alternate_functions_remap": [
+        "TIM1_CH4",
+        "UART_RX"
+      ]
+    },
+    {
+      "pin": 19,
+      "name": "PA3",
+      "pin_type": "IO",
+      "pin_type_raw": "IO",
+      "main_function": "PA3",
+      "alternate_functions": [
+        "AN1"
+      ],
+      "alternate_functions_remap": [
+        "TIM2_CH3"
+      ]
+    },
+    {
+      "pin": 20,
+      "name": "PA4",
+      "pin_type": "IO",
+      "pin_type_raw": "IO",
+      "main_function": "PA4",
+      "alternate_functions": [
+        "TIM2_CH2",
+        "ADC_ETR",
+        "AN2"
+      ],
+      "alternate_functions_remap": []
+    }
+  ]
+}

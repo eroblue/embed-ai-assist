@@ -1,0 +1,135 @@
+[p PRO_MODE GLOBOPT AUTOSTATIC RSC14 RSC14E SPACEOPT ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip FT61F14X ]
+[d frameptr 6 ]
+"62 d:\ide3.0.3_6c03\data\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 d:\ide3.0.3_6c03\data\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"46 D:\FMD DEMO CODE(word+pdf)\C ÐÞ¸Ä\FT61F14x\test_61f14x_IR\test_61f14x_IR_Receive\test_61f14x_IR_Receive.C
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+"89
+[v _TIMER4_INITIAL TIMER4_INITIAL `(v  1 e 1 0 ]
+"159
+[v _Px_Level_Change_INITIAL Px_Level_Change_INITIAL `(v  1 e 1 0 ]
+"180
+[v _ISR ISR `II(v  1 e 1 0 ]
+"239
+[v _main main `(v  1 e 1 0 ]
+"97 d:\ide3.0.3_6c03\data\include\FT61F14X.h
+[v _INTCON INTCON `VEuc  1 e 1 @11 ]
+"106
+[v _GIE GIE `VEb  1 e 0 @95 ]
+"123
+[v _PORTA PORTA `VEuc  1 e 1 @12 ]
+"168
+[v _PORTB PORTB `VEuc  1 e 1 @13 ]
+"182
+[v _PB3 PB3 `VEb  1 e 0 @107 ]
+"213
+[v _PORTC PORTC `VEuc  1 e 1 @14 ]
+"219
+[v _PC1 PC1 `VEb  1 e 0 @113 ]
+"249
+[v _EPIF0 EPIF0 `VEuc  1 e 1 @20 ]
+"262
+[v _TRISA TRISA `VEuc  1 e 1 @140 ]
+"289
+[v _TRISB TRISB `VEuc  1 e 1 @141 ]
+"316
+[v _TRISC TRISC `VEuc  1 e 1 @142 ]
+"348
+[v _EPIE0 EPIE0 `VEuc  1 e 1 @148 ]
+"475
+[v _OSCCON OSCCON `VEuc  1 e 1 @153 ]
+"506
+[v _PCKEN PCKEN `VEuc  1 e 1 @154 ]
+"718
+[v _TIM4CR1 TIM4CR1 `VEuc  1 e 1 @273 ]
+"743
+[v _TIM4IER TIM4IER `VEuc  1 e 1 @274 ]
+"745
+[v _T4UIE T4UIE `VEb  1 e 0 @2192 ]
+"755
+[v _TIM4SR TIM4SR `VEuc  1 e 1 @275 ]
+"757
+[v _T4UIF T4UIF `VEb  1 e 0 @2200 ]
+"768
+[v _TIM4EGR TIM4EGR `VEuc  1 e 1 @276 ]
+"781
+[v _TIM4CNTR TIM4CNTR `VEuc  1 e 1 @277 ]
+"786
+[v _TIM4PSCR TIM4PSCR `VEuc  1 e 1 @278 ]
+"806
+[v _TIM4ARR TIM4ARR `VEuc  1 e 1 @279 ]
+"811
+[v _EPS0 EPS0 `VEuc  1 e 1 @280 ]
+"816
+[v _EPS1 EPS1 `VEuc  1 e 1 @281 ]
+"821
+[v _PSRC0 PSRC0 `VEuc  1 e 1 @282 ]
+"826
+[v _PSRC1 PSRC1 `VEuc  1 e 1 @283 ]
+"853
+[v _ITYPE0 ITYPE0 `VEuc  1 e 1 @286 ]
+"859
+[v _ITYPE1 ITYPE1 `VEuc  1 e 1 @287 ]
+"869
+[v _WPUA WPUA `VEuc  1 e 1 @396 ]
+"873
+[v _WPUB WPUB `VEuc  1 e 1 @397 ]
+"877
+[v _WPUC WPUC `VEuc  1 e 1 @398 ]
+"966
+[v _ANSELA ANSELA `VEuc  1 e 1 @407 ]
+"1001
+[v _PSINK0 PSINK0 `VEuc  1 e 1 @410 ]
+"1005
+[v _PSINK1 PSINK1 `VEuc  1 e 1 @411 ]
+"1008
+[v _PSINK2 PSINK2 `VEuc  1 e 1 @412 ]
+"1043
+[v _WPDA WPDA `VEuc  1 e 1 @524 ]
+"1070
+[v _WPDB WPDB `VEuc  1 e 1 @525 ]
+"1096
+[v _WPDC WPDC `VEuc  1 e 1 @526 ]
+"33 D:\FMD DEMO CODE(word+pdf)\C ÐÞ¸Ä\FT61F14x\test_61f14x_IR\test_61f14x_IR_Receive\test_61f14x_IR_Receive.C
+[v _IRbitNum IRbitNum `uc  1 e 1 0 ]
+"34
+[v _IRbitTime IRbitTime `uc  1 e 1 0 ]
+"35
+[v _IRDataTimer IRDataTimer `VE[4]uc  1 e 4 0 ]
+"36
+[v _bitdata bitdata `uc  1 e 1 0 ]
+"37
+[v _ReceiveFinish ReceiveFinish `uc  1 e 1 0 ]
+"39
+[v _rdata1 rdata1 `VEuc  1 e 1 0 ]
+[v _rdata2 rdata2 `VEuc  1 e 1 0 ]
+"239
+[v _main main `(v  1 e 1 0 ]
+{
+"259
+} 0
+"89
+[v _TIMER4_INITIAL TIMER4_INITIAL `(v  1 e 1 0 ]
+{
+"151
+} 0
+"159
+[v _Px_Level_Change_INITIAL Px_Level_Change_INITIAL `(v  1 e 1 0 ]
+{
+"172
+} 0
+"46
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+{
+"81
+} 0
+"180
+[v _ISR ISR `II(v  1 e 1 0 ]
+{
+"231
+} 0

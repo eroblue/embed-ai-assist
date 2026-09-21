@@ -1,0 +1,6234 @@
+{
+  "schema": "embedaiassist.netlist.v1",
+  "generator": "schematic-reader",
+  "eda_tool": "altium",
+  "source_file": "E:\\skills\\EmbedSoftAutomaticProject\\embed-ai-assist\\examples\\stm32f103zet6\\schematic\\STM32F103ZET6_MinSystem\\STM32F103ZET6_MinSystem.SchDoc",
+  "parse_status": "success",
+  "generated_at": "2026-09-18T15:40:37",
+  "statistics": {
+    "component_count": 69,
+    "net_count": 134,
+    "pin_count": 324
+  },
+  "warnings": [],
+  "components": [
+    {
+      "designator": "C1",
+      "value": "104",
+      "footprint": "C0603_M",
+      "library_ref": "C",
+      "description": "贴片电容/MLCC电容",
+      "parameters": {
+        "BOMÃû³Æ": "无极性贴片电容",
+        "Comment": "104",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "5V"
+        }
+      ]
+    },
+    {
+      "designator": "C2",
+      "value": "104",
+      "footprint": "C0603_M",
+      "library_ref": "C",
+      "description": "贴片电容/MLCC电容",
+      "parameters": {
+        "BOMÃû³Æ": "无极性贴片电容",
+        "Comment": "104",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "3V3"
+        }
+      ]
+    },
+    {
+      "designator": "C3",
+      "value": "22pf",
+      "footprint": "C0603_M",
+      "library_ref": "C",
+      "description": "贴片电容/MLCC电容",
+      "parameters": {
+        "BOMÃû³Æ": "无极性贴片电容",
+        "Comment": "22pf",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "OSC_IN"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        }
+      ]
+    },
+    {
+      "designator": "C4",
+      "value": "22pf",
+      "footprint": "C0603_M",
+      "library_ref": "C",
+      "description": "贴片电容/MLCC电容",
+      "parameters": {
+        "BOMÃû³Æ": "无极性贴片电容",
+        "Comment": "22pf",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "OSC_OUT"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        }
+      ]
+    },
+    {
+      "designator": "C5",
+      "value": "10pf",
+      "footprint": "C0603_M",
+      "library_ref": "C",
+      "description": "贴片电容/MLCC电容",
+      "parameters": {
+        "BOMÃû³Æ": "无极性贴片电容",
+        "Comment": "10pf",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "OSC32_IN"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        }
+      ]
+    },
+    {
+      "designator": "C6",
+      "value": "10pf",
+      "footprint": "C0603_M",
+      "library_ref": "C",
+      "description": "贴片电容/MLCC电容",
+      "parameters": {
+        "BOMÃû³Æ": "无极性贴片电容",
+        "Comment": "10pf",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "OSC32_OUT"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        }
+      ]
+    },
+    {
+      "designator": "C7",
+      "value": "104",
+      "footprint": "C0603_M",
+      "library_ref": "C",
+      "description": "贴片电容/MLCC电容",
+      "parameters": {
+        "BOMÃû³Æ": "无极性贴片电容",
+        "Comment": "104",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "RESET"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        }
+      ]
+    },
+    {
+      "designator": "C8",
+      "value": "104",
+      "footprint": "C0603_M",
+      "library_ref": "C",
+      "description": "贴片电容/MLCC电容",
+      "parameters": {
+        "BOMÃû³Æ": "无极性贴片电容",
+        "Comment": "104",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": null
+        }
+      ]
+    },
+    {
+      "designator": "C9",
+      "value": "104",
+      "footprint": "C0603_M",
+      "library_ref": "C",
+      "description": "贴片电容/MLCC电容",
+      "parameters": {
+        "BOMÃû³Æ": "无极性贴片电容",
+        "Comment": "104",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "3V3"
+        }
+      ]
+    },
+    {
+      "designator": "C10",
+      "value": "104",
+      "footprint": "C0603_M",
+      "library_ref": "C",
+      "description": "贴片电容/MLCC电容",
+      "parameters": {
+        "BOMÃû³Æ": "无极性贴片电容",
+        "Comment": "104",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "3V3"
+        }
+      ]
+    },
+    {
+      "designator": "C11",
+      "value": "104",
+      "footprint": "C0603_M",
+      "library_ref": "C",
+      "description": "贴片电容/MLCC电容",
+      "parameters": {
+        "BOMÃû³Æ": "无极性贴片电容",
+        "Comment": "104",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "3V3"
+        }
+      ]
+    },
+    {
+      "designator": "C12",
+      "value": "104",
+      "footprint": "C0603_M",
+      "library_ref": "C",
+      "description": "贴片电容/MLCC电容",
+      "parameters": {
+        "BOMÃû³Æ": "无极性贴片电容",
+        "Comment": "104",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "3V3"
+        }
+      ]
+    },
+    {
+      "designator": "C13",
+      "value": "104",
+      "footprint": "C0603_M",
+      "library_ref": "C",
+      "description": "贴片电容/MLCC电容",
+      "parameters": {
+        "BOMÃû³Æ": "无极性贴片电容",
+        "Comment": "104",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "3V3"
+        }
+      ]
+    },
+    {
+      "designator": "C14",
+      "value": "104",
+      "footprint": "C0603_M",
+      "library_ref": "C",
+      "description": "贴片电容/MLCC电容",
+      "parameters": {
+        "BOMÃû³Æ": "无极性贴片电容",
+        "Comment": "104",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "3V3"
+        }
+      ]
+    },
+    {
+      "designator": "C15",
+      "value": "104",
+      "footprint": "C0603_M",
+      "library_ref": "C",
+      "description": "贴片电容/MLCC电容",
+      "parameters": {
+        "BOMÃû³Æ": "无极性贴片电容",
+        "Comment": "104",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "3V3"
+        }
+      ]
+    },
+    {
+      "designator": "C16",
+      "value": "104",
+      "footprint": "C0603_M",
+      "library_ref": "C",
+      "description": "贴片电容/MLCC电容",
+      "parameters": {
+        "BOMÃû³Æ": "无极性贴片电容",
+        "Comment": "104",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "3V3"
+        }
+      ]
+    },
+    {
+      "designator": "C17",
+      "value": "104",
+      "footprint": "C0603_M",
+      "library_ref": "C",
+      "description": "贴片电容/MLCC电容",
+      "parameters": {
+        "BOMÃû³Æ": "无极性贴片电容",
+        "Comment": "104",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "3V3"
+        }
+      ]
+    },
+    {
+      "designator": "C18",
+      "value": "104",
+      "footprint": "C0603_M",
+      "library_ref": "C",
+      "description": "贴片电容/MLCC电容",
+      "parameters": {
+        "BOMÃû³Æ": "无极性贴片电容",
+        "Comment": "104",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "3V3"
+        }
+      ]
+    },
+    {
+      "designator": "C19",
+      "value": "Cap",
+      "footprint": "RAD-0.3",
+      "library_ref": "Cap",
+      "description": "Capacitor",
+      "parameters": {
+        "Comment": "Cap",
+        "LatestRevisionDate": "17-Jul-2002",
+        "LatestRevisionNote": "Re-released for DXP Platform.",
+        "PackageDescription": "Radial Cap, Thru-Hole; 2 Leads; 0.3 in Pin Spacing",
+        "PackageReference": "RAD-0.3",
+        "Published": "8-Jun-2000",
+        "Publisher": "Altium Limited",
+        "Value": "10uF"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "5V"
+        }
+      ]
+    },
+    {
+      "designator": "C20",
+      "value": "Cap",
+      "footprint": "RAD-0.3",
+      "library_ref": "Cap",
+      "description": "Capacitor",
+      "parameters": {
+        "Comment": "Cap",
+        "LatestRevisionDate": "17-Jul-2002",
+        "LatestRevisionNote": "Re-released for DXP Platform.",
+        "PackageDescription": "Radial Cap, Thru-Hole; 2 Leads; 0.3 in Pin Spacing",
+        "PackageReference": "RAD-0.3",
+        "Published": "8-Jun-2000",
+        "Publisher": "Altium Limited",
+        "Value": "104"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "5V"
+        }
+      ]
+    },
+    {
+      "designator": "C21",
+      "value": "Cap",
+      "footprint": "RAD-0.3",
+      "library_ref": "Cap",
+      "description": "Capacitor",
+      "parameters": {
+        "Comment": "Cap",
+        "LatestRevisionDate": "17-Jul-2002",
+        "LatestRevisionNote": "Re-released for DXP Platform.",
+        "PackageDescription": "Radial Cap, Thru-Hole; 2 Leads; 0.3 in Pin Spacing",
+        "PackageReference": "RAD-0.3",
+        "Published": "8-Jun-2000",
+        "Publisher": "Altium Limited",
+        "Value": "22pF"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "NetC21_2"
+        }
+      ]
+    },
+    {
+      "designator": "C22",
+      "value": "Cap",
+      "footprint": "RAD-0.3",
+      "library_ref": "Cap",
+      "description": "Capacitor",
+      "parameters": {
+        "Comment": "Cap",
+        "LatestRevisionDate": "17-Jul-2002",
+        "LatestRevisionNote": "Re-released for DXP Platform.",
+        "PackageDescription": "Radial Cap, Thru-Hole; 2 Leads; 0.3 in Pin Spacing",
+        "PackageReference": "RAD-0.3",
+        "Published": "8-Jun-2000",
+        "Publisher": "Altium Limited",
+        "Value": "104"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "NetC22_2"
+        }
+      ]
+    },
+    {
+      "designator": "C23",
+      "value": "Cap",
+      "footprint": "RAD-0.3",
+      "library_ref": "Cap",
+      "description": "Capacitor",
+      "parameters": {
+        "Comment": "Cap",
+        "LatestRevisionDate": "17-Jul-2002",
+        "LatestRevisionNote": "Re-released for DXP Platform.",
+        "PackageDescription": "Radial Cap, Thru-Hole; 2 Leads; 0.3 in Pin Spacing",
+        "PackageReference": "RAD-0.3",
+        "Published": "8-Jun-2000",
+        "Publisher": "Altium Limited",
+        "Value": "22pF"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "NetC23_2"
+        }
+      ]
+    },
+    {
+      "designator": "C24",
+      "value": "104",
+      "footprint": "C0603_M",
+      "library_ref": "C",
+      "description": "贴片电容/MLCC电容",
+      "parameters": {
+        "BOMÃû³Æ": "无极性贴片电容",
+        "Comment": "104",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "3V3"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        }
+      ]
+    },
+    {
+      "designator": "C25",
+      "value": "104",
+      "footprint": "C0603_M",
+      "library_ref": "C",
+      "description": "贴片电容/MLCC电容",
+      "parameters": {
+        "BOMÃû³Æ": "无极性贴片电容",
+        "Comment": "104",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "3V3"
+        }
+      ]
+    },
+    {
+      "designator": "D1",
+      "value": "1N4007",
+      "footprint": "SMA",
+      "library_ref": "1N4007",
+      "description": "整流二极管",
+      "parameters": {
+        "BOMÃû³Æ": "整流二极管",
+        "Comment": "1N4007",
+        "ÒÔÔùÆ·ÐÎÊ½»ñÔù±¾·â×°¿âµÄÂò¼Ò£¬»¹¿ÉÁªÏµÂô¼ÒÃâ·ÑÖ¸µ¼ADÈí¼þÊ¹ÓÃ": "封装库来自淘宝卖家ID：黄晶宝石"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "A",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "2",
+          "pin_name": "K",
+          "pin_type": "PASSIVE",
+          "net": "NetD1_2"
+        }
+      ]
+    },
+    {
+      "designator": "E1",
+      "value": "680uF/35V",
+      "footprint": "CE G(12.5*13.5)",
+      "library_ref": "CE_SMD",
+      "description": "贴片电解电容",
+      "parameters": {
+        "BOMÃû³Æ": "贴片电解电容",
+        "Comment": "680uF/35V",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "12V"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        }
+      ]
+    },
+    {
+      "designator": "E2",
+      "value": "220uF/10V",
+      "footprint": "CE D(6.3*7.7)",
+      "library_ref": "CE_SMD",
+      "description": "贴片电解电容",
+      "parameters": {
+        "BOMÃû³Æ": "贴片电解电容",
+        "Comment": "220uF/10V",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "5V"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        }
+      ]
+    },
+    {
+      "designator": "E3",
+      "value": "220uF/10V",
+      "footprint": "CE D(6.3*7.7)",
+      "library_ref": "CE_SMD",
+      "description": "贴片电解电容",
+      "parameters": {
+        "BOMÃû³Æ": "贴片电解电容",
+        "Comment": "220uF/10V",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "5V"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        }
+      ]
+    },
+    {
+      "designator": "E4",
+      "value": "47uF/10V",
+      "footprint": "CE B(4*5.4)",
+      "library_ref": "CE_SMD",
+      "description": "贴片电解电容",
+      "parameters": {
+        "BOMÃû³Æ": "贴片电解电容",
+        "Comment": "47uF/10V",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "3V3"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        }
+      ]
+    },
+    {
+      "designator": "IC1",
+      "value": "LM2596T",
+      "footprint": "TO220-5A",
+      "library_ref": "LM2596T",
+      "description": "3A DC-DC降压芯片",
+      "parameters": {
+        "BOMÃû³Æ": "DC降压芯片",
+        "Comment": "LM2596T",
+        "·â×°¿âÀ´×ÔÌÔ±|Âô¼ÒID£º»Æ¾§±|Ê¯": "其他店铺购入的买家，请立即申请退款，本店现金奖励20~1000元"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "IN",
+          "pin_type": "POWER",
+          "net": "12V"
+        },
+        {
+          "pin": "2",
+          "pin_name": "OUT",
+          "pin_type": "POWER",
+          "net": "NetD1_2"
+        },
+        {
+          "pin": "3",
+          "pin_name": "GND",
+          "pin_type": "POWER",
+          "net": "GND"
+        },
+        {
+          "pin": "4",
+          "pin_name": "FB",
+          "pin_type": "INPUT",
+          "net": "5V"
+        },
+        {
+          "pin": "5",
+          "pin_name": "O\\N\\/OFF",
+          "pin_type": "INPUT",
+          "net": "GND"
+        }
+      ]
+    },
+    {
+      "designator": "J1",
+      "value": "JTAG",
+      "footprint": "JTAG_20",
+      "library_ref": "HEADER 10X2",
+      "description": "HEADER 10X2",
+      "parameters": {
+        "Comment": "JTAG"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "3V3"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "3V3"
+        },
+        {
+          "pin": "3",
+          "pin_name": "3",
+          "pin_type": "PASSIVE",
+          "net": "JTRST"
+        },
+        {
+          "pin": "4",
+          "pin_name": "4",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "5",
+          "pin_name": "5",
+          "pin_type": "PASSIVE",
+          "net": "JTDI"
+        },
+        {
+          "pin": "6",
+          "pin_name": "6",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "7",
+          "pin_name": "7",
+          "pin_type": "PASSIVE",
+          "net": "JTMS"
+        },
+        {
+          "pin": "8",
+          "pin_name": "8",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "9",
+          "pin_name": "9",
+          "pin_type": "PASSIVE",
+          "net": "JTCK"
+        },
+        {
+          "pin": "10",
+          "pin_name": "10",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "11",
+          "pin_name": "11",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "12",
+          "pin_name": "12",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "13",
+          "pin_name": "13",
+          "pin_type": "PASSIVE",
+          "net": "JTDO"
+        },
+        {
+          "pin": "14",
+          "pin_name": "14",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "15",
+          "pin_name": "15",
+          "pin_type": "PASSIVE",
+          "net": "RESET"
+        },
+        {
+          "pin": "16",
+          "pin_name": "16",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "17",
+          "pin_name": "17",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "18",
+          "pin_name": "18",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "19",
+          "pin_name": "19",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "20",
+          "pin_name": "20",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        }
+      ]
+    },
+    {
+      "designator": "K0",
+      "value": "SW-PB",
+      "footprint": "SPST-2",
+      "library_ref": "SW-PB",
+      "description": "Switch",
+      "parameters": {
+        "Comment": "SW-PB",
+        "LatestRevisionDate": "17-Jul-2002",
+        "LatestRevisionNote": "Re-released for DXP Platform.",
+        "PackageDescription": "Switch; 2 Leads",
+        "PackageReference": "SPST-2",
+        "Published": "24-Mar-1999",
+        "Publisher": "Altium Limited"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "KEY0"
+        }
+      ]
+    },
+    {
+      "designator": "K1",
+      "value": "SW-PB",
+      "footprint": "SPST-2",
+      "library_ref": "SW-PB",
+      "description": "Switch",
+      "parameters": {
+        "Comment": "SW-PB",
+        "LatestRevisionDate": "17-Jul-2002",
+        "LatestRevisionNote": "Re-released for DXP Platform.",
+        "PackageDescription": "Switch; 2 Leads",
+        "PackageReference": "SPST-2",
+        "Published": "24-Mar-1999",
+        "Publisher": "Altium Limited"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "KEY1"
+        }
+      ]
+    },
+    {
+      "designator": "K2",
+      "value": "SW-PB",
+      "footprint": "SPST-2",
+      "library_ref": "SW-PB",
+      "description": "Switch",
+      "parameters": {
+        "Comment": "SW-PB",
+        "LatestRevisionDate": "17-Jul-2002",
+        "LatestRevisionNote": "Re-released for DXP Platform.",
+        "PackageDescription": "Switch; 2 Leads",
+        "PackageReference": "SPST-2",
+        "Published": "24-Mar-1999",
+        "Publisher": "Altium Limited"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "KEY2"
+        }
+      ]
+    },
+    {
+      "designator": "KEY_UP",
+      "value": "SW-PB",
+      "footprint": "SPST-2",
+      "library_ref": "SW-PB",
+      "description": "Switch",
+      "parameters": {
+        "Comment": "SW-PB",
+        "LatestRevisionDate": "17-Jul-2002",
+        "LatestRevisionNote": "Re-released for DXP Platform.",
+        "PackageDescription": "Switch; 2 Leads",
+        "PackageReference": "SPST-2",
+        "Published": "24-Mar-1999",
+        "Publisher": "Altium Limited"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "3V3"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "PA0"
+        }
+      ]
+    },
+    {
+      "designator": "L1",
+      "value": "33uH",
+      "footprint": "CDRH74",
+      "library_ref": "L-CDRH",
+      "description": "CDRH功率屏蔽电感",
+      "parameters": {
+        "BOMÃû³Æ": "功率屏蔽电感",
+        "Comment": "33uH",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "NetD1_2"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "5V"
+        }
+      ]
+    },
+    {
+      "designator": "LED1",
+      "value": "绿色",
+      "footprint": "LED0603_G",
+      "library_ref": "LED-SMD",
+      "description": "贴片LED",
+      "parameters": {
+        "BOMÃû³Æ": "贴片LED",
+        "Comment": "绿色",
+        "·â×°¿âÀ´×ÔÌÔ±|Âô¼ÒID£º»Æ¾§±|Ê¯": "其他店铺购入均为盗版封装库，请立即申请退款，本店现金奖励20~200元"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "A",
+          "pin_type": "PASSIVE",
+          "net": "NetLED1_1"
+        },
+        {
+          "pin": "2",
+          "pin_name": "K",
+          "pin_type": "PASSIVE",
+          "net": "LED1"
+        }
+      ]
+    },
+    {
+      "designator": "LED2",
+      "value": "绿色",
+      "footprint": "LED0603_G",
+      "library_ref": "LED-SMD",
+      "description": "贴片LED",
+      "parameters": {
+        "BOMÃû³Æ": "贴片LED",
+        "Comment": "绿色",
+        "·â×°¿âÀ´×ÔÌÔ±|Âô¼ÒID£º»Æ¾§±|Ê¯": "其他店铺购入均为盗版封装库，请立即申请退款，本店现金奖励20~200元"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "A",
+          "pin_type": "PASSIVE",
+          "net": "NetLED2_1"
+        },
+        {
+          "pin": "2",
+          "pin_name": "K",
+          "pin_type": "PASSIVE",
+          "net": "LED2"
+        }
+      ]
+    },
+    {
+      "designator": "LS1",
+      "value": "DC3.3V",
+      "footprint": "BEEP 5x9x5.5",
+      "library_ref": "BEEP",
+      "description": "蜂鸣器",
+      "parameters": {
+        "BOMÃû³Æ": "蜂鸣器",
+        "Comment": "DC3.3V",
+        "ÁªÏµÏÂµ¥µêÆÌÂô¼Ò Ãâ·Ñ¼¼ÊõÖ§³Ö": "联系下单店铺卖家 免费帮你查找封装"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "3V3"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "NetLS1_2"
+        }
+      ]
+    },
+    {
+      "designator": "P1",
+      "value": "Header 3X2",
+      "footprint": "HDR2X3",
+      "library_ref": "Header 3X2",
+      "description": "Header, 3-Pin, Dual row",
+      "parameters": {
+        "Comment": "Header 3X2",
+        "LatestRevisionDate": "17-Jul-2002",
+        "LatestRevisionNote": "Re-released for DXP Platform.",
+        "Publisher": "Altium Limited"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "3V3"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "3V3"
+        },
+        {
+          "pin": "3",
+          "pin_name": "3",
+          "pin_type": "PASSIVE",
+          "net": "NetP1_3"
+        },
+        {
+          "pin": "4",
+          "pin_name": "4",
+          "pin_type": "PASSIVE",
+          "net": "NetP1_4"
+        },
+        {
+          "pin": "5",
+          "pin_name": "5",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "6",
+          "pin_name": "6",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        }
+      ]
+    },
+    {
+      "designator": "P9",
+      "value": "Header 4",
+      "footprint": "HDR1X4",
+      "library_ref": "Header 4",
+      "description": "Header, 4-Pin",
+      "parameters": {
+        "Comment": "Header 4",
+        "LatestRevisionDate": "17-Jul-2002",
+        "LatestRevisionNote": "Re-released for DXP Platform.",
+        "Publisher": "Altium Limited"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "3V3"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "UART4_RX"
+        },
+        {
+          "pin": "3",
+          "pin_name": "3",
+          "pin_type": "PASSIVE",
+          "net": "UART4_TX"
+        },
+        {
+          "pin": "4",
+          "pin_name": "4",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        }
+      ]
+    },
+    {
+      "designator": "Q1",
+      "value": "SS8050",
+      "footprint": "SOT23-3N",
+      "library_ref": "8050-SMD",
+      "description": "高频放大-NPN型",
+      "parameters": {
+        "BOMÃû³Æ": "高频放大-NPN型",
+        "Comment": "SS8050",
+        "²ÎÊý": "40V 1.5A 1W 100MHZ",
+        "ÁªÏµÏÂµ¥µêÆÌÂô¼Ò Ãâ·Ñ°ïÄã²éÕÒ·â×°": "联系下单店铺卖家 免费技术支持"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "B",
+          "pin_type": "PASSIVE",
+          "net": "NetQ1_1"
+        },
+        {
+          "pin": "2",
+          "pin_name": "E",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "3",
+          "pin_name": "C",
+          "pin_type": "PASSIVE",
+          "net": "NetLS1_2"
+        }
+      ]
+    },
+    {
+      "designator": "R1",
+      "value": "1K",
+      "footprint": "R0603_L",
+      "library_ref": "R",
+      "description": "贴片电阻",
+      "parameters": {
+        "BOMÃû³Æ": "贴片电阻",
+        "Comment": "1K",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "NetQ1_1"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "BEEP"
+        }
+      ]
+    },
+    {
+      "designator": "R2",
+      "value": "10K",
+      "footprint": "R0603_L",
+      "library_ref": "R",
+      "description": "贴片电阻",
+      "parameters": {
+        "BOMÃû³Æ": "贴片电阻",
+        "Comment": "10K",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "BOOT0"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "NetP1_3"
+        }
+      ]
+    },
+    {
+      "designator": "R3",
+      "value": "10K",
+      "footprint": "R0603_L",
+      "library_ref": "R",
+      "description": "贴片电阻",
+      "parameters": {
+        "BOMÃû³Æ": "贴片电阻",
+        "Comment": "10K",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "BOOT1"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "NetP1_4"
+        }
+      ]
+    },
+    {
+      "designator": "R4",
+      "value": "510",
+      "footprint": "R0603_L",
+      "library_ref": "R",
+      "description": "贴片电阻",
+      "parameters": {
+        "BOMÃû³Æ": "贴片电阻",
+        "Comment": "510",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "3V3"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "NetLED1_1"
+        }
+      ]
+    },
+    {
+      "designator": "R5",
+      "value": "510",
+      "footprint": "R0603_L",
+      "library_ref": "R",
+      "description": "贴片电阻",
+      "parameters": {
+        "BOMÃû³Æ": "贴片电阻",
+        "Comment": "510",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "3V3"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "NetLED2_1"
+        }
+      ]
+    },
+    {
+      "designator": "R6",
+      "value": "1M",
+      "footprint": "R0603_L",
+      "library_ref": "R",
+      "description": "贴片电阻",
+      "parameters": {
+        "BOMÃû³Æ": "贴片电阻",
+        "Comment": "1M",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "OSC_OUT"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "OSC_IN"
+        }
+      ]
+    },
+    {
+      "designator": "R7",
+      "value": "10K",
+      "footprint": "R0603_L",
+      "library_ref": "R",
+      "description": "贴片电阻",
+      "parameters": {
+        "BOMÃû³Æ": "贴片电阻",
+        "Comment": "10K",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "3V3"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "JTRST"
+        }
+      ]
+    },
+    {
+      "designator": "R8",
+      "value": "10K",
+      "footprint": "R0603_L",
+      "library_ref": "R",
+      "description": "贴片电阻",
+      "parameters": {
+        "BOMÃû³Æ": "贴片电阻",
+        "Comment": "10K",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "3V3"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "JTDI"
+        }
+      ]
+    },
+    {
+      "designator": "R9",
+      "value": "10K",
+      "footprint": "R0603_L",
+      "library_ref": "R",
+      "description": "贴片电阻",
+      "parameters": {
+        "BOMÃû³Æ": "贴片电阻",
+        "Comment": "10K",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "3V3"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "JTMS"
+        }
+      ]
+    },
+    {
+      "designator": "R10",
+      "value": "10K",
+      "footprint": "R0603_L",
+      "library_ref": "R",
+      "description": "贴片电阻",
+      "parameters": {
+        "BOMÃû³Æ": "贴片电阻",
+        "Comment": "10K",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "JTCK"
+        }
+      ]
+    },
+    {
+      "designator": "R11",
+      "value": "10K",
+      "footprint": "R0603_L",
+      "library_ref": "R",
+      "description": "贴片电阻",
+      "parameters": {
+        "BOMÃû³Æ": "贴片电阻",
+        "Comment": "10K",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "3V3"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "JTDO"
+        }
+      ]
+    },
+    {
+      "designator": "R12",
+      "value": "10K",
+      "footprint": "R0603_L",
+      "library_ref": "R",
+      "description": "贴片电阻",
+      "parameters": {
+        "BOMÃû³Æ": "贴片电阻",
+        "Comment": "10K",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "RESET"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "3V3"
+        }
+      ]
+    },
+    {
+      "designator": "R13",
+      "value": "1M",
+      "footprint": "R0603_L",
+      "library_ref": "R",
+      "description": "贴片电阻",
+      "parameters": {
+        "BOMÃû³Æ": "贴片电阻",
+        "Comment": "1M",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "STM_ADC"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "3V3"
+        }
+      ]
+    },
+    {
+      "designator": "R14",
+      "value": "10K",
+      "footprint": "R0603_L",
+      "library_ref": "R",
+      "description": "贴片电阻",
+      "parameters": {
+        "BOMÃû³Æ": "贴片电阻",
+        "Comment": "10K",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "NetQ1_1"
+        }
+      ]
+    },
+    {
+      "designator": "R15",
+      "value": "10K",
+      "footprint": "R0603_L",
+      "library_ref": "R",
+      "description": "贴片电阻",
+      "parameters": {
+        "BOMÃû³Æ": "贴片电阻",
+        "Comment": "10K",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "IIC_SCL"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "3V3"
+        }
+      ]
+    },
+    {
+      "designator": "R16",
+      "value": "10K",
+      "footprint": "R0603_L",
+      "library_ref": "R",
+      "description": "贴片电阻",
+      "parameters": {
+        "BOMÃû³Æ": "贴片电阻",
+        "Comment": "10K",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "NetR16_1"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "3V3"
+        }
+      ]
+    },
+    {
+      "designator": "SW1",
+      "value": "3x6x5",
+      "footprint": "SW SMD-3*6*2.5",
+      "library_ref": "SW-PB",
+      "description": "微动开关",
+      "parameters": {
+        "BOMÃû³Æ": "3x6轻触开关",
+        "Comment": "3x6x5",
+        "·â×°¿âÀ´×ÔÌÔ±|Âô¼ÒID£º»Æ¾§±|Ê¯": "其他店铺购入的，请立即申请退款，本店现金奖励20~500元",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "RESET"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        }
+      ]
+    },
+    {
+      "designator": "U2",
+      "value": "STM32F103ZET6",
+      "footprint": "LQFP144_N",
+      "library_ref": "STM32F101ZET6",
+      "description": "STM32 ARM-based 32-bit MCU Access Line with 512 kB Flash, 48 kB Internal RAM, -40 to +85癈 Temperature, 144-Pin LQFP, Tray",
+      "parameters": {
+        "Comment": "STM32F103ZET6",
+        "ComponentLink1Description": "Manufacturer URL",
+        "ComponentLink1URL": "http://www.st.com/",
+        "ComponentLink2Description": "STM32F101 Datasheet",
+        "ComponentLink2URL": "http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/DATASHEET/CD00191174.pdf",
+        "ComponentLink3Description": "STM32 Family Web Page",
+        "ComponentLink3URL": "www.st.com/stm32",
+        "DatasheetVersion": "rev8.0, Apr-2011",
+        "PackageDescription": "144-Pin Thin Quad Flat Pack 0.5 mm Pitch",
+        "PackageReference": "LQFP144",
+        "PackageVersion": "2011",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "PE2",
+          "pin_type": "IO",
+          "net": "KEY2"
+        },
+        {
+          "pin": "2",
+          "pin_name": "PE3",
+          "pin_type": "IO",
+          "net": "KEY1"
+        },
+        {
+          "pin": "3",
+          "pin_name": "PE4",
+          "pin_type": "IO",
+          "net": "KEY0"
+        },
+        {
+          "pin": "4",
+          "pin_name": "PE5",
+          "pin_type": "IO",
+          "net": "LED2"
+        },
+        {
+          "pin": "5",
+          "pin_name": "PE6",
+          "pin_type": "IO",
+          "net": "PE6"
+        },
+        {
+          "pin": "6",
+          "pin_name": "VBAT",
+          "pin_type": "POWER",
+          "net": "3V3"
+        },
+        {
+          "pin": "7",
+          "pin_name": "PC13-TAMPER-RTC",
+          "pin_type": "IO",
+          "net": "PC13"
+        },
+        {
+          "pin": "8",
+          "pin_name": "PC14-OSC32_IN",
+          "pin_type": "IO",
+          "net": "OSC32_IN"
+        },
+        {
+          "pin": "9",
+          "pin_name": "PC15-OSC32_OUT",
+          "pin_type": "IO",
+          "net": "OSC32_OUT"
+        },
+        {
+          "pin": "10",
+          "pin_name": "PF0",
+          "pin_type": "IO",
+          "net": "PF0"
+        },
+        {
+          "pin": "11",
+          "pin_name": "PF1",
+          "pin_type": "IO",
+          "net": "PF1"
+        },
+        {
+          "pin": "12",
+          "pin_name": "PF2",
+          "pin_type": "IO",
+          "net": "PF2"
+        },
+        {
+          "pin": "13",
+          "pin_name": "PF3",
+          "pin_type": "IO",
+          "net": "PF3"
+        },
+        {
+          "pin": "14",
+          "pin_name": "PF4",
+          "pin_type": "IO",
+          "net": "PF4"
+        },
+        {
+          "pin": "15",
+          "pin_name": "PF5",
+          "pin_type": "IO",
+          "net": "PF5"
+        },
+        {
+          "pin": "16",
+          "pin_name": "VSS_5",
+          "pin_type": "POWER",
+          "net": "GND"
+        },
+        {
+          "pin": "17",
+          "pin_name": "VDD_5",
+          "pin_type": "POWER",
+          "net": "3V3"
+        },
+        {
+          "pin": "18",
+          "pin_name": "PF6",
+          "pin_type": "IO",
+          "net": "PF6"
+        },
+        {
+          "pin": "19",
+          "pin_name": "PF7",
+          "pin_type": "IO",
+          "net": "PF7"
+        },
+        {
+          "pin": "20",
+          "pin_name": "PF8",
+          "pin_type": "IO",
+          "net": "PF8"
+        },
+        {
+          "pin": "21",
+          "pin_name": "PF9",
+          "pin_type": "IO",
+          "net": "PF9"
+        },
+        {
+          "pin": "22",
+          "pin_name": "PF10",
+          "pin_type": "IO",
+          "net": "PF10"
+        },
+        {
+          "pin": "23",
+          "pin_name": "OSC_IN",
+          "pin_type": "INPUT",
+          "net": "OSC_IN"
+        },
+        {
+          "pin": "24",
+          "pin_name": "OSC_OUT",
+          "pin_type": "OUTPUT",
+          "net": "OSC_OUT"
+        },
+        {
+          "pin": "25",
+          "pin_name": "NRST",
+          "pin_type": "IO",
+          "net": "RESET"
+        },
+        {
+          "pin": "26",
+          "pin_name": "PC0",
+          "pin_type": "IO",
+          "net": "PC0"
+        },
+        {
+          "pin": "27",
+          "pin_name": "PC1",
+          "pin_type": "IO",
+          "net": "PC1"
+        },
+        {
+          "pin": "28",
+          "pin_name": "PC2",
+          "pin_type": "IO",
+          "net": "PC2"
+        },
+        {
+          "pin": "29",
+          "pin_name": "PC3",
+          "pin_type": "IO",
+          "net": "PC3"
+        },
+        {
+          "pin": "30",
+          "pin_name": "VSSA",
+          "pin_type": "POWER",
+          "net": "GND"
+        },
+        {
+          "pin": "31",
+          "pin_name": "VREF-",
+          "pin_type": "POWER",
+          "net": "GND"
+        },
+        {
+          "pin": "32",
+          "pin_name": "VREF+",
+          "pin_type": "POWER",
+          "net": "3V3"
+        },
+        {
+          "pin": "33",
+          "pin_name": "VDDA",
+          "pin_type": "POWER",
+          "net": "3V3"
+        },
+        {
+          "pin": "34",
+          "pin_name": "PA0-WKUP",
+          "pin_type": "IO",
+          "net": "PA0"
+        },
+        {
+          "pin": "35",
+          "pin_name": "PA1",
+          "pin_type": "IO",
+          "net": "STM_ADC"
+        },
+        {
+          "pin": "36",
+          "pin_name": "PA2",
+          "pin_type": "IO",
+          "net": "UART2_TX"
+        },
+        {
+          "pin": "37",
+          "pin_name": "PA3",
+          "pin_type": "IO",
+          "net": "UART2_RX"
+        },
+        {
+          "pin": "38",
+          "pin_name": "VSS_4",
+          "pin_type": "POWER",
+          "net": "GND"
+        },
+        {
+          "pin": "39",
+          "pin_name": "VDD_4",
+          "pin_type": "POWER",
+          "net": "3V3"
+        },
+        {
+          "pin": "40",
+          "pin_name": "PA4",
+          "pin_type": "IO",
+          "net": "PA4"
+        },
+        {
+          "pin": "41",
+          "pin_name": "PA5",
+          "pin_type": "IO",
+          "net": "PA5"
+        },
+        {
+          "pin": "42",
+          "pin_name": "PA6",
+          "pin_type": "IO",
+          "net": "PA6"
+        },
+        {
+          "pin": "43",
+          "pin_name": "PA7",
+          "pin_type": "IO",
+          "net": "PA7"
+        },
+        {
+          "pin": "44",
+          "pin_name": "PC4",
+          "pin_type": "IO",
+          "net": "PC4"
+        },
+        {
+          "pin": "45",
+          "pin_name": "PC5",
+          "pin_type": "IO",
+          "net": "PC5"
+        },
+        {
+          "pin": "46",
+          "pin_name": "PB0",
+          "pin_type": "IO",
+          "net": "PB0"
+        },
+        {
+          "pin": "47",
+          "pin_name": "PB1",
+          "pin_type": "IO",
+          "net": "PB1"
+        },
+        {
+          "pin": "48",
+          "pin_name": "PB2",
+          "pin_type": "IO",
+          "net": "BOOT1"
+        },
+        {
+          "pin": "49",
+          "pin_name": "PF11",
+          "pin_type": "IO",
+          "net": "PF11"
+        },
+        {
+          "pin": "50",
+          "pin_name": "PF12",
+          "pin_type": "IO",
+          "net": "PF12"
+        },
+        {
+          "pin": "51",
+          "pin_name": "VSS_6",
+          "pin_type": "POWER",
+          "net": "GND"
+        },
+        {
+          "pin": "52",
+          "pin_name": "VDD_6",
+          "pin_type": "POWER",
+          "net": "3V3"
+        },
+        {
+          "pin": "53",
+          "pin_name": "PF13",
+          "pin_type": "IO",
+          "net": "PF13"
+        },
+        {
+          "pin": "54",
+          "pin_name": "PF14",
+          "pin_type": "IO",
+          "net": "PF14"
+        },
+        {
+          "pin": "55",
+          "pin_name": "PF15",
+          "pin_type": "IO",
+          "net": "PF15"
+        },
+        {
+          "pin": "56",
+          "pin_name": "PG0",
+          "pin_type": "IO",
+          "net": "PG0"
+        },
+        {
+          "pin": "57",
+          "pin_name": "PG1",
+          "pin_type": "IO",
+          "net": "PG1"
+        },
+        {
+          "pin": "58",
+          "pin_name": "PE7",
+          "pin_type": "IO",
+          "net": "PE7"
+        },
+        {
+          "pin": "59",
+          "pin_name": "PE8",
+          "pin_type": "IO",
+          "net": "PE8"
+        },
+        {
+          "pin": "60",
+          "pin_name": "PE9",
+          "pin_type": "IO",
+          "net": "PE9"
+        },
+        {
+          "pin": "61",
+          "pin_name": "VSS_7",
+          "pin_type": "POWER",
+          "net": "GND"
+        },
+        {
+          "pin": "62",
+          "pin_name": "VDD_7",
+          "pin_type": "POWER",
+          "net": "3V3"
+        },
+        {
+          "pin": "63",
+          "pin_name": "PE10",
+          "pin_type": "IO",
+          "net": "PE10"
+        },
+        {
+          "pin": "64",
+          "pin_name": "PE11",
+          "pin_type": "IO",
+          "net": "PE11"
+        },
+        {
+          "pin": "65",
+          "pin_name": "PE12",
+          "pin_type": "IO",
+          "net": "PE12"
+        },
+        {
+          "pin": "66",
+          "pin_name": "PE13",
+          "pin_type": "IO",
+          "net": "PE13"
+        },
+        {
+          "pin": "67",
+          "pin_name": "PE14",
+          "pin_type": "IO",
+          "net": "PE14"
+        },
+        {
+          "pin": "68",
+          "pin_name": "PE15",
+          "pin_type": "IO",
+          "net": "PE15"
+        },
+        {
+          "pin": "69",
+          "pin_name": "PB10",
+          "pin_type": "IO",
+          "net": "PB10"
+        },
+        {
+          "pin": "70",
+          "pin_name": "PB11",
+          "pin_type": "IO",
+          "net": "PB11"
+        },
+        {
+          "pin": "71",
+          "pin_name": "VSS_1",
+          "pin_type": "POWER",
+          "net": "GND"
+        },
+        {
+          "pin": "72",
+          "pin_name": "VDD_1",
+          "pin_type": "POWER",
+          "net": "3V3"
+        },
+        {
+          "pin": "73",
+          "pin_name": "PB12",
+          "pin_type": "IO",
+          "net": "F_CS"
+        },
+        {
+          "pin": "74",
+          "pin_name": "PB13",
+          "pin_type": "IO",
+          "net": "SPI2_SCK"
+        },
+        {
+          "pin": "75",
+          "pin_name": "PB14",
+          "pin_type": "IO",
+          "net": "SPI2_MISO"
+        },
+        {
+          "pin": "76",
+          "pin_name": "PB15",
+          "pin_type": "IO",
+          "net": "SPI2_MOSI"
+        },
+        {
+          "pin": "77",
+          "pin_name": "PD8",
+          "pin_type": "IO",
+          "net": "PD8"
+        },
+        {
+          "pin": "78",
+          "pin_name": "PD9",
+          "pin_type": "IO",
+          "net": "PD9"
+        },
+        {
+          "pin": "79",
+          "pin_name": "PD10",
+          "pin_type": "IO",
+          "net": "PD10"
+        },
+        {
+          "pin": "80",
+          "pin_name": "PD11",
+          "pin_type": "IO",
+          "net": "PD11"
+        },
+        {
+          "pin": "81",
+          "pin_name": "PD12",
+          "pin_type": "IO",
+          "net": "PD12"
+        },
+        {
+          "pin": "82",
+          "pin_name": "PD13",
+          "pin_type": "IO",
+          "net": "PD13"
+        },
+        {
+          "pin": "83",
+          "pin_name": "VSS_8",
+          "pin_type": "POWER",
+          "net": "GND"
+        },
+        {
+          "pin": "84",
+          "pin_name": "VDD_8",
+          "pin_type": "POWER",
+          "net": "3V3"
+        },
+        {
+          "pin": "85",
+          "pin_name": "PD14",
+          "pin_type": "IO",
+          "net": "PD14"
+        },
+        {
+          "pin": "86",
+          "pin_name": "PD15",
+          "pin_type": "IO",
+          "net": "PD15"
+        },
+        {
+          "pin": "87",
+          "pin_name": "PG2",
+          "pin_type": "IO",
+          "net": "PG2"
+        },
+        {
+          "pin": "88",
+          "pin_name": "PG3",
+          "pin_type": "IO",
+          "net": "PG3"
+        },
+        {
+          "pin": "89",
+          "pin_name": "PG4",
+          "pin_type": "IO",
+          "net": "PG4"
+        },
+        {
+          "pin": "90",
+          "pin_name": "PG5",
+          "pin_type": "IO",
+          "net": "PG5"
+        },
+        {
+          "pin": "91",
+          "pin_name": "PG6",
+          "pin_type": "IO",
+          "net": "PG6"
+        },
+        {
+          "pin": "92",
+          "pin_name": "PG7",
+          "pin_type": "IO",
+          "net": "PG7"
+        },
+        {
+          "pin": "93",
+          "pin_name": "PG8",
+          "pin_type": "IO",
+          "net": "PG8"
+        },
+        {
+          "pin": "94",
+          "pin_name": "VSS_9",
+          "pin_type": "POWER",
+          "net": "GND"
+        },
+        {
+          "pin": "95",
+          "pin_name": "VDD_9",
+          "pin_type": "POWER",
+          "net": "3V3"
+        },
+        {
+          "pin": "96",
+          "pin_name": "PC6",
+          "pin_type": "IO",
+          "net": "PC6"
+        },
+        {
+          "pin": "97",
+          "pin_name": "PC7",
+          "pin_type": "IO",
+          "net": "PC7"
+        },
+        {
+          "pin": "98",
+          "pin_name": "PC8",
+          "pin_type": "IO",
+          "net": "PC8"
+        },
+        {
+          "pin": "99",
+          "pin_name": "PC9",
+          "pin_type": "IO",
+          "net": "PC9"
+        },
+        {
+          "pin": "100",
+          "pin_name": "PA8",
+          "pin_type": "IO",
+          "net": "PA8"
+        },
+        {
+          "pin": "101",
+          "pin_name": "PA9",
+          "pin_type": "IO",
+          "net": "UART1_TX"
+        },
+        {
+          "pin": "102",
+          "pin_name": "PA10",
+          "pin_type": "IO",
+          "net": "UART1_RX"
+        },
+        {
+          "pin": "103",
+          "pin_name": "PA11",
+          "pin_type": "IO",
+          "net": "PA11"
+        },
+        {
+          "pin": "104",
+          "pin_name": "PA12",
+          "pin_type": "IO",
+          "net": "PA12"
+        },
+        {
+          "pin": "105",
+          "pin_name": "PA13",
+          "pin_type": "IO",
+          "net": "JTMS"
+        },
+        {
+          "pin": "106",
+          "pin_name": "NC",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "107",
+          "pin_name": "VSS_2",
+          "pin_type": "POWER",
+          "net": "GND"
+        },
+        {
+          "pin": "108",
+          "pin_name": "VDD_2",
+          "pin_type": "POWER",
+          "net": "3V3"
+        },
+        {
+          "pin": "109",
+          "pin_name": "PA14",
+          "pin_type": "IO",
+          "net": "JTCK"
+        },
+        {
+          "pin": "110",
+          "pin_name": "PA15",
+          "pin_type": "IO",
+          "net": "JTDI"
+        },
+        {
+          "pin": "111",
+          "pin_name": "PC10",
+          "pin_type": "IO",
+          "net": "UART4_TX"
+        },
+        {
+          "pin": "112",
+          "pin_name": "PC11",
+          "pin_type": "IO",
+          "net": "UART4_RX"
+        },
+        {
+          "pin": "113",
+          "pin_name": "PC12",
+          "pin_type": "IO",
+          "net": "PC12"
+        },
+        {
+          "pin": "114",
+          "pin_name": "PD0",
+          "pin_type": "IO",
+          "net": "PD0"
+        },
+        {
+          "pin": "115",
+          "pin_name": "PD1",
+          "pin_type": "IO",
+          "net": "PD1"
+        },
+        {
+          "pin": "116",
+          "pin_name": "PD2",
+          "pin_type": "IO",
+          "net": "PD2"
+        },
+        {
+          "pin": "117",
+          "pin_name": "PD3",
+          "pin_type": "IO",
+          "net": "PD3"
+        },
+        {
+          "pin": "118",
+          "pin_name": "PD4",
+          "pin_type": "IO",
+          "net": "PD4"
+        },
+        {
+          "pin": "119",
+          "pin_name": "PD5",
+          "pin_type": "IO",
+          "net": "PD5"
+        },
+        {
+          "pin": "120",
+          "pin_name": "VSS_10",
+          "pin_type": "POWER",
+          "net": "GND"
+        },
+        {
+          "pin": "121",
+          "pin_name": "VDD_10",
+          "pin_type": "POWER",
+          "net": "3V3"
+        },
+        {
+          "pin": "122",
+          "pin_name": "PD6",
+          "pin_type": "IO",
+          "net": "PD6"
+        },
+        {
+          "pin": "123",
+          "pin_name": "PD7",
+          "pin_type": "IO",
+          "net": "PD7"
+        },
+        {
+          "pin": "124",
+          "pin_name": "PG9",
+          "pin_type": "IO",
+          "net": "PG9"
+        },
+        {
+          "pin": "125",
+          "pin_name": "PG10",
+          "pin_type": "IO",
+          "net": "PG10"
+        },
+        {
+          "pin": "126",
+          "pin_name": "PG11",
+          "pin_type": "IO",
+          "net": "PG11"
+        },
+        {
+          "pin": "127",
+          "pin_name": "PG12",
+          "pin_type": "IO",
+          "net": "PG12"
+        },
+        {
+          "pin": "128",
+          "pin_name": "PG13",
+          "pin_type": "IO",
+          "net": "PG13"
+        },
+        {
+          "pin": "129",
+          "pin_name": "PG14",
+          "pin_type": "IO",
+          "net": "PG14"
+        },
+        {
+          "pin": "130",
+          "pin_name": "VSS_11",
+          "pin_type": "POWER",
+          "net": "GND"
+        },
+        {
+          "pin": "131",
+          "pin_name": "VDD_11",
+          "pin_type": "POWER",
+          "net": "3V3"
+        },
+        {
+          "pin": "132",
+          "pin_name": "PG15",
+          "pin_type": "IO",
+          "net": "PG15"
+        },
+        {
+          "pin": "133",
+          "pin_name": "PB3",
+          "pin_type": "IO",
+          "net": "JTDO"
+        },
+        {
+          "pin": "134",
+          "pin_name": "PB4",
+          "pin_type": "IO",
+          "net": "JTRST"
+        },
+        {
+          "pin": "135",
+          "pin_name": "PB5",
+          "pin_type": "IO",
+          "net": "LED1"
+        },
+        {
+          "pin": "136",
+          "pin_name": "PB6",
+          "pin_type": "IO",
+          "net": "IIC_SCL"
+        },
+        {
+          "pin": "137",
+          "pin_name": "PB7",
+          "pin_type": "IO",
+          "net": "IIC_SDA"
+        },
+        {
+          "pin": "138",
+          "pin_name": "BOOT0",
+          "pin_type": "INPUT",
+          "net": "BOOT0"
+        },
+        {
+          "pin": "139",
+          "pin_name": "PB8",
+          "pin_type": "IO",
+          "net": "BEEP"
+        },
+        {
+          "pin": "140",
+          "pin_name": "PB9",
+          "pin_type": "IO",
+          "net": "PB9"
+        },
+        {
+          "pin": "141",
+          "pin_name": "PE0",
+          "pin_type": "IO",
+          "net": "PE0"
+        },
+        {
+          "pin": "142",
+          "pin_name": "PE1",
+          "pin_type": "IO",
+          "net": "PE1"
+        },
+        {
+          "pin": "143",
+          "pin_name": "VSS_3",
+          "pin_type": "POWER",
+          "net": "GND"
+        },
+        {
+          "pin": "144",
+          "pin_name": "VDD_3",
+          "pin_type": "POWER",
+          "net": "3V3"
+        }
+      ]
+    },
+    {
+      "designator": "U10",
+      "value": "W25Q18",
+      "footprint": "SOP8W_N",
+      "library_ref": "W25Q",
+      "description": "SPI Flash",
+      "parameters": {
+        "BOMÃû³Æ": "外置Flash",
+        "Comment": "W25Q18",
+        "µ±Ç°¿â°æ±¾V2022.12.25 @ÌÔ±|Âô¼Ò:»Æ¾§±|Ê¯": "最新版本发布https://shop463601444.taobao.com",
+        "·â×°¿âÀ´×ÔÌÔ±|Âô¼Ò£º»Æ¾§±|Ê¯": "其他店铺购入均为盗版封装库，无更新权益，退款现金奖励200~1000元"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "C\\S\\",
+          "pin_type": "PASSIVE",
+          "net": "F_CS"
+        },
+        {
+          "pin": "2",
+          "pin_name": "DO",
+          "pin_type": "PASSIVE",
+          "net": "SPI2_MISO"
+        },
+        {
+          "pin": "3",
+          "pin_name": "W\\P\\",
+          "pin_type": "PASSIVE",
+          "net": "3V3"
+        },
+        {
+          "pin": "4",
+          "pin_name": "GND",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "5",
+          "pin_name": "DI",
+          "pin_type": "PASSIVE",
+          "net": "SPI2_MOSI"
+        },
+        {
+          "pin": "6",
+          "pin_name": "CLK",
+          "pin_type": "PASSIVE",
+          "net": "SPI2_SCK"
+        },
+        {
+          "pin": "7",
+          "pin_name": "H\\O\\L\\D\\",
+          "pin_type": "PASSIVE",
+          "net": "3V3"
+        },
+        {
+          "pin": "8",
+          "pin_name": "VCC",
+          "pin_type": "PASSIVE",
+          "net": "3V3"
+        }
+      ]
+    },
+    {
+      "designator": "U11",
+      "value": "24C02",
+      "footprint": "SOP8_L",
+      "library_ref": "24Cxx",
+      "description": "外置EEPROM",
+      "parameters": {
+        "BOMÃû³Æ": "外置EEPROM",
+        "Comment": "24C02",
+        "µ±Ç°¿â°æ±¾V2022.12.25 @ÌÔ±|Âô¼Ò:»Æ¾§±|Ê¯": "最新版本发布https://shop463601444.taobao.com",
+        "·â×°¿âÀ´×ÔÌÔ±|Âô¼Ò£º»Æ¾§±|Ê¯": "其他店铺购入均为盗版封装库，无更新权益，退款现金奖励200~1000元"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "A0",
+          "pin_type": "INPUT",
+          "net": "GND"
+        },
+        {
+          "pin": "2",
+          "pin_name": "A1",
+          "pin_type": "INPUT",
+          "net": "GND"
+        },
+        {
+          "pin": "3",
+          "pin_name": "A2",
+          "pin_type": "INPUT",
+          "net": "GND"
+        },
+        {
+          "pin": "4",
+          "pin_name": "GND",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "5",
+          "pin_name": "SDA",
+          "pin_type": "IO",
+          "net": "NetR16_1"
+        },
+        {
+          "pin": "6",
+          "pin_name": "SCL",
+          "pin_type": "INPUT",
+          "net": "IIC_SCL"
+        },
+        {
+          "pin": "7",
+          "pin_name": "WP",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "8",
+          "pin_name": "VCC",
+          "pin_type": "POWER",
+          "net": "3V3"
+        }
+      ]
+    },
+    {
+      "designator": "U14",
+      "value": "CH340G",
+      "footprint": "SOP16_L",
+      "library_ref": "CH340G",
+      "description": "USB转串口芯片，外置晶振",
+      "parameters": {
+        "BOMÃû³Æ": "串口转USB",
+        "Comment": "CH340G",
+        "µ±Ç°¿â°æ±¾V2022.12.25 @ÌÔ±|Âô¼Ò:»Æ¾§±|Ê¯": "最新版本发布https://shop463601444.taobao.com",
+        "·â×°¿âÀ´×ÔÌÔ±|Âô¼Ò£º»Æ¾§±|Ê¯": "其他店铺购入均为盗版封装库，无更新权益，退款现金奖励200~1000元",
+        "Ð¾Æ¬³§ÉÌ": "WCH(南京沁恒)"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "GND",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "2",
+          "pin_name": "TxD",
+          "pin_type": "PASSIVE",
+          "net": "UART1_RX"
+        },
+        {
+          "pin": "3",
+          "pin_name": "RxD",
+          "pin_type": "PASSIVE",
+          "net": "UART1_TX"
+        },
+        {
+          "pin": "4",
+          "pin_name": "V3",
+          "pin_type": "PASSIVE",
+          "net": "NetC22_2"
+        },
+        {
+          "pin": "5",
+          "pin_name": "UD+",
+          "pin_type": "PASSIVE",
+          "net": "CH340_D-"
+        },
+        {
+          "pin": "6",
+          "pin_name": "UD-",
+          "pin_type": "PASSIVE",
+          "net": "CH340_D+"
+        },
+        {
+          "pin": "7",
+          "pin_name": "XI",
+          "pin_type": "PASSIVE",
+          "net": "NetC23_2"
+        },
+        {
+          "pin": "8",
+          "pin_name": "XO",
+          "pin_type": "PASSIVE",
+          "net": "NetC21_2"
+        },
+        {
+          "pin": "9",
+          "pin_name": "CTS#",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "10",
+          "pin_name": "DSR#",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "11",
+          "pin_name": "RI#",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "12",
+          "pin_name": "DCD#",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "13",
+          "pin_name": "DTR#",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "14",
+          "pin_name": "RTS#",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "15",
+          "pin_name": "RS232",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "16",
+          "pin_name": "Vcc",
+          "pin_type": "PASSIVE",
+          "net": "5V"
+        }
+      ]
+    },
+    {
+      "designator": "USB_232",
+      "value": "USB",
+      "footprint": "USB2.0_TYPE-B",
+      "library_ref": "USB2.0_Type-B",
+      "description": "USB2.0_Type-B母座",
+      "parameters": {
+        "BOMÃû³Æ": "USB2.0_Type-B母座",
+        "Comment": "USB",
+        "µ±Ç°¿â°æ±¾V2022.12.25 @ÌÔ±|Âô¼Ò:»Æ¾§±|Ê¯": "最新版本发布https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "VCC",
+          "pin_type": "PASSIVE",
+          "net": "VUSB"
+        },
+        {
+          "pin": "2",
+          "pin_name": "D-",
+          "pin_type": "PASSIVE",
+          "net": "CH340_D-"
+        },
+        {
+          "pin": "3",
+          "pin_name": "D+",
+          "pin_type": "PASSIVE",
+          "net": "CH340_D+"
+        },
+        {
+          "pin": "4",
+          "pin_name": "GND",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        }
+      ]
+    },
+    {
+      "designator": "V1",
+      "value": "AMS1117-3V3",
+      "footprint": "SOT223_L",
+      "library_ref": "AMS1117",
+      "description": "三端稳压芯片",
+      "parameters": {
+        "BOMÃû³Æ": "稳压芯片",
+        "Comment": "AMS1117-3V3",
+        "·â×°¿âÀ´×ÔÌÔ±|Âô¼ÒID£º»Æ¾§±|Ê¯": "其他店铺购入的买家，请立即申请退款，本店现金奖励20~1000元"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "GND",
+          "pin_type": "PASSIVE",
+          "net": "GND"
+        },
+        {
+          "pin": "2",
+          "pin_name": "Vout",
+          "pin_type": "PASSIVE",
+          "net": "3V3"
+        },
+        {
+          "pin": "3",
+          "pin_name": "Vin",
+          "pin_type": "PASSIVE",
+          "net": "5V"
+        },
+        {
+          "pin": "4",
+          "pin_name": "GND",
+          "pin_type": "PASSIVE",
+          "net": "3V3"
+        }
+      ]
+    },
+    {
+      "designator": "X1",
+      "value": "8MHz",
+      "footprint": "HC-49S",
+      "library_ref": "XTAL-2P",
+      "description": "2脚无源晶振(谐振器）",
+      "parameters": {
+        "BOMÃû³Æ": "2脚无源晶振(谐振器）",
+        "Comment": "8MHz",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "OSC_IN"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": "OSC_OUT"
+        }
+      ]
+    },
+    {
+      "designator": "X2",
+      "value": "32.768kHz",
+      "footprint": "MC-306",
+      "library_ref": "XTAL-MC-4P",
+      "description": "MC系列4脚无源晶振(谐振器）",
+      "parameters": {
+        "BOMÃû³Æ": "MC系列4脚无源晶振(谐振器）",
+        "Comment": "32.768kHz",
+        "ÁªÏµÂô¼Ò£¬Ãâ·Ñ²éÕÒ·â×°": "唯一出售店铺网址https://shop463601444.taobao.com"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE",
+          "net": "OSC32_IN"
+        },
+        {
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "3",
+          "pin_name": "3",
+          "pin_type": "PASSIVE",
+          "net": null
+        },
+        {
+          "pin": "4",
+          "pin_name": "4",
+          "pin_type": "PASSIVE",
+          "net": "OSC32_OUT"
+        }
+      ]
+    },
+    {
+      "designator": "Y3",
+      "value": "12M",
+      "footprint": "R38",
+      "library_ref": "XTAL",
+      "description": "Crystal Oscillator",
+      "parameters": {
+        "Comment": "12M",
+        "LatestRevisionDate": "17-Jul-2002",
+        "LatestRevisionNote": "Re-released for DXP Platform.",
+        "PackageDescription": "Crystal, Thru-Hole; 2 Leads; Body 3.1 x 8.2 mm (Dia.xH)",
+        "PackageReference": "R38",
+        "Published": "8-Jun-2000",
+        "Publisher": "Altium Limited"
+      },
+      "pins": [
+        {
+          "pin": "1",
+          "pin_name": "OSC1",
+          "pin_type": "PASSIVE",
+          "net": "NetC23_2"
+        },
+        {
+          "pin": "2",
+          "pin_name": "OSC2",
+          "pin_type": "PASSIVE",
+          "net": "NetC21_2"
+        }
+      ]
+    }
+  ],
+  "nets": [
+    {
+      "name": "12V",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "E1",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "IC1",
+          "pin": "1",
+          "pin_name": "IN",
+          "pin_type": "POWER"
+        }
+      ]
+    },
+    {
+      "name": "3V3",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "C10",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C11",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C12",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C13",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C14",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C15",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C16",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C17",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C18",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C2",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C24",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C25",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C9",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "E4",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "J1",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "J1",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "KEY_UP",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "LS1",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "P1",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "P1",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "P9",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R11",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R12",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R13",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R15",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R16",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R4",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R5",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R7",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R8",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R9",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U10",
+          "pin": "3",
+          "pin_name": "W\\P\\",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U10",
+          "pin": "7",
+          "pin_name": "H\\O\\L\\D\\",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U10",
+          "pin": "8",
+          "pin_name": "VCC",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U11",
+          "pin": "8",
+          "pin_name": "VCC",
+          "pin_type": "POWER"
+        },
+        {
+          "designator": "U2",
+          "pin": "6",
+          "pin_name": "VBAT",
+          "pin_type": "POWER"
+        },
+        {
+          "designator": "U2",
+          "pin": "17",
+          "pin_name": "VDD_5",
+          "pin_type": "POWER"
+        },
+        {
+          "designator": "U2",
+          "pin": "32",
+          "pin_name": "VREF+",
+          "pin_type": "POWER"
+        },
+        {
+          "designator": "U2",
+          "pin": "33",
+          "pin_name": "VDDA",
+          "pin_type": "POWER"
+        },
+        {
+          "designator": "U2",
+          "pin": "39",
+          "pin_name": "VDD_4",
+          "pin_type": "POWER"
+        },
+        {
+          "designator": "U2",
+          "pin": "52",
+          "pin_name": "VDD_6",
+          "pin_type": "POWER"
+        },
+        {
+          "designator": "U2",
+          "pin": "62",
+          "pin_name": "VDD_7",
+          "pin_type": "POWER"
+        },
+        {
+          "designator": "U2",
+          "pin": "72",
+          "pin_name": "VDD_1",
+          "pin_type": "POWER"
+        },
+        {
+          "designator": "U2",
+          "pin": "84",
+          "pin_name": "VDD_8",
+          "pin_type": "POWER"
+        },
+        {
+          "designator": "U2",
+          "pin": "95",
+          "pin_name": "VDD_9",
+          "pin_type": "POWER"
+        },
+        {
+          "designator": "U2",
+          "pin": "108",
+          "pin_name": "VDD_2",
+          "pin_type": "POWER"
+        },
+        {
+          "designator": "U2",
+          "pin": "121",
+          "pin_name": "VDD_10",
+          "pin_type": "POWER"
+        },
+        {
+          "designator": "U2",
+          "pin": "131",
+          "pin_name": "VDD_11",
+          "pin_type": "POWER"
+        },
+        {
+          "designator": "U2",
+          "pin": "144",
+          "pin_name": "VDD_3",
+          "pin_type": "POWER"
+        },
+        {
+          "designator": "V1",
+          "pin": "2",
+          "pin_name": "Vout",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "V1",
+          "pin": "4",
+          "pin_name": "GND",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "5V",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "C1",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C19",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C20",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "E2",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "E3",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "IC1",
+          "pin": "4",
+          "pin_name": "FB",
+          "pin_type": "INPUT"
+        },
+        {
+          "designator": "L1",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U14",
+          "pin": "16",
+          "pin_name": "Vcc",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "V1",
+          "pin": "3",
+          "pin_name": "Vin",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "BEEP",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "R1",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "139",
+          "pin_name": "PB8",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "BOOT0",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "R2",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "138",
+          "pin_name": "BOOT0",
+          "pin_type": "INPUT"
+        }
+      ]
+    },
+    {
+      "name": "BOOT1",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "R3",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "48",
+          "pin_name": "PB2",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "CH340_D+",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U14",
+          "pin": "6",
+          "pin_name": "UD-",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "USB_232",
+          "pin": "3",
+          "pin_name": "D+",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "CH340_D-",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U14",
+          "pin": "5",
+          "pin_name": "UD+",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "USB_232",
+          "pin": "2",
+          "pin_name": "D-",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "F_CS",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U10",
+          "pin": "1",
+          "pin_name": "C\\S\\",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "73",
+          "pin_name": "PB12",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "GND",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "C1",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C10",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C11",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C12",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C13",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C14",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C15",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C16",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C17",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C18",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C19",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C2",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C20",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C21",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C22",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C23",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C24",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C25",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C3",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C4",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C5",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C6",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C7",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "C9",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "D1",
+          "pin": "1",
+          "pin_name": "A",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "E1",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "E2",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "E3",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "E4",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "IC1",
+          "pin": "3",
+          "pin_name": "GND",
+          "pin_type": "POWER"
+        },
+        {
+          "designator": "IC1",
+          "pin": "5",
+          "pin_name": "O\\N\\/OFF",
+          "pin_type": "INPUT"
+        },
+        {
+          "designator": "J1",
+          "pin": "4",
+          "pin_name": "4",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "J1",
+          "pin": "6",
+          "pin_name": "6",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "J1",
+          "pin": "8",
+          "pin_name": "8",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "J1",
+          "pin": "10",
+          "pin_name": "10",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "J1",
+          "pin": "12",
+          "pin_name": "12",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "J1",
+          "pin": "14",
+          "pin_name": "14",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "J1",
+          "pin": "16",
+          "pin_name": "16",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "J1",
+          "pin": "18",
+          "pin_name": "18",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "J1",
+          "pin": "20",
+          "pin_name": "20",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "K0",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "K1",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "K2",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "P1",
+          "pin": "5",
+          "pin_name": "5",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "P1",
+          "pin": "6",
+          "pin_name": "6",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "P9",
+          "pin": "4",
+          "pin_name": "4",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "Q1",
+          "pin": "2",
+          "pin_name": "E",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R10",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R14",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "SW1",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U10",
+          "pin": "4",
+          "pin_name": "GND",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U11",
+          "pin": "1",
+          "pin_name": "A0",
+          "pin_type": "INPUT"
+        },
+        {
+          "designator": "U11",
+          "pin": "2",
+          "pin_name": "A1",
+          "pin_type": "INPUT"
+        },
+        {
+          "designator": "U11",
+          "pin": "3",
+          "pin_name": "A2",
+          "pin_type": "INPUT"
+        },
+        {
+          "designator": "U11",
+          "pin": "4",
+          "pin_name": "GND",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U11",
+          "pin": "7",
+          "pin_name": "WP",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "16",
+          "pin_name": "VSS_5",
+          "pin_type": "POWER"
+        },
+        {
+          "designator": "U2",
+          "pin": "30",
+          "pin_name": "VSSA",
+          "pin_type": "POWER"
+        },
+        {
+          "designator": "U2",
+          "pin": "31",
+          "pin_name": "VREF-",
+          "pin_type": "POWER"
+        },
+        {
+          "designator": "U2",
+          "pin": "38",
+          "pin_name": "VSS_4",
+          "pin_type": "POWER"
+        },
+        {
+          "designator": "U2",
+          "pin": "51",
+          "pin_name": "VSS_6",
+          "pin_type": "POWER"
+        },
+        {
+          "designator": "U2",
+          "pin": "61",
+          "pin_name": "VSS_7",
+          "pin_type": "POWER"
+        },
+        {
+          "designator": "U2",
+          "pin": "71",
+          "pin_name": "VSS_1",
+          "pin_type": "POWER"
+        },
+        {
+          "designator": "U2",
+          "pin": "83",
+          "pin_name": "VSS_8",
+          "pin_type": "POWER"
+        },
+        {
+          "designator": "U2",
+          "pin": "94",
+          "pin_name": "VSS_9",
+          "pin_type": "POWER"
+        },
+        {
+          "designator": "U2",
+          "pin": "107",
+          "pin_name": "VSS_2",
+          "pin_type": "POWER"
+        },
+        {
+          "designator": "U2",
+          "pin": "120",
+          "pin_name": "VSS_10",
+          "pin_type": "POWER"
+        },
+        {
+          "designator": "U2",
+          "pin": "130",
+          "pin_name": "VSS_11",
+          "pin_type": "POWER"
+        },
+        {
+          "designator": "U2",
+          "pin": "143",
+          "pin_name": "VSS_3",
+          "pin_type": "POWER"
+        },
+        {
+          "designator": "USB_232",
+          "pin": "4",
+          "pin_name": "GND",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "V1",
+          "pin": "1",
+          "pin_name": "GND",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "IIC_SCL",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "R15",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U11",
+          "pin": "6",
+          "pin_name": "SCL",
+          "pin_type": "INPUT"
+        },
+        {
+          "designator": "U2",
+          "pin": "136",
+          "pin_name": "PB6",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "IIC_SDA",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "137",
+          "pin_name": "PB7",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "JTCK",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "J1",
+          "pin": "9",
+          "pin_name": "9",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R10",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "109",
+          "pin_name": "PA14",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "JTDI",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "J1",
+          "pin": "5",
+          "pin_name": "5",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R8",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "110",
+          "pin_name": "PA15",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "JTDO",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "J1",
+          "pin": "13",
+          "pin_name": "13",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R11",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "133",
+          "pin_name": "PB3",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "JTMS",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "J1",
+          "pin": "7",
+          "pin_name": "7",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R9",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "105",
+          "pin_name": "PA13",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "JTRST",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "J1",
+          "pin": "3",
+          "pin_name": "3",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R7",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "134",
+          "pin_name": "PB4",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "KEY0",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "K0",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "3",
+          "pin_name": "PE4",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "KEY1",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "K1",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "2",
+          "pin_name": "PE3",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "KEY2",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "K2",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "1",
+          "pin_name": "PE2",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "LED1",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "LED1",
+          "pin": "2",
+          "pin_name": "K",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "135",
+          "pin_name": "PB5",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "LED2",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "LED2",
+          "pin": "2",
+          "pin_name": "K",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "4",
+          "pin_name": "PE5",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "NetC21_2",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "C21",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U14",
+          "pin": "8",
+          "pin_name": "XO",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "Y3",
+          "pin": "2",
+          "pin_name": "OSC2",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "NetC22_2",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "C22",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U14",
+          "pin": "4",
+          "pin_name": "V3",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "NetC23_2",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "C23",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U14",
+          "pin": "7",
+          "pin_name": "XI",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "Y3",
+          "pin": "1",
+          "pin_name": "OSC1",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "NetD1_2",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "D1",
+          "pin": "2",
+          "pin_name": "K",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "IC1",
+          "pin": "2",
+          "pin_name": "OUT",
+          "pin_type": "POWER"
+        },
+        {
+          "designator": "L1",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "NetLED1_1",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "LED1",
+          "pin": "1",
+          "pin_name": "A",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R4",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "NetLED2_1",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "LED2",
+          "pin": "1",
+          "pin_name": "A",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R5",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "NetLS1_2",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "LS1",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "Q1",
+          "pin": "3",
+          "pin_name": "C",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "NetP1_3",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "P1",
+          "pin": "3",
+          "pin_name": "3",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R2",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "NetP1_4",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "P1",
+          "pin": "4",
+          "pin_name": "4",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R3",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "NetQ1_1",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "Q1",
+          "pin": "1",
+          "pin_name": "B",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R1",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R14",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "NetR16_1",
+      "auto_named": true,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "R16",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U11",
+          "pin": "5",
+          "pin_name": "SDA",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "OSC32_IN",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "C5",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "8",
+          "pin_name": "PC14-OSC32_IN",
+          "pin_type": "IO"
+        },
+        {
+          "designator": "X2",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "OSC32_OUT",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "C6",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "9",
+          "pin_name": "PC15-OSC32_OUT",
+          "pin_type": "IO"
+        },
+        {
+          "designator": "X2",
+          "pin": "4",
+          "pin_name": "4",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "OSC_IN",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "C3",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R6",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "23",
+          "pin_name": "OSC_IN",
+          "pin_type": "INPUT"
+        },
+        {
+          "designator": "X1",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "OSC_OUT",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "C4",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R6",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "24",
+          "pin_name": "OSC_OUT",
+          "pin_type": "OUTPUT"
+        },
+        {
+          "designator": "X1",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    },
+    {
+      "name": "PA0",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "KEY_UP",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "34",
+          "pin_name": "PA0-WKUP",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PA11",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "103",
+          "pin_name": "PA11",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PA12",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "104",
+          "pin_name": "PA12",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PA4",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "40",
+          "pin_name": "PA4",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PA5",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "41",
+          "pin_name": "PA5",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PA6",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "42",
+          "pin_name": "PA6",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PA7",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "43",
+          "pin_name": "PA7",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PA8",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "100",
+          "pin_name": "PA8",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PB0",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "46",
+          "pin_name": "PB0",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PB1",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "47",
+          "pin_name": "PB1",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PB10",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "69",
+          "pin_name": "PB10",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PB11",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "70",
+          "pin_name": "PB11",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PB9",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "140",
+          "pin_name": "PB9",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PC0",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "26",
+          "pin_name": "PC0",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PC1",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "27",
+          "pin_name": "PC1",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PC12",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "113",
+          "pin_name": "PC12",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PC13",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "7",
+          "pin_name": "PC13-TAMPER-RTC",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PC2",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "28",
+          "pin_name": "PC2",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PC3",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "29",
+          "pin_name": "PC3",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PC4",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "44",
+          "pin_name": "PC4",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PC5",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "45",
+          "pin_name": "PC5",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PC6",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "96",
+          "pin_name": "PC6",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PC7",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "97",
+          "pin_name": "PC7",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PC8",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "98",
+          "pin_name": "PC8",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PC9",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "99",
+          "pin_name": "PC9",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PD0",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "114",
+          "pin_name": "PD0",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PD1",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "115",
+          "pin_name": "PD1",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PD10",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "79",
+          "pin_name": "PD10",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PD11",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "80",
+          "pin_name": "PD11",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PD12",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "81",
+          "pin_name": "PD12",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PD13",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "82",
+          "pin_name": "PD13",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PD14",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "85",
+          "pin_name": "PD14",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PD15",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "86",
+          "pin_name": "PD15",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PD2",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "116",
+          "pin_name": "PD2",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PD3",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "117",
+          "pin_name": "PD3",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PD4",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "118",
+          "pin_name": "PD4",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PD5",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "119",
+          "pin_name": "PD5",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PD6",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "122",
+          "pin_name": "PD6",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PD7",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "123",
+          "pin_name": "PD7",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PD8",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "77",
+          "pin_name": "PD8",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PD9",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "78",
+          "pin_name": "PD9",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PE0",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "141",
+          "pin_name": "PE0",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PE1",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "142",
+          "pin_name": "PE1",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PE10",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "63",
+          "pin_name": "PE10",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PE11",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "64",
+          "pin_name": "PE11",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PE12",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "65",
+          "pin_name": "PE12",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PE13",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "66",
+          "pin_name": "PE13",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PE14",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "67",
+          "pin_name": "PE14",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PE15",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "68",
+          "pin_name": "PE15",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PE6",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "5",
+          "pin_name": "PE6",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PE7",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "58",
+          "pin_name": "PE7",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PE8",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "59",
+          "pin_name": "PE8",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PE9",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "60",
+          "pin_name": "PE9",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PF0",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "10",
+          "pin_name": "PF0",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PF1",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "11",
+          "pin_name": "PF1",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PF10",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "22",
+          "pin_name": "PF10",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PF11",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "49",
+          "pin_name": "PF11",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PF12",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "50",
+          "pin_name": "PF12",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PF13",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "53",
+          "pin_name": "PF13",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PF14",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "54",
+          "pin_name": "PF14",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PF15",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "55",
+          "pin_name": "PF15",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PF2",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "12",
+          "pin_name": "PF2",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PF3",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "13",
+          "pin_name": "PF3",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PF4",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "14",
+          "pin_name": "PF4",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PF5",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "15",
+          "pin_name": "PF5",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PF6",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "18",
+          "pin_name": "PF6",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PF7",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "19",
+          "pin_name": "PF7",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PF8",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "20",
+          "pin_name": "PF8",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PF9",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "21",
+          "pin_name": "PF9",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PG0",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "56",
+          "pin_name": "PG0",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PG1",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "57",
+          "pin_name": "PG1",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PG10",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "125",
+          "pin_name": "PG10",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PG11",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "126",
+          "pin_name": "PG11",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PG12",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "127",
+          "pin_name": "PG12",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PG13",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "128",
+          "pin_name": "PG13",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PG14",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "129",
+          "pin_name": "PG14",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PG15",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "132",
+          "pin_name": "PG15",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PG2",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "87",
+          "pin_name": "PG2",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PG3",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "88",
+          "pin_name": "PG3",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PG4",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "89",
+          "pin_name": "PG4",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PG5",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "90",
+          "pin_name": "PG5",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PG6",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "91",
+          "pin_name": "PG6",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PG7",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "92",
+          "pin_name": "PG7",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PG8",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "93",
+          "pin_name": "PG8",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "PG9",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "124",
+          "pin_name": "PG9",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "RESET",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "C7",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "J1",
+          "pin": "15",
+          "pin_name": "15",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "R12",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "SW1",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "25",
+          "pin_name": "NRST",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "SPI2_MISO",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U10",
+          "pin": "2",
+          "pin_name": "DO",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "75",
+          "pin_name": "PB14",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "SPI2_MOSI",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U10",
+          "pin": "5",
+          "pin_name": "DI",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "76",
+          "pin_name": "PB15",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "SPI2_SCK",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U10",
+          "pin": "6",
+          "pin_name": "CLK",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "74",
+          "pin_name": "PB13",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "STM_ADC",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "R13",
+          "pin": "1",
+          "pin_name": "1",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "35",
+          "pin_name": "PA1",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "UART1_RX",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U14",
+          "pin": "2",
+          "pin_name": "TxD",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "102",
+          "pin_name": "PA10",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "UART1_TX",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U14",
+          "pin": "3",
+          "pin_name": "RxD",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "101",
+          "pin_name": "PA9",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "UART2_RX",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "37",
+          "pin_name": "PA3",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "UART2_TX",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "U2",
+          "pin": "36",
+          "pin_name": "PA2",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "UART4_RX",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "P9",
+          "pin": "2",
+          "pin_name": "2",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "112",
+          "pin_name": "PC11",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "UART4_TX",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "P9",
+          "pin": "3",
+          "pin_name": "3",
+          "pin_type": "PASSIVE"
+        },
+        {
+          "designator": "U2",
+          "pin": "111",
+          "pin_name": "PC10",
+          "pin_type": "IO"
+        }
+      ]
+    },
+    {
+      "name": "VUSB",
+      "auto_named": false,
+      "source_sheets": [
+        "physical:0:logical:0:E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc"
+      ],
+      "terminals": [
+        {
+          "designator": "USB_232",
+          "pin": "1",
+          "pin_name": "VCC",
+          "pin_type": "PASSIVE"
+        }
+      ]
+    }
+  ]
+}

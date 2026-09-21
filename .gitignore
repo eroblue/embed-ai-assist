@@ -3,14 +3,14 @@ __pycache__/
 *.pyc
 .venv/
 
-# 项目输出（大文件、临时产物）
-projects/*/outputs/
-examples/*/outputs/
+# 项目输出（大文件、临时产物；含 App/BootLoader 双工程与项目级 outputs/）
+# projects/**/App/outputs/
+# examples/**/App/outputs/
 
-# 芯片资料（可能很大，视情况决定是否提交）
-# platforms/*/datasheets/*.pdf
-# platforms/*/svd/
-# platforms/*/sdk/
+# 项目参考资料
+projects/**/references/
+examples/**/references/
+
 
 # IDE
 .vscode/
@@ -20,6 +20,29 @@ examples/*/outputs/
 Thumbs.db
 .DS_Store
 
-# 芯片资料（大文件不提交，小文件保留）
+# 芯片手册 PDF（版权原因不入库，自行从官网下载，见 README「芯片资料获取」）
 platforms/**/datasheets/STM32F10x_Reference_Manual.pdf
 platforms/**/datasheets/GD32F20x 用户手册.pdf
+platforms/**/datasheets/ft61f14x_ds_rev1p09_cn.pdf
+
+
+# # 生成产物
+# Examples/*/App/outputs/
+# Examples/*/BootLoader/outputs/
+# Examples/*/App/Drivers/BSP/Src/
+# Examples/*/App/Drivers/BSP/Inc/
+# Examples/*/App/Drivers/Port/Src/
+# Examples/*/App/Drivers/Port/Inc/
+# Examples/*/App/App/Src/
+# Examples/*/App/App/Inc/
+# Examples/*/BootLoader/**
+
+# IDE 工程编译输出
+**/MDK-ARM/*/Objects/
+**/MDK-ARM/*/Listings/
+**/Project/Objects/
+**/Project/Listings/
+
+# 备份文件
+*.bak
+*.lock

@@ -1,0 +1,108 @@
+{
+  "schema": "embedaiassist.chip.peripherals.v1",
+  "mcu_family": "FT61F14X",
+  "source": {
+    "svd": null,
+    "sdk_header": null,
+    "reference_manual": null,
+    "extracted_at": "2026-09-20T11:58:47"
+  },
+  "peripherals": [
+    {
+      "name": "ADC",
+      "base_address": null,
+      "end_address": null,
+      "bus": null,
+      "irqs": [],
+      "description": "SFR 模型，含 8 个寄存器"
+    },
+    {
+      "name": "EEPROM",
+      "base_address": null,
+      "end_address": null,
+      "bus": null,
+      "irqs": [],
+      "description": "SFR 模型，含 4 个寄存器"
+    },
+    {
+      "name": "GPIO",
+      "base_address": null,
+      "end_address": null,
+      "bus": null,
+      "irqs": [],
+      "description": "SFR 模型，含 27 个寄存器"
+    },
+    {
+      "name": "INTC",
+      "base_address": null,
+      "end_address": null,
+      "bus": null,
+      "irqs": [],
+      "description": "SFR 模型，含 3 个寄存器"
+    },
+    {
+      "name": "MSCK",
+      "base_address": null,
+      "end_address": null,
+      "bus": null,
+      "irqs": [],
+      "description": "SFR 模型，含 2 个寄存器"
+    },
+    {
+      "name": "OSC",
+      "base_address": null,
+      "end_address": null,
+      "bus": null,
+      "irqs": [],
+      "description": "SFR 模型，含 6 个寄存器"
+    },
+    {
+      "name": "RSTC",
+      "base_address": null,
+      "end_address": null,
+      "bus": null,
+      "irqs": [],
+      "description": "SFR 模型，含 4 个寄存器"
+    },
+    {
+      "name": "TIM1",
+      "base_address": null,
+      "end_address": null,
+      "bus": null,
+      "irqs": [],
+      "description": "SFR 模型，含 32 个寄存器"
+    },
+    {
+      "name": "TIM2",
+      "base_address": null,
+      "end_address": null,
+      "bus": null,
+      "irqs": [],
+      "description": "SFR 模型，含 21 个寄存器"
+    },
+    {
+      "name": "TIM4",
+      "base_address": null,
+      "end_address": null,
+      "bus": null,
+      "irqs": [],
+      "description": "SFR 模型，含 7 个寄存器"
+    },
+    {
+      "name": "USART",
+      "base_address": null,
+      "end_address": null,
+      "bus": null,
+      "irqs": [],
+      "description": "SFR 模型，含 17 个寄存器"
+    },
+    {
+      "name": "WDT",
+      "base_address": null,
+      "end_address": null,
+      "bus": null,
+      "irqs": [],
+      "description": "SFR 模型，含 2 个寄存器"
+    }
+  ]
+}

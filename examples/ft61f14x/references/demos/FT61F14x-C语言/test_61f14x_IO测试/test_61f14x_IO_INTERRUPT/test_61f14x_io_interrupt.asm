@@ -1,0 +1,169 @@
+//Deviec:FT61F14X
+//-----------------------Variable---------------------------------
+//-----------------------Variable END---------------------------------
+		ORG		0000H
+		MOVLP 	0H 			//0000 	0180
+		LJUMP 	13H 			//0001 	3813
+		ORG		0004H
+		MOVLP 	0H 			//0004 	0180
+
+		//;test_61f14x_IO_INTERRUPT.C: 39: if(EPIF0 & 0x02)
+		MOVLB 	0H 			//0005 	1020
+		BTSS 	14H, 1H 		//0006 	2C94
+		RETI 					//0007 	1009
+
+		//;test_61f14x_IO_INTERRUPT.C: 40: {
+		//;test_61f14x_IO_INTERRUPT.C: 41: EPIF0 = 0x02;
+		LDWI 	2H 			//0008 	0002
+		STR 	14H 			//0009 	1094
+
+		//;test_61f14x_IO_INTERRUPT.C: 43: PB3=1;
+		BSR 	DH, 3H 			//000A 	258D
+
+		//;test_61f14x_IO_INTERRUPT.C: 44: _nop();
+		NOP 					//000B 	1000
+		ORG		000CH
+
+		//;test_61f14x_IO_INTERRUPT.C: 45: _nop();
+		NOP 					//000C 	1000
+
+		//;test_61f14x_IO_INTERRUPT.C: 46: _nop();
+		NOP 					//000D 	1000
+
+		//;test_61f14x_IO_INTERRUPT.C: 47: _nop();
+		NOP 					//000E 	1000
+
+		//;test_61f14x_IO_INTERRUPT.C: 48: _nop();
+		NOP 					//000F 	1000
+
+		//;test_61f14x_IO_INTERRUPT.C: 49: PB3=0;
+		MOVLB 	0H 			//0010 	1020
+		BCR 	DH, 3H 			//0011 	218D
+		RETI 					//0012 	1009
+		CLRF 	8H 			//0013 	1188
+		ORG		0014H
+		MOVLP 	0H 			//0014 	0180
+		LJUMP 	16H 			//0015 	3816
+		MOVLB 	0H 			//0016 	1020
+		LJUMP 	18H 			//0017 	3818
+
+		//;test_61f14x_IO_INTERRUPT.C: 164: POWER_INITIAL();
+		LCALL 	1EH 			//0018 	301E
+		MOVLP 	0H 			//0019 	0180
+
+		//;test_61f14x_IO_INTERRUPT.C: 165: IO_INT_INITIAL();
+		LCALL 	41H 			//001A 	3041
+		MOVLP 	0H 			//001B 	0180
+		ORG		001CH
+
+		//;test_61f14x_IO_INTERRUPT.C: 168: {
+		//;test_61f14x_IO_INTERRUPT.C: 169: _nop();
+		NOP 					//001C 	1000
+		LJUMP 	1CH 			//001D 	381C
+
+		//;test_61f14x_IO_INTERRUPT.C: 60: OSCCON = 0B01110001;
+		LDWI 	71H 			//001E 	0071
+		MOVLB 	1H 			//001F 	1021
+		STR 	19H 			//0020 	1099
+
+		//;test_61f14x_IO_INTERRUPT.C: 61: INTCON = 0;
+		CLRF 	BH 			//0021 	118B
+
+		//;test_61f14x_IO_INTERRUPT.C: 63: PORTA = 0B00000000;
+		MOVLB 	0H 			//0022 	1020
+		CLRF 	CH 			//0023 	118C
+		ORG		0024H
+
+		//;test_61f14x_IO_INTERRUPT.C: 64: TRISA = 0B00000000;
+		MOVLB 	1H 			//0024 	1021
+		CLRF 	CH 			//0025 	118C
+
+		//;test_61f14x_IO_INTERRUPT.C: 65: PORTB = 0B00000000;
+		MOVLB 	0H 			//0026 	1020
+		CLRF 	DH 			//0027 	118D
+
+		//;test_61f14x_IO_INTERRUPT.C: 66: TRISB = 0B00000000;
+		MOVLB 	1H 			//0028 	1021
+		CLRF 	DH 			//0029 	118D
+
+		//;test_61f14x_IO_INTERRUPT.C: 67: PORTC = 0B00000000;
+		MOVLB 	0H 			//002A 	1020
+		CLRF 	EH 			//002B 	118E
+		ORG		002CH
+
+		//;test_61f14x_IO_INTERRUPT.C: 68: TRISC = 0B00000010;
+		LDWI 	2H 			//002C 	0002
+		MOVLB 	1H 			//002D 	1021
+		STR 	EH 			//002E 	108E
+
+		//;test_61f14x_IO_INTERRUPT.C: 71: WPUA = 0B00000000;
+		MOVLB 	3H 			//002F 	1023
+		CLRF 	CH 			//0030 	118C
+
+		//;test_61f14x_IO_INTERRUPT.C: 72: WPUB = 0B00000000;
+		CLRF 	DH 			//0031 	118D
+
+		//;test_61f14x_IO_INTERRUPT.C: 73: WPUC = 0B00000010;
+		STR 	EH 			//0032 	108E
+
+		//;test_61f14x_IO_INTERRUPT.C: 75: WPDA = 0B00000000;
+		MOVLB 	4H 			//0033 	1024
+		ORG		0034H
+		CLRF 	CH 			//0034 	118C
+
+		//;test_61f14x_IO_INTERRUPT.C: 76: WPDB = 0B00000000;
+		CLRF 	DH 			//0035 	118D
+
+		//;test_61f14x_IO_INTERRUPT.C: 77: WPDC = 0B00000000;
+		CLRF 	EH 			//0036 	118E
+
+		//;test_61f14x_IO_INTERRUPT.C: 79: PSRC0 = 0B11111111;
+		LDWI 	FFH 			//0037 	00FF
+		MOVLB 	2H 			//0038 	1022
+		STR 	1AH 			//0039 	109A
+
+		//;test_61f14x_IO_INTERRUPT.C: 80: PSRC1 = 0B11111111;
+		STR 	1BH 			//003A 	109B
+
+		//;test_61f14x_IO_INTERRUPT.C: 82: PSINK0 = 0B11111111;
+		MOVLB 	3H 			//003B 	1023
+		ORG		003CH
+		STR 	1AH 			//003C 	109A
+
+		//;test_61f14x_IO_INTERRUPT.C: 83: PSINK1 = 0B11111111;
+		STR 	1BH 			//003D 	109B
+
+		//;test_61f14x_IO_INTERRUPT.C: 84: PSINK2 = 0B11111111;
+		STR 	1CH 			//003E 	109C
+
+		//;test_61f14x_IO_INTERRUPT.C: 86: ANSELA = 0B00000000;
+		CLRF 	17H 			//003F 	1197
+		RET 					//0040 	1008
+
+		//;test_61f14x_IO_INTERRUPT.C: 144: EPS0=0B00001000;
+		LDWI 	8H 			//0041 	0008
+		MOVLB 	2H 			//0042 	1022
+		STR 	18H 			//0043 	1098
+		ORG		0044H
+
+		//;test_61f14x_IO_INTERRUPT.C: 146: EPS1=0B00000000;
+		CLRF 	19H 			//0044 	1199
+
+		//;test_61f14x_IO_INTERRUPT.C: 149: ITYPE0 = 0B00001100;
+		LDWI 	CH 			//0045 	000C
+		STR 	1EH 			//0046 	109E
+
+		//;test_61f14x_IO_INTERRUPT.C: 150: ITYPE1 = 0B00000000;
+		CLRF 	1FH 			//0047 	119F
+
+		//;test_61f14x_IO_INTERRUPT.C: 152: EPIE0 = 0B00000010;
+		LDWI 	2H 			//0048 	0002
+		MOVLB 	1H 			//0049 	1021
+		STR 	14H 			//004A 	1094
+
+		//;test_61f14x_IO_INTERRUPT.C: 154: INTCON = 0B11000000;
+		LDWI 	C0H 			//004B 	00C0
+		ORG		004CH
+		STR 	BH 			//004C 	108B
+		RET 					//004D 	1008
+			END

@@ -1,0 +1,439 @@
+%CMF
+# %PSECTS Section
+# For each object file, details of its psects are enumerated here.
+# The begining of the section is indicated by %PSECTS.  The first
+# line indicates the name of the first object file, e.g.
+#    $foo.obj
+# Each line that follows describes a psect in that object file, until
+# the next object file.  The lines that describe a psect have the
+# format:
+#    <psect name> <class name> <space> <link address> <load addresses> <length> <delta>
+# All addresses and the length are given in unqualified hexadecimal
+# in delta units.  Any other numeric values are decimal.
+%PSECTS
+$C:\Users\ADMINI~1\AppData\Local\Temp\sbbs.obj
+reset_vec CODE 0 0 0 2 2
+end_init CODE 0 14 14 2 2
+$test_61f14x_io_interrupt.obj
+cinit CODE 0 16 16 3C 2
+intentry CODE 0 4 4 10 2
+# %UNUSED Section
+# This section enumerates the unused ranges of each CLASS. Each entry
+# is described on a single line as follows:
+#    <class name> <range> <delta>
+# Addresses given in the range are in hexadecimal and units of delta.
+%UNUSED
+RAM 20-6F 1
+RAM A0-EF 1
+RAM 120-16F 1
+RAM 1A0-1EF 1
+RAM 220-26F 1
+RAM 2A0-2EF 1
+RAM 320-32F 1
+BANK0 20-6F 1
+BANK1 A0-EF 1
+BANK2 120-16F 1
+BANK3 1A0-1EF 1
+BANK4 220-26F 1
+BANK5 2A0-2EF 1
+BANK6 320-32F 1
+CONST 2-3 2
+CONST 52-FFF 2
+ENTRY 2-3 2
+ENTRY 52-FFF 2
+IDLOC 8000-8003 2
+SFR10 500-56F 1
+SFR11 580-5EF 1
+SFR12 600-66F 1
+SFR13 680-6EF 1
+SFR14 700-76F 1
+SFR15 780-7EF 1
+SFR16 800-86F 1
+SFR17 880-8EF 1
+SFR18 900-96F 1
+SFR19 980-9EF 1
+SFR20 A00-A6F 1
+SFR21 A80-AEF 1
+SFR22 B00-B6F 1
+SFR23 B80-BEF 1
+SFR24 C00-C6F 1
+SFR25 C80-CEF 1
+SFR26 D00-D6F 1
+SFR27 D80-DEF 1
+SFR28 E00-E6F 1
+SFR29 E80-EEF 1
+SFR30 F00-F6F 1
+SFR31 F80-FEF 1
+STACK 2000-21EF 1
+CODE 2-3 2
+CODE 52-FFF 2
+SFR0 0-1F 1
+SFR1 80-9F 1
+SFR2 100-11F 1
+SFR3 180-19F 1
+SFR4 200-21F 1
+SFR5 280-29F 1
+SFR6 300-31F 1
+SFR7 380-3EF 1
+SFR8 400-46F 1
+SFR9 480-4EF 1
+BIGRAM 2000-21EF 1
+COMMON 70-7D 1
+CONFIG 8007-8008 2
+EEDATA F000-F07F 2
+STRCODE 2-3 2
+STRCODE 52-FFF 2
+STRING 2-3 2
+STRING 52-FFF 2
+# %LINETAB Section
+# This section enumerates the file/line to address mappings.
+# The beginning of the section is indicated by %LINETAB.
+# The first line indicates the name of the first object file, e.g.
+#   $foo.obj
+# Each line that follows describes a single mapping until the next
+# object file.  Mappings have the following format:
+#    <address> <psect name> <class name> ><line number>:<file name>
+# The address is absolute and given given in unqualified hex 
+# in delta units of the psect. All mappings within an object file
+# are in ascending order of addresses.
+# All other numeric values are in decimal.
+%LINETAB
+$test_61f14x_io_interrupt.obj
+16 cinit CODE >99:C:\Users\ADMINI~1\AppData\Local\Temp\sbbs.
+16 cinit CODE >102:C:\Users\ADMINI~1\AppData\Local\Temp\sbbs.
+16 cinit CODE >108:C:\Users\ADMINI~1\AppData\Local\Temp\sbbs.
+16 cinit CODE >110:C:\Users\ADMINI~1\AppData\Local\Temp\sbbs.
+17 cinit CODE >111:C:\Users\ADMINI~1\AppData\Local\Temp\sbbs.
+18 cinit CODE >112:C:\Users\ADMINI~1\AppData\Local\Temp\sbbs.
+19 cinit CODE >174:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+19 cinit CODE >176:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+1B cinit CODE >177:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+1D cinit CODE >181:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+1F cinit CODE >154:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+1F cinit CODE >156:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+22 cinit CODE >158:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+23 cinit CODE >161:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+25 cinit CODE >162:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+26 cinit CODE >164:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+29 cinit CODE >166:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+2B cinit CODE >167:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+2C cinit CODE >60:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+2C cinit CODE >63:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+2F cinit CODE >66:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+30 cinit CODE >68:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+32 cinit CODE >69:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+35 cinit CODE >70:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+37 cinit CODE >71:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+3A cinit CODE >72:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+3C cinit CODE >73:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+3F cinit CODE >76:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+41 cinit CODE >77:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+42 cinit CODE >78:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+44 cinit CODE >80:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+46 cinit CODE >81:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+47 cinit CODE >82:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+48 cinit CODE >84:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+4B cinit CODE >88:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+4C cinit CODE >92:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+4E cinit CODE >93:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+4F cinit CODE >94:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+50 cinit CODE >96:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+51 cinit CODE >98:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+4 intentry CODE >39:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+6 intentry CODE >41:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+9 intentry CODE >43:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+A intentry CODE >45:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+B intentry CODE >46:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+C intentry CODE >47:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+D intentry CODE >48:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+E intentry CODE >49:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+F intentry CODE >50:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+10 intentry CODE >51:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+12 intentry CODE >53:C:\Users\Administrator\Desktop\demo code 检查\C\FT61F14x\test_61f14x_IO_INTERRUPT\test_61f14x_IO_INTERRUPT.C
+# %SYMTAB Section
+# An enumeration of all symbols in the program.
+# The beginning of the section is indicated by %SYMTAB.
+# Each line describes a single symbol as follows:
+#    <label> <value> [-]<load-adj> <class> <space> <psect> <file-name>
+# The value and load-adj are both in unqualified hexadecimal.
+# All other numeric values are in decimal.  The load-adj is the
+# quantity one needs to add to the symbol value in order to obtain the load
+# address of the symbol.  This value may be signed. If the symbol
+# was defined in a psect then <psect> will be "-". File-name
+# is the name of the object file in which the symbol was defined.
+%SYMTAB
+___latbits 1 0 ABS 0 - test_61f14x_io_interrupt.obj
+__Hspace_0 52 0 ABS 0 - -
+__Hspace_1 0 0 ABS 0 - -
+__Hspace_2 0 0 ABS 0 - -
+__Hspace_3 0 0 ABS 0 - -
+_POWER_INITIAL 58 0 CODE 0 cinit test_61f14x_io_interrupt.obj
+__Heeprom_data 0 0 EEDATA 3 eeprom_data -
+__Hstrings 0 0 ABS 0 strings -
+_EPS0 118 0 ABS 0 - test_61f14x_io_interrupt.obj
+_EPS1 119 0 ABS 0 - test_61f14x_io_interrupt.obj
+_WPDA 20C 0 ABS 0 - test_61f14x_io_interrupt.obj
+_WPDB 20D 0 ABS 0 - test_61f14x_io_interrupt.obj
+_WPDC 20E 0 ABS 0 - test_61f14x_io_interrupt.obj
+_WPUA 18C 0 ABS 0 - test_61f14x_io_interrupt.obj
+_WPUB 18D 0 ABS 0 - test_61f14x_io_interrupt.obj
+_WPUC 18E 0 ABS 0 - test_61f14x_io_interrupt.obj
+___sp 0 0 STACK 2 stack C:\Users\ADMINI~1\AppData\Local\Temp\sbbs.obj
+_main 32 0 CODE 0 cinit test_61f14x_io_interrupt.obj
+btemp 7E 0 ABS 0 - test_61f14x_io_interrupt.obj
+start 28 0 CODE 0 init C:\Users\ADMINI~1\AppData\Local\Temp\sbbs.obj
+__size_of_main 0 0 ABS 0 - test_61f14x_io_interrupt.obj
+__Hpowerup 0 0 CODE 0 powerup -
+intlevel0 0 0 ENTRY 0 functab C:\Users\ADMINI~1\AppData\Local\Temp\sbbs.obj
+intlevel1 0 0 ENTRY 0 functab C:\Users\ADMINI~1\AppData\Local\Temp\sbbs.obj
+intlevel2 0 0 ENTRY 0 functab C:\Users\ADMINI~1\AppData\Local\Temp\sbbs.obj
+intlevel3 0 0 ENTRY 0 functab C:\Users\ADMINI~1\AppData\Local\Temp\sbbs.obj
+intlevel4 0 0 ENTRY 0 functab C:\Users\ADMINI~1\AppData\Local\Temp\sbbs.obj
+intlevel5 0 0 ENTRY 0 functab C:\Users\ADMINI~1\AppData\Local\Temp\sbbs.obj
+__size_of_IO_INT_INITIAL 0 0 ABS 0 - test_61f14x_io_interrupt.obj
+wtemp0 7E 0 ABS 0 - test_61f14x_io_interrupt.obj
+__Hfunctab 0 0 ENTRY 0 functab -
+__Hclrtext 0 0 ABS 0 clrtext -
+_ANSELA 197 0 ABS 0 - test_61f14x_io_interrupt.obj
+__Hpa_nodes0 0 0 ABS 0 pa_nodes0 -
+__size_of_POWER_INITIAL 0 0 ABS 0 - test_61f14x_io_interrupt.obj
+__Lmaintext 0 0 ABS 0 maintext -
+_INTCON B 0 ABS 0 - test_61f14x_io_interrupt.obj
+_ITYPE0 11E 0 ABS 0 - test_61f14x_io_interrupt.obj
+_ITYPE1 11F 0 ABS 0 - test_61f14x_io_interrupt.obj
+__Lpa_nodes0 0 0 ABS 0 pa_nodes0 -
+__end_of_POWER_INITIAL A4 0 CODE 0 cinit test_61f14x_io_interrupt.obj
+start_initialization 2C 0 CODE 0 cinit test_61f14x_io_interrupt.obj
+_OSCCON 99 0 ABS 0 - test_61f14x_io_interrupt.obj
+_PSINK0 19A 0 ABS 0 - test_61f14x_io_interrupt.obj
+_PSINK1 19B 0 ABS 0 - test_61f14x_io_interrupt.obj
+_PSINK2 19C 0 ABS 0 - test_61f14x_io_interrupt.obj
+___int_sp 0 0 STACK 2 stack C:\Users\ADMINI~1\AppData\Local\Temp\sbbs.obj
+__Hbank0 0 0 ABS 0 bank0 -
+__Hbank1 0 0 ABS 0 bank1 -
+__Hbank2 0 0 ABS 0 bank2 -
+__Hbank3 0 0 ABS 0 bank3 -
+__Hbank4 0 0 ABS 0 bank4 -
+__Hbank5 0 0 ABS 0 bank5 -
+__Hbank6 0 0 ABS 0 bank6 -
+__Hbank7 0 0 BANK7 1 bank7 -
+__Hbank8 0 0 BANK8 1 bank8 -
+__Hbank9 0 0 BANK9 1 bank9 -
+__Hcinit A4 0 CODE 0 cinit -
+__Hidloc 0 0 IDLOC 0 idloc -
+__Hsfr10 0 0 ABS 0 sfr10 -
+__Hsfr11 0 0 ABS 0 sfr11 -
+__Hsfr12 0 0 ABS 0 sfr12 -
+__Hsfr13 0 0 ABS 0 sfr13 -
+__Hsfr14 0 0 ABS 0 sfr14 -
+__Hsfr15 0 0 ABS 0 sfr15 -
+__Hsfr16 0 0 ABS 0 sfr16 -
+__Hsfr17 0 0 ABS 0 sfr17 -
+__Hsfr18 0 0 ABS 0 sfr18 -
+__Hsfr19 0 0 ABS 0 sfr19 -
+__Hsfr20 0 0 ABS 0 sfr20 -
+__Hsfr21 0 0 ABS 0 sfr21 -
+__Hsfr22 0 0 ABS 0 sfr22 -
+__Hsfr23 0 0 ABS 0 sfr23 -
+__Hsfr24 0 0 ABS 0 sfr24 -
+__Hsfr25 0 0 ABS 0 sfr25 -
+__Hsfr26 0 0 ABS 0 sfr26 -
+__Hsfr27 0 0 ABS 0 sfr27 -
+__Hsfr28 0 0 ABS 0 sfr28 -
+__Hsfr29 0 0 ABS 0 sfr29 -
+__Hsfr30 0 0 ABS 0 sfr30 -
+__Hsfr31 0 0 ABS 0 sfr31 -
+__Hstack 0 0 STACK 2 stack -
+__Hbank10 0 0 BANK10 1 bank10 -
+__Hbank11 0 0 BANK11 1 bank11 -
+__Hbank12 0 0 BANK12 1 bank12 -
+__Hbank13 0 0 BANK13 1 bank13 -
+__Hbank14 0 0 BANK14 1 bank14 -
+__Hbank15 0 0 BANK15 1 bank15 -
+__Hbank16 0 0 BANK16 1 bank16 -
+__Hbank17 0 0 BANK17 1 bank17 -
+__Hbank18 0 0 BANK18 1 bank18 -
+__Hbank19 0 0 BANK19 1 bank19 -
+__Hbank20 0 0 BANK20 1 bank20 -
+__Hbank21 0 0 BANK21 1 bank21 -
+__Hbank22 0 0 BANK22 1 bank22 -
+__Hbank23 0 0 BANK23 1 bank23 -
+__Hbank24 0 0 BANK24 1 bank24 -
+__Hbank25 0 0 BANK25 1 bank25 -
+__Hbank26 0 0 BANK26 1 bank26 -
+__Hbank27 0 0 BANK27 1 bank27 -
+__Hbank28 0 0 BANK28 1 bank28 -
+__Hbank29 0 0 BANK29 1 bank29 -
+__Hbank30 0 0 BANK30 1 bank30 -
+__Hbank31 0 0 BANK31 1 bank31 -
+__Hbigram 0 0 ABS 0 bigram -
+__Hmaintext 0 0 ABS 0 maintext -
+__Hcommon 0 0 ABS 0 common -
+__Hconfig 0 0 CONFIG 0 config -
+__Lbank0 0 0 ABS 0 bank0 -
+__Lbank1 0 0 ABS 0 bank1 -
+__Lbank2 0 0 ABS 0 bank2 -
+__Lbank3 0 0 ABS 0 bank3 -
+__Lbank4 0 0 ABS 0 bank4 -
+__Lbank5 0 0 ABS 0 bank5 -
+__Lbank6 0 0 ABS 0 bank6 -
+__Lbank7 0 0 BANK7 1 bank7 -
+__Lbank8 0 0 BANK8 1 bank8 -
+__Lbank9 0 0 BANK9 1 bank9 -
+__Lcinit 2C 0 CODE 0 cinit -
+__Lidloc 0 0 IDLOC 0 idloc -
+__Lsfr10 0 0 ABS 0 sfr10 -
+__Lsfr11 0 0 ABS 0 sfr11 -
+__Lsfr12 0 0 ABS 0 sfr12 -
+__Lsfr13 0 0 ABS 0 sfr13 -
+__Lsfr14 0 0 ABS 0 sfr14 -
+__Lsfr15 0 0 ABS 0 sfr15 -
+__Lsfr16 0 0 ABS 0 sfr16 -
+__Lsfr17 0 0 ABS 0 sfr17 -
+__Lsfr18 0 0 ABS 0 sfr18 -
+__Lsfr19 0 0 ABS 0 sfr19 -
+__Lsfr20 0 0 ABS 0 sfr20 -
+__Lsfr21 0 0 ABS 0 sfr21 -
+__Lsfr22 0 0 ABS 0 sfr22 -
+__Lsfr23 0 0 ABS 0 sfr23 -
+__Lsfr24 0 0 ABS 0 sfr24 -
+__Lsfr25 0 0 ABS 0 sfr25 -
+__Lsfr26 0 0 ABS 0 sfr26 -
+__Lsfr27 0 0 ABS 0 sfr27 -
+__Lsfr28 0 0 ABS 0 sfr28 -
+__Lsfr29 0 0 ABS 0 sfr29 -
+__Lsfr30 0 0 ABS 0 sfr30 -
+__Lsfr31 0 0 ABS 0 sfr31 -
+__Lstack 0 0 STACK 2 stack -
+__Habs1 0 0 ABS 0 abs1 -
+__Hcode 0 0 ABS 0 code -
+__Hinit 28 0 CODE 0 init -
+__Hsfr0 0 0 ABS 0 sfr0 -
+__Hsfr1 0 0 ABS 0 sfr1 -
+__Hsfr2 0 0 ABS 0 sfr2 -
+__Hsfr3 0 0 ABS 0 sfr3 -
+__Hsfr4 0 0 ABS 0 sfr4 -
+__Hsfr5 0 0 ABS 0 sfr5 -
+__Hsfr6 0 0 ABS 0 sfr6 -
+__Hsfr7 0 0 ABS 0 sfr7 -
+__Hsfr8 0 0 ABS 0 sfr8 -
+__Hsfr9 0 0 ABS 0 sfr9 -
+__Htext 0 0 ABS 0 text -
+__Labs1 0 0 ABS 0 abs1 -
+__Lcode 0 0 ABS 0 code -
+__Linit 28 0 CODE 0 init -
+__Lsfr0 0 0 ABS 0 sfr0 -
+__Lsfr1 0 0 ABS 0 sfr1 -
+__Lsfr2 0 0 ABS 0 sfr2 -
+__Lsfr3 0 0 ABS 0 sfr3 -
+__Lsfr4 0 0 ABS 0 sfr4 -
+__Lsfr5 0 0 ABS 0 sfr5 -
+__Lsfr6 0 0 ABS 0 sfr6 -
+__Lsfr7 0 0 ABS 0 sfr7 -
+__Lsfr8 0 0 ABS 0 sfr8 -
+__Lsfr9 0 0 ABS 0 sfr9 -
+__Ltext 0 0 ABS 0 text -
+int$flags 7E 0 ABS 0 - test_61f14x_io_interrupt.obj
+__HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
+_ISR 8 0 CODE 0 intentry test_61f14x_io_interrupt.obj
+_PB3 6B 0 ABS 0 - test_61f14x_io_interrupt.obj
+__S0 52 0 ABS 0 - -
+__S1 0 0 ABS 0 - -
+__S2 0 0 ABS 0 - -
+__S3 0 0 ABS 0 - -
+__end_of_ISR 28 0 CODE 0 intentry test_61f14x_io_interrupt.obj
+__Lintentry 8 0 CODE 0 intentry -
+reset_vec 0 0 CODE 0 reset_vec C:\Users\ADMINI~1\AppData\Local\Temp\sbbs.obj
+_IO_INT_INITIAL 3E 0 CODE 0 cinit test_61f14x_io_interrupt.obj
+__Lbank10 0 0 BANK10 1 bank10 -
+__Lbank11 0 0 BANK11 1 bank11 -
+__Lbank12 0 0 BANK12 1 bank12 -
+__Lbank13 0 0 BANK13 1 bank13 -
+__Lbank14 0 0 BANK14 1 bank14 -
+__Lbank15 0 0 BANK15 1 bank15 -
+__Lbank16 0 0 BANK16 1 bank16 -
+__Lbank17 0 0 BANK17 1 bank17 -
+__Lbank18 0 0 BANK18 1 bank18 -
+__Lbank19 0 0 BANK19 1 bank19 -
+__Lbank20 0 0 BANK20 1 bank20 -
+__Lbank21 0 0 BANK21 1 bank21 -
+__Lbank22 0 0 BANK22 1 bank22 -
+__Lbank23 0 0 BANK23 1 bank23 -
+__Lbank24 0 0 BANK24 1 bank24 -
+__Lbank25 0 0 BANK25 1 bank25 -
+__Lbank26 0 0 BANK26 1 bank26 -
+__Lbank27 0 0 BANK27 1 bank27 -
+__Lbank28 0 0 BANK28 1 bank28 -
+__Lbank29 0 0 BANK29 1 bank29 -
+__Lbank30 0 0 BANK30 1 bank30 -
+__Lbank31 0 0 BANK31 1 bank31 -
+__pmaintext 32 0 CODE 0 cinit test_61f14x_io_interrupt.obj
+__Lbigram 0 0 ABS 0 bigram -
+__Lcommon 0 0 ABS 0 common -
+__Lconfig 0 0 CONFIG 0 config -
+stackhi 21EF 0 ABS 0 - C:\Users\ADMINI~1\AppData\Local\Temp\sbbs.obj
+stacklo 2000 0 ABS 0 - C:\Users\ADMINI~1\AppData\Local\Temp\sbbs.obj
+__end_of_IO_INT_INITIAL 58 0 CODE 0 cinit test_61f14x_io_interrupt.obj
+__Lspace_0 0 0 ABS 0 - -
+__Lspace_1 0 0 ABS 0 - -
+__Lspace_2 0 0 ABS 0 - -
+__Lspace_3 0 0 ABS 0 - -
+__Lend_init 28 0 CODE 0 end_init -
+__LcstackCOMMON 0 0 ABS 0 cstackCOMMON -
+end_of_initialization 2C 0 CODE 0 cinit test_61f14x_io_interrupt.obj
+__Hintentry 28 0 CODE 0 intentry -
+__Lstrings 0 0 ABS 0 strings -
+__Hreset_vec 4 0 CODE 0 reset_vec -
+__ptext1 58 0 CODE 0 cinit test_61f14x_io_interrupt.obj
+__ptext2 3E 0 CODE 0 cinit test_61f14x_io_interrupt.obj
+__Lpowerup 0 0 CODE 0 powerup -
+__Leeprom_data 0 0 EEDATA 3 eeprom_data -
+__Lreset_vec 0 0 CODE 0 reset_vec -
+__end_of__initialization 2C 0 CODE 0 cinit test_61f14x_io_interrupt.obj
+__Lfunctab 0 0 ENTRY 0 functab -
+__Lclrtext 0 0 ABS 0 clrtext -
+__pcstackCOMMON 0 0 COMMON 1 cstackCOMMON test_61f14x_io_interrupt.obj
+__Hend_init 2C 0 CODE 0 end_init -
+__end_of_main 3E 0 CODE 0 cinit test_61f14x_io_interrupt.obj
+_EPIE0 94 0 ABS 0 - test_61f14x_io_interrupt.obj
+_EPIF0 14 0 ABS 0 - test_61f14x_io_interrupt.obj
+_PORTA C 0 ABS 0 - test_61f14x_io_interrupt.obj
+_PORTB D 0 ABS 0 - test_61f14x_io_interrupt.obj
+_PORTC E 0 ABS 0 - test_61f14x_io_interrupt.obj
+_PSRC0 11A 0 ABS 0 - test_61f14x_io_interrupt.obj
+_PSRC1 11B 0 ABS 0 - test_61f14x_io_interrupt.obj
+_TRISA 8C 0 ABS 0 - test_61f14x_io_interrupt.obj
+_TRISB 8D 0 ABS 0 - test_61f14x_io_interrupt.obj
+_TRISC 8E 0 ABS 0 - test_61f14x_io_interrupt.obj
+__Hram 0 0 ABS 0 ram -
+__Lram 0 0 ABS 0 ram -
+__pintentry 8 0 CODE 0 intentry test_61f14x_io_interrupt.obj
+__size_of_ISR 0 0 ABS 0 - test_61f14x_io_interrupt.obj
+__initialization 2C 0 CODE 0 cinit test_61f14x_io_interrupt.obj
+# %SPLITSTAB Section
+# This section enumerates all the psect splits performed by the assembler.
+# The beginning of the section is indicated by %SPLITSTAB.
+# Each line is a record a particular split, where the parent psect is on
+# the left and the child on the right.  Note that a child psect is always
+# split form the top of the parent psect. All splits from a given parent
+# are listed in the order in which they occurred.
+%SPLITSTAB
+# %DABS Section
+# This section contains a table of all usuage of the assember
+# directive DABS in the program. Each line has the following format:
+#   <name> <space> <address> <size>
+# If the DABS was originally labelled then that shall be <name>,
+# otherwise name will be "-".  The <space> number is in decimal.
+# <address> and <size> are in byte units as unqaulified hexadecimal
+%DABS
+- 1 7E 2
+# %SEGMENTS Section
+# This sections enumerates the segments of the program.  Each segment
+# is described on a single line as follows:
+#    <name> <space> <link address> <file address> <size> <delta>
+# Addresses and size are in unqualified hexadecimal.  The link address
+# and size are in units of delta. The file address is in units of bytes.
+# All other numeric quantities are in decimal.
+%SEGMENTS
+intentry 0 4 8 4E 2
+reset_vec 0 0 0 2 2

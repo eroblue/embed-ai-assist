@@ -1,0 +1,502 @@
+{
+  "clock_sources": [
+    {
+      "name": "HXTAL",
+      "frequency_range": "4-32 MHz",
+      "typical": "8 MHz",
+      "notes": ""
+    },
+    {
+      "name": "IRC8M",
+      "frequency_range": "8 MHz",
+      "typical": "8 MHz",
+      "notes": "出厂校准"
+    },
+    {
+      "name": "LXTAL",
+      "frequency_range": "32.768 kHz",
+      "typical": "32.768 kHz",
+      "notes": ""
+    },
+    {
+      "name": "IRC40K",
+      "frequency_range": "40 kHz",
+      "typical": "40 kHz",
+      "notes": "低功耗内部 RC"
+    }
+  ],
+  "pll": {
+    "source": "HXTAL/IRC8M",
+    "multiplier_field": "PLLMF",
+    "multiplier_range": "x2..x32"
+  },
+  "bus_prescalers": [
+    {
+      "bus": "SYSCLK",
+      "field": "SCS",
+      "register": "RCU_CFG0",
+      "division_range": ""
+    },
+    {
+      "bus": "SYSCLK",
+      "field": "SCSS",
+      "register": "RCU_CFG0",
+      "division_range": ""
+    },
+    {
+      "bus": "AHB",
+      "field": "AHBPSC",
+      "register": "RCU_CFG0",
+      "division_range": ""
+    },
+    {
+      "bus": "APB1",
+      "field": "APB1PSC",
+      "register": "RCU_CFG0",
+      "division_range": ""
+    },
+    {
+      "bus": "APB2",
+      "field": "APB2PSC",
+      "register": "RCU_CFG0",
+      "division_range": ""
+    },
+    {
+      "bus": "ADC",
+      "field": "ADCPSC_1_0",
+      "register": "RCU_CFG0",
+      "division_range": ""
+    },
+    {
+      "bus": "SYSCLK",
+      "field": "PLLSEL",
+      "register": "RCU_CFG0",
+      "division_range": ""
+    },
+    {
+      "bus": "SYSCLK",
+      "field": "PREDV0_LSB",
+      "register": "RCU_CFG0",
+      "division_range": ""
+    },
+    {
+      "bus": "SYSCLK",
+      "field": "PLLMF_3_0",
+      "register": "RCU_CFG0",
+      "division_range": ""
+    },
+    {
+      "bus": "USB",
+      "field": "USBFSPSC",
+      "register": "RCU_CFG0",
+      "division_range": ""
+    },
+    {
+      "bus": "SYSCLK",
+      "field": "CKOUT0SEL",
+      "register": "RCU_CFG0",
+      "division_range": ""
+    },
+    {
+      "bus": "ADC",
+      "field": "ADCPSC_2",
+      "register": "RCU_CFG0",
+      "division_range": ""
+    },
+    {
+      "bus": "SYSCLK",
+      "field": "PLLMF_4",
+      "register": "RCU_CFG0",
+      "division_range": ""
+    }
+  ],
+  "peripheral_clock_enables": [
+    {
+      "peripheral": "DMA0",
+      "field": "DMA0EN",
+      "register": "RCU_AHB1EN",
+      "bus": "AHB1"
+    },
+    {
+      "peripheral": "DMA1",
+      "field": "DMA1EN",
+      "register": "RCU_AHB1EN",
+      "bus": "AHB1"
+    },
+    {
+      "peripheral": "SRAMSP",
+      "field": "SRAMSPEN",
+      "register": "RCU_AHB1EN",
+      "bus": "AHB1"
+    },
+    {
+      "peripheral": "FMCSP",
+      "field": "FMCSPEN",
+      "register": "RCU_AHB1EN",
+      "bus": "AHB1"
+    },
+    {
+      "peripheral": "CRC",
+      "field": "CRCEN",
+      "register": "RCU_AHB1EN",
+      "bus": "AHB1"
+    },
+    {
+      "peripheral": "EXMC",
+      "field": "EXMCEN",
+      "register": "RCU_AHB1EN",
+      "bus": "AHB1"
+    },
+    {
+      "peripheral": "SDIO",
+      "field": "SDIOEN",
+      "register": "RCU_AHB1EN",
+      "bus": "AHB1"
+    },
+    {
+      "peripheral": "USBFS",
+      "field": "USBFSEN",
+      "register": "RCU_AHB1EN",
+      "bus": "AHB1"
+    },
+    {
+      "peripheral": "ENET",
+      "field": "ENETEN",
+      "register": "RCU_AHB1EN",
+      "bus": "AHB1"
+    },
+    {
+      "peripheral": "ENETTX",
+      "field": "ENETTXEN",
+      "register": "RCU_AHB1EN",
+      "bus": "AHB1"
+    },
+    {
+      "peripheral": "ENETRX",
+      "field": "ENETRXEN",
+      "register": "RCU_AHB1EN",
+      "bus": "AHB1"
+    },
+    {
+      "peripheral": "DCI",
+      "field": "DCIEN",
+      "register": "RCU_AHB2EN",
+      "bus": "AHB2"
+    },
+    {
+      "peripheral": "CAU",
+      "field": "CAUEN",
+      "register": "RCU_AHB2EN",
+      "bus": "AHB2"
+    },
+    {
+      "peripheral": "HAU",
+      "field": "HAUEN",
+      "register": "RCU_AHB2EN",
+      "bus": "AHB2"
+    },
+    {
+      "peripheral": "TRNG",
+      "field": "TRNGEN",
+      "register": "RCU_AHB2EN",
+      "bus": "AHB2"
+    },
+    {
+      "peripheral": "TIMER1",
+      "field": "TIMER1EN",
+      "register": "RCU_APB1EN",
+      "bus": "APB1"
+    },
+    {
+      "peripheral": "TIMER2",
+      "field": "TIMER2EN",
+      "register": "RCU_APB1EN",
+      "bus": "APB1"
+    },
+    {
+      "peripheral": "TIMER3",
+      "field": "TIMER3EN",
+      "register": "RCU_APB1EN",
+      "bus": "APB1"
+    },
+    {
+      "peripheral": "TIMER4",
+      "field": "TIMER4EN",
+      "register": "RCU_APB1EN",
+      "bus": "APB1"
+    },
+    {
+      "peripheral": "TIMER5",
+      "field": "TIMER5EN",
+      "register": "RCU_APB1EN",
+      "bus": "APB1"
+    },
+    {
+      "peripheral": "TIMER6",
+      "field": "TIMER6EN",
+      "register": "RCU_APB1EN",
+      "bus": "APB1"
+    },
+    {
+      "peripheral": "TIMER11",
+      "field": "TIMER11EN",
+      "register": "RCU_APB1EN",
+      "bus": "APB1"
+    },
+    {
+      "peripheral": "TIMER12",
+      "field": "TIMER12EN",
+      "register": "RCU_APB1EN",
+      "bus": "APB1"
+    },
+    {
+      "peripheral": "TIMER13",
+      "field": "TIMER13EN",
+      "register": "RCU_APB1EN",
+      "bus": "APB1"
+    },
+    {
+      "peripheral": "WWDGT",
+      "field": "WWDGTEN",
+      "register": "RCU_APB1EN",
+      "bus": "APB1"
+    },
+    {
+      "peripheral": "SPI1",
+      "field": "SPI1EN",
+      "register": "RCU_APB1EN",
+      "bus": "APB1"
+    },
+    {
+      "peripheral": "SPI2",
+      "field": "SPI2EN",
+      "register": "RCU_APB1EN",
+      "bus": "APB1"
+    },
+    {
+      "peripheral": "USART1",
+      "field": "USART1EN",
+      "register": "RCU_APB1EN",
+      "bus": "APB1"
+    },
+    {
+      "peripheral": "USART2",
+      "field": "USART2EN",
+      "register": "RCU_APB1EN",
+      "bus": "APB1"
+    },
+    {
+      "peripheral": "UART3",
+      "field": "UART3EN",
+      "register": "RCU_APB1EN",
+      "bus": "APB1"
+    },
+    {
+      "peripheral": "UART4",
+      "field": "UART4EN",
+      "register": "RCU_APB1EN",
+      "bus": "APB1"
+    },
+    {
+      "peripheral": "I2C0",
+      "field": "I2C0EN",
+      "register": "RCU_APB1EN",
+      "bus": "APB1"
+    },
+    {
+      "peripheral": "I2C1",
+      "field": "I2C1EN",
+      "register": "RCU_APB1EN",
+      "bus": "APB1"
+    },
+    {
+      "peripheral": "CAN0",
+      "field": "CAN0EN",
+      "register": "RCU_APB1EN",
+      "bus": "APB1"
+    },
+    {
+      "peripheral": "CAN1",
+      "field": "CAN1EN",
+      "register": "RCU_APB1EN",
+      "bus": "APB1"
+    },
+    {
+      "peripheral": "BKPI",
+      "field": "BKPIEN",
+      "register": "RCU_APB1EN",
+      "bus": "APB1"
+    },
+    {
+      "peripheral": "PMU",
+      "field": "PMUEN",
+      "register": "RCU_APB1EN",
+      "bus": "APB1"
+    },
+    {
+      "peripheral": "DAC",
+      "field": "DACEN",
+      "register": "RCU_APB1EN",
+      "bus": "APB1"
+    },
+    {
+      "peripheral": "AF",
+      "field": "AFEN",
+      "register": "RCU_APB2EN",
+      "bus": "APB2"
+    },
+    {
+      "peripheral": "GPIOA",
+      "field": "PAEN",
+      "register": "RCU_APB2EN",
+      "bus": "APB2"
+    },
+    {
+      "peripheral": "GPIOB",
+      "field": "PBEN",
+      "register": "RCU_APB2EN",
+      "bus": "APB2"
+    },
+    {
+      "peripheral": "GPIOC",
+      "field": "PCEN",
+      "register": "RCU_APB2EN",
+      "bus": "APB2"
+    },
+    {
+      "peripheral": "GPIOD",
+      "field": "PDEN",
+      "register": "RCU_APB2EN",
+      "bus": "APB2"
+    },
+    {
+      "peripheral": "GPIOE",
+      "field": "PEEN",
+      "register": "RCU_APB2EN",
+      "bus": "APB2"
+    },
+    {
+      "peripheral": "GPIOF",
+      "field": "PFEN",
+      "register": "RCU_APB2EN",
+      "bus": "APB2"
+    },
+    {
+      "peripheral": "GPIOG",
+      "field": "PGEN",
+      "register": "RCU_APB2EN",
+      "bus": "APB2"
+    },
+    {
+      "peripheral": "ADC0",
+      "field": "ADC0EN",
+      "register": "RCU_APB2EN",
+      "bus": "APB2"
+    },
+    {
+      "peripheral": "ADC1",
+      "field": "ADC1EN",
+      "register": "RCU_APB2EN",
+      "bus": "APB2"
+    },
+    {
+      "peripheral": "TIMER0",
+      "field": "TIMER0EN",
+      "register": "RCU_APB2EN",
+      "bus": "APB2"
+    },
+    {
+      "peripheral": "SPI0",
+      "field": "SPI0EN",
+      "register": "RCU_APB2EN",
+      "bus": "APB2"
+    },
+    {
+      "peripheral": "TIMER7",
+      "field": "TIMER7EN",
+      "register": "RCU_APB2EN",
+      "bus": "APB2"
+    },
+    {
+      "peripheral": "USART0",
+      "field": "USART0EN",
+      "register": "RCU_APB2EN",
+      "bus": "APB2"
+    },
+    {
+      "peripheral": "ADC2",
+      "field": "ADC2EN",
+      "register": "RCU_APB2EN",
+      "bus": "APB2"
+    },
+    {
+      "peripheral": "TIMER8",
+      "field": "TIMER8EN",
+      "register": "RCU_APB2EN",
+      "bus": "APB2"
+    },
+    {
+      "peripheral": "TIMER9",
+      "field": "TIMER9EN",
+      "register": "RCU_APB2EN",
+      "bus": "APB2"
+    },
+    {
+      "peripheral": "TIMER10",
+      "field": "TIMER10EN",
+      "register": "RCU_APB2EN",
+      "bus": "APB2"
+    },
+    {
+      "peripheral": "I2C2",
+      "field": "I2C2EN",
+      "register": "RCU_ADDAPB1EN",
+      "bus": "APB1"
+    },
+    {
+      "peripheral": "UART6",
+      "field": "UART6EN",
+      "register": "RCU_ADDAPB1EN",
+      "bus": "APB1"
+    },
+    {
+      "peripheral": "UART7",
+      "field": "UART7EN",
+      "register": "RCU_ADDAPB1EN",
+      "bus": "APB1"
+    },
+    {
+      "peripheral": "USART5",
+      "field": "USART5EN",
+      "register": "RCU_ADDAPB2EN",
+      "bus": "APB2"
+    },
+    {
+      "peripheral": "TLI",
+      "field": "TLIEN",
+      "register": "RCU_ADDAPB2EN",
+      "bus": "APB2"
+    },
+    {
+      "peripheral": "GPIOH",
+      "field": "PHEN",
+      "register": "RCU_ADDAPB2EN",
+      "bus": "APB2"
+    },
+    {
+      "peripheral": "GPIOI",
+      "field": "PIEN",
+      "register": "RCU_ADDAPB2EN",
+      "bus": "APB2"
+    }
+  ],
+  "schema": "embedaiassist.chip.clocktree.v1",
+  "mcu_family": "GD32F205XX",
+  "source": {
+    "svd": "E:\\skills\\EmbedSoftAutomaticProject\\embed-ai-assist\\platforms\\gd32f205vet6\\svd\\GD32F20x.svd",
+    "sdk_header": "E:\\skills\\EmbedSoftAutomaticProject\\embed-ai-assist\\platforms\\gd32f205vet6\\sdk\\cmsis\\gd32f20x.h",
+    "reference_manual": "E:\\skills\\EmbedSoftAutomaticProject\\embed-ai-assist\\platforms\\gd32f205vet6\\datasheets\\GD32F20x 用户手册.pdf",
+    "datasheet": "E:\\skills\\EmbedSoftAutomaticProject\\embed-ai-assist\\platforms\\gd32f205vet6\\datasheets\\GD32F205xx_Datasheet_Rev2.4.pdf",
+    "extracted_at": "2026-09-19T15:28:02"
+  }
+}

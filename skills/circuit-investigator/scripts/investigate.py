@@ -24,6 +24,21 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
+if sys.version_info < (3, 10):  # 版本守卫：本框架需 3.10+（如 Path.write_text(newline=)）
+    import json as _json
+    from pathlib import Path as _Path
+    try:
+        _root_cfg = _json.loads(
+            (_Path(__file__).resolve().parents[3] / "config.json").read_text(encoding="utf-8"))
+        _py = _root_cfg.get("tool_paths", {}).get("python", "")
+    except Exception:
+        _py = ""
+    print(f"[错误] 本框架需要 Python 3.10+，当前解释器为 {sys.version.split()[0]}。"
+          + (f"请使用项目配置的解释器：{_py}" if _py
+             else "项目配置的解释器见根目录 config.json 的 tool_paths.python"),
+          file=sys.stderr)
+    sys.exit(2)
+
 SCRIPT_DIR = Path(__file__).resolve().parent
 SKILL_DIR = SCRIPT_DIR.parent
 ROOT_DIR = SKILL_DIR.parent.parent
@@ -115,11 +130,15 @@ def _update_state_facts(state_path: Path, facts: dict) -> None:
 
 
 def _find_mcu_component(components: list[dict], platform: str) -> dict | None:
-    """主控元件识别：designator U* 且 value 含平台名（如 STM32F103ZET6）。"""
+    """主控元件识别：designator U* 且 value 含平台名（如 STM32F103ZET6）。
+
+    系列名通配：platform 尾部 X 为通配（FT61F14X 匹配 FT61F143A-RB 等具体型号）。
+    """
     plat = platform.upper().replace("-", "").replace("_", "")
+    prefix = plat[:-1] if plat.endswith("X") and len(plat) > 3 else None
     for comp in components:
         value = str(comp.get("value") or "").upper().replace("-", "").replace("_", "").replace(" ", "")
-        if value and plat in value:
+        if value and (plat in value or (prefix and value.startswith(prefix))):
             return comp
     return None
 
@@ -362,9 +381,17 @@ def main(argv: list[str] | None = None) -> int:
     for note in config_notes:
         _log(note)
 
+    # ---- 1b. 合并配置契约校验（根目录 schemas/config.schema.json，全流水线统一拦截）----
+    cfg_errors = _validate(config, ROOT_DIR / "schemas" / "config.schema.json", "config")
+    if cfg_errors:
+        _log("配置契约校验失败: " + "; ".join(cfg_errors))
+        return EXIT_CONFIG_ERROR
+
     workspace = Path(args.workspace or ".").expanduser()
     if not workspace.is_absolute():
         workspace = (config_path.parent / workspace).resolve()
+    # 目标工程根（App/BootLoader 双工程）：state/outputs 归目标工程（project.build_target，缺省 App）
+    workspace = workspace / ((config.get("project") or {}).get("build_target") or "App")
 
     platform = (config.get("platform") or "").strip()
     scope = (args.scope or config.get("verify_scope") or "all").strip().lower()
