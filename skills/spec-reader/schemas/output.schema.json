@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.s2.output.v1",
+  "title": "S2 spec-reader 输出契约（state.json 的 spec 字段）",
+  "type": "object",
+  "required": ["status", "error", "updated_at"],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["running", "success", "partial", "failed"],
+      "description": "running=prepare 已出任务书待 Agent 提取；success=校验通过且无未定项；partial=spec 完整但存在未定项（uncovered 非空，需用户确认）；failed=提取失败或校验失败（spec_path 置 null，不留半成品指针）"
+    },
+    "spec_path": {
+      "type": ["string", "null"],
+      "description": "outputs/s2/spec.json 相对路径；success/partial 时必填，running/failed 时为 null"
+    },
+    "software_spec_path": {
+      "type": ["string", "null"],
+      "description": "软件规格书路径指针（config 的 project.inputs.software_spec 指定时登记；仅登记不解析，S5b 实际以 config 为准）"
+    },
+    "spec_summary": {
+      "type": ["object", "null"],
+      "description": "统计信息（validate 收口时写入；running/failed 时为 null）",
+      "properties": {
+        "total_requirements": {"type": "integer", "minimum": 0, "description": "requirements[] 条数"},
+        "feature_count": {"type": "integer", "minimum": 0, "description": "features[] 条数"},
+        "uncovered_count": {"type": "integer", "minimum": 0, "description": "uncovered.json 未定项条数"}
+      },
+      "required": ["total_requirements", "feature_count", "uncovered_count"],
+      "additionalProperties": false
+    },
+    "source_file": {
+      "type": ["string", "null"],
+      "description": "原始功能规格书路径（相对项目根，config 的 project.inputs.functional_spec）"
+    },
+    "error": {
+      "type": ["string", "null"],
+      "description": "failed 时的错误信息（校验失败时含全部问题清单）；成功时为 null"
+    },
+    "updated_at": {"type": "string", "description": "ISO 时间戳"}
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"enum": ["success", "partial"]}}},
+      "then": {
+        "required": ["spec_path", "software_spec_path", "spec_summary", "source_file"],
+        "properties": {
+          "spec_path": {"type": "string", "minLength": 1},
+          "spec_summary": {"type": "object"},
+          "error": {"type": "null"}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"status": {"const": "failed"}}},
+      "then": {
+        "properties": {
+          "spec_path": {"type": "null"},
+          "error": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  ]
+}

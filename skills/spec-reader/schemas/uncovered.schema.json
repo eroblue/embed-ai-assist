@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.s2.uncovered.v1",
+  "title": "S2 uncovered.json 结构契约（未定项清单）",
+  "type": "object",
+  "description": "规格书中模糊描述、缺失项的清单，供用户确认。uncovered_count > 0 时 state.spec.status = partial。文件必须存在（无未定项时 items 为空数组）。",
+  "required": ["meta", "items"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["source_file", "generated_at", "strict_mode"],
+      "properties": {
+        "source_file": {"type": "string", "minLength": 1, "description": "原始规格书路径（与 spec.json 的 meta.source_file 一致）"},
+        "generated_at": {"type": "string", "description": "生成时间（ISO 格式）"},
+        "strict_mode": {"type": "boolean", "description": "本次提取是否启用严格模式"}
+      },
+      "additionalProperties": false
+    },
+    "items": {
+      "type": "array",
+      "description": "未定项列表（无则为空数组）",
+      "items": {
+        "type": "object",
+        "required": ["id", "topic", "description"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^UNC-\\d{3}$", "description": "未定项编号（从 UNC-001 起）"},
+          "topic": {"type": "string", "minLength": 1, "description": "主题（如'采集周期'、'告警阈值'）"},
+          "description": {"type": "string", "minLength": 1, "description": "模糊/缺失点的描述（原文怎么写的、缺什么）"},
+          "question": {"type": ["string", "null"], "description": "需要用户确认的具体问题"},
+          "assumption": {"type": ["string", "null"], "description": "非严格模式下 Agent 采取的默认假设（严格模式恒为 null）"},
+          "source": {
+            "type": "object",
+            "properties": {
+              "section": {"type": ["string", "null"], "description": "来源章节（全文性缺失为 null）"},
+              "page": {"type": ["integer", "null"], "minimum": 1, "description": "来源页码（PDF 场景）"}
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

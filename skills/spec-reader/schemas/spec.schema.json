@@ -1,0 +1,160 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.s2.spec.v1",
+  "title": "S2 spec.json 结构契约（核心产物：结构化需求）",
+  "type": "object",
+  "description": "S2 只管'产品要什么'（需求侧）：需求条目 + 业务域标签 + 业务级状态机/时序/错误处理/阈值。技术实现细节（帧格式/引脚映射/波特率等）归 S5b 设计输入，禁止写入本文件。",
+  "required": ["meta", "title", "summary", "requirements", "features"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["source_file", "source_type", "extracted_at", "spec_version"],
+      "properties": {
+        "source_file": {"type": "string", "minLength": 1, "description": "原始规格书路径（相对项目根，与 config 的 project.inputs.functional_spec 一致）"},
+        "source_type": {"type": "string", "enum": ["markdown", "docx", "pdf"], "description": "源文件格式"},
+        "extracted_at": {"type": "string", "description": "提取时间（ISO 格式）"},
+        "spec_version": {"type": "string", "pattern": "^\\d+\\.\\d+$", "description": "spec.json 结构版本（如 1.0）"}
+      },
+      "additionalProperties": false
+    },
+    "title": {"type": "string", "minLength": 1, "description": "产品名称（从规格书标题提取）"},
+    "summary": {"type": "string", "minLength": 1, "description": "产品一句话概述（做什么、给谁用、核心能力）"},
+    "requirements": {
+      "type": "array",
+      "minItems": 1,
+      "description": "需求条目：功能点级（可独立验收的功能点），不是规格书每句话一条",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "description", "priority", "category", "source"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^REQ-\\d{3}$", "description": "需求编号（顺序编号不跳号，从 REQ-001 起）"},
+          "title": {"type": "string", "minLength": 1, "description": "需求标题（短语，如'环境数据周期采集与保存'）"},
+          "description": {"type": "string", "minLength": 1, "description": "需求描述：只写'要什么'，不写'怎么实现'"},
+          "priority": {"type": "string", "enum": ["must", "should", "could"], "description": "must=必须实现；should=应当实现（可协商）；could=可选增强"},
+          "category": {
+            "type": "string",
+            "enum": ["functional", "interface", "performance", "constraint"],
+            "description": "functional=功能行为（默认）；interface=功能级接口/外设需求（需要什么通信能力，非引脚/波特率等技术细节）；performance=性能指标（响应时间/精度/吞吐量）；constraint=系统级约束（无动态内存/24h 连续可用）"
+          },
+          "source": {
+            "type": "object",
+            "required": ["section"],
+            "properties": {
+              "section": {"type": "string", "minLength": 1, "description": "来源章节（可定位到原文，如'2.1 环境采集'）"},
+              "page": {"type": ["integer", "null"], "minimum": 1, "description": "来源页码（PDF 场景；markdown/docx 为 null 或缺省）"}
+            },
+            "additionalProperties": false
+          },
+          "acceptance": {"type": ["string", "null"], "description": "验收标准（原文有则填，无则根据描述总结；纯约束类可留 null）"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "features": {
+      "type": "array",
+      "minItems": 1,
+      "description": "业务域分组：明显特征清楚即可，不追求完美划分；一条 REQ 至少归属一个 feature",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "description", "requirements"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^F-\\d{3}$", "description": "功能域编号（从 F-001 起）"},
+          "name": {"type": "string", "minLength": 1, "description": "业务域名（如'环境采集'）"},
+          "description": {"type": "string", "minLength": 1, "description": "一句话职责说明"},
+          "requirements": {
+            "type": "array",
+            "minItems": 1,
+            "items": {"type": "string", "pattern": "^REQ-\\d{3}$"},
+            "description": "归属本功能域的 REQ-ID 列表（validate 校验必须存在于 requirements[]）"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "business_states": {
+      "type": "array",
+      "description": "业务级状态机（业务语义状态如'自动/手动'，不是技术状态机）；无则空数组",
+      "items": {
+        "type": "object",
+        "required": ["module_hint", "states", "transitions"],
+        "properties": {
+          "module_hint": {"type": "string", "minLength": 1, "description": "状态机归属的功能域名（features[].name 一致，供 S5b 定位）"},
+          "states": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["name", "description"],
+              "properties": {
+                "name": {"type": "string", "minLength": 1, "description": "状态名（业务语义，如 AUTO/MANUAL）"},
+                "description": {"type": "string", "minLength": 1, "description": "状态含义"}
+              },
+              "additionalProperties": false
+            }
+          },
+          "transitions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["from", "to", "event"],
+              "properties": {
+                "from": {"type": "string", "minLength": 1, "description": "起始状态（须为 states[].name）"},
+                "to": {"type": "string", "minLength": 1, "description": "目标状态（须为 states[].name）"},
+                "event": {"type": "string", "minLength": 1, "description": "触发事件（业务语义，如 key1_press）"}
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "business_timing": {
+      "type": "array",
+      "description": "业务级时序（'每 2 秒采集'、'蜂鸣 1s 响 1s 停'，不是主循环周期）；无则空数组",
+      "items": {
+        "type": "object",
+        "required": ["name", "description", "requirement"],
+        "properties": {
+          "name": {"type": "string", "minLength": 1, "description": "时序名称（如'环境采集'）"},
+          "period_ms": {"type": ["integer", "null"], "exclusiveMinimum": 0, "description": "周期毫秒数（周期型时序填；非周期型如'1s 响 1s 停'为 null，pattern 描述）"},
+          "pattern": {"type": ["string", "null"], "description": "非周期时序的文字模式描述（如'1s 响 1s 停'）；周期型可留 null"},
+          "description": {"type": "string", "minLength": 1, "description": "时序说明"},
+          "requirement": {"type": "string", "pattern": "^REQ-\\d{3}$", "description": "关联的 REQ-ID"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "error_handling": {
+      "type": "array",
+      "description": "业务级错误处理策略（'重试 3 次'、'降级'，不是技术细节）；无则空数组",
+      "items": {
+        "type": "object",
+        "required": ["scenario", "strategy", "requirement"],
+        "properties": {
+          "scenario": {"type": "string", "minLength": 1, "description": "错误场景（如'采集失败'）"},
+          "strategy": {"type": "string", "minLength": 1, "description": "处理策略（业务语义，如'跳过本次，保留上次有效值'）"},
+          "requirement": {"type": "string", "pattern": "^REQ-\\d{3}$", "description": "关联的 REQ-ID"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "thresholds": {
+      "type": "array",
+      "description": "业务阈值（'温度 > 30℃ 报警'，不是 ADC 采样值）；无则空数组",
+      "items": {
+        "type": "object",
+        "required": ["name", "value", "condition", "requirement"],
+        "properties": {
+          "name": {"type": "string", "minLength": 1, "description": "阈值名称（如'高温告警阈值'）"},
+          "value": {"type": ["number", "string"], "description": "阈值数值（数值型填 number，枚举型/范围型填字符串，如 30 或 '18~28'）"},
+          "unit": {"type": ["string", "null"], "description": "单位（如 '°C'/'%RH'；无量纲为 null）"},
+          "condition": {"type": "string", "minLength": 1, "description": "触发条件（如 '>'、'<'、'范围内'）"},
+          "requirement": {"type": "string", "pattern": "^REQ-\\d{3}$", "description": "关联的 REQ-ID"}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

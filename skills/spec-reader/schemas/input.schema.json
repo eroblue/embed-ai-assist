@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.s2.input.v1",
+  "title": "S2 spec-reader 输入契约（state.json 就绪性检查）",
+  "type": "object",
+  "description": "S2 是流水线早期 Skill，只依赖 S1 建立的工作区（state.json 存在即可），不读其他 Skill 字段。已有字段（circuit/chip/s5a/s5b）均为并行 Skill 写入，S2 不消费、不校验其内容。",
+  "properties": {
+    "circuit": {
+      "type": "object",
+      "description": "S1 schematic-reader 写入（可选；S2 不消费）"
+    },
+    "chip": {
+      "type": "object",
+      "description": "S3 datasheet-extractor 写入（可选；S2 不消费）"
+    },
+    "s5a": {
+      "type": "object",
+      "description": "S5a hardware-initializer 写入（可选；S2 不消费）"
+    },
+    "s5b": {
+      "type": "object",
+      "description": "S5b port-contract-and-app 写入（可选；S2 不消费）"
+    }
+  }
+}

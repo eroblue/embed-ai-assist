@@ -69,6 +69,41 @@
             }
           },
           "additionalProperties": false
+        },
+        "inputs": {
+          "type": "object",
+          "description": "项目输入材料路径（项目层，相对项目根；S2/S5b 消费。docs/schematic/references 为项目根共享）",
+          "properties": {
+            "functional_spec": {
+              "type": "string",
+              "description": "功能规格书路径（S2 spec-reader 必选输入；支持 .md/.txt/.docx/.pdf）"
+            },
+            "software_spec": {
+              "type": "string",
+              "description": "软件规格书路径（可选；S2 仅登记指针不解析内容，S5b 优先级最高的设计输入）"
+            },
+            "s5b_design_input": {
+              "type": "string",
+              "description": "S5b 用户设计输入路径（可选，缺省 docs/s5b_design_input.md）"
+            },
+            "demos": {
+              "type": ["string", "array"],
+              "description": "demo 程序路径或列表（S5b 代码风格学习材料）"
+            },
+            "sdk": {
+              "type": "string",
+              "description": "SDK 目录路径（S5b 参考材料）"
+            },
+            "existing_project": {
+              "type": "string",
+              "description": "已有项目路径（S5b 代码风格学习材料）"
+            },
+            "ide_project": {
+              "type": "string",
+              "description": "IDE 项目文件路径（S5b 参考）"
+            }
+          },
+          "additionalProperties": false
         }
       },
       "additionalProperties": false
@@ -87,6 +122,11 @@
     "schematic_path": {
       "type": "string",
       "description": "原理图文件路径（项目层，相对项目目录）"
+    },
+    "schematic_format": {
+      "type": "string",
+      "enum": ["schdoc", "prjpcb", "kicad_sch", "pdf"],
+      "description": "原理图输入格式（项目层，可选）：显式指定 schdoc/prjpcb/kicad_sch/pdf；未指定时 S1 按文件扩展名自动识别。与 eda_tool 同时配置时以本字段为准"
     },
     "datasheet_path": {
       "type": "string",
@@ -114,8 +154,8 @@
     },
     "eda_tool": {
       "type": "string",
-      "enum": ["altium", "kicad"],
-      "description": "EDA 工具类型（项目层，可选；缺省时按原理图扩展名自动判断）"
+      "enum": ["altium", "kicad", "pdf"],
+      "description": "EDA 工具/解析器类型（项目层，可选；缺省时按原理图扩展名自动判断，pdf 对应 PDF 原理图输入）"
     }
   },
   "additionalProperties": true

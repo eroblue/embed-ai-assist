@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.s2.spec_trace.v1",
+  "title": "S2 spec_trace.json 结构契约（需求追溯矩阵）",
+  "type": "object",
+  "description": "REQ-ID → 原文定位（章节/页码/原文段落）。validate 校验须覆盖 spec.json 全部 REQ-ID，不多不少。",
+  "required": ["meta", "traces"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["source_file", "generated_at"],
+      "properties": {
+        "source_file": {"type": "string", "minLength": 1, "description": "原始规格书路径（与 spec.json 的 meta.source_file 一致）"},
+        "generated_at": {"type": "string", "description": "生成时间（ISO 格式）"}
+      },
+      "additionalProperties": false
+    },
+    "traces": {
+      "type": "array",
+      "description": "每条需求一条追溯记录",
+      "items": {
+        "type": "object",
+        "required": ["requirement", "section", "quote"],
+        "properties": {
+          "requirement": {"type": "string", "pattern": "^REQ-\\d{3}$", "description": "REQ-ID（与 spec.json 的 requirements[].id 对应）"},
+          "section": {"type": "string", "minLength": 1, "description": "来源章节（可定位到原文，与对应 REQ 的 source.section 对应）"},
+          "page": {"type": ["integer", "null"], "minimum": 1, "description": "来源页码（PDF 场景；其他为 null）"},
+          "quote": {"type": "string", "minLength": 1, "description": "原文段落引用（逐字摘录或轻度压缩，可定位核对）"}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
