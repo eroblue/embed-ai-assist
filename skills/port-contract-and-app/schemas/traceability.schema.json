@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.s5b.traceability.v1",
+  "title": "追踪矩阵（需求 → 流程图 → 文件 → 函数）",
+  "type": "object",
+  "required": ["items", "summary", "generated_at"],
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["requirement", "source", "status"],
+        "properties": {
+          "requirement": {"type": "string", "description": "需求描述（一句话）"},
+          "source": {"type": "string", "enum": ["spec", "software_spec", "design_input", "inferred"], "description": "需求来源：S2 功能规格书/软件规格书/设计输入/Agent 推断"},
+          "source_ref": {"type": ["string", "null"], "description": "来源定位（如 design_input#硬件使用、spec#3.2）"},
+          "flow": {"type": ["string", "null"], "description": "对应流程图文件相对路径，无流程图为 null"},
+          "files": {"type": "array", "items": {"type": "string"}, "description": "实现文件相对路径列表"},
+          "functions": {"type": "array", "items": {"type": "string"}, "description": "实现函数名列表"},
+          "status": {"type": "string", "enum": ["covered", "partial", "uncovered"], "description": "covered=有流程图+有代码；partial=有代码无流程图或反之；uncovered=均无（应出现在 capability_gap 或待办说明中）"}
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "required": ["total", "covered", "partial", "uncovered"],
+      "properties": {
+        "total": {"type": "integer", "minimum": 0},
+        "covered": {"type": "integer", "minimum": 0},
+        "partial": {"type": "integer", "minimum": 0},
+        "uncovered": {"type": "integer", "minimum": 0}
+      }
+    },
+    "generated_at": {"type": "string"}
+  }
+}

@@ -22,10 +22,11 @@
 embed-ai-assist/
 ├── skills/                              # 所有 Skill
 │   ├── schematic-reader/                # S1 原理图解析（参考实现）
+│   ├── spec-reader/                     # S2 规格书阅读器（md/docx/pdf → spec.json 结构化需求）
 │   ├── datasheet-extractor/             # S3 芯片手册提取（SVD > SDK 头文件 > PDF；8 位平台走单手册 PDF 适配器）
 │   ├── circuit-investigator/            # S4 电路侦查（S1×S3 交叉验证 → 硬件事实）
 │   ├── hardware-initializer/            # S5a 硬件初始化（时钟/GPIO/NVIC/外设 → Drivers/BSP/）
-│   ├── port-contract-and-app/           # S5b Port 契约 + APP（规划中，SKILL.md 为实现规格）
+│   ├── port-contract-and-app/           # S5b Port 契约 + APP（已实现，rule/Agent 三段式 + 流程图驱动增量）
 │   └── port-implementer/                # S5c Port 实现（规划中，SKILL.md 为实现规格）
 ├── platforms/                           # 共享的芯片资料库（只读）
 │   ├── stm32f103zet6/
@@ -65,7 +66,7 @@ embed-ai-assist/
 │   │   │   ├── Core/                    # 内核相关（main.c 等，用户/CubeMX）
 │   │   │   ├── Drivers/                 # BSP（S5a+S5b）/ Port（S5b 接口+S5c 实现）/ CMSIS / HAL
 │   │   │   ├── App/                     # 应用逻辑（S5b 输出）
-│   │   │   └── outputs/                 # 本目标输出（网表/Excel/硬件事实/s5a/ 等）
+│   │   │   └── outputs/                 # 本目标输出（网表/Excel/硬件事实/s5a/s5b 等）
 │   │   └── BootLoader/                  # 目标工程（结构同 App）
 │   ├── gd32f205vet6/                    # 结构同上（App + BootLoader 双工程）
 │   └── ft61f14x/                        # 8 位 MCU 示例（arch_family=mcu8 / flat：无 Core/CMSIS/HAL_Driver，
@@ -163,11 +164,11 @@ embed-ai-assist/
 | 编号 | Skill | 层 | 职责 | 状态 |
 | :--- | :--- | :--- | :--- | :--- |
 | S1 | schematic-reader | 数据输入 | 解析原理图，输出通用网表 | 已实现 |
-| S2 | spec-reader | 数据输入 | 解析功能规格书，输出需求摘要 | 规划中 |
+| S2 | spec-reader | 数据输入 | 功能规格书（md/docx/pdf）→ 结构化需求 spec.json（三段式，S5b 消费） | 已实现 |
 | S3 | datasheet-extractor | 数据输入 | 提取 MCU 手册引脚/寄存器/时钟信息 | 已实现 |
 | S4 | circuit-investigator | 验证 | 电路覆盖门禁，输出硬件事实 | 已实现 |
 | S5a | hardware-initializer | 核心处理 | 平台相关硬件初始化 + 硬件能力清单 | 已实现 |
-| S5b | port-contract-and-app | 核心处理 | Port 契约 + APP/协议/驱动（平台无关） | 规划中 |
+| S5b | port-contract-and-app | 核心处理 | Port 契约 + APP/协议/驱动（平台无关；S2/S4 均可选降级） | 已实现 |
 | S5c | port-implementer | 核心处理 | Port 实现（依赖 S5a 能力清单 + S5b 契约） | 规划中 |
 | S6 | firmware-merger | 编译构建 | 固件合并（Boot + App、多核、OTA 包等） | 规划中 |
 | S7 | build | 编译构建 | 调用工具链编译工程 | 规划中 |
@@ -186,7 +187,7 @@ S5 拆分为三个 Skill，将平台无关的应用逻辑与平台相关的硬�
 | Skill | 名称 | 平台相关性 | 依赖 |
 | :--- | :--- | :--- | :--- |
 | S5a | hardware-initializer | 平台相关 | S3 + S4（不依赖 S5b，可并行） |
-| S5b | port-contract-and-app | 平台无关 | S2 + S4（不依赖 S5a，可并行） |
+| S5b | port-contract-and-app | 平台无关 | S2 / S4（均可选降级；不依赖 S5a，可并行） |
 | S5c | port-implementer | 平台相关 | S5a + S5b（需两者都完成） |
 
 - **代码/数据分离**：S5a 生成的初始化代码放 `Drivers/BSP/{Src,Inc}`（布局由
@@ -205,7 +206,7 @@ S5 拆分为三个 Skill，将平台无关的应用逻辑与平台相关的硬�
 ## 环境要求
 
 - Python 3.10+（本机 `C:/Python314/python.exe`，路径配置在根 config.json 的 `tool_paths.python`）
-- 依赖：`pip install altium-monkey jsonschema openpyxl pdfplumber pypdf`
+- 依赖：`pip install altium-monkey jsonschema openpyxl pdfplumber pypdf`（.docx 规格书另需 `python-docx`）
 
 ## 芯片资料获取（PDF 不入库）
 
@@ -231,23 +232,44 @@ python skills/datasheet-extractor/scripts/extract.py --config examples/stm32f103
 # 3. 运行 circuit-investigator 交叉验证（S1 网表 × S3 芯片规格 → 硬件事实报告）
 python skills/circuit-investigator/scripts/investigate.py --config examples/stm32f103zet6/config.json
 
+# 3b. 运行 S2 规格书阅读器（可选，与 S3/S4/S5a 可并行；为 S5b 提供 spec 驱动数据。
+#     需在项目 config 配置 project.inputs.functional_spec，已配置示例见 gd32f205vet6）
+python skills/spec-reader/scripts/prepare.py --config examples/gd32f205vet6/config.json
+#    → Agent 按 outputs/s2/generation_brief.md 生成 spec.json + spec_trace.json + uncovered.json
+python skills/spec-reader/scripts/validate.py --config examples/gd32f205vet6/config.json
+#    （产物：App/state.json 的 spec 字段 + App/outputs/s2/；S5b 消费须后于 S2 收口）
+
 # 4. 运行 S5a prepare（S4 硬件事实 + S3 芯片数据 → Agent 任务书）
 python skills/hardware-initializer/scripts/prepare.py --config examples/stm32f103zet6/config.json
 #    → Agent 按 outputs/s5a/generation_brief.md 编写 Drivers/BSP/{Src,Inc} 代码（见 S5a SKILL.md）
 # 5. 运行 S5a validate（校验 Agent 产物 + 能力清单 + IDE 清单）
 python skills/hardware-initializer/scripts/validate.py --config examples/stm32f103zet6/config.json
 
-# 6. 查看结果
-#    examples/stm32f103zet6/App/state.json   -> circuit 字段（S1/S4）/ chip 字段（S3）/ s5a 字段（S5a）
+# 6. 运行 S5b prepare（S2/S4 均可选；输出 Agent 任务书）
+python skills/port-contract-and-app/scripts/prepare.py --config examples/stm32f103zet6/config.json
+#    → Agent 按 outputs/s5b/generation_brief.md：模块清单确认 → docs/flow/ 流程图
+#      → 用户审核 approved → flow_differ 判定 full/incremental/skip → 生成代码
+#    （中间校验 flow_validator / flow_differ / diff_range_checker，见 S5b SKILL.md）
+
+# 7. 运行 S5b 终验（产物校验 + state 收口 + IDE 待添加清单，随后 Agent 修复重跑）
+python skills/port-contract-and-app/scripts/validate.py --config examples/stm32f103zet6/config.json
+
+# 8. 查看结果
+#    examples/stm32f103zet6/App/state.json   -> circuit 字段（S1/S4）/ chip 字段（S3）/ s5a 字段（S5a）/ s5b 字段（S5b）
 #    examples/stm32f103zet6/App/outputs/      -> circuit_netlist.json + pin_table.xlsx
 #                                                + circuit_facts.json + circuit_facts.xlsx
 #    examples/stm32f103zet6/App/outputs/chip_info/ -> pins/registers/clock_tree/peripherals
 #                                                 .json + pin_table/register_map.xlsx
 #    examples/stm32f103zet6/App/Drivers/BSP/{Src,Inc}/ -> clock/gpio/nvic/uart/... _init.c/h + hal_init.c/h
 #    examples/stm32f103zet6/App/outputs/s5a/  -> hardware_capabilities.json（S5c 的唯一硬件依据）
+#    examples/stm32f103zet6/App/outputs/s5b/  -> generation_brief.md + port_interface_manifest.json
+#                                                + traceability.json + flow_index.json
+#    examples/stm32f103zet6/App/docs/flow/    -> Mermaid 流程图（含 .history/ 版本基线）
+#    examples/stm32f103zet6/App/App/Src/      -> app_*.c/h + protocol_*.c/h + main.c（S5b 应用层）
 ```
 
-> 克隆后 `outputs/` 为空（被 `.gitignore` 忽略），上述结果文件需按步骤 1–5 执行后生成。
+> 按步骤 1–7 顺序执行即可生成上述结果文件（`examples/` 的产物按 `.gitignore`
+> 现行策略随仓库提供，可对照参考；S5b 步骤 6 需 Agent 参与流程图审核，见 S5b SKILL.md）。
 
 ## 工作流（workflows/）
 

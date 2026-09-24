@@ -48,6 +48,7 @@ sys.path.insert(0, str(SKILL_DIR.parent / "_shared" / "scripts"))
 import analysis  # noqa: E402
 import ensure_layout as ensure_layout_mod  # noqa: E402
 import layout_resolver  # noqa: E402
+import state_store  # noqa: E402
 
 EXIT_OK = 0
 EXIT_FAILED = 1
@@ -338,10 +339,8 @@ def _write_error_state(config_path: Path, workspace: Path, error: str) -> dict:
         cfg = None
     state_path = analysis.resolve_target(cfg, workspace) / "state.json"
     try:
-        state = analysis.load_json(state_path) if state_path.exists() else {}
-        state["s5a"] = payload
-        analysis.save_json(state_path, state)
-    except OSError:
+        state_store.update_state(state_path, {"s5a": payload})
+    except (OSError, state_store.StateLockTimeout):
         pass
     return payload
 
@@ -430,8 +429,7 @@ def main(argv: list[str] | None = None) -> int:
         _write_error_state(config_path, workspace, "; ".join(schema_errors))
         _log("s5a 状态契约校验失败: " + "; ".join(schema_errors))
         return EXIT_FAILED
-    ctx["state"]["s5a"] = payload
-    analysis.save_json(ctx["state_path"], ctx["state"])
+    state_store.update_state(ctx["state_path"], {"s5a": payload})
 
     _log(f"任务书已生成: {brief_path}")
     _log(f"下一步：Agent 按 SKILL.md 指引 + 任务书 + references/init_code_templates.md "

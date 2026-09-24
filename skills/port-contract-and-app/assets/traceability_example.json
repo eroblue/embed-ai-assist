@@ -1,0 +1,42 @@
+{
+  "items": [
+    {
+      "requirement": "设备上电后通过 WiFi 模组接入服务器，断线自动重连",
+      "source": "design_input",
+      "source_ref": "design_input#功能规格",
+      "flow": "docs/flow/app_wifi_state.md",
+      "files": ["App/Src/app_wifi.c", "App/Inc/app_wifi.h"],
+      "functions": ["app_wifi_init", "app_wifi_on_event", "app_wifi_inc_retry_counter"],
+      "status": "covered"
+    },
+    {
+      "requirement": "周期采集板载温度（NTC，1s 间隔）并缓存最近 10 次",
+      "source": "spec",
+      "source_ref": "spec#3.2 温度采集",
+      "flow": "docs/flow/app_temp_flow.md",
+      "files": ["App/Src/app_temp.c"],
+      "functions": ["app_temp_sample_once", "app_temp_get_avg_x10"],
+      "status": "covered"
+    },
+    {
+      "requirement": "按键长按 3s 恢复出厂设置",
+      "source": "design_input",
+      "source_ref": "design_input#功能规格",
+      "flow": null,
+      "files": ["App/Src/app_key.c"],
+      "functions": ["app_key_scan", "app_key_long_press_handler"],
+      "status": "partial"
+    },
+    {
+      "requirement": "通过调试串口输出运行日志（等级可配）",
+      "source": "inferred",
+      "source_ref": null,
+      "flow": null,
+      "files": [],
+      "functions": [],
+      "status": "uncovered"
+    }
+  ],
+  "summary": {"total": 4, "covered": 2, "partial": 1, "uncovered": 1},
+  "generated_at": "2026-09-22T10:00:00"
+}

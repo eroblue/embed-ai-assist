@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.s5b.capability_gap.v1",
+  "title": "能力缺口报告（需求外设 vs 硬件支持）",
+  "type": "object",
+  "required": ["checked", "checked_against", "gaps", "generated_at"],
+  "properties": {
+    "checked": {"type": "boolean", "description": "false=S4 硬件事实缺失，未做机械比对（由 Agent 按经验评估）"},
+    "checked_against": {"type": ["string", "null"], "description": "比对依据（S4 circuit_facts.json 路径）；checked=false 为 null"},
+    "gaps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["requirement", "peripheral", "available", "detail", "severity"],
+        "properties": {
+          "requirement": {"type": "string", "description": "引发缺口的需求描述"},
+          "peripheral": {"type": "string", "description": "涉及外设（uart/i2c/spi/gpio/adc/timer/pin）"},
+          "needed": {"type": ["string", "null"], "description": "需要的资源（如 PA13 / UART3 / 400kHz）"},
+          "available": {"type": "boolean", "description": "硬件是否支持"},
+          "detail": {"type": "string", "description": "缺口详情（引脚冲突/实例不存在/资源不足）"},
+          "severity": {"type": "string", "enum": ["error", "warning"], "description": "error=需求无法满足；warning=可降级实现"},
+          "source": {"type": "string", "enum": ["rule", "agent"], "description": "rule=prepare 机械比对发现；agent=Agent 拆分功能时发现"}
+        }
+      }
+    },
+    "generated_at": {"type": "string"}
+  }
+}

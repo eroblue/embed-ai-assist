@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "embedaiassist.netlist.v1",
   "title": "schematic-reader netlist",
-  "description": "通用电路网表契约：outputs/circuit_netlist.json 的完整结构（EDA 无关）。数据量大，真实数据存放于 outputs/，state.json 的 circuit 字段仅存指针与统计。",
+  "description": "通用电路网表契约（v1.1，向后兼容）：outputs/circuit_netlist.json 的完整结构（EDA 无关）。数据量大，真实数据存放于 outputs/，state.json 的 circuit 字段仅存指针与统计。v1.1 新增：连接级可选字段 confidence / method / note（引脚与端点两处均可携带），仅 PDF 输入时出现；源文件输入时网表结构与 v1.0 完全一致。",
   "type": "object",
   "properties": {
     "schema": {
@@ -16,8 +16,8 @@
     },
     "eda_tool": {
       "type": "string",
-      "enum": ["altium", "kicad"],
-      "description": "实际使用的 EDA 适配器"
+      "enum": ["altium", "kicad", "pdf"],
+      "description": "实际使用的 EDA 适配器（pdf 为 v1.1 新增）"
     },
     "source_file": {
       "type": "string",
@@ -100,6 +100,21 @@
                 "net": {
                   "type": ["string", "null"],
                   "description": "所属网络名，悬空引脚为 null"
+                },
+                "confidence": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1,
+                  "description": "该连接的置信度（可选，v1.1 新增）：仅 PDF 输入时出现，源文件输入不携带（视为 1.0）"
+                },
+                "method": {
+                  "type": "string",
+                  "enum": ["line_intersection", "net_label", "pin_name_match", "llm_assisted"],
+                  "description": "连接判定依据（可选，v1.1 新增）：line_intersection=线条与引脚交点；net_label=网络标号关联；pin_name_match=引脚名匹配；llm_assisted=LLM 辅助校验"
+                },
+                "note": {
+                  "type": "string",
+                  "description": "连接判定说明（可选，v1.1 新增）：中文说明判定依据，供人工核对参考"
                 }
               },
               "required": ["pin", "pin_name", "pin_type", "net"],
@@ -139,7 +154,22 @@
                 "designator": { "type": "string", "description": "元件位号" },
                 "pin": { "type": "string", "description": "引脚编号" },
                 "pin_name": { "type": "string", "description": "引脚名称" },
-                "pin_type": { "type": "string", "description": "引脚电气类型" }
+                "pin_type": { "type": "string", "description": "引脚电气类型" },
+                "confidence": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1,
+                  "description": "该连接的置信度（可选，v1.1 新增）：与 components[].pins[] 中同连接的字段一致"
+                },
+                "method": {
+                  "type": "string",
+                  "enum": ["line_intersection", "net_label", "pin_name_match", "llm_assisted"],
+                  "description": "连接判定依据（可选，v1.1 新增）"
+                },
+                "note": {
+                  "type": "string",
+                  "description": "连接判定说明（可选，v1.1 新增）"
+                }
               },
               "required": ["designator", "pin", "pin_name", "pin_type"],
               "additionalProperties": false

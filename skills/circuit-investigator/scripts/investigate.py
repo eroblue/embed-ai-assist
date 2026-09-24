@@ -129,17 +129,24 @@ def _update_state_facts(state_path: Path, facts: dict) -> None:
     _save_json(state_path, state)
 
 
-def _find_mcu_component(components: list[dict], platform: str) -> dict | None:
+def _find_mcu_component(components: list[dict], platform: str) -> tuple[dict, str] | None:
     """主控元件识别：designator U* 且 value 含平台名（如 STM32F103ZET6）。
 
     系列名通配：platform 尾部 X 为通配（FT61F14X 匹配 FT61F143A-RB 等具体型号）。
+    value 匹配失败时回退启发式：引脚数最多的 U* 元件（PDF 提取网表 value 常为空，
+    型号文字未关联进 value 字段）。返回 (元件, 匹配方式)，未命中返回 None。
     """
     plat = platform.upper().replace("-", "").replace("_", "")
     prefix = plat[:-1] if plat.endswith("X") and len(plat) > 3 else None
     for comp in components:
         value = str(comp.get("value") or "").upper().replace("-", "").replace("_", "").replace(" ", "")
         if value and (plat in value or (prefix and value.startswith(prefix))):
-            return comp
+            return comp, "value"
+    # 回退：value 缺失（如 PDF 提取）时取引脚数最多的 U* 元件（主控通常是引脚最多的 U 位号）
+    u_comps = [c for c in components if str(c.get("designator") or "").upper().startswith("U")]
+    best = max(u_comps, key=lambda c: len(c.get("pins") or [])) if u_comps else None
+    if best and best.get("pins"):
+        return best, "pin-count"
     return None
 
 
@@ -180,19 +187,29 @@ def investigate(
     netlist = _load_json(netlist_path)
     chip_pins = _load_json(chip_pins_path)
     components = netlist.get("components") or []
-    mcu = _find_mcu_component(components, platform)
-    if mcu is None:
+    conflicts: list[dict] = []
+    warnings: list[dict] = []
+    mcu_match = _find_mcu_component(components, platform)
+    if mcu_match is None:
         return _failed_payload(
-            workspace, f"网表中未找到主控元件（platform={platform}，按 value 匹配）"
+            workspace, f"网表中未找到主控元件（platform={platform}，value/引脚数启发式均未命中）"
         ), "failed"
+    mcu, mcu_match_mode = mcu_match
+    if mcu_match_mode == "pin-count":
+        warnings.append({
+            "pin": str(mcu.get("designator") or ""),
+            "issue": (
+                f"主控元件 {mcu.get('designator')} 按引脚数启发式识别"
+                f"（网表 value 未含平台名 {platform}，常见于 PDF 提取网表），请人工复核"
+            ),
+            "severity": "warning",
+        })
 
     mcu_pins = [p for p in (mcu.get("pins") or []) if p is not None]
     chip_pin_list = chip_pins.get("pins") or []
     chip_by_no = {str(p.get("pin")): p for p in chip_pin_list}
 
     # ---- 交叉核对 ----
-    conflicts: list[dict] = []
-    warnings: list[dict] = []
     if scope in ("pins", "all"):
         for issue in conflict_checker.check_pins_defined(mcu_pins, chip_pins):
             (conflicts if issue["severity"] == "error" else warnings).append(issue)

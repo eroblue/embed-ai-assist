@@ -1,0 +1,89 @@
+{
+  "flows": [
+    {
+      "module": "app_alarm_control",
+      "file": "docs/flow/app_alarm_control_state.md",
+      "graph_type": "stateDiagram-v2",
+      "version": "1.0",
+      "base_version": null,
+      "status": "approved",
+      "hash": "10395551d0490d82028d82d11c1e23d11a4bfd7f42a61684171adc2c142e51f2",
+      "nodes": 5,
+      "edges": 21,
+      "updated_at": "2026-09-24T14:17:23"
+    },
+    {
+      "module": "app_env_sensor",
+      "file": "docs/flow/app_env_sensor_flow.md",
+      "graph_type": "flowchart",
+      "version": "1.0",
+      "base_version": null,
+      "status": "approved",
+      "hash": "9990421cc04d76459bf53ec9a14894e9238169ff74fd773488a7ae19846fa24f",
+      "nodes": 15,
+      "edges": 18,
+      "updated_at": "2026-09-24T14:17:23"
+    },
+    {
+      "module": "app_key_handler",
+      "file": "docs/flow/app_key_handler_state.md",
+      "graph_type": "stateDiagram-v2",
+      "version": "1.0",
+      "base_version": null,
+      "status": "approved",
+      "hash": "839f36248e9388d44160dc6083bfe4fd767924b9fc41bb7d992297cfe40b11ab",
+      "nodes": 4,
+      "edges": 9,
+      "updated_at": "2026-09-24T14:17:23"
+    },
+    {
+      "module": "app_lcd_display",
+      "file": "docs/flow/app_lcd_display_flow.md",
+      "graph_type": "flowchart",
+      "version": "1.0",
+      "base_version": null,
+      "status": "approved",
+      "hash": "2f99204fe90bc3b04a965b33dc54bbc43bd619a268c275de94831e6254f62233",
+      "nodes": 12,
+      "edges": 13,
+      "updated_at": "2026-09-24T14:17:23"
+    },
+    {
+      "module": "app_mode_control",
+      "file": "docs/flow/app_mode_control_state.md",
+      "graph_type": "stateDiagram-v2",
+      "version": "1.0",
+      "base_version": null,
+      "status": "approved",
+      "hash": "e14f780f638f64c296357ae9b68cd79bafca66a462754d7eddb708f14e41b176",
+      "nodes": 4,
+      "edges": 7,
+      "updated_at": "2026-09-24T14:17:23"
+    },
+    {
+      "module": "app_oled_display",
+      "file": "docs/flow/app_oled_display_flow.md",
+      "graph_type": "flowchart",
+      "version": "1.0",
+      "base_version": null,
+      "status": "deprecated",
+      "hash": "b44fa87ba65e676e73132eec4644cd0698afa490846bbd9e2279fda281c744a1",
+      "nodes": 0,
+      "edges": 0,
+      "updated_at": "2026-09-24T14:17:23"
+    },
+    {
+      "module": "app_uart_report",
+      "file": "docs/flow/app_uart_report_sequence.md",
+      "graph_type": "sequenceDiagram",
+      "version": "1.0",
+      "base_version": null,
+      "status": "approved",
+      "hash": "2f9a4939afdcf09851dcc20de1bdcef44ded39141d54c32c86e38917b7285322",
+      "nodes": 2,
+      "edges": 7,
+      "updated_at": "2026-09-24T14:17:23"
+    }
+  ],
+  "updated_at": "2026-09-24T14:17:23"
+}

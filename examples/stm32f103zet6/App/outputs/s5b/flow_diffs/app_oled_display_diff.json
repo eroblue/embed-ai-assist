@@ -1,0 +1,26 @@
+{
+  "module": "app_oled_display",
+  "file": "docs/flow/app_oled_display_flow.md",
+  "graph_type": "flowchart",
+  "base_version": null,
+  "current_version": "1.0",
+  "status": "deprecated",
+  "nodes": {
+    "total": 0,
+    "added": [],
+    "removed": [],
+    "renamed": []
+  },
+  "edges": {
+    "total": 0,
+    "added": [],
+    "removed": [],
+    "modified": []
+  },
+  "change_count": 0,
+  "change_ratio": 0.0,
+  "generation_mode": "deprecated",
+  "baseline_source": null,
+  "change_summary": "流程图已废弃：对应代码应由 Agent 移除（含 IDE 工程引用）",
+  "updated_at": "2026-09-24T14:17:23"
+}

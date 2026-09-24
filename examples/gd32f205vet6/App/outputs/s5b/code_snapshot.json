@@ -1,0 +1,69 @@
+{
+  "files": {
+    "Drivers/BSP/Src/clock_init.c": {
+      "sha256": "e002e664fbd1da098e6a26f9fea5d46ee473e8e023df8db24da4a5a22d959504",
+      "lines": 23
+    },
+    "Drivers/BSP/Src/fsmc_init.c": {
+      "sha256": "f297e6afe3c004fed22fe2a727e90b58ba5cb13b2d565d014953992b18de4d60",
+      "lines": 28
+    },
+    "Drivers/BSP/Src/gpio_init.c": {
+      "sha256": "448efd8002fbad102b303b41c455f59ea8036f5577e609cef254edec05fdb3bb",
+      "lines": 28
+    },
+    "Drivers/BSP/Src/hal_init.c": {
+      "sha256": "cf660ac256373014a016e9757957eda5fb54042ff31e0337aca851fb5fec9ea9",
+      "lines": 20
+    },
+    "Drivers/BSP/Src/nvic_init.c": {
+      "sha256": "89a2e031591db11b08a46dd31cb28f7950555d41123f49f338a4fa2d57194fb0",
+      "lines": 11
+    },
+    "Drivers/BSP/Src/pwm_init.c": {
+      "sha256": "0aeca78397e8711664a4f7a802b082983715ef47fb47257eb28765ad8315931e",
+      "lines": 33
+    },
+    "Drivers/BSP/Src/spi_init.c": {
+      "sha256": "bf0dce315216a524badab92c695d8aad53a4de87642131096fd9a6c11f037f04",
+      "lines": 29
+    },
+    "Drivers/BSP/Src/uart_init.c": {
+      "sha256": "8f448148da690757cdebd828a757326cf33df21868561d291d6558b57238cadd",
+      "lines": 23
+    },
+    "Drivers/BSP/Inc/clock_init.h": {
+      "sha256": "c3167d1dbaa969c8d08add87c0654442de439f10906fbf277e41ad947975f505",
+      "lines": 7
+    },
+    "Drivers/BSP/Inc/fsmc_init.h": {
+      "sha256": "07c64839fe9aa26bd590997788e9e8960b0babf733121620dc6d8d56e81c8d53",
+      "lines": 7
+    },
+    "Drivers/BSP/Inc/gpio_init.h": {
+      "sha256": "ed5caaeda9068351bc305044346f72fc0f7522869c4824dfb260c936fbcd31b6",
+      "lines": 7
+    },
+    "Drivers/BSP/Inc/hal_init.h": {
+      "sha256": "9e31acd2d19244088186e9ca02c591a5891880a25d4a800d3f368a51ec8bce2b",
+      "lines": 7
+    },
+    "Drivers/BSP/Inc/nvic_init.h": {
+      "sha256": "07421f4fa9a738d699cdb304300359243f5d7e40124eeb19d2ce33b15938eb0e",
+      "lines": 7
+    },
+    "Drivers/BSP/Inc/pwm_init.h": {
+      "sha256": "97a36668a8966ec281278ce276d60f6313c1d851d495d695613e1cdd93373e4e",
+      "lines": 7
+    },
+    "Drivers/BSP/Inc/spi_init.h": {
+      "sha256": "ab9885e43312d927ccb7669994e5d61a1c7178d3975da4e481323ee1b2b1fd72",
+      "lines": 7
+    },
+    "Drivers/BSP/Inc/uart_init.h": {
+      "sha256": "015d01be2cfeecd004d4d2520e484785666b890a06c4a759165bd1a9721f29b3",
+      "lines": 7
+    }
+  },
+  "created_at": "2026-09-23T11:02:08"
+}

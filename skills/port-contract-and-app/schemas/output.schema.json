@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.s5b.output.v1",
+  "title": "S5b port-contract-and-app 输出契约（state.json 的 s5b 字段）",
+  "type": "object",
+  "required": ["status", "error", "updated_at"],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["pending", "running", "done", "error"],
+      "description": "running=prepare 已出任务书待 Agent 生成；done=产物校验通过；error=环境/契约/diff 范围异常"
+    },
+    "rtos": {"type": "string", "enum": ["none", "FreeRTOS", "RT-Thread", "Zephyr"], "description": "本次生成使用的 RTOS 配置"},
+    "architecture": {"type": "string", "enum": ["flat", "layered", "full"], "description": "本次使用的架构"},
+    "power_enabled": {"type": "boolean"},
+    "port_manifest": {"type": "string", "description": "outputs/s5b/port_interface_manifest.json 相对路径（S5c 实现 Port 的唯一依据）"},
+    "port_headers": {"type": "array", "items": {"type": "string"}, "description": "Drivers/Port/Inc/ 下 Port 头文件相对路径列表（flat 架构为空数组）"},
+    "osal_header": {"type": ["string", "null"], "description": "osal.h 相对路径；裸机或 flat 架构为 null"},
+    "power_header": {"type": ["string", "null"], "description": "power_port.h 相对路径；未启用低功耗或 flat 架构为 null"},
+    "app_sources": {"type": "array", "items": {"type": "string"}, "description": "App/Src/ 下 app_*.c 源文件相对路径列表（含 app.c，不含 main.c/protocol_*/任务文件）"},
+    "app_headers": {"type": "array", "items": {"type": "string"}, "description": "App/Inc/ 下头文件相对路径列表"},
+    "app_task_sources": {"type": "array", "items": {"type": "string"}, "description": "任务化 APP 源文件列表（app_*_task.c），裸机为空数组"},
+    "protocol_sources": {"type": "array", "items": {"type": "string"}, "description": "App/Src/ 下协议层源文件相对路径列表"},
+    "driver_sources": {"type": "array", "items": {"type": "string"}, "description": "Drivers/BSP/Src/ 下设备驱动源文件相对路径列表"},
+    "driver_headers": {"type": "array", "items": {"type": "string"}, "description": "Drivers/BSP/Inc/ 下设备驱动头文件相对路径列表"},
+    "main_source": {"type": "string", "description": "App/Src/main.c 相对路径"},
+    "flows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["file", "status"],
+        "properties": {
+          "file": {"type": "string", "description": "docs/flow/<模块>_<类型>.md 相对路径"},
+          "module": {"type": "string"},
+          "version": {"type": ["string", "number"]},
+          "status": {"type": "string", "enum": ["draft", "review", "approved", "dirty", "deprecated"]}
+        }
+      },
+      "description": "docs/flow/ 下流程图清单（含 status 字段）"
+    },
+    "flow_diffs": {
+      "type": "object",
+      "additionalProperties": {"type": "string", "enum": ["full", "incremental", "skip", "blocked", "deprecated"]},
+      "description": "本次执行中每个流程图的 diff 结果摘要 {模块: 生成模式}；详情在 outputs/s5b/flow_diffs/<模块>_diff.json"
+    },
+    "generation_brief": {"type": "string", "description": "outputs/s5b/generation_brief.md 路径（prepare 段写入，Agent 任务书）"},
+    "incremental": {"type": "boolean", "description": "true=存在上轮流程图清单（增量候选）；false=首跑全量"},
+    "traceability": {"type": "string", "description": "outputs/s5b/traceability.json 相对路径"},
+    "capability_gap": {"type": ["string", "null"], "description": "outputs/s5b/capability_gap.json 路径，无缺口时为 null"},
+    "ide_pending_files": {"type": ["string", "null"], "description": "outputs/s5b/ide_pending_files.json 路径（兜底参考；IDE 同步由公共工具 skills/_shared/scripts/ide_sync.py 完成）"},
+    "error": {"type": ["string", "null"]},
+    "updated_at": {"type": "string"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "done"}}},
+      "then": {
+        "required": [
+          "rtos", "architecture", "power_enabled",
+          "port_manifest", "port_headers", "osal_header", "power_header",
+          "app_sources", "app_headers", "app_task_sources", "protocol_sources",
+          "driver_sources", "driver_headers", "main_source",
+          "flows", "flow_diffs", "traceability", "capability_gap", "ide_pending_files"
+        ]
+      }
+    }
+  ]
+}

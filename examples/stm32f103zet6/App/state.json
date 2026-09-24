@@ -1,30 +1,46 @@
 {
   "circuit": {
     "netlist_path": "outputs/circuit_netlist.json",
-    "component_count": 69,
-    "net_count": 134,
-    "pin_count": 324,
-    "parse_status": "success",
-    "eda_tool": "altium",
-    "source_file": "E:\\skills\\EmbedSoftAutomaticProject\\embed-ai-assist\\examples\\stm32f103zet6\\schematic\\STM32F103ZET6_MinSystem\\STM32F103ZET6_MinSystem.SchDoc",
+    "component_count": 233,
+    "net_count": 290,
+    "pin_count": 660,
+    "parse_status": "partial",
+    "eda_tool": "pdf",
+    "source_file": "E:\\skills\\EmbedSoftAutomaticProject\\embed-ai-assist\\examples\\stm32f103zet6\\schematic\\WarShip STM32F1_V3.4_SCH.pdf",
     "excel_path": "outputs/pin_table.xlsx",
-    "error": null,
-    "updated_at": "2026-09-18T15:40:37",
+    "error": "第5页 疑似 BOM/表格页（无元件框），已跳过; 第1页: 元件 R51 未识别到引脚（无框符号可能未标引脚号）; 第1页: 元件 D9 未识别到引脚（无框符号可能未标引脚号）; 第2页: 元件 LED1 未识别到引脚（无框符号可能未标引脚号）; 第2页: 元件 LED0 未识别到引脚（无框符号可能未标引脚号）; 第2页: 元件 D1 未识别到引脚（无框符号可能未标引脚号）; 第3页: 元件 LED0 未识别到引脚（无框符号可能未标引脚号）; 第3页: 元件 D210 未识别到引脚（无框符号可能未标引脚号）; 第3页: 元件 LED1 未识别到引脚（无框符号可能未标引脚号）; 第4页: 元件 C442 未识别到引脚（无框符号可能未标引脚号）; 低置信度连接 155 条（< 0.7），已写入人工核对清单; 410 个引脚未吸附到导线，未生成连接",
+    "updated_at": "2026-09-24T08:11:14",
+    "source_format": "pdf",
+    "confidence": 0.808,
+    "low_confidence_count": 155,
+    "review_path": "outputs/pdf_review.md",
     "facts": {
       "facts_path": "E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/App/outputs/circuit_facts.json",
-      "facts_xlsx_path": null,
-      "verified_pin_count": 143,
-      "conflict_count": 0,
-      "warning_count": 82,
-      "nc_pin_count": 1,
-      "verify_status": "success",
+      "facts_xlsx_path": "E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/App/outputs/circuit_facts.xlsx",
+      "verified_pin_count": 97,
+      "conflict_count": 4,
+      "warning_count": 64,
+      "nc_pin_count": 23,
+      "verify_status": "partial",
       "verify_scope": "all",
       "inference_mode": "rule",
       "error": null,
-      "updated_at": "2026-09-18T15:40:38"
+      "updated_at": "2026-09-24T08:12:40"
     }
   },
-  "spec": null,
+  "spec": {
+    "status": "success",
+    "spec_path": "outputs/s2/spec.json",
+    "software_spec_path": null,
+    "spec_summary": {
+      "total_requirements": 14,
+      "feature_count": 10,
+      "uncovered_count": 0
+    },
+    "source_file": "docs/智能环境监测仪功能规格书.md",
+    "error": null,
+    "updated_at": "2026-09-23T18:03:26"
+  },
   "chip": {
     "datasheet_path": "E:\\skills\\EmbedSoftAutomaticProject\\embed-ai-assist\\platforms\\stm32f103zet6\\datasheets\\STM32F103ZET6.pdf",
     "datasheet_secondary_path": "E:\\skills\\EmbedSoftAutomaticProject\\embed-ai-assist\\platforms\\stm32f103zet6\\datasheets\\STM32F10x_Reference_Manual.pdf",
@@ -65,21 +81,23 @@
     "init_sources": [
       "Drivers/BSP/Src/adc_init.c",
       "Drivers/BSP/Src/clock_init.c",
+      "Drivers/BSP/Src/dht11_init.c",
+      "Drivers/BSP/Src/fsmc_init.c",
       "Drivers/BSP/Src/gpio_init.c",
       "Drivers/BSP/Src/hal_init.c",
-      "Drivers/BSP/Src/i2c_init.c",
       "Drivers/BSP/Src/nvic_init.c",
-      "Drivers/BSP/Src/spi_init.c",
+      "Drivers/BSP/Src/tim_init.c",
       "Drivers/BSP/Src/uart_init.c"
     ],
     "init_headers": [
       "Drivers/BSP/Inc/adc_init.h",
       "Drivers/BSP/Inc/clock_init.h",
+      "Drivers/BSP/Inc/dht11_init.h",
+      "Drivers/BSP/Inc/fsmc_init.h",
       "Drivers/BSP/Inc/gpio_init.h",
       "Drivers/BSP/Inc/hal_init.h",
-      "Drivers/BSP/Inc/i2c_init.h",
       "Drivers/BSP/Inc/nvic_init.h",
-      "Drivers/BSP/Inc/spi_init.h",
+      "Drivers/BSP/Inc/tim_init.h",
       "Drivers/BSP/Inc/uart_init.h"
     ],
     "entry_source": "Drivers/BSP/Src/hal_init.c",
@@ -89,8 +107,22 @@
     "hardware_capabilities": "outputs/s5a/hardware_capabilities.json",
     "ide_pending_files": "outputs/s5a/ide_pending_files.json",
     "error": null,
-    "updated_at": "2026-09-19T22:17:05",
+    "updated_at": "2026-09-24T10:09:21",
+    "incremental": false,
+    "changed_modules": [
+      "clock_init",
+      "hal_init",
+      "nvic_init"
+    ]
+  },
+  "s5b": {
+    "status": "running",
+    "rtos": "none",
+    "architecture": "layered",
+    "power_enabled": false,
+    "generation_brief": "outputs/s5b/generation_brief.md",
     "incremental": true,
-    "changed_modules": []
+    "error": null,
+    "updated_at": "2026-09-24T13:49:21"
   }
 }

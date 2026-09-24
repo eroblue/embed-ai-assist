@@ -6,7 +6,7 @@
 
 ## 1. 项目信息
 
-- MCU：STM32F103ZET6（platform: stm32f103zet6）
+- MCU：stm32f103zet6（platform: stm32f103zet6）
 - 架构：layered；RTOS：none；低功耗：未启用
 - 标准外设库：`E:\skills\EmbedSoftAutomaticProject\embed-ai-assist\platforms\stm32f103zet6\sdk\std_periph_lib`（来源 config.stdperiph_lib_path）——生成前读其头文件确认 API/枚举名
 - 平台主头文件：`stm32f10x.h`（外设模块 .c 需 include）
@@ -14,54 +14,23 @@
 
 ## 2. 时钟配置（已计算，直接采用）
 
-- HSE：8MHz（来源 S4 硬件事实）
-- SYSCLK：32MHz = HSE × PLL4
-- AHB：32MHz；APB1：32MHz；APB2：32MHz
-- LSE：32.768kHz（RTC 时钟源，clock_init 中使能并选为 RTC 时钟）
-- FLASH 等待周期：1WS（主频联动，勿遗漏）
+- HSE：未发现（按内部 RC 直跑，频率见 SYSCLK）（来源 S4 硬件事实）
+- SYSCLK：72MHz（内部 RC）
+- AHB：72MHz；APB1：72MHz；APB2：72MHz
 
 ## 3. 外设使用清单（引脚来自 S4 facts + S3 AF 表）
 
-### UART
-- USART2：TX=PA2（net UART2_TX），RX=PA3（net UART2_RX），115200-8N1，中断：USART2
-- USART1：TX=PA9（net UART1_TX），RX=PA10（net UART1_RX），9600-8N1，中断：USART1
-- UART4：TX=PC10（net UART4_TX），RX=PC11（net UART4_RX），115200-8N1，中断：UART4
-
-### SPI
-- SPI2（主模式，8bit，软 NSS）：MISO=PB14，MOSI=PB15，NSS=PB12，SCK=PB13
-
-### I2C
-- I2C1（100kHz 标准模式，开漏复用）：SCL=PB6，SDA=PB7
-
-### ADC
-- ADC1（12bit 右对齐，通道/采样时间待 S5b 用例确定，留 TODO）：stm_adc=PA1
-
-### GPIO（按端口分组）
-- PA0：`IN_FLOATING`（net PA0）
-- PA15：`IN_FLOATING`（net JTDI）
-- PB3：`IN_FLOATING`（net JTDO）
-- PB5：`OUT_PP`（net LED1）
-- PC13：`IN_FLOATING`（net PC13）
-- PC14：`IN_FLOATING`（net OSC32_IN）
-- PC15：`IN_FLOATING`（net OSC32_OUT）
-- PE2：`IPU`（net KEY2）
-- PE3：`IPU`（net KEY1）
-- PE4：`IPU`（net KEY0）
-- PE5：`OUT_PP`（net LED2）
-
-### 中断：USART2, SPI2, USART1, UART4（只做 NVIC 分组，不使能具体 IRQ，注释给使能建议）
-
-### 跳过的引脚（晶振/电源/调试/无语义）：VBAT(3V3), VSS_5(GND), VDD_5(3V3), OSC_IN(OSC_IN), OSC_OUT(OSC_OUT), NRST(RESET), VSSA(GND), VREF-(GND), VREF+(3V3), VDDA(3V3), VSS_4(GND), VDD_4(3V3), PB2, VSS_6(GND), VDD_6(3V3), VSS_7(GND), VDD_7(3V3), VSS_1(GND), VDD_1(3V3), VSS_8(GND)...
+### 跳过的引脚（晶振/电源/调试/无语义）：(PE2), (PE3), (PE4), (PE5), (PE6), VBAT(), A(SDIO_SCK), A(Y132.768K), A(), (PF0), (PF0), (PF2), (PF3), (PF4), (PF5), (PF6), (PF7), (PF8), (PF9), (PF10)...
 
 ## 4. 生成要求
 
 ### 文件清单（Drivers/BSP/Src/ 下 .c + Drivers/BSP/Inc/ 下 .h，每模块成对）
 
-`adc_init, clock_init, gpio_init, i2c_init, nvic_init, spi_init, uart_init` + 总入口 `hal_init`（只做汇总调用）
+`clock_init, nvic_init` + 总入口 `hal_init`（只做汇总调用）
 
 ### 增量模式（本轮生成范围）
 
-- **无变更模块**：本轮输入与上轮一致，无需生成代码，直接运行 validate.py 收尾
+- 全量模式（首次运行/配置大变）：重写全部模块 `clock_init, hal_init, nvic_init`
 
 ### 硬性规则
 

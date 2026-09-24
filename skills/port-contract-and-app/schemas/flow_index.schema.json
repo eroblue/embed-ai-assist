@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.s5b.flow_index.v1",
+  "title": "流程图清单（docs/flow/ 的登记表，flow_differ 维护）",
+  "type": "object",
+  "required": ["flows", "updated_at"],
+  "properties": {
+    "flows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["module", "file", "graph_type", "version", "status", "hash", "nodes", "edges", "updated_at"],
+        "properties": {
+          "module": {"type": "string", "description": "模块名（= 代码文件基名）"},
+          "file": {"type": "string", "description": "流程图文件相对路径"},
+          "graph_type": {"type": "string", "enum": ["stateDiagram-v2", "flowchart", "sequenceDiagram"]},
+          "version": {"type": ["string", "number"], "description": "当前版本号（front-matter）"},
+          "base_version": {"type": ["string", "number", "null"], "description": "当前图基于哪个版本修改"},
+          "status": {"type": "string", "enum": ["draft", "review", "approved", "dirty", "deprecated"]},
+          "hash": {"type": "string", "description": "流程图正文（去 front-matter）sha256，变更检测依据"},
+          "nodes": {"type": "integer", "minimum": 0},
+          "edges": {"type": "integer", "minimum": 0},
+          "updated_at": {"type": "string"}
+        }
+      }
+    },
+    "updated_at": {"type": "string"}
+  }
+}

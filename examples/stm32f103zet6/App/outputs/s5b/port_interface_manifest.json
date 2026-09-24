@@ -1,0 +1,331 @@
+{
+  "mcu_hint": "STM32F103ZET6",
+  "rtos": "none",
+  "architecture": "layered",
+  "power_enabled": false,
+  "language": "c99",
+  "headers": [
+    {
+      "file": "Drivers/Port/Inc/uart_port.h",
+      "kind": "peripheral",
+      "peripheral": "uart",
+      "description": "UART Port 接口：环境数据 JSON 上报通道",
+      "logical_instances": [
+        {
+          "name": "report_uart",
+          "description": "5s 周期 JSON 环境数据上报，115200-8N1；S4 facts 引脚未吸附，按设计输入硬件表映射",
+          "hw_instance": "USART1（PA9=TX / PA10=RX）",
+          "hw_source": "design_input",
+          "config": {"baudrate": 115200, "data_bits": 8, "parity": 0, "stop_bits": 1}
+        }
+      ],
+      "interfaces": [
+        {
+          "function": "uart_port_init",
+          "signature": "int32_t uart_port_init(uart_port_id_t id, const uart_port_cfg_t *cfg)",
+          "description": "绑定逻辑实例与配置（对接 S5a uart_init 成果）",
+          "isr_safe": false,
+          "callback": null
+        },
+        {
+          "function": "uart_port_write",
+          "signature": "int32_t uart_port_write(uart_port_id_t id, const uint8_t *buf, uint16_t len)",
+          "description": "同步拷贝语义发送，返回发送字节数；失败重试由调用方处理",
+          "isr_safe": true,
+          "callback": null
+        },
+        {
+          "function": "uart_port_deinit",
+          "signature": "int32_t uart_port_deinit(uart_port_id_t id)",
+          "description": "释放实例全部资源",
+          "isr_safe": false,
+          "callback": null
+        }
+      ],
+      "callbacks": [],
+      "notes": [
+        "write 同步拷贝（返回后 buf 可复用）",
+        "仅发送无接收（read/回调已按应用裁剪）",
+        "hw_instance 由设计输入硬件表映射；换板只改本 manifest，不改代码"
+      ]
+    },
+    {
+      "file": "Drivers/Port/Inc/i2c_port.h",
+      "kind": "peripheral",
+      "peripheral": "i2c",
+      "description": "I2C Port 接口：OLED 显示总线",
+      "logical_instances": [
+        {
+          "name": "oled_bus",
+          "description": "OLED（SSD1306 128x64）显示总线，400kHz；器件 7 位地址 0x3C 由 driver_oled 传参；S4 facts 引脚未吸附，按设计输入硬件表映射",
+          "hw_instance": "I2C1（PB6=SCL / PB7=SDA）",
+          "hw_source": "design_input",
+          "config": {"speed_hz": 400000, "pullup_internal": 1}
+        }
+      ],
+      "interfaces": [
+        {
+          "function": "i2c_port_init",
+          "signature": "int32_t i2c_port_init(i2c_port_id_t id, const i2c_port_cfg_t *cfg)",
+          "description": "绑定逻辑实例与配置",
+          "isr_safe": false,
+          "callback": null
+        },
+        {
+          "function": "i2c_port_write_raw",
+          "signature": "int32_t i2c_port_write_raw(i2c_port_id_t id, uint8_t dev_addr, const uint8_t *data, uint16_t len)",
+          "description": "原始写（无寄存器地址段，OLED commanded 器件用），同步阻塞",
+          "isr_safe": false,
+          "callback": null
+        },
+        {
+          "function": "i2c_port_deinit",
+          "signature": "int32_t i2c_port_deinit(i2c_port_id_t id)",
+          "description": "释放实例全部资源",
+          "isr_safe": false,
+          "callback": null
+        }
+      ],
+      "callbacks": [],
+      "notes": [
+        "transfer 同步阻塞（超时保护归实现层）",
+        "控制字节约定：0x00=命令 / 0x40=显存数据（driver_oled 组帧）"
+      ]
+    },
+    {
+      "file": "Drivers/Port/Inc/gpio_port.h",
+      "kind": "peripheral",
+      "peripheral": "gpio",
+      "description": "GPIO Port 接口：指示灯/蜂鸣器/按键/DHT11 单总线（7 个逻辑引脚）",
+      "logical_instances": [
+        {
+          "name": "led_exec",
+          "description": "执行器指示灯（亮=执行器开）；LED0，低电平点亮",
+          "hw_instance": "PB5",
+          "hw_source": "design_input",
+          "config": {"dir": "output", "pull": "none", "init_level": 1, "active_level": 0}
+        },
+        {
+          "name": "led_run",
+          "description": "运行指示灯（心跳/快闪/慢闪）；LED1，低电平点亮",
+          "hw_instance": "PE5",
+          "hw_source": "design_input",
+          "config": {"dir": "output", "pull": "none", "init_level": 1, "active_level": 0}
+        },
+        {
+          "name": "buzzer",
+          "description": "告警蜂鸣器（1s 响/1s 停，静音门控）；高电平导通",
+          "hw_instance": "PB8",
+          "hw_source": "design_input",
+          "config": {"dir": "output", "pull": "none", "init_level": 0, "active_level": 1}
+        },
+        {
+          "name": "key_mode",
+          "description": "模式切换按键（KEY0，外部上拉，按下=低）",
+          "hw_instance": "PE4",
+          "hw_source": "design_input",
+          "config": {"dir": "input", "pull": "up", "init_level": 0, "active_level": 0}
+        },
+        {
+          "name": "key_switch",
+          "description": "手动开关按键（KEY1，外部上拉，按下=低）",
+          "hw_instance": "PE3",
+          "hw_source": "design_input",
+          "config": {"dir": "input", "pull": "up", "init_level": 0, "active_level": 0}
+        },
+        {
+          "name": "key_mute",
+          "description": "静音切换按键（WK_UP，外部下拉，按下=高）",
+          "hw_instance": "PA0",
+          "hw_source": "design_input",
+          "config": {"dir": "input", "pull": "down", "init_level": 1, "active_level": 1}
+        },
+        {
+          "name": "dht11_data",
+          "description": "DHT11 单总线数据（外部上拉；运行时 set_dir 换向）",
+          "hw_instance": "PG11",
+          "hw_source": "design_input",
+          "config": {"dir": "input", "pull": "none", "init_level": 0, "active_level": 1}
+        }
+      ],
+      "interfaces": [
+        {
+          "function": "gpio_port_init",
+          "signature": "int32_t gpio_port_init(gpio_port_id_t id, const gpio_port_cfg_t *cfg)",
+          "description": "绑定逻辑引脚与配置（含有效电平 active_level）",
+          "isr_safe": false,
+          "callback": null
+        },
+        {
+          "function": "gpio_port_deinit",
+          "signature": "int32_t gpio_port_deinit(gpio_port_id_t id)",
+          "description": "释放逻辑引脚资源",
+          "isr_safe": false,
+          "callback": null
+        },
+        {
+          "function": "gpio_port_read",
+          "signature": "int32_t gpio_port_read(gpio_port_id_t id, gpio_port_level_t *level)",
+          "description": "读输入电平（输出引脚读回实际输出）",
+          "isr_safe": true,
+          "callback": null
+        },
+        {
+          "function": "gpio_port_write",
+          "signature": "int32_t gpio_port_write(gpio_port_id_t id, gpio_port_level_t level)",
+          "description": "写输出电平",
+          "isr_safe": true,
+          "callback": null
+        },
+        {
+          "function": "gpio_port_toggle",
+          "signature": "int32_t gpio_port_toggle(gpio_port_id_t id)",
+          "description": "翻转输出",
+          "isr_safe": true,
+          "callback": null
+        },
+        {
+          "function": "gpio_port_set_dir",
+          "signature": "int32_t gpio_port_set_dir(gpio_port_id_t id, gpio_port_dir_t dir)",
+          "description": "[扩展] 运行时切换方向（DHT11 单总线时序）",
+          "isr_safe": false,
+          "callback": null
+        },
+        {
+          "function": "gpio_port_set_active",
+          "signature": "int32_t gpio_port_set_active(gpio_port_id_t id, uint8_t active)",
+          "description": "[扩展] 按有效电平写（active!=0 激活）",
+          "isr_safe": true,
+          "callback": null
+        },
+        {
+          "function": "gpio_port_read_active",
+          "signature": "int32_t gpio_port_read_active(gpio_port_id_t id, uint8_t *active)",
+          "description": "[扩展] 按有效电平读（激活=1）",
+          "isr_safe": true,
+          "callback": null
+        }
+      ],
+      "callbacks": [],
+      "notes": [
+        "有效电平语义：active_level 由实例 config 固化到实现，APP/Driver 只用 active 语义",
+        "按键为 10ms 轮询去抖，无 EXTI（边沿中断接口已裁剪）",
+        "DHT11_DATA 需运行时换向：起始信号输出拉低 18ms 后切回输入读响应"
+      ]
+    },
+    {
+      "file": "Drivers/Port/Inc/adc_port.h",
+      "kind": "peripheral",
+      "peripheral": "adc",
+      "description": "ADC Port 接口：光照传感器模拟量",
+      "logical_instances": [
+        {
+          "name": "light_sensor",
+          "description": "光照分压网络采样（光敏电阻模块 AO）；APP 侧 light% = raw_mv*100/ref_mv",
+          "hw_instance": "ADC1_IN1（PA1）",
+          "hw_source": "design_input",
+          "config": {"ref": "vdd", "ref_mv": 3300, "avg_count": 8}
+        }
+      ],
+      "interfaces": [
+        {
+          "function": "adc_port_init",
+          "signature": "int32_t adc_port_init(adc_port_id_t id, const adc_port_cfg_t *cfg)",
+          "description": "绑定逻辑通道与配置（对接 S5a adc_init 成果）",
+          "isr_safe": false,
+          "callback": null
+        },
+        {
+          "function": "adc_port_sample_mv",
+          "signature": "int32_t adc_port_sample_mv(adc_port_id_t id, uint16_t *raw_mv)",
+          "description": "同步单次采样（含 avg_count 次过采样均值），输出毫伏值",
+          "isr_safe": false,
+          "callback": null
+        },
+        {
+          "function": "adc_port_deinit",
+          "signature": "int32_t adc_port_deinit(adc_port_id_t id)",
+          "description": "释放逻辑通道资源",
+          "isr_safe": false,
+          "callback": null
+        }
+      ],
+      "callbacks": [],
+      "notes": [
+        "基准换算在 Port 内完成，APP 不感知分辨率/通道号",
+        "过采样均值：8 次（去抖动）"
+      ]
+    },
+    {
+      "file": "Drivers/Port/Inc/timer_port.h",
+      "kind": "peripheral",
+      "peripheral": "timer",
+      "description": "Timer Port 接口：系统 10ms 节拍 + µs 级短延时",
+      "logical_instances": [
+        {
+          "name": "system_tick",
+          "description": "10ms 周期节拍（主循环软轮询调度）；delay_us 供 DHT11 位时序",
+          "hw_instance": null,
+          "hw_source": "design_input",
+          "config": {"period_ms": 10}
+        }
+      ],
+      "interfaces": [
+        {
+          "function": "timer_port_init",
+          "signature": "int32_t timer_port_init(timer_port_id_t id)",
+          "description": "绑定逻辑定时器",
+          "isr_safe": false,
+          "callback": null
+        },
+        {
+          "function": "timer_port_start_periodic",
+          "signature": "int32_t timer_port_start_periodic(timer_port_id_t id, uint32_t period_ms, timer_port_cb_t cb, void *user_data)",
+          "description": "启动周期定时（重复触发；重复启动返回 PORT_ERR_STATE）",
+          "isr_safe": false,
+          "callback": "timer_port_cb_t"
+        },
+        {
+          "function": "timer_port_stop",
+          "signature": "int32_t timer_port_stop(timer_port_id_t id)",
+          "description": "停止定时（幂等）",
+          "isr_safe": false,
+          "callback": null
+        },
+        {
+          "function": "timer_port_delay_us",
+          "signature": "int32_t timer_port_delay_us(uint32_t delay_us)",
+          "description": "[扩展] 微秒级忙等延时（DHT11 位时序 26~70µs 量级）；仅任务上下文",
+          "isr_safe": false,
+          "callback": null
+        },
+        {
+          "function": "timer_port_deinit",
+          "signature": "int32_t timer_port_deinit(timer_port_id_t id)",
+          "description": "释放逻辑定时器资源",
+          "isr_safe": false,
+          "callback": null
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "timer_port_cb_t",
+          "signature": "void (*)(timer_port_id_t id, void *user_data)",
+          "description": "周期到期回调：只做置标志/计数，长逻辑投主循环（app_on_tick 仅置标志）",
+          "context": "isr"
+        }
+      ],
+      "notes": [
+        "hw_instance=null：设计输入仅约定 10ms 主循环节拍，未指定硬件定时器，S5c 按 hardware_capabilities 匹配（建议 SysTick 或空闲通用定时器，见 REC-005）",
+        "delay_us 实现基于定时器计数（SysTick/总线时钟皆可），禁止在中断内调用"
+      ]
+    }
+  ],
+  "power": null,
+  "generated_at": "2026-09-24T11:30:00",
+  "notes": [
+    "统一错误码 port_err_t（PORT_OK/ERR_PARAM/ERR_STATE/ERR_TIMEOUT/ERR_BUSY）跨头共享，由 PORT_ERR_T_DEFINED 防护宏保证只定义一次",
+    "hw_instance=null 表示无法从 S4 facts/设计输入确定，由 S5c 按 hardware_capabilities 匹配",
+    "换平台/换板只改本 manifest，不改任何 Port 头/APP/Driver 代码"
+  ]
+}

@@ -4,10 +4,12 @@ from __future__ import annotations
 
 from .altium_adapter import parse as parse_altium
 from .kicad_adapter import parse as parse_kicad
+from .pdf_adapter import parse as parse_pdf
 
 ADAPTERS = {
     "altium": parse_altium,
     "kicad": parse_kicad,
+    "pdf": parse_pdf,
 }
 
-__all__ = ["ADAPTERS", "parse_altium", "parse_kicad"]
+__all__ = ["ADAPTERS", "parse_altium", "parse_kicad", "parse_pdf"]

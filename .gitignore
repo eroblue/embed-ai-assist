@@ -46,3 +46,18 @@ platforms/**/datasheets/ft61f14x_ds_rev1p09_cn.pdf
 # 备份文件
 *.bak
 *.lock
+
+# # 运行时状态
+# examples/*/state.json
+# examples/*/*/state.json
+# projects/*/state.json
+# projects/*/*/state.json
+
+# # 生成产物
+# examples/*/outputs/
+# examples/*/*/outputs/
+# projects/*/outputs/
+# projects/*/*/outputs/
+
+# 流程图版本快照
+**/docs/flow/.history/

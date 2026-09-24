@@ -1,0 +1,356 @@
+{
+  "meta": {
+    "source_file": "docs/functional_spec.md",
+    "source_type": "markdown",
+    "extracted_at": "2026-09-23T16:44:32",
+    "spec_version": "1.0"
+  },
+  "title": "SmartEnvGuard 智能环境监测仪",
+  "summary": "实时监测室内温湿度和光照，本地显示，异常告警，支持自动/手动控制和上位机上报。",
+  "requirements": [
+    {
+      "id": "REQ-001",
+      "title": "环境数据周期采集与保存",
+      "description": "每 2 秒采集一次温度（°C）、湿度（%RH）、光照（0~100%）数据，保存在设备内部供显示、上报、控制使用。",
+      "priority": "must",
+      "category": "functional",
+      "source": {
+        "section": "2.1 环境采集"
+      },
+      "acceptance": "上电后每 2 秒完成一次采集，三条下游路径（显示/上报/控制）均可读取最近有效值。"
+    },
+    {
+      "id": "REQ-002",
+      "title": "采集失败处理",
+      "description": "单次采集失败时保留上次有效值并跳过本次；连续 5 次失败标记传感器故障并告警；恢复采集成功后自动清除故障标记。",
+      "priority": "must",
+      "category": "functional",
+      "source": {
+        "section": "2.1 环境采集"
+      },
+      "acceptance": "拔掉传感器后显示值保持不变，5 个周期内出现故障告警；重新接入后 1 个周期内告警解除。"
+    },
+    {
+      "id": "REQ-003",
+      "title": "本地数据显示",
+      "description": "LCD 实时显示当前温度、湿度、光照数值与工作模式，数据每 1 秒刷新一次。",
+      "priority": "must",
+      "category": "functional",
+      "source": {
+        "section": "2.2 本地显示"
+      },
+      "acceptance": "任一环境量变化后 1 秒内屏幕数值更新；模式切换后屏幕模式标识同步变化。"
+    },
+    {
+      "id": "REQ-004",
+      "title": "按键交互",
+      "description": "KEY1 切换自动/手动工作模式，KEY2 在手动模式下触发/停止通风；按键需防误触。",
+      "priority": "must",
+      "category": "functional",
+      "source": {
+        "section": "2.3 按键交互"
+      },
+      "acceptance": "按 KEY1 模式切换且屏幕标识更新；手动模式下按 KEY2 通风状态翻转；抖动接触不产生误动作。"
+    },
+    {
+      "id": "REQ-005",
+      "title": "自动控制逻辑",
+      "description": "自动模式下温度超过 30℃ 或湿度超过 80%RH 时启动通风并蜂鸣告警（1s 响 1s 停），环境恢复到阈值以下后自动停止通风和告警。",
+      "priority": "must",
+      "category": "functional",
+      "source": {
+        "section": "2.4 自动控制"
+      },
+      "acceptance": "加热使温度超过 30℃ 后通风启动且蜂鸣周期鸣响；降温到 30℃ 以下后两者自动停止。"
+    },
+    {
+      "id": "REQ-006",
+      "title": "上位机数据上报",
+      "description": "通过串口向上位机上报环境数据与设备状态，上报周期 10 秒。",
+      "priority": "must",
+      "category": "interface",
+      "source": {
+        "section": "2.5 数据上报"
+      },
+      "acceptance": "上位机每 10 秒收到一帧最新环境数据与当前工作模式。"
+    },
+    {
+      "id": "REQ-007",
+      "title": "运行指示",
+      "description": "运行指示灯每 2 秒闪烁一次表示系统存活；故障时常亮提示。",
+      "priority": "should",
+      "category": "functional",
+      "source": {
+        "section": "2.6 运行指示"
+      },
+      "acceptance": "正常时指示灯 2s 周期闪烁；触发故障告警后转为常亮。"
+    },
+    {
+      "id": "REQ-008",
+      "title": "上电初始化与自检",
+      "description": "上电后完成传感器、显示、存储自检；自检失败时告警并进入降级运行（仅保留可用功能）。",
+      "priority": "must",
+      "category": "functional",
+      "source": {
+        "section": "2.7 初始化与自检"
+      },
+      "acceptance": "正常上电 3 秒内进入工作状态；传感器未接时上电出现故障告警但显示与按键仍可用。"
+    },
+    {
+      "id": "REQ-009",
+      "title": "工作模式与告警优先级",
+      "description": "设备具有自动/手动两种工作模式，上电默认自动；传感器故障告警优先级高于环境阈值告警，高优先级告警触发时屏蔽低优先级告警提示。",
+      "priority": "must",
+      "category": "functional",
+      "source": {
+        "section": "2.8 工作模式"
+      },
+      "acceptance": "上电后处于自动模式；同时满足故障与阈值条件时仅提示故障告警。"
+    },
+    {
+      "id": "REQ-010",
+      "title": "按键响应性能",
+      "description": "按键操作到设备响应的延迟不超过 100ms。",
+      "priority": "must",
+      "category": "performance",
+      "source": {
+        "section": "3 性能指标"
+      },
+      "acceptance": "示波器测量按键信号到模式标志翻转 ≤ 100ms。"
+    },
+    {
+      "id": "REQ-011",
+      "title": "系统时序约束",
+      "description": "采集周期 2s、显示刷新 1s、上报周期 10s，各周期任务互不阻塞。",
+      "priority": "must",
+      "category": "performance",
+      "source": {
+        "section": "3 性能指标"
+      },
+      "acceptance": "长时间运行中各周期漂移不超过一个周期的 10%。"
+    },
+    {
+      "id": "REQ-012",
+      "title": "数据有效范围与系统级约束",
+      "description": "温度有效范围 -40~85℃、湿度 0~100%RH、光照 0~100%；超出范围的数据按无效处理。系统不使用动态内存分配，7×24 小时连续运行不死机。",
+      "priority": "must",
+      "category": "constraint",
+      "source": {
+        "section": "4 系统约束"
+      },
+      "acceptance": "注入越界数据后被判无效不参与控制；连续运行 24h 无复位、内存占用稳定。"
+    }
+  ],
+  "features": [
+    {
+      "id": "F-001",
+      "name": "环境采集",
+      "description": "环境数据的周期采集、保存与失败处理。",
+      "requirements": [
+        "REQ-001",
+        "REQ-002"
+      ]
+    },
+    {
+      "id": "F-002",
+      "name": "本地显示",
+      "description": "LCD 数据与状态显示。",
+      "requirements": [
+        "REQ-003"
+      ]
+    },
+    {
+      "id": "F-003",
+      "name": "按键交互",
+      "description": "按键操作与响应性能。",
+      "requirements": [
+        "REQ-004",
+        "REQ-010"
+      ]
+    },
+    {
+      "id": "F-004",
+      "name": "自动控制",
+      "description": "阈值判断、通风与蜂鸣告警控制。",
+      "requirements": [
+        "REQ-005"
+      ]
+    },
+    {
+      "id": "F-005",
+      "name": "数据上报",
+      "description": "上位机串口数据上报。",
+      "requirements": [
+        "REQ-006"
+      ]
+    },
+    {
+      "id": "F-006",
+      "name": "运行指示",
+      "description": "运行/故障状态指示灯。",
+      "requirements": [
+        "REQ-007"
+      ]
+    },
+    {
+      "id": "F-007",
+      "name": "工作状态管理",
+      "description": "工作模式管理与告警优先级（横切关注点）。",
+      "requirements": [
+        "REQ-009"
+      ]
+    },
+    {
+      "id": "F-008",
+      "name": "初始化与容错",
+      "description": "上电自检与降级运行（横切关注点）。",
+      "requirements": [
+        "REQ-008"
+      ]
+    },
+    {
+      "id": "F-009",
+      "name": "系统约束",
+      "description": "数据有效范围与时序/资源约束（横切关注点）。",
+      "requirements": [
+        "REQ-011",
+        "REQ-012"
+      ]
+    }
+  ],
+  "business_states": [
+    {
+      "module_hint": "自动控制",
+      "states": [
+        {
+          "name": "AUTO",
+          "description": "自动模式：按阈值自动控制通风与告警"
+        },
+        {
+          "name": "MANUAL",
+          "description": "手动模式：通风由按键控制，告警仍自动"
+        }
+      ],
+      "transitions": [
+        {
+          "from": "AUTO",
+          "to": "MANUAL",
+          "event": "key1_press"
+        },
+        {
+          "from": "MANUAL",
+          "to": "AUTO",
+          "event": "key1_press"
+        }
+      ]
+    }
+  ],
+  "business_timing": [
+    {
+      "name": "环境采集",
+      "period_ms": 2000,
+      "pattern": null,
+      "description": "每 2 秒采集一次环境数据",
+      "requirement": "REQ-001"
+    },
+    {
+      "name": "显示刷新",
+      "period_ms": 1000,
+      "pattern": null,
+      "description": "每 1 秒刷新一次显示",
+      "requirement": "REQ-003"
+    },
+    {
+      "name": "数据上报",
+      "period_ms": 10000,
+      "pattern": null,
+      "description": "每 10 秒向上位机上报一次",
+      "requirement": "REQ-006"
+    },
+    {
+      "name": "心跳闪烁",
+      "period_ms": 2000,
+      "pattern": null,
+      "description": "运行指示灯每 2 秒闪烁一次",
+      "requirement": "REQ-007"
+    },
+    {
+      "name": "告警蜂鸣",
+      "period_ms": null,
+      "pattern": "1s 响 1s 停",
+      "description": "告警期间蜂鸣器周期鸣响",
+      "requirement": "REQ-005"
+    }
+  ],
+  "error_handling": [
+    {
+      "scenario": "单次采集失败",
+      "strategy": "跳过本次，保留上次有效值",
+      "requirement": "REQ-002"
+    },
+    {
+      "scenario": "连续采集失败",
+      "strategy": "连续 5 次失败标记传感器故障并告警",
+      "requirement": "REQ-002"
+    },
+    {
+      "scenario": "传感器故障恢复",
+      "strategy": "采集成功后自动清除故障标记与告警",
+      "requirement": "REQ-002"
+    },
+    {
+      "scenario": "上电自检失败",
+      "strategy": "告警并进入降级运行，仅保留可用功能",
+      "requirement": "REQ-008"
+    },
+    {
+      "scenario": "数据超出有效范围",
+      "strategy": "判为无效数据，不参与显示与控制",
+      "requirement": "REQ-012"
+    }
+  ],
+  "thresholds": [
+    {
+      "name": "高温告警阈值",
+      "value": 30,
+      "unit": "°C",
+      "condition": ">",
+      "requirement": "REQ-005"
+    },
+    {
+      "name": "湿度告警上限",
+      "value": 80,
+      "unit": "%RH",
+      "condition": ">",
+      "requirement": "REQ-005"
+    },
+    {
+      "name": "温度有效范围",
+      "value": "-40~85",
+      "unit": "°C",
+      "condition": "范围内",
+      "requirement": "REQ-012"
+    },
+    {
+      "name": "湿度有效范围",
+      "value": "0~100",
+      "unit": "%RH",
+      "condition": "范围内",
+      "requirement": "REQ-012"
+    },
+    {
+      "name": "光照有效范围",
+      "value": "0~100",
+      "unit": "%",
+      "condition": "范围内",
+      "requirement": "REQ-012"
+    },
+    {
+      "name": "连续失败判定次数",
+      "value": 5,
+      "unit": null,
+      "condition": ">=",
+      "requirement": "REQ-002"
+    }
+  ]
+}

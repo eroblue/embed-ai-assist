@@ -1,0 +1,29 @@
+{
+  "module": "app_wifi",
+  "file": "docs/flow/app_wifi_state.md",
+  "graph_type": "stateDiagram-v2",
+  "base_version": "1.0",
+  "current_version": "1.1",
+  "status": "approved",
+  "nodes": {
+    "total": 5,
+    "added": ["RECONNECTING"],
+    "removed": [],
+    "renamed": []
+  },
+  "edges": {
+    "total": 8,
+    "added": [
+      "ERROR -> RECONNECTING [on_retry]",
+      "RECONNECTING -> CONNECTED [on_success]"
+    ],
+    "removed": [],
+    "modified": ["ERROR -> IDLE [on_recover / reset_retry_counter]"]
+  },
+  "change_count": 4,
+  "change_ratio": 0.3077,
+  "generation_mode": "incremental",
+  "baseline_source": "docs/flow/.history/app_wifi/1.0.md",
+  "change_summary": "变化率 31%，变更 4 处（如 RECONNECTING，ERROR -> RECONNECTING [on_retry]）",
+  "updated_at": "2026-09-22T10:30:00"
+}

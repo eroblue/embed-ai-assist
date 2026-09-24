@@ -1,59 +1,59 @@
 {
   "schema": "embedaiassist.circuit.facts.v1",
-  "mcu": "STM32F103ZET6",
+  "mcu": "stm32f103zet6",
   "package": "LQFP144",
   "platform": "stm32f103zet6",
-  "verify_status": "success",
+  "verify_status": "partial",
   "verify_scope": "all",
   "inference_mode": "rule",
   "pins": [
     {
       "pin": "1",
-      "pin_name": "PE2",
-      "net": "KEY2",
+      "pin_name": "",
+      "net": "PE2",
       "component": "U2",
-      "role": "按键/开关输入",
-      "peripheral": "GPIO 输入上拉",
-      "config": "输入模式，内部上拉",
-      "status": "ok",
-      "note": "按网络名语义推断（KEY2）"
+      "role": "",
+      "peripheral": "",
+      "config": "",
+      "status": "warning",
+      "note": "网络名无明确语义，无法推断功能角色"
     },
     {
       "pin": "2",
-      "pin_name": "PE3",
-      "net": "KEY1",
+      "pin_name": "",
+      "net": "PE3",
       "component": "U2",
-      "role": "按键/开关输入",
-      "peripheral": "GPIO 输入上拉",
-      "config": "输入模式，内部上拉",
-      "status": "ok",
-      "note": "按网络名语义推断（KEY1）"
+      "role": "",
+      "peripheral": "",
+      "config": "",
+      "status": "warning",
+      "note": "网络名无明确语义，无法推断功能角色"
     },
     {
       "pin": "3",
-      "pin_name": "PE4",
-      "net": "KEY0",
+      "pin_name": "",
+      "net": "PE4",
       "component": "U2",
-      "role": "按键/开关输入",
-      "peripheral": "GPIO 输入上拉",
-      "config": "输入模式，内部上拉",
-      "status": "ok",
-      "note": "按网络名语义推断（KEY0）"
+      "role": "",
+      "peripheral": "",
+      "config": "",
+      "status": "warning",
+      "note": "网络名无明确语义，无法推断功能角色"
     },
     {
       "pin": "4",
-      "pin_name": "PE5",
-      "net": "LED2",
+      "pin_name": "",
+      "net": "PE5",
       "component": "U2",
-      "role": "LED 指示",
-      "peripheral": "GPIO 输出",
-      "config": "推挽输出",
-      "status": "ok",
-      "note": "按网络名语义推断（LED2）"
+      "role": "",
+      "peripheral": "",
+      "config": "",
+      "status": "warning",
+      "note": "网络名无明确语义，无法推断功能角色"
     },
     {
       "pin": "5",
-      "pin_name": "PE6",
+      "pin_name": "",
       "net": "PE6",
       "component": "U2",
       "role": "",
@@ -65,50 +65,50 @@
     {
       "pin": "6",
       "pin_name": "VBAT",
-      "net": "3V3",
+      "net": null,
       "component": "U2",
-      "role": "电源",
-      "peripheral": "电源",
-      "config": "电源连接",
-      "status": "ok",
-      "note": "连接到电源网络 3V3"
+      "role": "",
+      "peripheral": "NC",
+      "config": "未连接",
+      "status": "nc",
+      "note": "网表中无连接（NC）"
     },
     {
       "pin": "7",
-      "pin_name": "PC13-TAMPER-RTC",
-      "net": "PC13",
+      "pin_name": "A",
+      "net": "SDIO_SCK",
       "component": "U2",
-      "role": "RTC 侵入检测",
-      "peripheral": "GPIO 输入",
-      "config": "可作 RTC 侵入检测",
-      "status": "ok",
-      "note": "按引脚名语义推断（PC13-TAMPER-RTC）"
+      "role": "SPI 通信",
+      "peripheral": "SPI",
+      "config": "复用推挽输出",
+      "status": "warning",
+      "note": "按网络名语义推断（SDIO_SCK）；网表引脚名 A ≠ 芯片定义 PC13-TAMPER-RTC(5)"
     },
     {
       "pin": "8",
-      "pin_name": "PC14-OSC32_IN",
-      "net": "OSC32_IN",
+      "pin_name": "A",
+      "net": "Y132.768K",
       "component": "U2",
-      "role": "晶振（OSC32_IN）",
-      "peripheral": "OSC32_IN",
-      "config": "复用功能",
-      "status": "ok",
-      "note": "网络名与芯片复用功能一致（OSC32_IN）"
+      "role": "32.768kHz RTC 晶振输入",
+      "peripheral": "LXTAL",
+      "config": "低速晶振",
+      "status": "warning",
+      "note": "按引脚名语义推断（PC14-OSC32_IN）；网表引脚名 A ≠ 芯片定义 PC14-OSC32_IN(5)"
     },
     {
       "pin": "9",
-      "pin_name": "PC15-OSC32_OUT",
-      "net": "OSC32_OUT",
+      "pin_name": "A",
+      "net": null,
       "component": "U2",
-      "role": "晶振（OSC32_OUT）",
-      "peripheral": "OSC32_OUT",
-      "config": "复用功能",
-      "status": "ok",
-      "note": "网络名与芯片复用功能一致（OSC32_OUT）"
+      "role": "",
+      "peripheral": "NC",
+      "config": "未连接",
+      "status": "nc",
+      "note": "网表中无连接（NC）；网表引脚名 A ≠ 芯片定义 PC15-OSC32_OUT(5)"
     },
     {
       "pin": "10",
-      "pin_name": "PF0",
+      "pin_name": "",
       "net": "PF0",
       "component": "U2",
       "role": "",
@@ -119,8 +119,8 @@
     },
     {
       "pin": "11",
-      "pin_name": "PF1",
-      "net": "PF1",
+      "pin_name": "",
+      "net": "PF0",
       "component": "U2",
       "role": "",
       "peripheral": "",
@@ -130,7 +130,7 @@
     },
     {
       "pin": "12",
-      "pin_name": "PF2",
+      "pin_name": "",
       "net": "PF2",
       "component": "U2",
       "role": "",
@@ -141,7 +141,7 @@
     },
     {
       "pin": "13",
-      "pin_name": "PF3",
+      "pin_name": "",
       "net": "PF3",
       "component": "U2",
       "role": "",
@@ -152,7 +152,7 @@
     },
     {
       "pin": "14",
-      "pin_name": "PF4",
+      "pin_name": "",
       "net": "PF4",
       "component": "U2",
       "role": "",
@@ -163,7 +163,7 @@
     },
     {
       "pin": "15",
-      "pin_name": "PF5",
+      "pin_name": "",
       "net": "PF5",
       "component": "U2",
       "role": "",
@@ -173,30 +173,8 @@
       "note": "网络名无明确语义，无法推断功能角色"
     },
     {
-      "pin": "16",
-      "pin_name": "VSS_5",
-      "net": "GND",
-      "component": "U2",
-      "role": "电源",
-      "peripheral": "电源",
-      "config": "电源连接",
-      "status": "ok",
-      "note": "连接到电源网络 GND"
-    },
-    {
-      "pin": "17",
-      "pin_name": "VDD_5",
-      "net": "3V3",
-      "component": "U2",
-      "role": "电源",
-      "peripheral": "电源",
-      "config": "电源连接",
-      "status": "ok",
-      "note": "连接到电源网络 3V3"
-    },
-    {
       "pin": "18",
-      "pin_name": "PF6",
+      "pin_name": "",
       "net": "PF6",
       "component": "U2",
       "role": "",
@@ -207,7 +185,7 @@
     },
     {
       "pin": "19",
-      "pin_name": "PF7",
+      "pin_name": "",
       "net": "PF7",
       "component": "U2",
       "role": "",
@@ -218,7 +196,7 @@
     },
     {
       "pin": "20",
-      "pin_name": "PF8",
+      "pin_name": "",
       "net": "PF8",
       "component": "U2",
       "role": "",
@@ -229,7 +207,7 @@
     },
     {
       "pin": "21",
-      "pin_name": "PF9",
+      "pin_name": "",
       "net": "PF9",
       "component": "U2",
       "role": "",
@@ -240,7 +218,7 @@
     },
     {
       "pin": "22",
-      "pin_name": "PF10",
+      "pin_name": "",
       "net": "PF10",
       "component": "U2",
       "role": "",
@@ -252,24 +230,24 @@
     {
       "pin": "23",
       "pin_name": "OSC_IN",
-      "net": "OSC_IN",
+      "net": null,
       "component": "U2",
-      "role": "OSC_IN",
-      "peripheral": "OSC_IN",
-      "config": "复用功能",
-      "status": "ok",
-      "note": "网络名与芯片复用功能一致（OSC_IN）"
+      "role": "",
+      "peripheral": "NC",
+      "config": "未连接",
+      "status": "nc",
+      "note": "网表中无连接（NC）"
     },
     {
       "pin": "24",
-      "pin_name": "OSC_OUT",
-      "net": "OSC_OUT",
+      "pin_name": "",
+      "net": null,
       "component": "U2",
-      "role": "OSC_OUT",
-      "peripheral": "OSC_OUT",
-      "config": "复用功能",
-      "status": "ok",
-      "note": "网络名与芯片复用功能一致（OSC_OUT）"
+      "role": "",
+      "peripheral": "NC",
+      "config": "未连接",
+      "status": "nc",
+      "note": "网表中无连接（NC）"
     },
     {
       "pin": "25",
@@ -284,8 +262,8 @@
     },
     {
       "pin": "26",
-      "pin_name": "PC0",
-      "net": "PC0",
+      "pin_name": "",
+      "net": "OV_D0",
       "component": "U2",
       "role": "",
       "peripheral": "",
@@ -295,8 +273,8 @@
     },
     {
       "pin": "27",
-      "pin_name": "PC1",
-      "net": "PC1",
+      "pin_name": "",
+      "net": "OV_D0",
       "component": "U2",
       "role": "",
       "peripheral": "",
@@ -306,8 +284,8 @@
     },
     {
       "pin": "28",
-      "pin_name": "PC2",
-      "net": "PC2",
+      "pin_name": "",
+      "net": "OV_D2",
       "component": "U2",
       "role": "",
       "peripheral": "",
@@ -317,63 +295,63 @@
     },
     {
       "pin": "29",
-      "pin_name": "PC3",
-      "net": "PC3",
+      "pin_name": "",
+      "net": null,
       "component": "U2",
       "role": "",
-      "peripheral": "",
-      "config": "",
-      "status": "warning",
-      "note": "网络名无明确语义，无法推断功能角色"
+      "peripheral": "NC",
+      "config": "未连接",
+      "status": "nc",
+      "note": "网表中无连接（NC）"
     },
     {
       "pin": "30",
       "pin_name": "VSSA",
-      "net": "GND",
+      "net": null,
       "component": "U2",
-      "role": "电源",
-      "peripheral": "电源",
-      "config": "电源连接",
-      "status": "ok",
-      "note": "连接到电源网络 GND"
+      "role": "",
+      "peripheral": "NC",
+      "config": "未连接",
+      "status": "conflict",
+      "note": "网表中无连接（NC）"
     },
     {
       "pin": "31",
-      "pin_name": "VREF-",
-      "net": "GND",
+      "pin_name": "Vref-",
+      "net": null,
       "component": "U2",
-      "role": "电源",
-      "peripheral": "电源",
-      "config": "电源连接",
-      "status": "ok",
-      "note": "连接到电源网络 GND"
+      "role": "",
+      "peripheral": "NC",
+      "config": "未连接",
+      "status": "nc",
+      "note": "网表中无连接（NC）"
     },
     {
       "pin": "32",
-      "pin_name": "VREF+",
-      "net": "3V3",
+      "pin_name": "Vref+",
+      "net": "VREF+",
       "component": "U2",
-      "role": "电源",
-      "peripheral": "电源",
-      "config": "电源连接",
+      "role": "VREF+",
+      "peripheral": "VREF+",
+      "config": "复用功能",
       "status": "ok",
-      "note": "连接到电源网络 3V3"
+      "note": "网络名与芯片复用功能一致（VREF+）"
     },
     {
       "pin": "33",
       "pin_name": "VDDA",
-      "net": "3V3",
+      "net": "VDDA",
       "component": "U2",
-      "role": "电源",
-      "peripheral": "电源",
-      "config": "电源连接",
+      "role": "VDDA",
+      "peripheral": "VDDA",
+      "config": "复用功能",
       "status": "ok",
-      "note": "连接到电源网络 3V3"
+      "note": "网络名与芯片复用功能一致（VDDA）"
     },
     {
       "pin": "34",
-      "pin_name": "PA0-WKUP",
-      "net": "PA0",
+      "pin_name": "",
+      "net": "WK_UP",
       "component": "U2",
       "role": "唤醒输入",
       "peripheral": "GPIO 输入",
@@ -383,63 +361,41 @@
     },
     {
       "pin": "35",
-      "pin_name": "PA1",
-      "net": "STM_ADC",
+      "pin_name": "",
+      "net": "WK_UP",
       "component": "U2",
-      "role": "模拟输入",
-      "peripheral": "ADC",
-      "config": "模拟输入模式",
-      "status": "ok",
-      "note": "按网络名语义推断（STM_ADC）"
+      "role": "",
+      "peripheral": "",
+      "config": "",
+      "status": "warning",
+      "note": "网络名无明确语义，无法推断功能角色"
     },
     {
       "pin": "36",
-      "pin_name": "PA2",
-      "net": "UART2_TX",
+      "pin_name": "",
+      "net": null,
       "component": "U2",
-      "role": "发送（USART2_TX）",
-      "peripheral": "USART2_TX",
-      "config": "复用推挽输出",
-      "status": "ok",
-      "note": "网络名与芯片复用功能一致（USART2_TX）"
+      "role": "",
+      "peripheral": "NC",
+      "config": "未连接",
+      "status": "nc",
+      "note": "网表中无连接（NC）"
     },
     {
       "pin": "37",
-      "pin_name": "PA3",
-      "net": "UART2_RX",
+      "pin_name": "",
+      "net": "USART2_TX",
       "component": "U2",
-      "role": "接收（USART2_RX）",
-      "peripheral": "USART2_RX",
-      "config": "复用功能",
-      "status": "ok",
-      "note": "网络名与芯片复用功能一致（USART2_RX）"
-    },
-    {
-      "pin": "38",
-      "pin_name": "VSS_4",
-      "net": "GND",
-      "component": "U2",
-      "role": "电源",
-      "peripheral": "电源",
-      "config": "电源连接",
-      "status": "ok",
-      "note": "连接到电源网络 GND"
-    },
-    {
-      "pin": "39",
-      "pin_name": "VDD_4",
-      "net": "3V3",
-      "component": "U2",
-      "role": "电源",
-      "peripheral": "电源",
-      "config": "电源连接",
-      "status": "ok",
-      "note": "连接到电源网络 3V3"
+      "role": "串口通信",
+      "peripheral": "USART",
+      "config": "复用推挽输出",
+      "status": "conflict",
+      "note": "按网络名语义推断（USART2_TX），疑似串口通信，需人工确认具体外设"
     },
     {
       "pin": "40",
-      "pin_name": "PA4",
-      "net": "PA4",
+      "pin_name": "",
+      "net": "GBC_KEY",
       "component": "U2",
       "role": "",
       "peripheral": "",
@@ -449,41 +405,41 @@
     },
     {
       "pin": "41",
-      "pin_name": "PA5",
-      "net": "PA5",
+      "pin_name": "",
+      "net": null,
       "component": "U2",
       "role": "",
-      "peripheral": "",
-      "config": "",
-      "status": "warning",
-      "note": "网络名无明确语义，无法推断功能角色"
+      "peripheral": "NC",
+      "config": "未连接",
+      "status": "nc",
+      "note": "网表中无连接（NC）"
     },
     {
       "pin": "42",
-      "pin_name": "PA6",
-      "net": "PA6",
+      "pin_name": "",
+      "net": "VS_SCK",
       "component": "U2",
-      "role": "",
-      "peripheral": "",
-      "config": "",
-      "status": "warning",
-      "note": "网络名无明确语义，无法推断功能角色"
+      "role": "SPI 通信",
+      "peripheral": "SPI",
+      "config": "复用推挽输出",
+      "status": "ok",
+      "note": "按网络名语义推断（VS_SCK）"
     },
     {
       "pin": "43",
-      "pin_name": "PA7",
-      "net": "PA7",
+      "pin_name": "",
+      "net": "VS_MOSI",
       "component": "U2",
-      "role": "",
-      "peripheral": "",
-      "config": "",
-      "status": "warning",
-      "note": "网络名无明确语义，无法推断功能角色"
+      "role": "SPI 通信",
+      "peripheral": "SPI",
+      "config": "复用推挽输出",
+      "status": "ok",
+      "note": "按网络名语义推断（VS_MOSI）"
     },
     {
       "pin": "44",
-      "pin_name": "PC4",
-      "net": "PC4",
+      "pin_name": "",
+      "net": "OV_D3",
       "component": "U2",
       "role": "",
       "peripheral": "",
@@ -493,8 +449,8 @@
     },
     {
       "pin": "45",
-      "pin_name": "PC5",
-      "net": "PC5",
+      "pin_name": "",
+      "net": "OV_D5",
       "component": "U2",
       "role": "",
       "peripheral": "",
@@ -504,40 +460,40 @@
     },
     {
       "pin": "46",
-      "pin_name": "PB0",
-      "net": "PB0",
+      "pin_name": "",
+      "net": "LCD_BL",
       "component": "U2",
-      "role": "",
-      "peripheral": "",
-      "config": "",
-      "status": "warning",
-      "note": "网络名无明确语义，无法推断功能角色"
+      "role": "并口/LCD 接口",
+      "peripheral": "FSMC",
+      "config": "复用推挽输出",
+      "status": "ok",
+      "note": "按网络名语义推断（LCD_BL）"
     },
     {
       "pin": "47",
-      "pin_name": "PB1",
-      "net": "PB1",
+      "pin_name": "",
+      "net": "LCD_BL",
       "component": "U2",
-      "role": "",
-      "peripheral": "",
-      "config": "",
-      "status": "warning",
-      "note": "网络名无明确语义，无法推断功能角色"
+      "role": "并口/LCD 接口",
+      "peripheral": "FSMC",
+      "config": "复用推挽输出",
+      "status": "ok",
+      "note": "按网络名语义推断（LCD_BL）"
     },
     {
       "pin": "48",
-      "pin_name": "PB2",
-      "net": "BOOT1",
+      "pin_name": "",
+      "net": null,
       "component": "U2",
-      "role": "启动配置",
-      "peripheral": "BOOT",
-      "config": "启动模式选择",
-      "status": "ok",
-      "note": "按网络名语义推断（BOOT1）"
+      "role": "",
+      "peripheral": "NC",
+      "config": "未连接",
+      "status": "nc",
+      "note": "网表中无连接（NC）"
     },
     {
       "pin": "49",
-      "pin_name": "PF11",
+      "pin_name": "",
       "net": "PF11",
       "component": "U2",
       "role": "",
@@ -548,7 +504,18 @@
     },
     {
       "pin": "50",
-      "pin_name": "PF12",
+      "pin_name": "",
+      "net": null,
+      "component": "U2",
+      "role": "",
+      "peripheral": "NC",
+      "config": "未连接",
+      "status": "nc",
+      "note": "网表中无连接（NC）"
+    },
+    {
+      "pin": "53",
+      "pin_name": "",
       "net": "PF12",
       "component": "U2",
       "role": "",
@@ -558,41 +525,8 @@
       "note": "网络名无明确语义，无法推断功能角色"
     },
     {
-      "pin": "51",
-      "pin_name": "VSS_6",
-      "net": "GND",
-      "component": "U2",
-      "role": "电源",
-      "peripheral": "电源",
-      "config": "电源连接",
-      "status": "ok",
-      "note": "连接到电源网络 GND"
-    },
-    {
-      "pin": "52",
-      "pin_name": "VDD_6",
-      "net": "3V3",
-      "component": "U2",
-      "role": "电源",
-      "peripheral": "电源",
-      "config": "电源连接",
-      "status": "ok",
-      "note": "连接到电源网络 3V3"
-    },
-    {
-      "pin": "53",
-      "pin_name": "PF13",
-      "net": "PF13",
-      "component": "U2",
-      "role": "",
-      "peripheral": "",
-      "config": "",
-      "status": "warning",
-      "note": "网络名无明确语义，无法推断功能角色"
-    },
-    {
       "pin": "54",
-      "pin_name": "PF14",
+      "pin_name": "",
       "net": "PF14",
       "component": "U2",
       "role": "",
@@ -603,7 +537,7 @@
     },
     {
       "pin": "55",
-      "pin_name": "PF15",
+      "pin_name": "",
       "net": "PF15",
       "component": "U2",
       "role": "",
@@ -614,7 +548,7 @@
     },
     {
       "pin": "56",
-      "pin_name": "PG0",
+      "pin_name": "",
       "net": "PG0",
       "component": "U2",
       "role": "",
@@ -625,8 +559,8 @@
     },
     {
       "pin": "57",
-      "pin_name": "PG1",
-      "net": "PG1",
+      "pin_name": "",
+      "net": "PG0",
       "component": "U2",
       "role": "",
       "peripheral": "",
@@ -636,7 +570,7 @@
     },
     {
       "pin": "58",
-      "pin_name": "PE7",
+      "pin_name": "",
       "net": "PE7",
       "component": "U2",
       "role": "",
@@ -647,7 +581,7 @@
     },
     {
       "pin": "59",
-      "pin_name": "PE8",
+      "pin_name": "",
       "net": "PE8",
       "component": "U2",
       "role": "",
@@ -658,7 +592,7 @@
     },
     {
       "pin": "60",
-      "pin_name": "PE9",
+      "pin_name": "",
       "net": "PE9",
       "component": "U2",
       "role": "",
@@ -668,30 +602,8 @@
       "note": "网络名无明确语义，无法推断功能角色"
     },
     {
-      "pin": "61",
-      "pin_name": "VSS_7",
-      "net": "GND",
-      "component": "U2",
-      "role": "电源",
-      "peripheral": "电源",
-      "config": "电源连接",
-      "status": "ok",
-      "note": "连接到电源网络 GND"
-    },
-    {
-      "pin": "62",
-      "pin_name": "VDD_7",
-      "net": "3V3",
-      "component": "U2",
-      "role": "电源",
-      "peripheral": "电源",
-      "config": "电源连接",
-      "status": "ok",
-      "note": "连接到电源网络 3V3"
-    },
-    {
       "pin": "63",
-      "pin_name": "PE10",
+      "pin_name": "",
       "net": "PE10",
       "component": "U2",
       "role": "",
@@ -702,7 +614,7 @@
     },
     {
       "pin": "64",
-      "pin_name": "PE11",
+      "pin_name": "",
       "net": "PE11",
       "component": "U2",
       "role": "",
@@ -713,7 +625,18 @@
     },
     {
       "pin": "65",
-      "pin_name": "PE12",
+      "pin_name": "",
+      "net": null,
+      "component": "U2",
+      "role": "",
+      "peripheral": "NC",
+      "config": "未连接",
+      "status": "nc",
+      "note": "网表中无连接（NC）"
+    },
+    {
+      "pin": "66",
+      "pin_name": "",
       "net": "PE12",
       "component": "U2",
       "role": "",
@@ -723,19 +646,8 @@
       "note": "网络名无明确语义，无法推断功能角色"
     },
     {
-      "pin": "66",
-      "pin_name": "PE13",
-      "net": "PE13",
-      "component": "U2",
-      "role": "",
-      "peripheral": "",
-      "config": "",
-      "status": "warning",
-      "note": "网络名无明确语义，无法推断功能角色"
-    },
-    {
       "pin": "67",
-      "pin_name": "PE14",
+      "pin_name": "",
       "net": "PE14",
       "component": "U2",
       "role": "",
@@ -746,7 +658,7 @@
     },
     {
       "pin": "68",
-      "pin_name": "PE15",
+      "pin_name": "",
       "net": "PE15",
       "component": "U2",
       "role": "",
@@ -757,62 +669,40 @@
     },
     {
       "pin": "69",
-      "pin_name": "PB10",
-      "net": "PB10",
+      "pin_name": "",
+      "net": "USART3_TX",
       "component": "U2",
-      "role": "",
-      "peripheral": "",
-      "config": "",
-      "status": "warning",
-      "note": "网络名无明确语义，无法推断功能角色"
+      "role": "发送（USART3_TX）",
+      "peripheral": "USART3_TX",
+      "config": "复用推挽输出",
+      "status": "ok",
+      "note": "网络名与芯片复用功能一致（USART3_TX）"
     },
     {
       "pin": "70",
-      "pin_name": "PB11",
-      "net": "PB11",
+      "pin_name": "",
+      "net": null,
       "component": "U2",
       "role": "",
-      "peripheral": "",
-      "config": "",
-      "status": "warning",
-      "note": "网络名无明确语义，无法推断功能角色"
-    },
-    {
-      "pin": "71",
-      "pin_name": "VSS_1",
-      "net": "GND",
-      "component": "U2",
-      "role": "电源",
-      "peripheral": "电源",
-      "config": "电源连接",
-      "status": "ok",
-      "note": "连接到电源网络 GND"
-    },
-    {
-      "pin": "72",
-      "pin_name": "VDD_1",
-      "net": "3V3",
-      "component": "U2",
-      "role": "电源",
-      "peripheral": "电源",
-      "config": "电源连接",
-      "status": "ok",
-      "note": "连接到电源网络 3V3"
+      "peripheral": "NC",
+      "config": "未连接",
+      "status": "nc",
+      "note": "网表中无连接（NC）"
     },
     {
       "pin": "73",
-      "pin_name": "PB12",
-      "net": "F_CS",
+      "pin_name": "",
+      "net": "USART3_RX",
       "component": "U2",
-      "role": "SPI 通信",
-      "peripheral": "SPI",
+      "role": "串口通信",
+      "peripheral": "USART",
       "config": "复用推挽输出",
-      "status": "ok",
-      "note": "按网络名语义推断（F_CS）"
+      "status": "conflict",
+      "note": "按网络名语义推断（USART3_RX），疑似串口通信，需人工确认具体外设"
     },
     {
       "pin": "74",
-      "pin_name": "PB13",
+      "pin_name": "",
       "net": "SPI2_SCK",
       "component": "U2",
       "role": "SPI（SPI2_SCK）",
@@ -823,30 +713,30 @@
     },
     {
       "pin": "75",
-      "pin_name": "PB14",
-      "net": "SPI2_MISO",
+      "pin_name": "",
+      "net": null,
       "component": "U2",
-      "role": "SPI（SPI2_MISO）",
-      "peripheral": "SPI2_MISO",
-      "config": "复用功能",
-      "status": "ok",
-      "note": "网络名与芯片复用功能一致（SPI2_MISO）"
+      "role": "",
+      "peripheral": "NC",
+      "config": "未连接",
+      "status": "nc",
+      "note": "网表中无连接（NC）"
     },
     {
       "pin": "76",
-      "pin_name": "PB15",
-      "net": "SPI2_MOSI",
+      "pin_name": "",
+      "net": "SPI2_MISO",
       "component": "U2",
-      "role": "SPI（SPI2_MOSI）",
-      "peripheral": "SPI2_MOSI",
+      "role": "SPI 通信",
+      "peripheral": "SPI",
       "config": "复用推挽输出",
-      "status": "ok",
-      "note": "网络名与芯片复用功能一致（SPI2_MOSI）"
+      "status": "conflict",
+      "note": "按网络名语义推断（SPI2_MISO）"
     },
     {
       "pin": "77",
-      "pin_name": "PD8",
-      "net": "PD8",
+      "pin_name": "",
+      "net": "RS485_RE",
       "component": "U2",
       "role": "",
       "peripheral": "",
@@ -856,106 +746,62 @@
     },
     {
       "pin": "78",
-      "pin_name": "PD9",
-      "net": "PD9",
+      "pin_name": "",
+      "net": "FSMC_D14",
       "component": "U2",
-      "role": "",
-      "peripheral": "",
-      "config": "",
-      "status": "warning",
-      "note": "网络名无明确语义，无法推断功能角色"
+      "role": "FSMC_D14",
+      "peripheral": "FSMC_D14",
+      "config": "复用功能",
+      "status": "ok",
+      "note": "网络名与芯片复用功能一致（FSMC_D14）"
     },
     {
       "pin": "79",
-      "pin_name": "PD10",
-      "net": "PD10",
+      "pin_name": "",
+      "net": "FSMC_D15",
       "component": "U2",
-      "role": "",
-      "peripheral": "",
-      "config": "",
-      "status": "warning",
-      "note": "网络名无明确语义，无法推断功能角色"
-    },
-    {
-      "pin": "80",
-      "pin_name": "PD11",
-      "net": "PD11",
-      "component": "U2",
-      "role": "",
-      "peripheral": "",
-      "config": "",
-      "status": "warning",
-      "note": "网络名无明确语义，无法推断功能角色"
-    },
-    {
-      "pin": "81",
-      "pin_name": "PD12",
-      "net": "PD12",
-      "component": "U2",
-      "role": "",
-      "peripheral": "",
-      "config": "",
-      "status": "warning",
-      "note": "网络名无明确语义，无法推断功能角色"
+      "role": "FSMC_D15",
+      "peripheral": "FSMC_D15",
+      "config": "复用功能",
+      "status": "ok",
+      "note": "网络名与芯片复用功能一致（FSMC_D15）"
     },
     {
       "pin": "82",
-      "pin_name": "PD13",
-      "net": "PD13",
+      "pin_name": "",
+      "net": "FSMC_A18",
       "component": "U2",
-      "role": "",
-      "peripheral": "",
-      "config": "",
-      "status": "warning",
-      "note": "网络名无明确语义，无法推断功能角色"
-    },
-    {
-      "pin": "83",
-      "pin_name": "VSS_8",
-      "net": "GND",
-      "component": "U2",
-      "role": "电源",
-      "peripheral": "电源",
-      "config": "电源连接",
+      "role": "FSMC_A18",
+      "peripheral": "FSMC_A18",
+      "config": "复用功能",
       "status": "ok",
-      "note": "连接到电源网络 GND"
-    },
-    {
-      "pin": "84",
-      "pin_name": "VDD_8",
-      "net": "3V3",
-      "component": "U2",
-      "role": "电源",
-      "peripheral": "电源",
-      "config": "电源连接",
-      "status": "ok",
-      "note": "连接到电源网络 3V3"
+      "note": "网络名与芯片复用功能一致（FSMC_A18）"
     },
     {
       "pin": "85",
-      "pin_name": "PD14",
-      "net": "PD14",
+      "pin_name": "",
+      "net": "FSMC_D0",
       "component": "U2",
-      "role": "",
-      "peripheral": "",
-      "config": "",
-      "status": "warning",
-      "note": "网络名无明确语义，无法推断功能角色"
+      "role": "FSMC_D0",
+      "peripheral": "FSMC_D0",
+      "config": "复用功能",
+      "status": "ok",
+      "note": "网络名与芯片复用功能一致（FSMC_D0）"
     },
     {
       "pin": "86",
-      "pin_name": "PD15",
-      "net": "PD15",
+      "pin_name": "",
+      "net": "FSMC_D1",
       "component": "U2",
-      "role": "",
-      "peripheral": "",
-      "config": "",
-      "status": "warning",
-      "note": "网络名无明确语义，无法推断功能角色"
+      "role": "FSMC_D1",
+      "peripheral": "FSMC_D1",
+      "config": "复用功能",
+      "status": "ok",
+      "note": "网络名与芯片复用功能一致（FSMC_D1）"
     },
     {
       "pin": "87",
-      "pin_name": "PG2",
+      "pin_name": "",
       "net": "PG2",
       "component": "U2",
       "role": "",
@@ -966,7 +812,7 @@
     },
     {
       "pin": "88",
-      "pin_name": "PG3",
+      "pin_name": "",
       "net": "PG3",
       "component": "U2",
       "role": "",
@@ -977,7 +823,18 @@
     },
     {
       "pin": "89",
-      "pin_name": "PG4",
+      "pin_name": "",
+      "net": null,
+      "component": "U2",
+      "role": "",
+      "peripheral": "NC",
+      "config": "未连接",
+      "status": "nc",
+      "note": "网表中无连接（NC）"
+    },
+    {
+      "pin": "90",
+      "pin_name": "",
       "net": "PG4",
       "component": "U2",
       "role": "",
@@ -987,19 +844,8 @@
       "note": "网络名无明确语义，无法推断功能角色"
     },
     {
-      "pin": "90",
-      "pin_name": "PG5",
-      "net": "PG5",
-      "component": "U2",
-      "role": "",
-      "peripheral": "",
-      "config": "",
-      "status": "warning",
-      "note": "网络名无明确语义，无法推断功能角色"
-    },
-    {
       "pin": "91",
-      "pin_name": "PG6",
+      "pin_name": "",
       "net": "PG6",
       "component": "U2",
       "role": "",
@@ -1010,14 +856,14 @@
     },
     {
       "pin": "92",
-      "pin_name": "PG7",
-      "net": "PG7",
+      "pin_name": "PG8",
+      "net": "DM9000_INT",
       "component": "U2",
       "role": "",
       "peripheral": "",
       "config": "",
       "status": "warning",
-      "note": "网络名无明确语义，无法推断功能角色"
+      "note": "网络名无明确语义，无法推断功能角色；网表引脚名 PG8 ≠ 芯片定义 PG7"
     },
     {
       "pin": "93",
@@ -1031,42 +877,20 @@
       "note": "网络名无明确语义，无法推断功能角色"
     },
     {
-      "pin": "94",
-      "pin_name": "VSS_9",
-      "net": "GND",
-      "component": "U2",
-      "role": "电源",
-      "peripheral": "电源",
-      "config": "电源连接",
-      "status": "ok",
-      "note": "连接到电源网络 GND"
-    },
-    {
-      "pin": "95",
-      "pin_name": "VDD_9",
-      "net": "3V3",
-      "component": "U2",
-      "role": "电源",
-      "peripheral": "电源",
-      "config": "电源连接",
-      "status": "ok",
-      "note": "连接到电源网络 3V3"
-    },
-    {
       "pin": "96",
-      "pin_name": "PC6",
-      "net": "PC6",
+      "pin_name": "",
+      "net": null,
       "component": "U2",
       "role": "",
-      "peripheral": "",
-      "config": "",
-      "status": "warning",
-      "note": "网络名无明确语义，无法推断功能角色"
+      "peripheral": "NC",
+      "config": "未连接",
+      "status": "nc",
+      "note": "网表中无连接（NC）"
     },
     {
       "pin": "97",
-      "pin_name": "PC7",
-      "net": "PC7",
+      "pin_name": "",
+      "net": "OV_D6",
       "component": "U2",
       "role": "",
       "peripheral": "",
@@ -1076,52 +900,52 @@
     },
     {
       "pin": "98",
-      "pin_name": "PC8",
-      "net": "PC8",
+      "pin_name": "",
+      "net": "SDIO_D0",
       "component": "U2",
-      "role": "",
-      "peripheral": "",
-      "config": "",
-      "status": "warning",
-      "note": "网络名无明确语义，无法推断功能角色"
+      "role": "SDIO_D0",
+      "peripheral": "SDIO_D0",
+      "config": "复用功能",
+      "status": "ok",
+      "note": "网络名与芯片复用功能一致（SDIO_D0）"
     },
     {
       "pin": "99",
-      "pin_name": "PC9",
-      "net": "PC9",
+      "pin_name": "",
+      "net": null,
       "component": "U2",
       "role": "",
-      "peripheral": "",
-      "config": "",
-      "status": "warning",
-      "note": "网络名无明确语义，无法推断功能角色"
+      "peripheral": "NC",
+      "config": "未连接",
+      "status": "nc",
+      "note": "网表中无连接（NC）"
     },
     {
       "pin": "100",
-      "pin_name": "PA8",
-      "net": "PA8",
+      "pin_name": "",
+      "net": null,
       "component": "U2",
       "role": "",
-      "peripheral": "",
-      "config": "",
-      "status": "warning",
-      "note": "网络名无明确语义，无法推断功能角色"
+      "peripheral": "NC",
+      "config": "未连接",
+      "status": "nc",
+      "note": "网表中无连接（NC）"
     },
     {
       "pin": "101",
-      "pin_name": "PA9",
-      "net": "UART1_TX",
+      "pin_name": "",
+      "net": "PWM_DAC",
       "component": "U2",
-      "role": "发送（USART1_TX）",
-      "peripheral": "USART1_TX",
+      "role": "定时器/脉冲输出",
+      "peripheral": "TIMER PWM",
       "config": "复用推挽输出",
       "status": "ok",
-      "note": "网络名与芯片复用功能一致（USART1_TX）"
+      "note": "按网络名语义推断（PWM_DAC）"
     },
     {
       "pin": "102",
-      "pin_name": "PA10",
-      "net": "UART1_RX",
+      "pin_name": "",
+      "net": "USART1_RX",
       "component": "U2",
       "role": "接收（USART1_RX）",
       "peripheral": "USART1_RX",
@@ -1131,29 +955,29 @@
     },
     {
       "pin": "103",
-      "pin_name": "PA11",
-      "net": "PA11",
+      "pin_name": "",
+      "net": null,
       "component": "U2",
       "role": "",
-      "peripheral": "",
-      "config": "",
-      "status": "warning",
-      "note": "网络名无明确语义，无法推断功能角色"
+      "peripheral": "NC",
+      "config": "未连接",
+      "status": "nc",
+      "note": "网表中无连接（NC）"
     },
     {
       "pin": "104",
-      "pin_name": "PA12",
-      "net": "PA12",
+      "pin_name": "",
+      "net": "USB_D-",
       "component": "U2",
-      "role": "",
-      "peripheral": "",
-      "config": "",
-      "status": "warning",
-      "note": "网络名无明确语义，无法推断功能角色"
+      "role": "USB 接口",
+      "peripheral": "USB",
+      "config": "USB",
+      "status": "ok",
+      "note": "按网络名语义推断（USB_D-）"
     },
     {
       "pin": "105",
-      "pin_name": "PA13",
+      "pin_name": "",
       "net": "JTMS",
       "component": "U2",
       "role": "调试接口",
@@ -1174,30 +998,19 @@
       "note": "网表中无连接（NC）；网表引脚名 NC ≠ 芯片定义 Not connected"
     },
     {
-      "pin": "107",
-      "pin_name": "VSS_2",
-      "net": "GND",
-      "component": "U2",
-      "role": "电源",
-      "peripheral": "电源",
-      "config": "电源连接",
-      "status": "ok",
-      "note": "连接到电源网络 GND"
-    },
-    {
-      "pin": "108",
-      "pin_name": "VDD_2",
-      "net": "3V3",
-      "component": "U2",
-      "role": "电源",
-      "peripheral": "电源",
-      "config": "电源连接",
-      "status": "ok",
-      "note": "连接到电源网络 3V3"
-    },
-    {
       "pin": "109",
-      "pin_name": "PA14",
+      "pin_name": "",
+      "net": null,
+      "component": "U2",
+      "role": "",
+      "peripheral": "NC",
+      "config": "未连接",
+      "status": "nc",
+      "note": "网表中无连接（NC）"
+    },
+    {
+      "pin": "110",
+      "pin_name": "",
       "net": "JTCK",
       "component": "U2",
       "role": "调试接口",
@@ -1207,97 +1020,86 @@
       "note": "按网络名语义推断（JTCK）"
     },
     {
-      "pin": "110",
-      "pin_name": "PA15",
-      "net": "JTDI",
-      "component": "U2",
-      "role": "JTDI",
-      "peripheral": "JTDI",
-      "config": "复用功能",
-      "status": "ok",
-      "note": "网络名与芯片复用功能一致（JTDI）"
-    },
-    {
       "pin": "111",
-      "pin_name": "PC10",
-      "net": "UART4_TX",
+      "pin_name": "",
+      "net": "SDIO_D1",
       "component": "U2",
-      "role": "发送（USART4_TX）",
-      "peripheral": "USART4_TX",
-      "config": "复用推挽输出",
+      "role": "SD 卡接口",
+      "peripheral": "SDIO",
+      "config": "SDIO",
       "status": "ok",
-      "note": "网络名与芯片复用功能一致（USART4_TX）"
+      "note": "按网络名语义推断（SDIO_D1）"
     },
     {
       "pin": "112",
-      "pin_name": "PC11",
-      "net": "UART4_RX",
+      "pin_name": "",
+      "net": "SDIO_D3",
       "component": "U2",
-      "role": "接收（USART4_RX）",
-      "peripheral": "USART4_RX",
+      "role": "SDIO_D3",
+      "peripheral": "SDIO_D3",
       "config": "复用功能",
       "status": "ok",
-      "note": "网络名与芯片复用功能一致（USART4_RX）"
+      "note": "网络名与芯片复用功能一致（SDIO_D3）"
     },
     {
       "pin": "113",
-      "pin_name": "PC12",
-      "net": "PC12",
+      "pin_name": "A",
+      "net": null,
       "component": "U2",
       "role": "",
-      "peripheral": "",
-      "config": "",
-      "status": "warning",
-      "note": "网络名无明确语义，无法推断功能角色"
+      "peripheral": "NC",
+      "config": "未连接",
+      "status": "nc",
+      "note": "网表中无连接（NC）；网表引脚名 A ≠ 芯片定义 PC12"
     },
     {
       "pin": "114",
-      "pin_name": "PD0",
-      "net": "PD0",
+      "pin_name": "A",
+      "net": "FSMC_D2",
       "component": "U2",
-      "role": "高速晶振输入",
-      "peripheral": "HXTAL",
-      "config": "主时钟晶振",
-      "status": "ok",
-      "note": "按引脚名语义推断（OSC_IN）"
+      "role": "FSMC_D2",
+      "peripheral": "FSMC_D2",
+      "config": "复用功能",
+      "status": "warning",
+      "note": "网络名与芯片复用功能一致（FSMC_D2）；网表引脚名 A ≠ 芯片定义 PD0"
     },
     {
       "pin": "115",
-      "pin_name": "PD1",
-      "net": "PD1",
+      "pin_name": "",
+      "net": "FSMC_D2",
       "component": "U2",
-      "role": "高速晶振输出",
-      "peripheral": "HXTAL",
-      "config": "主时钟晶振",
+      "role": "并口/LCD 接口",
+      "peripheral": "FSMC",
+      "config": "复用推挽输出",
       "status": "ok",
-      "note": "按引脚名语义推断（OSC_OUT）"
+      "note": "按网络名语义推断（FSMC_D2）"
     },
     {
       "pin": "116",
-      "pin_name": "PD2",
-      "net": "PD2",
+      "pin_name": "",
+      "net": "SDIO_CMD",
       "component": "U2",
-      "role": "",
-      "peripheral": "",
-      "config": "",
-      "status": "warning",
-      "note": "网络名无明确语义，无法推断功能角色"
+      "role": "SD 卡接口",
+      "peripheral": "SDIO",
+      "config": "SDIO",
+      "status": "ok",
+      "note": "按网络名语义推断（SDIO_CMD）"
     },
     {
       "pin": "117",
-      "pin_name": "PD3",
-      "net": "PD3",
+      "pin_name": "",
+      "net": "OV_SCL",
       "component": "U2",
-      "role": "",
-      "peripheral": "",
-      "config": "",
-      "status": "warning",
-      "note": "网络名无明确语义，无法推断功能角色"
+      "role": "I2C 通信",
+      "peripheral": "I2C",
+      "config": "复用开漏输出",
+      "status": "ok",
+      "note": "按网络名语义推断（OV_SCL）"
     },
     {
       "pin": "118",
-      "pin_name": "PD4",
-      "net": "PD4",
+      "pin_name": "",
+      "net": "JOY_CLK",
       "component": "U2",
       "role": "",
       "peripheral": "",
@@ -1307,41 +1109,19 @@
     },
     {
       "pin": "119",
-      "pin_name": "PD5",
-      "net": "PD5",
+      "pin_name": "",
+      "net": "FSMC_NOE",
       "component": "U2",
-      "role": "",
-      "peripheral": "",
-      "config": "",
-      "status": "warning",
-      "note": "网络名无明确语义，无法推断功能角色"
-    },
-    {
-      "pin": "120",
-      "pin_name": "VSS_10",
-      "net": "GND",
-      "component": "U2",
-      "role": "电源",
-      "peripheral": "电源",
-      "config": "电源连接",
+      "role": "并口/LCD 接口",
+      "peripheral": "FSMC",
+      "config": "复用推挽输出",
       "status": "ok",
-      "note": "连接到电源网络 GND"
-    },
-    {
-      "pin": "121",
-      "pin_name": "VDD_10",
-      "net": "3V3",
-      "component": "U2",
-      "role": "电源",
-      "peripheral": "电源",
-      "config": "电源连接",
-      "status": "ok",
-      "note": "连接到电源网络 3V3"
+      "note": "按网络名语义推断（FSMC_NOE）"
     },
     {
       "pin": "122",
-      "pin_name": "PD6",
-      "net": "PD6",
+      "pin_name": "",
+      "net": "FIFO_WRST",
       "component": "U2",
       "role": "",
       "peripheral": "",
@@ -1351,40 +1131,40 @@
     },
     {
       "pin": "123",
-      "pin_name": "PD7",
-      "net": "PD7",
+      "pin_name": "",
+      "net": "DM9000_RST",
       "component": "U2",
-      "role": "",
-      "peripheral": "",
-      "config": "",
-      "status": "warning",
-      "note": "网络名无明确语义，无法推断功能角色"
+      "role": "复位",
+      "peripheral": "复位",
+      "config": "低电平有效",
+      "status": "ok",
+      "note": "按网络名语义推断（DM9000_RST）"
     },
     {
       "pin": "124",
-      "pin_name": "PG9",
+      "pin_name": "PG8",
       "net": "PG9",
       "component": "U2",
       "role": "",
       "peripheral": "",
       "config": "",
       "status": "warning",
-      "note": "网络名无明确语义，无法推断功能角色"
+      "note": "网络名无明确语义，无法推断功能角色；网表引脚名 PG8 ≠ 芯片定义 PG9"
     },
     {
       "pin": "125",
-      "pin_name": "PG10",
+      "pin_name": "PG8",
       "net": "PG10",
       "component": "U2",
       "role": "",
       "peripheral": "",
       "config": "",
       "status": "warning",
-      "note": "网络名无明确语义，无法推断功能角色"
+      "note": "网络名无明确语义，无法推断功能角色；网表引脚名 PG8 ≠ 芯片定义 PG10"
     },
     {
       "pin": "126",
-      "pin_name": "PG11",
+      "pin_name": "",
       "net": "PG11",
       "component": "U2",
       "role": "",
@@ -1395,7 +1175,7 @@
     },
     {
       "pin": "127",
-      "pin_name": "PG12",
+      "pin_name": "",
       "net": "PG12",
       "component": "U2",
       "role": "",
@@ -1406,7 +1186,7 @@
     },
     {
       "pin": "128",
-      "pin_name": "PG13",
+      "pin_name": "",
       "net": "PG13",
       "component": "U2",
       "role": "",
@@ -1417,36 +1197,14 @@
     },
     {
       "pin": "129",
-      "pin_name": "PG14",
+      "pin_name": "PG15",
       "net": "PG14",
       "component": "U2",
       "role": "",
       "peripheral": "",
       "config": "",
       "status": "warning",
-      "note": "网络名无明确语义，无法推断功能角色"
-    },
-    {
-      "pin": "130",
-      "pin_name": "VSS_11",
-      "net": "GND",
-      "component": "U2",
-      "role": "电源",
-      "peripheral": "电源",
-      "config": "电源连接",
-      "status": "ok",
-      "note": "连接到电源网络 GND"
-    },
-    {
-      "pin": "131",
-      "pin_name": "VDD_11",
-      "net": "3V3",
-      "component": "U2",
-      "role": "电源",
-      "peripheral": "电源",
-      "config": "电源连接",
-      "status": "ok",
-      "note": "连接到电源网络 3V3"
+      "note": "网络名无明确语义，无法推断功能角色；网表引脚名 PG15 ≠ 芯片定义 PG14"
     },
     {
       "pin": "132",
@@ -1461,51 +1219,51 @@
     },
     {
       "pin": "133",
-      "pin_name": "PB3",
-      "net": "JTDO",
+      "pin_name": "",
+      "net": "T_MISO",
       "component": "U2",
-      "role": "JTDO",
-      "peripheral": "JTDO",
-      "config": "复用功能",
+      "role": "SPI 通信",
+      "peripheral": "SPI",
+      "config": "复用推挽输出",
       "status": "ok",
-      "note": "网络名与芯片复用功能一致（JTDO）"
+      "note": "按网络名语义推断（T_MISO）"
     },
     {
       "pin": "134",
-      "pin_name": "PB4",
-      "net": "JTRST",
+      "pin_name": "",
+      "net": "FIFO_RCLK",
       "component": "U2",
-      "role": "调试接口",
-      "peripheral": "SWD",
+      "role": "JTAG 复位",
+      "peripheral": "JTAG",
       "config": "调试接口",
       "status": "ok",
-      "note": "按网络名语义推断（JTRST）"
+      "note": "按引脚名语义推断（NJTRST）"
     },
     {
       "pin": "135",
-      "pin_name": "PB5",
-      "net": "LED1",
+      "pin_name": "",
+      "net": null,
       "component": "U2",
-      "role": "LED 指示",
-      "peripheral": "GPIO 输出",
-      "config": "推挽输出",
-      "status": "ok",
-      "note": "按网络名语义推断（LED1）"
+      "role": "",
+      "peripheral": "NC",
+      "config": "未连接",
+      "status": "nc",
+      "note": "网表中无连接（NC）"
     },
     {
       "pin": "136",
-      "pin_name": "PB6",
-      "net": "IIC_SCL",
+      "pin_name": "",
+      "net": "PB5",
       "component": "U2",
-      "role": "I2C 通信",
-      "peripheral": "I2C",
-      "config": "复用开漏输出",
-      "status": "ok",
-      "note": "按网络名语义推断（IIC_SCL）"
+      "role": "",
+      "peripheral": "",
+      "config": "",
+      "status": "warning",
+      "note": "网络名无明确语义，无法推断功能角色"
     },
     {
       "pin": "137",
-      "pin_name": "PB7",
+      "pin_name": "",
       "net": "IIC_SDA",
       "component": "U2",
       "role": "I2C 通信",
@@ -1516,7 +1274,7 @@
     },
     {
       "pin": "138",
-      "pin_name": "BOOT0",
+      "pin_name": "",
       "net": "BOOT0",
       "component": "U2",
       "role": "BOOT0",
@@ -1527,7 +1285,18 @@
     },
     {
       "pin": "139",
-      "pin_name": "PB8",
+      "pin_name": "",
+      "net": null,
+      "component": "U2",
+      "role": "",
+      "peripheral": "NC",
+      "config": "未连接",
+      "status": "nc",
+      "note": "网表中无连接（NC）"
+    },
+    {
+      "pin": "140",
+      "pin_name": "",
       "net": "BEEP",
       "component": "U2",
       "role": "",
@@ -1537,19 +1306,19 @@
       "note": "网络名无明确语义，无法推断功能角色"
     },
     {
-      "pin": "140",
-      "pin_name": "PB9",
-      "net": "PB9",
+      "pin": "141",
+      "pin_name": "NC",
+      "net": "PE0",
       "component": "U2",
       "role": "",
       "peripheral": "",
       "config": "",
       "status": "warning",
-      "note": "网络名无明确语义，无法推断功能角色"
+      "note": "网络名无明确语义，无法推断功能角色；网表引脚名 NC ≠ 芯片定义 PE0"
     },
     {
-      "pin": "141",
-      "pin_name": "PE0",
+      "pin": "142",
+      "pin_name": "",
       "net": "PE0",
       "component": "U2",
       "role": "",
@@ -1557,80 +1326,96 @@
       "config": "",
       "status": "warning",
       "note": "网络名无明确语义，无法推断功能角色"
-    },
-    {
-      "pin": "142",
-      "pin_name": "PE1",
-      "net": "PE1",
-      "component": "U2",
-      "role": "",
-      "peripheral": "",
-      "config": "",
-      "status": "warning",
-      "note": "网络名无明确语义，无法推断功能角色"
-    },
-    {
-      "pin": "143",
-      "pin_name": "VSS_3",
-      "net": "GND",
-      "component": "U2",
-      "role": "电源",
-      "peripheral": "电源",
-      "config": "电源连接",
-      "status": "ok",
-      "note": "连接到电源网络 GND"
-    },
-    {
-      "pin": "144",
-      "pin_name": "VDD_3",
-      "net": "3V3",
-      "component": "U2",
-      "role": "电源",
-      "peripheral": "电源",
-      "config": "电源连接",
-      "status": "ok",
-      "note": "连接到电源网络 3V3"
     }
   ],
   "power": {
-    "VBAT": "3V3",
-    "VSS_5": "GND",
-    "VDD_5": "3V3",
-    "VSSA": "GND",
-    "VREF-": "GND",
-    "VREF+": "3V3",
-    "VDDA": "3V3",
-    "VSS_4": "GND",
-    "VDD_4": "3V3",
-    "VSS_6": "GND",
-    "VDD_6": "3V3",
-    "VSS_7": "GND",
-    "VDD_7": "3V3",
-    "VSS_1": "GND",
-    "VDD_1": "3V3",
-    "VSS_8": "GND",
-    "VDD_8": "3V3",
-    "VSS_9": "GND",
-    "VDD_9": "3V3",
-    "VSS_2": "GND",
-    "VDD_2": "3V3",
-    "VSS_10": "GND",
-    "VDD_10": "3V3",
-    "VSS_11": "GND",
-    "VDD_11": "3V3",
-    "VSS_3": "GND",
-    "VDD_3": "3V3"
+    "VBAT": null,
+    "VSSA": null,
+    "Vref-": null,
+    "Vref+": "VREF+",
+    "VDDA": "VDDA"
   },
   "clocks": {
-    "HSE": "8MHz",
-    "LSE": "32.768kHz",
+    "HSE": "未连接",
+    "LSE": "未连接",
     "PLL": "待定",
     "AHB": "待定",
     "APB1": "待定",
     "APB2": "待定"
   },
-  "conflicts": [],
+  "conflicts": [
+    {
+      "pin": "VSSA",
+      "issue": "电源引脚 VSSA 未连接",
+      "severity": "error"
+    },
+    {
+      "pin": "37",
+      "issue": "网络名 USART2_TX 暗示外设 USART2，但引脚 PA3 复用功能不含该信号（AF: USART2_RX(8), TIM5_CH4ADC123_IN3, TIM2_CH4(8)），疑似复用冲突",
+      "severity": "error"
+    },
+    {
+      "pin": "73",
+      "issue": "网络名 USART3_RX 暗示外设 USART3，但引脚 PB12 复用功能不含该信号（AF: SPI2_NSS, I2S2_WS, I2C2_SMBA, USART3_CK(8), TIM1_BKIN(8)），疑似复用冲突",
+      "severity": "error"
+    },
+    {
+      "pin": "76",
+      "issue": "网络名 SPI2_MISO 暗示外设 SPI2，但引脚 PB15 复用功能不含该信号（AF: SPI2_MOSI, I2S2_SDTIM1_CH3N(8)），疑似复用冲突",
+      "severity": "error"
+    }
+  ],
   "warnings": [
+    {
+      "pin": "U2",
+      "issue": "主控元件 U2 按引脚数启发式识别（网表 value 未含平台名 stm32f103zet6，常见于 PDF 提取网表），请人工复核",
+      "severity": "warning"
+    },
+    {
+      "pin": "VBAT",
+      "issue": "电源引脚 VBAT 未连接",
+      "severity": "warning"
+    },
+    {
+      "pin": "Vref-",
+      "issue": "电源引脚 Vref- 未连接",
+      "severity": "warning"
+    },
+    {
+      "pin": "7",
+      "issue": "网表引脚名 A 与芯片定义 PC13-TAMPER-RTC(5) 不一致",
+      "severity": "warning"
+    },
+    {
+      "pin": "8",
+      "issue": "网表引脚名 A 与芯片定义 PC14-OSC32_IN(5) 不一致",
+      "severity": "warning"
+    },
+    {
+      "pin": "114",
+      "issue": "网表引脚名 A 与芯片定义 PD0 不一致",
+      "severity": "warning"
+    },
+    {
+      "pin": "1",
+      "issue": "网络名 PE2 无明确语义，无法推断功能角色",
+      "severity": "warning"
+    },
+    {
+      "pin": "2",
+      "issue": "网络名 PE3 无明确语义，无法推断功能角色",
+      "severity": "warning"
+    },
+    {
+      "pin": "3",
+      "issue": "网络名 PE4 无明确语义，无法推断功能角色",
+      "severity": "warning"
+    },
+    {
+      "pin": "4",
+      "issue": "网络名 PE5 无明确语义，无法推断功能角色",
+      "severity": "warning"
+    },
     {
       "pin": "5",
       "issue": "网络名 PE6 无明确语义，无法推断功能角色",
@@ -1643,7 +1428,7 @@
     },
     {
       "pin": "11",
-      "issue": "网络名 PF1 无明确语义，无法推断功能角色",
+      "issue": "网络名 PF0 无明确语义，无法推断功能角色",
       "severity": "warning"
     },
     {
@@ -1693,62 +1478,37 @@
     },
     {
       "pin": "26",
-      "issue": "网络名 PC0 无明确语义，无法推断功能角色",
+      "issue": "网络名 OV_D0 无明确语义，无法推断功能角色",
       "severity": "warning"
     },
     {
       "pin": "27",
-      "issue": "网络名 PC1 无明确语义，无法推断功能角色",
+      "issue": "网络名 OV_D0 无明确语义，无法推断功能角色",
       "severity": "warning"
     },
     {
       "pin": "28",
-      "issue": "网络名 PC2 无明确语义，无法推断功能角色",
+      "issue": "网络名 OV_D2 无明确语义，无法推断功能角色",
       "severity": "warning"
     },
     {
-      "pin": "29",
-      "issue": "网络名 PC3 无明确语义，无法推断功能角色",
+      "pin": "35",
+      "issue": "网络名 WK_UP 无明确语义，无法推断功能角色",
       "severity": "warning"
     },
     {
       "pin": "40",
-      "issue": "网络名 PA4 无明确语义，无法推断功能角色",
-      "severity": "warning"
-    },
-    {
-      "pin": "41",
-      "issue": "网络名 PA5 无明确语义，无法推断功能角色",
-      "severity": "warning"
-    },
-    {
-      "pin": "42",
-      "issue": "网络名 PA6 无明确语义，无法推断功能角色",
-      "severity": "warning"
-    },
-    {
-      "pin": "43",
-      "issue": "网络名 PA7 无明确语义，无法推断功能角色",
+      "issue": "网络名 GBC_KEY 无明确语义，无法推断功能角色",
       "severity": "warning"
     },
     {
       "pin": "44",
-      "issue": "网络名 PC4 无明确语义，无法推断功能角色",
+      "issue": "网络名 OV_D3 无明确语义，无法推断功能角色",
       "severity": "warning"
     },
     {
       "pin": "45",
-      "issue": "网络名 PC5 无明确语义，无法推断功能角色",
-      "severity": "warning"
-    },
-    {
-      "pin": "46",
-      "issue": "网络名 PB0 无明确语义，无法推断功能角色",
-      "severity": "warning"
-    },
-    {
-      "pin": "47",
-      "issue": "网络名 PB1 无明确语义，无法推断功能角色",
+      "issue": "网络名 OV_D5 无明确语义，无法推断功能角色",
       "severity": "warning"
     },
     {
@@ -1757,13 +1517,8 @@
       "severity": "warning"
     },
     {
-      "pin": "50",
-      "issue": "网络名 PF12 无明确语义，无法推断功能角色",
-      "severity": "warning"
-    },
-    {
       "pin": "53",
-      "issue": "网络名 PF13 无明确语义，无法推断功能角色",
+      "issue": "网络名 PF12 无明确语义，无法推断功能角色",
       "severity": "warning"
     },
     {
@@ -1783,7 +1538,7 @@
     },
     {
       "pin": "57",
-      "issue": "网络名 PG1 无明确语义，无法推断功能角色",
+      "issue": "网络名 PG0 无明确语义，无法推断功能角色",
       "severity": "warning"
     },
     {
@@ -1812,13 +1567,8 @@
       "severity": "warning"
     },
     {
-      "pin": "65",
-      "issue": "网络名 PE12 无明确语义，无法推断功能角色",
-      "severity": "warning"
-    },
-    {
       "pin": "66",
-      "issue": "网络名 PE13 无明确语义，无法推断功能角色",
+      "issue": "网络名 PE12 无明确语义，无法推断功能角色",
       "severity": "warning"
     },
     {
@@ -1832,53 +1582,8 @@
       "severity": "warning"
     },
     {
-      "pin": "69",
-      "issue": "网络名 PB10 无明确语义，无法推断功能角色",
-      "severity": "warning"
-    },
-    {
-      "pin": "70",
-      "issue": "网络名 PB11 无明确语义，无法推断功能角色",
-      "severity": "warning"
-    },
-    {
       "pin": "77",
-      "issue": "网络名 PD8 无明确语义，无法推断功能角色",
-      "severity": "warning"
-    },
-    {
-      "pin": "78",
-      "issue": "网络名 PD9 无明确语义，无法推断功能角色",
-      "severity": "warning"
-    },
-    {
-      "pin": "79",
-      "issue": "网络名 PD10 无明确语义，无法推断功能角色",
-      "severity": "warning"
-    },
-    {
-      "pin": "80",
-      "issue": "网络名 PD11 无明确语义，无法推断功能角色",
-      "severity": "warning"
-    },
-    {
-      "pin": "81",
-      "issue": "网络名 PD12 无明确语义，无法推断功能角色",
-      "severity": "warning"
-    },
-    {
-      "pin": "82",
-      "issue": "网络名 PD13 无明确语义，无法推断功能角色",
-      "severity": "warning"
-    },
-    {
-      "pin": "85",
-      "issue": "网络名 PD14 无明确语义，无法推断功能角色",
-      "severity": "warning"
-    },
-    {
-      "pin": "86",
-      "issue": "网络名 PD15 无明确语义，无法推断功能角色",
+      "issue": "网络名 RS485_RE 无明确语义，无法推断功能角色",
       "severity": "warning"
     },
     {
@@ -1892,13 +1597,8 @@
       "severity": "warning"
     },
     {
-      "pin": "89",
-      "issue": "网络名 PG4 无明确语义，无法推断功能角色",
-      "severity": "warning"
-    },
-    {
       "pin": "90",
-      "issue": "网络名 PG5 无明确语义，无法推断功能角色",
+      "issue": "网络名 PG4 无明确语义，无法推断功能角色",
       "severity": "warning"
     },
     {
@@ -1908,7 +1608,7 @@
     },
     {
       "pin": "92",
-      "issue": "网络名 PG7 无明确语义，无法推断功能角色",
+      "issue": "网络名 DM9000_INT 无明确语义，无法推断功能角色",
       "severity": "warning"
     },
     {
@@ -1917,73 +1617,18 @@
       "severity": "warning"
     },
     {
-      "pin": "96",
-      "issue": "网络名 PC6 无明确语义，无法推断功能角色",
-      "severity": "warning"
-    },
-    {
       "pin": "97",
-      "issue": "网络名 PC7 无明确语义，无法推断功能角色",
-      "severity": "warning"
-    },
-    {
-      "pin": "98",
-      "issue": "网络名 PC8 无明确语义，无法推断功能角色",
-      "severity": "warning"
-    },
-    {
-      "pin": "99",
-      "issue": "网络名 PC9 无明确语义，无法推断功能角色",
-      "severity": "warning"
-    },
-    {
-      "pin": "100",
-      "issue": "网络名 PA8 无明确语义，无法推断功能角色",
-      "severity": "warning"
-    },
-    {
-      "pin": "103",
-      "issue": "网络名 PA11 无明确语义，无法推断功能角色",
-      "severity": "warning"
-    },
-    {
-      "pin": "104",
-      "issue": "网络名 PA12 无明确语义，无法推断功能角色",
-      "severity": "warning"
-    },
-    {
-      "pin": "113",
-      "issue": "网络名 PC12 无明确语义，无法推断功能角色",
-      "severity": "warning"
-    },
-    {
-      "pin": "116",
-      "issue": "网络名 PD2 无明确语义，无法推断功能角色",
-      "severity": "warning"
-    },
-    {
-      "pin": "117",
-      "issue": "网络名 PD3 无明确语义，无法推断功能角色",
+      "issue": "网络名 OV_D6 无明确语义，无法推断功能角色",
       "severity": "warning"
     },
     {
       "pin": "118",
-      "issue": "网络名 PD4 无明确语义，无法推断功能角色",
-      "severity": "warning"
-    },
-    {
-      "pin": "119",
-      "issue": "网络名 PD5 无明确语义，无法推断功能角色",
+      "issue": "网络名 JOY_CLK 无明确语义，无法推断功能角色",
       "severity": "warning"
     },
     {
       "pin": "122",
-      "issue": "网络名 PD6 无明确语义，无法推断功能角色",
-      "severity": "warning"
-    },
-    {
-      "pin": "123",
-      "issue": "网络名 PD7 无明确语义，无法推断功能角色",
+      "issue": "网络名 FIFO_WRST 无明确语义，无法推断功能角色",
       "severity": "warning"
     },
     {
@@ -2022,13 +1667,13 @@
       "severity": "warning"
     },
     {
-      "pin": "139",
-      "issue": "网络名 BEEP 无明确语义，无法推断功能角色",
+      "pin": "136",
+      "issue": "网络名 PB5 无明确语义，无法推断功能角色",
       "severity": "warning"
     },
     {
       "pin": "140",
-      "issue": "网络名 PB9 无明确语义，无法推断功能角色",
+      "issue": "网络名 BEEP 无明确语义，无法推断功能角色",
       "severity": "warning"
     },
     {
@@ -2038,20 +1683,42 @@
     },
     {
       "pin": "142",
-      "issue": "网络名 PE1 无明确语义，无法推断功能角色",
+      "issue": "网络名 PE0 无明确语义，无法推断功能角色",
       "severity": "warning"
     }
   ],
   "nc_pins": [
-    "NC"
+    "VBAT",
+    "A",
+    "OSC_IN",
+    "",
+    "",
+    "Vref-",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "NC",
+    "",
+    "A",
+    "",
+    ""
   ],
-  "verified_pin_count": 143,
-  "conflict_count": 0,
-  "warning_count": 82,
-  "nc_pin_count": 1,
+  "verified_pin_count": 97,
+  "conflict_count": 4,
+  "warning_count": 64,
+  "nc_pin_count": 23,
   "source": {
-    "netlist": "E:\\skills\\EmbedSoftAutomaticProject\\embed-ai-assist\\examples\\stm32f103zet6\\outputs\\circuit_netlist.json",
-    "chip_pins": "E:\\skills\\EmbedSoftAutomaticProject\\embed-ai-assist\\examples\\stm32f103zet6\\outputs\\chip_info\\pins.json",
-    "investigated_at": "2026-09-18T15:40:38"
+    "netlist": "E:\\skills\\EmbedSoftAutomaticProject\\embed-ai-assist\\examples\\stm32f103zet6\\App\\outputs\\circuit_netlist.json",
+    "chip_pins": "E:\\skills\\EmbedSoftAutomaticProject\\embed-ai-assist\\examples\\stm32f103zet6\\App\\outputs\\chip_info\\pins.json",
+    "investigated_at": "2026-09-24T08:12:40"
   }
 }

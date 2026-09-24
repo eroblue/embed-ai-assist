@@ -1,0 +1,80 @@
+{
+  "mcu_hint": "GD32F205VET6",
+  "rtos": "none",
+  "architecture": "layered",
+  "power_enabled": false,
+  "language": "c99",
+  "headers": [
+    {
+      "file": "Drivers/Port/Inc/uart_port.h",
+      "kind": "peripheral",
+      "peripheral": "uart",
+      "description": "UART Port 接口：WiFi AT 通道与调试口",
+      "logical_instances": [
+        {
+          "name": "wifi_uart",
+          "description": "WiFi 模组 AT 指令通道",
+          "hw_instance": "USART5",
+          "hw_source": "S4 facts",
+          "config": {"baudrate": 115200, "data_bits": 8, "parity": 0, "stop_bits": 1}
+        },
+        {
+          "name": "debug_uart",
+          "description": "调试日志输出",
+          "hw_instance": "USART0",
+          "hw_source": "S4 facts",
+          "config": {"baudrate": 115200, "data_bits": 8, "parity": 0, "stop_bits": 1}
+        }
+      ],
+      "interfaces": [
+        {
+          "function": "uart_port_init",
+          "signature": "int32_t uart_port_init(uart_port_id_t id, const uart_port_cfg_t *cfg)",
+          "description": "绑定逻辑实例与配置",
+          "isr_safe": false,
+          "callback": null
+        },
+        {
+          "function": "uart_port_write",
+          "signature": "int32_t uart_port_write(uart_port_id_t id, const uint8_t *buf, uint16_t len)",
+          "description": "同步拷贝语义发送，返回发送字节数",
+          "isr_safe": true,
+          "callback": null
+        },
+        {
+          "function": "uart_port_read",
+          "signature": "int32_t uart_port_read(uart_port_id_t id, uint8_t *buf, uint16_t len)",
+          "description": "非阻塞读，返回读取字节数（0=暂无数据）",
+          "isr_safe": true,
+          "callback": null
+        },
+        {
+          "function": "uart_port_set_rx_cb",
+          "signature": "int32_t uart_port_set_rx_cb(uart_port_id_t id, uart_port_rx_cb_t cb, void *user_data)",
+          "description": "注册接收回调",
+          "isr_safe": false,
+          "callback": "uart_port_rx_cb_t"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "uart_port_rx_cb_t",
+          "signature": "void (*)(uart_port_id_t id, const uint8_t *data, uint16_t len, void *user_data)",
+          "description": "接收数据通知；实现层保证任务上下文调用，回调内禁止阻塞",
+          "context": "task"
+        }
+      ],
+      "notes": [
+        "write 同步拷贝（返回后 buf 可复用）；read 非阻塞",
+        "接收由回调驱动，DMA/中断细节隐藏在 S5c 实现",
+        "hw_instance 由 S4 facts 映射；换板只改本 manifest，不改代码"
+      ]
+    }
+  ],
+  "power": null,
+  "generated_at": "2026-09-22T10:00:00",
+  "notes": [
+    "flat 架构时 headers 为空数组（无 Port 层，APP 直调 S5a BSP）",
+    "hw_instance=null 表示 S4 缺失或无法确定，由 S5c 按 hardware_capabilities 匹配"
+  ]
+}

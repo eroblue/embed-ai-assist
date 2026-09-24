@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "schematic-reader output",
-  "description": "schematic-reader 输出契约：写入 state.json 的 circuit 字段结构。完整网表数据另行写入 outputs/circuit_netlist.json。",
+  "description": "schematic-reader 输出契约（v1.1，向后兼容）：写入 state.json 的 circuit 字段结构。完整网表数据另行写入 outputs/circuit_netlist.json。v1.1 新增 4 个可选字段（source_format / confidence / low_confidence_count / review_path），仅 PDF 输入时写入；源文件（SchDoc / KiCad）输入时这些字段不出现，行为与 v1.0 完全一致。",
   "type": "object",
   "properties": {
     "circuit": {
@@ -35,8 +35,28 @@
         },
         "eda_tool": {
           "type": "string",
-          "enum": ["altium", "kicad"],
-          "description": "实际使用的 EDA 适配器"
+          "enum": ["altium", "kicad", "pdf"],
+          "description": "实际使用的 EDA 适配器（pdf 为 v1.1 新增的 PDF 解析适配器）"
+        },
+        "source_format": {
+          "type": "string",
+          "enum": ["schdoc", "prjpcb", "kicad_sch", "pdf"],
+          "description": "原理图输入格式（可选，v1.1 新增）：仅 PDF 输入时写入（值为 pdf）；源文件输入时该字段不出现"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "整体置信度（可选，v1.1 新增）：PDF 输入时为全部已连接引脚置信度的均值（0~1）；源文件输入时该字段不出现（下游视为 1.0）"
+        },
+        "low_confidence_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "低置信度（< 0.7）连接数量（可选，v1.1 新增）：仅 PDF 输入时写入，对应 pdf_review.md 中需人工核对的连接数"
+        },
+        "review_path": {
+          "type": ["string", "null"],
+          "description": "人工核对清单路径（可选，v1.1 新增）：指向 outputs/pdf_review.md；仅 PDF 输入且存在需核对连接时写入，否则为 null"
         },
         "source_file": {
           "type": "string",

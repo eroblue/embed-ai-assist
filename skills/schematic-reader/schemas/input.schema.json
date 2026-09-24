@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "schematic-reader input",
-  "description": "schematic-reader 输入契约：执行时从分层加载后的配置读取的字段及可选运行参数。配置只读，命令行覆盖参数仅本次生效、不回写。分层机制：根目录 config.json（全局默认）→ 项目 config.json（覆盖/补充）→ 深合并。",
+  "description": "schematic-reader 输入契约（v1.1，向后兼容）：执行时从分层加载后的配置读取的字段及可选运行参数。配置只读，命令行覆盖参数仅本次生效、不回写。分层机制：根目录 config.json（全局默认）→ 项目 config.json（覆盖/补充）→ 深合并。v1.1 新增 PDF 原理图输入支持（schematic_format / eda_tool=pdf），源文件输入行为不变。",
   "type": "object",
   "properties": {
     "config_path": {
@@ -11,7 +11,12 @@
     "schematic_path": {
       "type": "string",
       "minLength": 1,
-      "description": "原理图文件路径（项目层，相对项目目录），支持 Altium (.SchDoc) 与 KiCad (.kicad_sch) 文件"
+      "description": "原理图文件路径（项目层，相对项目目录），支持 Altium (.SchDoc) / KiCad (.kicad_sch) / PDF (.pdf，v1.1 新增) 文件"
+    },
+    "schematic_format": {
+      "type": "string",
+      "enum": ["schdoc", "prjpcb", "kicad_sch", "pdf"],
+      "description": "原理图输入格式（项目层，可选，v1.1 新增）：显式指定输入格式；未指定时按文件扩展名自动识别。与 eda_tool 同时配置时以本字段为准（格式更精确）"
     },
     "output_dir": {
       "type": "string",
@@ -20,9 +25,9 @@
     },
     "eda_tool": {
       "type": "string",
-      "enum": ["altium", "kicad"],
+      "enum": ["altium", "kicad", "pdf"],
       "default": "altium",
-      "description": "EDA 工具类型。未显式指定时依次取：命令行参数 > 配置中的 eda_tool > 按扩展名自动判断 > altium"
+      "description": "EDA 工具/解析器类型。未显式指定时依次取：命令行参数 > 配置中的 schematic_format > 配置中的 eda_tool > 按扩展名自动判断 > altium"
     }
   },
   "required": ["schematic_path"],

@@ -1,0 +1,173 @@
+{
+  "files": {
+    "App/Src/app.c": {
+      "sha256": "eca6bbc48cd9bb9dcda29aab57b73a02a2539e3e049ffc7718745f92f77d4038",
+      "lines": 123
+    },
+    "App/Src/app_alarm_control.c": {
+      "sha256": "490fff32daf9c12864cb693adbbfe0e21f703f7488096a2220be045a3bb1d446",
+      "lines": 153
+    },
+    "App/Src/app_env_sensor.c": {
+      "sha256": "fd0b3f4c192fa9da0b0e0ff2a7a5aa6b7c52b0ed577667c0fbe7dee089dd76f3",
+      "lines": 121
+    },
+    "App/Src/app_key_handler.c": {
+      "sha256": "5461e131aa6e8508873411a659b2cb6a2be1072aa97fea6788655d32cee4ca40",
+      "lines": 169
+    },
+    "App/Src/app_mode_control.c": {
+      "sha256": "a99207ef28f60fa1740b5adf3947b45d0e8d4175f81db6e2c311c6fc6470067a",
+      "lines": 48
+    },
+    "App/Src/app_oled_display.c": {
+      "sha256": "392471f6d78d56b8a8e89eb4df5d703740022965058f0873c5b99a90abaf9932",
+      "lines": 149
+    },
+    "App/Src/app_uart_report.c": {
+      "sha256": "7053a00c8c951dbdc2e09d76eafb91b9f8ffd72b74bf7922b0598ed013407228",
+      "lines": 104
+    },
+    "App/Src/main.c": {
+      "sha256": "978560417a69520af19320dd44eff09779d8039cb454541c463537dade6fe290",
+      "lines": 19
+    },
+    "Drivers/BSP/Src/adc_init.c": {
+      "sha256": "ebf37e8162b639115a5dea54b06fd33ba78b2937497e3d83ceb05e3049ef0995",
+      "lines": 41
+    },
+    "Drivers/BSP/Src/clock_init.c": {
+      "sha256": "bbe404c8ef9e73567ef534e651ed47384400ca6f2c32a86175b0ffd1265b3924",
+      "lines": 38
+    },
+    "Drivers/BSP/Src/dht11_init.c": {
+      "sha256": "c371d353206e46841e57c1cebe46a2582f6e129395b764383f902f4148c38d27",
+      "lines": 18
+    },
+    "Drivers/BSP/Src/driver_dht11.c": {
+      "sha256": "0591ad32fc0b730d095b9fd4fedc9e0b5e299450beef41e3c7e7220c3be05077",
+      "lines": 124
+    },
+    "Drivers/BSP/Src/driver_oled.c": {
+      "sha256": "60463d74d27095e7d732832c69932900a84705d654b78cb3c285dfeb4248a522",
+      "lines": 214
+    },
+    "Drivers/BSP/Src/fsmc_init.c": {
+      "sha256": "102cc6ecdb74c1fc4f67b0f8f91236b0297732a6007ae307da2270ce6ce4cc69",
+      "lines": 49
+    },
+    "Drivers/BSP/Src/gpio_init.c": {
+      "sha256": "91f7e48c34ac9e933559a694240b5a5cd7523379d498bb9a077405cd55e4ec31",
+      "lines": 110
+    },
+    "Drivers/BSP/Src/hal_init.c": {
+      "sha256": "6bc366abe5ef1fe258349a0891f76620d9e4fe63606ba0eb0a1e0af3c3bfc11d",
+      "lines": 24
+    },
+    "Drivers/BSP/Src/nvic_init.c": {
+      "sha256": "be209dbccb2e2a625624a011ec8446ac3f973d2469fd91a6b8b9d6fd5a6e0757",
+      "lines": 21
+    },
+    "Drivers/BSP/Src/tim_init.c": {
+      "sha256": "f7a30fef5e055bd7fabda6fb57c0d0af6ea5890cadac1b47e6489a654b7196a3",
+      "lines": 42
+    },
+    "Drivers/BSP/Src/uart_init.c": {
+      "sha256": "781ecf01d7604e4d82e10d49227c85dbbb926e8079d076c469656122175c7910",
+      "lines": 42
+    },
+    "App/Inc/app.h": {
+      "sha256": "60b93bd4a6db0b89e2ab5ea2452619586b1a454b88d98f96a6a25a4e422323ee",
+      "lines": 27
+    },
+    "App/Inc/app_alarm_control.h": {
+      "sha256": "122b42348c043a46589a869d214cff7ceaecdb4c7e1e2ed59a18d26d0f0a5db3",
+      "lines": 59
+    },
+    "App/Inc/app_env_sensor.h": {
+      "sha256": "bdca66b4e5047be5283b57f51e112c99e0cc0b0ee1bbf5379181218b051f3164",
+      "lines": 41
+    },
+    "App/Inc/app_key_handler.h": {
+      "sha256": "3e0db2bf3f35708253e1aae1c285b508622b1bdf701931c6be911591b5b3bfb6",
+      "lines": 40
+    },
+    "App/Inc/app_mode_control.h": {
+      "sha256": "e0211c291cf5d37f811532216c7ef9a6c5df9ca36beff921faf502fc239b5b1f",
+      "lines": 46
+    },
+    "App/Inc/app_oled_display.h": {
+      "sha256": "ebb8e285883e92d98a305fa2daaf12cc1f539bb4eadd4f95463cf0abf607016a",
+      "lines": 31
+    },
+    "App/Inc/app_uart_report.h": {
+      "sha256": "20d91cc5540eb84dd6739c916245e639f8ff05827ae3f579ce8f5882a8101877",
+      "lines": 34
+    },
+    "Drivers/BSP/Inc/adc_init.h": {
+      "sha256": "4440cdeea6de8b97d10b2d8b9b69ae7365fb7e340ced7595df86f70c38d221c1",
+      "lines": 9
+    },
+    "Drivers/BSP/Inc/clock_init.h": {
+      "sha256": "ad3d11cf987e8a156bab6c139f9f376d81f110c9fa36e79889bef7d8f542c96b",
+      "lines": 13
+    },
+    "Drivers/BSP/Inc/dht11_init.h": {
+      "sha256": "718a39d1e6b7ccb602c6e2b7ca43a53c5c334de86d09029bbd43b87d86c7a693",
+      "lines": 8
+    },
+    "Drivers/BSP/Inc/driver_dht11.h": {
+      "sha256": "c6acd9c82fc99fec83026988e38a99506c158a75c46a237e9f9dec7c8c508f6c",
+      "lines": 41
+    },
+    "Drivers/BSP/Inc/driver_oled.h": {
+      "sha256": "012c0d5dfb9699e95b70382d6aef98ade4aab5a41ce2e73a800c412a5d97d9a8",
+      "lines": 45
+    },
+    "Drivers/BSP/Inc/fsmc_init.h": {
+      "sha256": "c10f54dd72cdb77658ced9ddbd92f9ce3ae3116f47ec07cfffec06de6bdd376d",
+      "lines": 20
+    },
+    "Drivers/BSP/Inc/gpio_init.h": {
+      "sha256": "546354b19bd05a7eec959fcd4778170c899dccfcc196397b30d304ddce285761",
+      "lines": 15
+    },
+    "Drivers/BSP/Inc/hal_init.h": {
+      "sha256": "b2ca5e8051068c13a1cc3c52267cf079f1ded048f611a80eeaf1c9fe12e8912f",
+      "lines": 10
+    },
+    "Drivers/BSP/Inc/nvic_init.h": {
+      "sha256": "3d488f8df68712cf345e64e4959adf0753df38afe9d066c62947886b504e2514",
+      "lines": 9
+    },
+    "Drivers/BSP/Inc/tim_init.h": {
+      "sha256": "bb2567e44c10d5890323685a6010c46ae021957699979c98355d7f5dc687326e",
+      "lines": 10
+    },
+    "Drivers/BSP/Inc/uart_init.h": {
+      "sha256": "d93578e5bc3e04e2a29bcb427e227eccc9367e2a70e5ec6c3ee8df53e824c95b",
+      "lines": 10
+    },
+    "Drivers/Port/Inc/adc_port.h": {
+      "sha256": "e47e39ea19b2dbec187a030659f399887ee9307a548d47c1e4cece37d663056c",
+      "lines": 68
+    },
+    "Drivers/Port/Inc/gpio_port.h": {
+      "sha256": "71974ba494d7fdf4e33fc9d91b6ee7c22048463ad5f1269eee79c0b010b59fb4",
+      "lines": 101
+    },
+    "Drivers/Port/Inc/i2c_port.h": {
+      "sha256": "a356be136087dbf0ee46534846a1bbb9bc71dbbb46cfca45abedb0ff8ec4584e",
+      "lines": 59
+    },
+    "Drivers/Port/Inc/timer_port.h": {
+      "sha256": "de9c565aeba231c64d01cfbfb6197bafcec1a28499ab8ce55d3eec1d589e11a3",
+      "lines": 65
+    },
+    "Drivers/Port/Inc/uart_port.h": {
+      "sha256": "c22303ae950b35c17e2f5af0dcfed8bf05ceb5c70b46c4f2078be68e7c9d2d06",
+      "lines": 68
+    }
+  },
+  "created_at": "2026-09-24T13:49:21"
+}

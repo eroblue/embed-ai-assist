@@ -18,28 +18,28 @@
           <PackID>Keil.STM32F1xx_DFP.2.4.0</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
           <Cpu>IROM(0x08000000,0x80000) IRAM(0x20000000,0x10000) CPUTYPE("Cortex-M3") CLOCK(12000000) ELITTLE</Cpu>
-          <FlashUtilSpec></FlashUtilSpec>
-          <StartupFile></StartupFile>
+          <FlashUtilSpec />
+          <StartupFile />
           <FlashDriverDll>UL2CM3(-S0 -C0 -P0 -FD20000000 -FC1000 -FN1 -FF0STM32F10x_512 -FS08000000 -FL080000 -FP0($$Device:STM32F103ZE$Flash\STM32F10x_512.FLM))</FlashDriverDll>
           <DeviceId>0</DeviceId>
           <RegisterFile>$$Device:STM32F103ZE$Device\Include\stm32f10x.h</RegisterFile>
-          <MemoryEnv></MemoryEnv>
-          <Cmp></Cmp>
-          <Asm></Asm>
-          <Linker></Linker>
-          <OHString></OHString>
-          <InfinionOptionDll></InfinionOptionDll>
-          <SLE66CMisc></SLE66CMisc>
-          <SLE66AMisc></SLE66AMisc>
-          <SLE66LinkerMisc></SLE66LinkerMisc>
+          <MemoryEnv />
+          <Cmp />
+          <Asm />
+          <Linker />
+          <OHString />
+          <InfinionOptionDll />
+          <SLE66CMisc />
+          <SLE66AMisc />
+          <SLE66LinkerMisc />
           <SFDFile>$$Device:STM32F103ZE$SVD\STM32F103xx.svd</SFDFile>
           <bCustSvd>0</bCustSvd>
           <UseEnv>0</UseEnv>
-          <BinPath></BinPath>
-          <IncludePath></IncludePath>
-          <LibPath></LibPath>
-          <RegisterFilePath></RegisterFilePath>
-          <DBRegisterFilePath></DBRegisterFilePath>
+          <BinPath />
+          <IncludePath />
+          <LibPath />
+          <RegisterFilePath />
+          <DBRegisterFilePath />
           <TargetStatus>
             <Error>0</Error>
             <ExitCodeStop>0</ExitCodeStop>
@@ -61,8 +61,8 @@
           <BeforeCompile>
             <RunUserProg1>0</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name></UserProg1Name>
-            <UserProg2Name></UserProg2Name>
+            <UserProg1Name />
+            <UserProg2Name />
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
             <nStopU1X>0</nStopU1X>
@@ -71,8 +71,8 @@
           <BeforeMake>
             <RunUserProg1>0</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name></UserProg1Name>
-            <UserProg2Name></UserProg2Name>
+            <UserProg1Name />
+            <UserProg2Name />
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
             <nStopB1X>0</nStopB1X>
@@ -81,15 +81,15 @@
           <AfterMake>
             <RunUserProg1>0</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name></UserProg1Name>
-            <UserProg2Name></UserProg2Name>
+            <UserProg1Name />
+            <UserProg2Name />
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
             <nStopA1X>0</nStopA1X>
             <nStopA2X>0</nStopA2X>
           </AfterMake>
           <SelectedForBatchBuild>0</SelectedForBatchBuild>
-          <SVCSIdString></SVCSIdString>
+          <SVCSIdString />
         </TargetCommonOption>
         <CommonProperty>
           <UseCPPCompiler>0</UseCPPCompiler>
@@ -103,8 +103,8 @@
           <AssembleAssemblyFile>0</AssembleAssemblyFile>
           <PublicsOnly>0</PublicsOnly>
           <StopOnExitCode>3</StopOnExitCode>
-          <CustomArgument></CustomArgument>
-          <IncludeLibraryModules></IncludeLibraryModules>
+          <CustomArgument />
+          <IncludeLibraryModules />
           <ComprImg>1</ComprImg>
         </CommonProperty>
         <DllOption>
@@ -113,7 +113,7 @@
           <SimDlgDll>DCM.DLL</SimDlgDll>
           <SimDlgDllArguments>-pCM3</SimDlgDllArguments>
           <TargetDllName>SARMCM3.DLL</TargetDllName>
-          <TargetDllArguments></TargetDllArguments>
+          <TargetDllArguments />
           <TargetDlgDll>TCM.DLL</TargetDlgDll>
           <TargetDlgDllArguments>-pCM3</TargetDlgDllArguments>
         </DllOption>
@@ -137,11 +137,11 @@
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3></Flash3>
-          <Flash4></Flash4>
-          <pFcarmOut></pFcarmOut>
-          <pFcarmGrp></pFcarmGrp>
-          <pFcArmRoot></pFcArmRoot>
+          <Flash3 />
+          <Flash4 />
+          <pFcarmOut />
+          <pFcarmGrp />
+          <pFcArmRoot />
           <FcArmLst>0</FcArmLst>
         </Utilities>
         <TargetArmAds>
@@ -174,7 +174,7 @@
             <RvctClst>0</RvctClst>
             <GenPPlst>0</GenPPlst>
             <AdsCpuType>"Cortex-M3"</AdsCpuType>
-            <RvctDeviceName></RvctDeviceName>
+            <RvctDeviceName />
             <mOS>0</mOS>
             <uocRom>0</uocRom>
             <uocRam>0</uocRam>
@@ -309,7 +309,7 @@
                 <Size>0x0</Size>
               </OCR_RVCT10>
             </OnChipMemories>
-            <RvctStartVector></RvctStartVector>
+            <RvctStartVector />
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
@@ -336,9 +336,9 @@
             <v6WtE>0</v6WtE>
             <v6Rtti>0</v6Rtti>
             <VariousControls>
-              <MiscControls></MiscControls>
+              <MiscControls />
               <Define>STM32F10X_HD,USE_STDPERIPH_DRIVER</Define>
-              <Undefine></Undefine>
+              <Undefine />
               <IncludePath>..\USER;..\CORE;..\STM32F10x_FWLib\inc;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\Core\Inc;..\App\Inc;..\Drivers\BSP\Inc;..\Drivers\Port\Inc</IncludePath>
             </VariousControls>
           </Cads>
@@ -354,10 +354,10 @@
             <useXO>0</useXO>
             <ClangAsOpt>1</ClangAsOpt>
             <VariousControls>
-              <MiscControls></MiscControls>
-              <Define></Define>
-              <Undefine></Undefine>
-              <IncludePath></IncludePath>
+              <MiscControls />
+              <Define />
+              <Undefine />
+              <IncludePath />
             </VariousControls>
           </Aads>
           <LDads>
@@ -369,23 +369,130 @@
             <useFile>0</useFile>
             <TextAddressRange>0x08000000</TextAddressRange>
             <DataAddressRange>0x20000000</DataAddressRange>
-            <pXoBase></pXoBase>
-            <ScatterFile></ScatterFile>
-            <IncludeLibs></IncludeLibs>
-            <IncludeLibsPath></IncludeLibsPath>
-            <Misc></Misc>
-            <LinkerInputFile></LinkerInputFile>
-            <DisabledWarnings></DisabledWarnings>
+            <pXoBase />
+            <ScatterFile />
+            <IncludeLibs />
+            <IncludeLibsPath />
+            <Misc />
+            <LinkerInputFile />
+            <DisabledWarnings />
           </LDads>
         </TargetArmAds>
       </TargetOption>
+      <Groups>
+<Group><GroupName>Drivers/BSP</GroupName>
+          <Files>
+            <File><FileName>adc_init.c</FileName>
+            <FileType>1</FileType>
+            <FilePath>..\Drivers\BSP\Src\adc_init.c</FilePath>
+
+          </File>
+            <File><FileName>clock_init.c</FileName>
+            <FileType>1</FileType>
+            <FilePath>..\Drivers\BSP\Src\clock_init.c</FilePath>
+
+          </File>
+            <File><FileName>dht11_init.c</FileName>
+            <FileType>1</FileType>
+            <FilePath>..\Drivers\BSP\Src\dht11_init.c</FilePath>
+
+          </File>
+            <File><FileName>fsmc_init.c</FileName>
+            <FileType>1</FileType>
+            <FilePath>..\Drivers\BSP\Src\fsmc_init.c</FilePath>
+
+          </File>
+            <File><FileName>gpio_init.c</FileName>
+            <FileType>1</FileType>
+            <FilePath>..\Drivers\BSP\Src\gpio_init.c</FilePath>
+
+          </File>
+            <File><FileName>hal_init.c</FileName>
+            <FileType>1</FileType>
+            <FilePath>..\Drivers\BSP\Src\hal_init.c</FilePath>
+
+          </File>
+            <File><FileName>nvic_init.c</FileName>
+            <FileType>1</FileType>
+            <FilePath>..\Drivers\BSP\Src\nvic_init.c</FilePath>
+
+          </File>
+            <File><FileName>tim_init.c</FileName>
+            <FileType>1</FileType>
+            <FilePath>..\Drivers\BSP\Src\tim_init.c</FilePath>
+
+          </File>
+            <File><FileName>uart_init.c</FileName>
+            <FileType>1</FileType>
+            <FilePath>..\Drivers\BSP\Src\uart_init.c</FilePath>
+
+          </File>
+            <File><FileName>driver_dht11.c</FileName>
+            <FileType>1</FileType>
+            <FilePath>..\Drivers\BSP\Src\driver_dht11.c</FilePath>
+
+          </File>
+            <File><FileName>driver_oled.c</FileName>
+            <FileType>1</FileType>
+            <FilePath>..\Drivers\BSP\Src\driver_oled.c</FilePath>
+
+          </File>
+
+          </Files>
+          </Group>
+<Group><GroupName>App</GroupName>
+          <Files>
+            <File><FileName>app.c</FileName>
+            <FileType>1</FileType>
+            <FilePath>..\App\Src\app.c</FilePath>
+
+          </File>
+            <File><FileName>app_alarm_control.c</FileName>
+            <FileType>1</FileType>
+            <FilePath>..\App\Src\app_alarm_control.c</FilePath>
+
+          </File>
+            <File><FileName>app_env_sensor.c</FileName>
+            <FileType>1</FileType>
+            <FilePath>..\App\Src\app_env_sensor.c</FilePath>
+
+          </File>
+            <File><FileName>app_key_handler.c</FileName>
+            <FileType>1</FileType>
+            <FilePath>..\App\Src\app_key_handler.c</FilePath>
+
+          </File>
+            <File><FileName>app_mode_control.c</FileName>
+            <FileType>1</FileType>
+            <FilePath>..\App\Src\app_mode_control.c</FilePath>
+
+          </File>
+            <File><FileName>app_oled_display.c</FileName>
+            <FileType>1</FileType>
+            <FilePath>..\App\Src\app_oled_display.c</FilePath>
+
+          </File>
+            <File><FileName>app_uart_report.c</FileName>
+            <FileType>1</FileType>
+            <FilePath>..\App\Src\app_uart_report.c</FilePath>
+
+          </File>
+            <File><FileName>main.c</FileName>
+            <FileType>1</FileType>
+            <FilePath>..\App\Src\main.c</FilePath>
+
+          </File>
+
+          </Files>
+          </Group>
+</Groups>
     </Target>
   </Targets>
 
   <RTE>
-    <apis/>
-    <components/>
-    <files/>
+    <apis />
+    <components />
+    <files />
   </RTE>
 
 </Project>

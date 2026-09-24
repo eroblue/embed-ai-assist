@@ -1,0 +1,142 @@
+{
+  "items": [
+    {
+      "requirement": "REQ-001 环境数据周期采集与保存：每 2 秒采集温度/湿度/光照并保存供显示、上报、控制使用",
+      "source": "spec",
+      "source_ref": "spec#REQ-001",
+      "flow": "docs/flow/app_env_sensor_flow.md",
+      "files": ["App/Src/app_env_sensor.c", "App/Inc/app_env_sensor.h", "App/Src/app.c"],
+      "functions": ["app_env_sensor_init", "app_env_sensor_poll", "app_env_sensor_get_data"],
+      "status": "covered"
+    },
+    {
+      "requirement": "REQ-002 采集失败容错：失败保留上次值；连续 5 次触发传感器故障告警；恢复后自动清除",
+      "source": "spec",
+      "source_ref": "spec#REQ-002",
+      "flow": "docs/flow/app_env_sensor_flow.md",
+      "files": ["App/Src/app_env_sensor.c", "App/Src/app_alarm_control.c"],
+      "functions": ["app_env_sensor_poll", "app_env_sensor_is_fault",
+                    "app_alarm_control_on_sensor_fault", "app_alarm_control_on_sensor_recovered"],
+      "status": "covered"
+    },
+    {
+      "requirement": "REQ-003 本地数据显示：200ms 刷新显示模式/温湿度/光照/告警；告警激活时显示项 1Hz 闪烁",
+      "source": "spec",
+      "source_ref": "spec#REQ-003",
+      "flow": "docs/flow/app_oled_display_flow.md",
+      "files": ["App/Src/app_oled_display.c", "App/Inc/app_oled_display.h",
+                "Drivers/BSP/Src/driver_oled.c"],
+      "functions": ["app_oled_display_init", "app_oled_display_poll",
+                    "app_oled_display_is_ready", "driver_oled_show_line"],
+      "status": "covered"
+    },
+    {
+      "requirement": "REQ-004 按键交互：3 键（模式/手动开关/静音）短按触发、长按无功能、防误触去抖 50ms",
+      "source": "spec",
+      "source_ref": "spec#REQ-004",
+      "flow": "docs/flow/app_key_handler_state.md",
+      "files": ["App/Src/app_key_handler.c", "App/Inc/app_key_handler.h", "App/Src/app.c"],
+      "functions": ["app_key_handler_init", "app_key_handler_poll",
+                    "app_key_handler_get_event", "key_scan"],
+      "status": "covered"
+    },
+    {
+      "requirement": "REQ-005 自动控制与阈值联动：高温 30°C 开执行器、低温 10°C 关执行器、低光照 20% 告警（仅自动模式；执行器保持语义按设计输入）",
+      "source": "spec",
+      "source_ref": "spec#REQ-005",
+      "flow": "docs/flow/app_alarm_control_state.md",
+      "files": ["App/Src/app_alarm_control.c", "App/Inc/app_alarm_control.h"],
+      "functions": ["app_alarm_control_init", "app_alarm_control_poll",
+                    "app_alarm_control_on_key_switch", "actuator_apply"],
+      "status": "covered"
+    },
+    {
+      "requirement": "REQ-006 告警优先级管理：高温>低温>低光照>传感器故障，多告警并发仅呈现最高优先级",
+      "source": "spec",
+      "source_ref": "spec#REQ-006",
+      "flow": "docs/flow/app_alarm_control_state.md",
+      "files": ["App/Src/app_alarm_control.c"],
+      "functions": ["app_alarm_control_poll", "app_alarm_control_get_alarm",
+                    "app_alarm_control_get_display"],
+      "status": "covered"
+    },
+    {
+      "requirement": "REQ-007 告警静音：静音时不蜂鸣仅保留显示；静音与自动/手动模式正交叠加，按键 3 切换",
+      "source": "spec",
+      "source_ref": "spec#REQ-007",
+      "flow": "docs/flow/app_mode_control_state.md",
+      "files": ["App/Src/app_mode_control.c", "App/Src/app_alarm_control.c"],
+      "functions": ["app_mode_control_on_key_mute", "app_mode_control_is_muted",
+                    "app_mode_control_get_display", "app_alarm_control_poll"],
+      "status": "covered"
+    },
+    {
+      "requirement": "REQ-008 数据上报：每 5 秒 JSON 帧上报温度/湿度/光照/模式/告警状态",
+      "source": "spec",
+      "source_ref": "spec#REQ-008",
+      "flow": "docs/flow/app_uart_report_sequence.md",
+      "files": ["App/Src/app_uart_report.c", "App/Inc/app_uart_report.h"],
+      "functions": ["app_uart_report_init", "app_uart_report_poll"],
+      "status": "covered"
+    },
+    {
+      "requirement": "REQ-009 上报失败容错：失败随周期重试；连续 3 次判持续失败并运行灯快闪提示（日志记录项未实现）",
+      "source": "spec",
+      "source_ref": "spec#REQ-009",
+      "flow": "docs/flow/app_uart_report_sequence.md",
+      "files": ["App/Src/app_uart_report.c", "App/Src/app.c"],
+      "functions": ["app_uart_report_poll", "app_uart_report_is_failing", "app_loop"],
+      "status": "partial"
+    },
+    {
+      "requirement": "REQ-010 初始化失败降级：跳过失败模块其余功能继续；运行灯闪烁模式提示",
+      "source": "spec",
+      "source_ref": "spec#REQ-010",
+      "flow": null,
+      "files": ["App/Src/app.c", "App/Src/app_oled_display.c", "App/Src/app_uart_report.c"],
+      "functions": ["app_init", "app_loop", "app_oled_display_is_ready", "app_uart_report_is_ready"],
+      "status": "covered"
+    },
+    {
+      "requirement": "REQ-011 运行指示灯：运行灯心跳/快闪/慢闪三态指示；执行灯亮灭与执行器开关一致",
+      "source": "spec",
+      "source_ref": "spec#REQ-011",
+      "flow": null,
+      "files": ["App/Src/app.c", "App/Src/app_alarm_control.c"],
+      "functions": ["app_loop", "actuator_apply", "app_alarm_control_is_actuator_on"],
+      "status": "covered"
+    },
+    {
+      "requirement": "REQ-012 工作模式管理：自动/手动两模式，上电默认自动；手动模式下自动逻辑不干预执行器",
+      "source": "spec",
+      "source_ref": "spec#REQ-012",
+      "flow": "docs/flow/app_mode_control_state.md",
+      "files": ["App/Src/app_mode_control.c", "App/Inc/app_mode_control.h"],
+      "functions": ["app_mode_control_init", "app_mode_control_on_key_mode",
+                    "app_mode_control_get_mode"],
+      "status": "covered"
+    },
+    {
+      "requirement": "REQ-013 环境数据有效范围：温度 -20~60°C、湿度 0~100%、光照 0~100%，超范围判异常",
+      "source": "spec",
+      "source_ref": "spec#REQ-013",
+      "flow": "docs/flow/app_env_sensor_flow.md",
+      "files": ["App/Src/app_env_sensor.c"],
+      "functions": ["app_env_sensor_poll"],
+      "status": "covered"
+    },
+    {
+      "requirement": "REQ-014 系统级约束：不使用动态内存分配（全模块静态分配，24h 连续工作属运行验证项）",
+      "source": "spec",
+      "source_ref": "spec#REQ-014",
+      "flow": null,
+      "files": ["App/Src/app.c", "App/Src/app_env_sensor.c", "App/Src/app_alarm_control.c",
+                "App/Src/app_oled_display.c", "App/Src/app_uart_report.c",
+                "Drivers/BSP/Src/driver_oled.c", "Drivers/BSP/Src/driver_dht11.c"],
+      "functions": [],
+      "status": "covered"
+    }
+  ],
+  "summary": {"total": 14, "covered": 13, "partial": 1, "uncovered": 0},
+  "generated_at": "2026-09-24T11:35:00"
+}

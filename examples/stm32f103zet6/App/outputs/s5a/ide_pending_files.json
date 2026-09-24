@@ -4,11 +4,12 @@
   "source_files": [
     "Drivers/BSP/Src/adc_init.c",
     "Drivers/BSP/Src/clock_init.c",
+    "Drivers/BSP/Src/dht11_init.c",
+    "Drivers/BSP/Src/fsmc_init.c",
     "Drivers/BSP/Src/gpio_init.c",
     "Drivers/BSP/Src/hal_init.c",
-    "Drivers/BSP/Src/i2c_init.c",
     "Drivers/BSP/Src/nvic_init.c",
-    "Drivers/BSP/Src/spi_init.c",
+    "Drivers/BSP/Src/tim_init.c",
     "Drivers/BSP/Src/uart_init.c"
   ],
   "include_paths": [

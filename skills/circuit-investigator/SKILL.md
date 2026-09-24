@@ -46,7 +46,7 @@ circuit-investigator/
 |------|------|------|------|------|
 | circuit.* | state.json（S1 写入） | object | 是 | `netlist_path` / `parse_status` |
 | chip.* | state.json（S3 写入） | object | 是 | `pins_path` / `extract_status` |
-| platform | config.json（项目层） | string | 是 | 芯片平台名，用于识别主控元件（value 匹配） |
+| platform | config.json（项目层） | string | 是 | 芯片平台名，用于识别主控元件（value 匹配，缺失时按引脚数启发式回退） |
 | workspace | config.json（项目层） | string | 是 | 目标工程根 = 项目根 / `project.build_target`（缺省 App），state.json 与 outputs/ 所在；docs/references 共享于项目根 |
 | verify_scope | config.json 或 --scope | enum | 否 | pins / power / clocks / peripherals / all（默认 all） |
 | inference_mode | config.json 或 --inference-mode | enum | 否 | rule / ai（默认 rule；ai 未接入自动降级 rule） |
@@ -89,7 +89,7 @@ circuit-investigator/
    - 任一 failed → 写 `verify_status: failed` 并终止
    - partial → 继续执行，最终状态继承 partial
 3. 加载网表（`outputs/circuit_netlist.json`）与芯片引脚定义（`outputs/chip_info/pins.json`），
-   按 platform（value 匹配）识别主控元件
+   按 platform（value 匹配）识别主控元件；value 未命中时按引脚数最多的 U* 元件回退识别（PDF 提取网表 value 常为空），回退命中计入 warning 提示人工复核
 4. 交叉核对（按 verify_scope）：
    - a. 引脚号在芯片定义中存在、引脚名一致
    - b. 复用一致性（网络名暗示外设 vs 引脚 AF 表，如 UART3_TX 接错脚）

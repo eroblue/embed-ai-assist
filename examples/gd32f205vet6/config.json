@@ -6,6 +6,9 @@
     "rtos": "none",
     "power": {
       "enabled": false
+    },
+    "inputs": {
+      "functional_spec": "docs/functional_spec.md"
     }
   },
   "schematic_path": "schematic/gd32f205vet6.SchDoc",

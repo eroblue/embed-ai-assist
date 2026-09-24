@@ -168,6 +168,8 @@ def find_mcu_designator(netlist: dict, platform: str) -> str | None:
     """从网表元件 value 匹配平台关键词，返回主控 designator（对齐 S4 识别逻辑）。
 
     系列名通配：platform 尾部 x 为通配（ft61f14x 匹配 FT61F143A-RB 等具体型号）。
+    value 未命中时回退：引脚数最多的 U* 元件（PDF 提取网表 value 常为空，
+    与 S4 的 pin-count 回退策略一致）。
     """
     plat = re.sub(r"[^a-z0-9]", "", platform.lower())
     key = plat[:8]
@@ -178,6 +180,12 @@ def find_mcu_designator(netlist: dict, platform: str) -> str | None:
         if value and (key and key in value or prefix and value.startswith(prefix)):
             if best is None or len(comp.get("pins", [])) > len(best.get("pins", [])):
                 best = comp
+    if best is None:
+        # 回退：value 缺失（如 PDF 提取）时取引脚数最多的 U* 元件（主控通常是引脚最多的 U 位号）
+        u_comps = [c for c in netlist.get("components", [])
+                   if str(c.get("designator") or "").upper().startswith("U") and c.get("pins")]
+        if u_comps:
+            best = max(u_comps, key=lambda c: len(c.get("pins") or []))
     return best["designator"] if best else None
 
 

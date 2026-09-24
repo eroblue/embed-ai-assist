@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.s5b.port_interface_manifest.v1",
+  "title": "Port 接口契约（S5c 实现 Port 的唯一依据）",
+  "type": "object",
+  "required": ["mcu_hint", "rtos", "architecture", "power_enabled", "language", "headers", "generated_at"],
+  "properties": {
+    "mcu_hint": {"type": "string", "description": "目标 MCU（仅参考信息；Port 头文件代码不得依赖厂商型号）"},
+    "rtos": {"type": "string", "enum": ["none", "FreeRTOS", "RT-Thread", "Zephyr"]},
+    "architecture": {"type": "string", "enum": ["flat", "layered", "full"]},
+    "power_enabled": {"type": "boolean"},
+    "language": {"type": "string", "description": "语言标准，如 c99"},
+    "headers": {
+      "type": "array",
+      "description": "Port 接口头文件清单（flat 架构为空数组：无 Port 层，APP 直接调 BSP）",
+      "items": {
+        "type": "object",
+        "required": ["file", "kind", "description", "logical_instances", "interfaces"],
+        "properties": {
+          "file": {"type": "string", "description": "头文件相对路径（如 Drivers/Port/Inc/uart_port.h）"},
+          "kind": {"type": "string", "enum": ["peripheral", "osal", "power"]},
+          "peripheral": {"type": ["string", "null"], "description": "外设类型（uart/i2c/spi/gpio/adc/timer）；osal/power 为 null"},
+          "description": {"type": "string"},
+          "logical_instances": {
+            "type": "array",
+            "description": "逻辑实例清单：APP 用逻辑名引用，硬件映射由 S5c 翻译",
+            "items": {
+              "type": "object",
+              "required": ["name", "description", "hw_instance", "hw_source", "config"],
+              "properties": {
+                "name": {"type": "string", "description": "逻辑实例名（如 wifi_uart），APP 侧唯一标识"},
+                "description": {"type": "string"},
+                "hw_instance": {"type": ["string", "null"], "description": "硬件实例（如 USART5）；S4 缺失或无法确定时为 null，由 S5c 按 hardware_capabilities 匹配"},
+                "hw_source": {"type": "string", "enum": ["S4 facts", "design_input", "none"], "description": "硬件实例映射来源"},
+                "config": {"type": "object", "description": "该实例的配置需求（波特率/模式/通道等，键值由外设类型决定）"}
+              }
+            }
+          },
+          "interfaces": {
+            "type": "array",
+            "description": "接口函数清单（S5c 逐个实现）",
+            "items": {
+              "type": "object",
+              "required": ["function", "signature", "description", "isr_safe"],
+              "properties": {
+                "function": {"type": "string"},
+                "signature": {"type": "string", "description": "完整 C 签名，如 int32_t uart_port_write(uart_port_id_t id, const uint8_t *buf, uint16_t len)"},
+                "description": {"type": "string"},
+                "isr_safe": {"type": "boolean", "description": "是否可在中断上下文调用"},
+                "callback": {"type": ["string", "null"], "description": "关联的回调接口名（如 uart_port_rx_cb_t），无回调为 null"}
+              }
+            }
+          },
+          "callbacks": {
+            "type": "array",
+            "description": "回调类型清单",
+            "items": {
+              "type": "object",
+              "required": ["name", "signature", "description", "context"],
+              "properties": {
+                "name": {"type": "string"},
+                "signature": {"type": "string"},
+                "description": {"type": "string"},
+                "context": {"type": "string", "enum": ["isr", "task", "both"], "description": "回调被调用的上下文（S5c 实现与 APP 注册都须遵守）"}
+              }
+            }
+          },
+          "notes": {"type": "array", "items": {"type": "string"}, "description": "实现约定（缓冲方向/DMA 隐藏/阻塞语义等）"}
+        }
+      }
+    },
+    "power": {
+      "type": ["object", "null"],
+      "description": "低功耗接口约定（power_enabled=false 或 flat 架构为 null）",
+      "properties": {
+        "naming_source": {"type": "string", "description": "接口命名来源（design_input / agent_recommended）"},
+        "typical_interfaces": {"type": "array", "items": {"type": "string"}, "description": "典型接口名（enter_sleep_before/enter_sleep/wakeup_after_sleep/clock_compensate 等）"}
+      }
+    },
+    "generated_at": {"type": "string"},
+    "notes": {"type": "array", "items": {"type": "string"}}
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "module": "app_key_handler",
+  "file": "docs/flow/app_key_handler_state.md",
+  "graph_type": "stateDiagram-v2",
+  "base_version": null,
+  "current_version": "1.0",
+  "status": "approved",
+  "nodes": {
+    "total": 4,
+    "added": [],
+    "removed": [],
+    "renamed": []
+  },
+  "edges": {
+    "total": 9,
+    "added": [],
+    "removed": [],
+    "modified": []
+  },
+  "change_count": 0,
+  "change_ratio": 0.0,
+  "generation_mode": "skip",
+  "baseline_source": null,
+  "change_summary": "流程图与上轮一致，跳过代码生成",
+  "updated_at": "2026-09-24T14:17:23"
+}

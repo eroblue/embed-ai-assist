@@ -1,0 +1,54 @@
+{
+  "items": [
+    {
+      "id": "REC-001",
+      "topic": "OLED 显示文案语言",
+      "description": "中文显示需 GB2312 16x16 点阵字库（每字 32 字节），超出本次 ASCII 字库范围（43 个 8x16 字形，提取自正点原子 oledfont.h）",
+      "impact": "OLED 四行画面使用英文短标签（ENV MONITOR / T:25C H:60% / L:75% / M:AUTO A:NORMAL）",
+      "suggestion": "如需中文显示，后续扩充 driver_oled 字库并引入中文编码映射；当前英文标签满足全部信息项"
+    },
+    {
+      "id": "REC-002",
+      "topic": "LED_RUN 闪烁频率取值",
+      "description": "spec 只约定心跳/快闪/慢闪三种模式，未定义具体频率；本次实现取值：心跳 1Hz（500ms 亮/灭）、快闪 2Hz（250ms）、慢闪 0.5Hz（1s）",
+      "impact": "不同频率便于肉眼区分故障等级",
+      "suggestion": "如对频率有验收要求，调整 app.c 中 led_tick 分频常数即可"
+    },
+    {
+      "id": "REC-003",
+      "topic": "执行器恢复语义（REQ-005 与设计输入的冲突裁决）",
+      "description": "spec 写'告警条件解除后自动恢复'，设计输入写'高温开、低温关、其他保持'。按设计输入（优先级最高）实现：告警解除后执行器保持当前状态",
+      "impact": "温度从 >30°C 回落到 30~10°C 区间时执行器保持开启，仅 <10°C 关闭",
+      "suggestion": "用户已在流程图评审时确认此语义；如需恢复 spec 字面语义，在 app_alarm_control_poll 的迁移动作中补 NORMAL 目标态的 actuator_apply 即可"
+    },
+    {
+      "id": "REC-004",
+      "topic": "REQ-009 日志记录未实现",
+      "description": "'记录日志'项未实现：设备无独立日志通道（无存储介质，上报串口已承载 JSON 帧）",
+      "impact": "traceability 中 REQ-009 标记 partial",
+      "suggestion": "如需日志，可扩展 app_uart_report 输出事件帧（如 {\"log\":\"report_fail\"}）或复用上位机解析"
+    },
+    {
+      "id": "REC-005",
+      "topic": "10ms 节拍硬件定时器未指定",
+      "description": "设计输入时序表约定 10ms 主循环节拍但未指定硬件定时器；manifest 中 TIMER_PORT_TICK_10MS 的 hw_instance=null",
+      "impact": "S5c 需自行选定实现载体",
+      "suggestion": "建议用 SysTick（最简，不占用通用定时器）；DHT11 的 delay_us 可基于 SysTick 计数或 TIM2 实现"
+    },
+    {
+      "id": "REC-006",
+      "topic": "硬件有效电平假设（S5c 实现时复核）",
+      "description": "按正点原子 warship 板卡约定假设：LED0/LED1 低电平点亮、蜂鸣器高电平导通、KEY0/KEY1 上拉低有效、WK_UP 下拉高有效；均以 active_level 固化在 manifest 实例 config",
+      "impact": "若实际板卡驱动方式不同（如蜂鸣器低有效），仅需 S5c 修改实例映射，APP/Driver 代码不变",
+      "suggestion": "S5c 实现时对照原理图复核 PB8 蜂鸣器驱动三极管类型"
+    },
+    {
+      "id": "REC-007",
+      "topic": "旧示例 main.c 工程冲突（已复核：不成立）",
+      "description": "磁盘残留 App/Core/Src/main.c（旧示例入口）；validate 后复核 Keil 工程（stm32f103zet6.uvprojx）全部 19 个源文件引用，未包含 Core/Src/main.c，不存在双 main 链接冲突",
+      "impact": "无需任何手动处理；孤儿文件不参与编译",
+      "suggestion": "可选清理：删除磁盘上的 App/Core/Src/main.c 孤儿文件，并移除 IncludePath 中残留的 ..\\Core\\Inc（均为无害遗留）"
+    }
+  ],
+  "generated_at": "2026-09-24T11:40:00"
+}

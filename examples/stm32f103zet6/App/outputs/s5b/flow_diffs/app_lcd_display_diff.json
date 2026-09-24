@@ -1,0 +1,26 @@
+{
+  "module": "app_lcd_display",
+  "file": "docs/flow/app_lcd_display_flow.md",
+  "graph_type": "flowchart",
+  "base_version": null,
+  "current_version": "1.0",
+  "status": "approved",
+  "nodes": {
+    "total": 12,
+    "added": [],
+    "removed": [],
+    "renamed": []
+  },
+  "edges": {
+    "total": 13,
+    "added": [],
+    "removed": [],
+    "modified": []
+  },
+  "change_count": 0,
+  "change_ratio": 0.0,
+  "generation_mode": "full",
+  "baseline_source": null,
+  "change_summary": "首次生成（flow_index 无记录），全量生成模块代码",
+  "updated_at": "2026-09-24T14:17:23"
+}

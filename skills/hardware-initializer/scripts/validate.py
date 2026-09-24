@@ -51,6 +51,7 @@ import analysis  # noqa: E402
 import capability_extractor  # noqa: E402
 import ide_pending_exporter  # noqa: E402
 import layout_resolver  # noqa: E402
+import state_store  # noqa: E402
 
 EXIT_OK = 0
 EXIT_PRODUCT_INVALID = 1
@@ -258,10 +259,8 @@ def main(argv: list[str] | None = None) -> int:
         payload = make_state_payload("error", "none", "layered", False,
                                      src_dirs, inc_dirs, target_ws, "", None, error)
         try:
-            state = analysis.load_json(state_path) if state_path.exists() else {}
-            state["s5a"] = payload
-            analysis.save_json(state_path, state)
-        except OSError:
+            state_store.update_state(state_path, {"s5a": payload})
+        except (OSError, state_store.StateLockTimeout):
             pass
         _log(error)
         print(json.dumps({"s5a": payload}, ensure_ascii=False, indent=2))
@@ -324,8 +323,7 @@ def main(argv: list[str] | None = None) -> int:
         payload, SKILL_DIR / "schemas" / "output.schema.json", "s5a")
     if state_errors:
         return _env_error("s5a 状态契约校验失败: " + "; ".join(state_errors))
-    ctx["state"]["s5a"] = payload
-    analysis.save_json(ctx["state_path"], ctx["state"])
+    state_store.update_state(ctx["state_path"], {"s5a": payload})
 
     # ---- 5. IDE 工程同步（公共工具 skills/_shared/scripts/ide_sync.py，失败不中断）----
     try:

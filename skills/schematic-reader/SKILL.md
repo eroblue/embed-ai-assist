@@ -1,15 +1,19 @@
 ---
 name: "schematic-reader"
-description: "读取 Altium Designer / KiCad 原理图文件，提取元件、网络、引脚信息并输出通用网表。当用户需要分析硬件原理图、获取电路连接关系或为后续电路验证提供网表数据时触发。"
+description: "读取 Altium Designer / KiCad 原理图源文件或 PDF 原理图，提取元件、网络、引脚信息并输出通用网表（PDF 输入附带置信度分级与人工核对清单）。当用户需要分析硬件原理图、获取电路连接关系或为后续电路验证提供网表数据时触发。"
 ---
 
 # schematic-reader 原理图解析
 
 ## 用途
 
-读取 Altium Designer 原理图文件（`.SchDoc`）或 KiCad 原理图文件（`.kicad_sch`），
-提取元件（Component）、网络（Net）、引脚（Pin）信息，转换为 EDA 无关的通用网表，
-写入 `outputs/circuit_netlist.json`，并把路径和统计信息写入 `state.json` 的 `circuit` 字段。
+读取 Altium Designer 原理图文件（`.SchDoc`）、KiCad 原理图文件（`.kicad_sch`）或
+**PDF 原理图**（`.pdf`，矢量 + 文字层），提取元件（Component）、网络（Net）、
+引脚（Pin）信息，转换为 EDA 无关的通用网表，写入 `outputs/circuit_netlist.json`，
+并把路径和统计信息写入 `state.json` 的 `circuit` 字段。
+
+PDF 输入为**推断式提取**（精度 85~95%）：每条连接附带置信度，低置信度连接
+写入 `outputs/pdf_review.md` 人工核对清单，不静默丢弃。
 
 在整体流程中属于 **数据输入层（S1）**，输出被 `circuit-investigator`（S4，电路覆盖门禁）依赖。
 
@@ -27,11 +31,14 @@ schematic-reader/
 │   ├── excel_export.py          ← 引脚配置 Excel 导出（outputs/pin_table.xlsx）
 │   └── adapters/
 │       ├── altium_adapter.py    ← Altium 解析适配器
-│       └── kicad_adapter.py     ← KiCad 解析适配器
+│       ├── kicad_adapter.py     ← KiCad 解析适配器
+│       └── pdf_adapter.py       ← PDF 解析适配器（矢量 + 文字层推断，附置信度）
 ├── references/                  ← 参考文档（格式规范、领域知识）
-│   └── excel_format.md          ← 引脚表 Excel 格式规范
+│   ├── excel_format.md          ← 引脚表 Excel 格式规范
+│   └── pdf_extraction_guide.md  ← PDF 提取原理与置信度说明
 └── assets/                      ← 资源文件（示例输出、样例数据）
-    └── pin_table_example.xlsx   ← Excel 输出示例
+    ├── pin_table_example.xlsx   ← Excel 输出示例
+    └── pdf_review_example.md    ← PDF 核对清单示例
 ```
 
 **指针/数据分离规则**：网表数据量大（可能几 MB），真实数据放 `outputs/circuit_netlist.json`
@@ -50,9 +57,10 @@ schematic-reader/
 
 | 参数 | 来源 | 类型 | 必填 | 说明 |
 | :--- | :--- | :--- | :--- | :--- |
-| `schematic_path` | 项目 `config.json` | string | 是 | 原理图路径（`.SchDoc` / `.kicad_sch`，相对项目目录） |
+| `schematic_path` | 项目 `config.json` | string | 是 | 原理图路径（`.SchDoc` / `.kicad_sch` / `.pdf`，相对项目目录） |
 | `output_dir` | 项目 `config.json` | string | 否 | 输出目录（默认 `outputs/`，相对项目目录） |
-| `eda_tool` | 项目 `config.json` 或命令行 | string | 否 | `altium` \| `kicad`；缺省按扩展名自动判断（默认 `altium`） |
+| `eda_tool` | 项目 `config.json` 或命令行 | string | 否 | `altium` \| `kicad` \| `pdf`；缺省按扩展名自动判断（默认 `altium`） |
+| `schematic_format` | 项目 `config.json` | string | 否 | 同 `eda_tool` 的格式别名（`schdoc` / `prjpcb` / `kicad_sch` / `pdf`），优先级低于命令行 |
 
 目标工程根 = 项目根 / `project.build_target`（`App` / `BootLoader`，缺省 `App`）：
 `state.json` 与 `outputs/` 均位于目标工程根；`config.json` / `docs/` / `references/`
@@ -91,6 +99,13 @@ schematic-reader/
 | `source_file` | string | 被解析的原理图绝对路径 |
 | `excel_path` | string \| null | 引脚配置 Excel 路径（导出失败或跳过时为 null） |
 | `error` | string \| null | 失败/部分失败时的错误信息 |
+| `source_format` | string | **可选**，PDF 输入时为 `pdf`（源文件输入不出现该字段） |
+| `confidence` | number | **可选**，PDF 输入时的整体置信度（0~1，全部连接的算术平均） |
+| `low_confidence_count` | integer | **可选**，PDF 输入时置信度 < 0.7 的连接数量 |
+| `review_path` | string | **可选**，PDF 输入时人工核对清单路径（`outputs/pdf_review.md`） |
+
+新增字段全部可选（schema v1.1，向后兼容）：源文件输入时这些字段不出现，
+与 v1.0 行为完全一致，下游 S4/S5 无需改动。
 
 输出契约见 [schemas/output.schema.json](schemas/output.schema.json)。
 
@@ -143,15 +158,44 @@ schematic-reader/
 - 作用与外设/模式的判断归 S4 circuit-investigator（输出在 `outputs/circuit_facts.xlsx`），本表不再输出这两列
 - 行颜色编码：电源=蓝、特殊功能=黄、悬空=灰、普通=白
 
+`outputs/pdf_review.md`（**仅 PDF 输入时生成**）：人工核对清单，
+格式见 [assets/pdf_review_example.md](assets/pdf_review_example.md)。
+
+- 低置信度连接（confidence < 0.7）全部列出，不得静默丢弃
+- 引脚 / 推断网络 / 推断目标 / 置信度 / 建议 五列，按置信度升序
+- 附中置信度（0.7~0.95，S4 重点核对）与未识别引脚元件清单
+
+### PDF 输入时的网表差异
+
+PDF 输入时 `circuit_netlist.json` 的引脚/端点多出**可选**的置信度字段
+（源文件输入时不出现，schema 兼容）：
+
+```json
+{
+  "pin": "1", "pin_name": "", "pin_type": "UNKNOWN",
+  "net": "GND",
+  "confidence": 0.9,
+  "method": "net_label",
+  "note": "线与引脚交点明确，网络标号 GND"
+}
+```
+
+`method` 枚举：`pin_name_match`（0.95，引脚名与网络名一致）/ `net_label`
+（0.90，精确落线 + 网络标号）/ `line_intersection`（0.75，精确落线，自动命名）/
+`llm_assisted`（Agent 阶段补充）。引脚未精确落线时按邻近推断（0.50）。
+已识别但未连通的引脚保留且 `net=null`。置信度模型详见
+[references/pdf_extraction_guide.md](references/pdf_extraction_guide.md)。
+
 ## 执行步骤
 
 1. 分层加载配置（根目录全局 `config.json` → 项目 `config.json` → 深合并），读取 `schematic_path` 与 `output_dir`，检查原理图文件是否存在
-2. 根据扩展名和 `eda_tool` 参数选择适配器（`adapters/altium_adapter.py` / `adapters/kicad_adapter.py`）
+2. 根据扩展名和 `eda_tool` / `schematic_format` 参数选择适配器（`altium_adapter.py` / `kicad_adapter.py` / `pdf_adapter.py`）
 3. 调用适配器解析原理图，得到 EDA 无关的通用网表数据
 4. 将网表写入 `outputs/circuit_netlist.json`
 5. 调用 `scripts/excel_export.py` 生成引脚配置 Excel 到 `outputs/pin_table.xlsx`
-6. 将路径和统计信息写入 `state.json` 的 `circuit` 字段
-7. 用 `jsonschema` 依据 `schemas/output.schema.json` 校验输出后，向 stdout 打印结果摘要
+6. **（PDF 专用）** 若使用 pdf_adapter，同时生成 `outputs/pdf_review.md` 人工核对清单（低置信度连接）
+7. 将路径和统计信息写入 `state.json` 的 `circuit` 字段
+8. 用 `jsonschema` 依据 `schemas/output.schema.json` 校验输出后，向 stdout 打印结果摘要
 
 ## 使用方法
 
@@ -164,12 +208,15 @@ python skills/schematic-reader/scripts/parse.py --config projects/my_project/con
 
 # 显式指定 EDA 工具 / 命令行覆盖原理图路径（不修改 config.json）
 python skills/schematic-reader/scripts/parse.py --config examples/stm32f103zet6/config.json --eda-tool kicad --schematic path/to/demo.kicad_sch
+
+# PDF 原理图（临时覆盖，不回写 config.json；或在 config.json 中改 schematic_path）
+python skills/schematic-reader/scripts/parse.py --config examples/stm32f103zet6/config.json --eda-tool pdf --schematic "schematic/WarShip STM32F1_V3.4_SCH.pdf"
 ```
 
 参数说明：
 
 - `--config`：项目 `config.json` 路径（自动与根目录全局 `config.json` 分层合并），默认当前目录下的 `config.json`
-- `--eda-tool`：`altium` | `kicad`，覆盖配置中的 `eda_tool`（仅本次生效）
+- `--eda-tool`：`altium` | `kicad` | `pdf`，覆盖配置中的 `eda_tool` / `schematic_format`（仅本次生效）
 - `--schematic`：覆盖配置中的 `schematic_path`（仅本次生效，不回写）
 - `--workspace`：覆盖项目目录（默认 `--config` 所在目录，仅本次生效）
 
@@ -179,11 +226,14 @@ python skills/schematic-reader/scripts/parse.py --config examples/stm32f103zet6/
 - `altium-monkey`（Altium 适配器，解析 `.SchDoc` OLE 复合文档）
 - `jsonschema`（输出契约校验）
 - `openpyxl`（引脚配置 Excel 导出，缺失时跳过 Excel 输出，不影响网表主流程）
+- `pdfplumber` 或 `PyMuPDF`（PDF 适配器，二者装其一即可；均缺失时 PDF 解析报错退出）
 
-安装：`python -m pip install altium-monkey jsonschema openpyxl`
+安装：`python -m pip install altium-monkey jsonschema openpyxl pdfplumber`
 
 ## 禁止事项
 
 - **不要修改 `config.json`**（只读）
 - **不要读写 `state.json` 中其他 Skill 的字段**（只写 `circuit` 字段）
 - 不要在解析失败时留下半成品 `circuit_netlist.json`（失败时删除并写 `parse_status: failed`）
+- **PDF 解析不得声称 100% 精度**：必须输出每条连接的置信度
+- **置信度 < 0.7 的连接必须写入 `outputs/pdf_review.md`**，不得静默丢弃

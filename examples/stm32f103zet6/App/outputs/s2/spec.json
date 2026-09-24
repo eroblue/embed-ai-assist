@@ -1,0 +1,407 @@
+{
+  "meta": {
+    "source_file": "docs/智能环境监测仪功能规格书.md",
+    "source_type": "markdown",
+    "extracted_at": "2026-09-23T17:56:30",
+    "spec_version": "1.0"
+  },
+  "title": "SmartEnvGuard 智能环境监测仪",
+  "summary": "实时监测室内温度、湿度与光照强度，本地显示与告警提示，支持自动/手动控制与告警静音，周期性向上位机上报环境数据。",
+  "requirements": [
+    {
+      "id": "REQ-001",
+      "title": "环境数据周期采集与保存",
+      "description": "每 2 秒采集一次温度（°C）、湿度（%RH）、光照（相对百分比 0~100%），采集数据保存在设备内部，供显示、上报、控制使用。",
+      "priority": "must",
+      "category": "functional",
+      "source": {
+        "section": "2.1 环境采集"
+      },
+      "acceptance": "上电后每 2 秒完成一次采集，显示、上报、控制三条路径均可读取最近采集值。"
+    },
+    {
+      "id": "REQ-002",
+      "title": "采集失败容错",
+      "description": "采集失败时跳过本次并保留上次有效值；连续 5 次失败后触发传感器故障告警；采集恢复成功后自动清除故障恢复正常。",
+      "priority": "must",
+      "category": "functional",
+      "source": {
+        "section": "5.1 采集失败"
+      },
+      "acceptance": "传感器失联后显示保持上次有效值，连续 5 次失败后出现传感器故障告警；重新接入后自动恢复。"
+    },
+    {
+      "id": "REQ-003",
+      "title": "本地数据显示",
+      "description": "本地屏幕每 200ms 刷新一次，实时显示当前工作模式、温度、湿度、光照强度与告警状态；告警激活时对应显示项闪烁提示。",
+      "priority": "must",
+      "category": "functional",
+      "source": {
+        "section": "2.2 本地显示"
+      },
+      "acceptance": "环境数据或模式变化后 200ms 内屏幕更新；告警激活时对应显示项闪烁。"
+    },
+    {
+      "id": "REQ-004",
+      "title": "按键交互",
+      "description": "3 个按键：按键 1 切换自动/手动模式；按键 2 在手动模式下开关执行器（自动模式下无功能）；按键 3 切换告警静音状态。短按（按键时长小于 1 秒、释放时响应）触发功能，长按无功能（预留扩展），按键需防误触。",
+      "priority": "must",
+      "category": "functional",
+      "source": {
+        "section": "2.3 按键交互"
+      },
+      "acceptance": "短按各按键触发对应功能；抖动接触不产生误动作；长按无响应。"
+    },
+    {
+      "id": "REQ-005",
+      "title": "自动控制与阈值联动",
+      "description": "自动模式下根据环境数据自动控制执行器并触发告警：温度超过 30°C 触发高温告警且执行器开；温度低于 10°C 触发低温告警且执行器关；光照低于 20% 触发低光照告警。手动模式下自动逻辑不干预执行器。告警条件解除后自动恢复。",
+      "priority": "must",
+      "category": "functional",
+      "source": {
+        "section": "2.4 自动控制"
+      },
+      "acceptance": "自动模式下温度升至 30°C 以上时执行器开启并出现高温告警；条件解除后执行器与告警自动恢复。"
+    },
+    {
+      "id": "REQ-006",
+      "title": "告警优先级管理",
+      "description": "告警分四级：高温（优先级 1，最高）、低温（优先级 2）、低光照（优先级 3）、传感器故障（优先级 4）。多个告警同时满足时，只上报和提示优先级最高的告警。",
+      "priority": "must",
+      "category": "functional",
+      "source": {
+        "section": "3.2 告警状态"
+      },
+      "acceptance": "同时满足高温与低光照条件时，仅出现高温告警提示。"
+    },
+    {
+      "id": "REQ-007",
+      "title": "告警静音",
+      "description": "告警触发时蜂鸣提示；静音状态下告警不发出蜂鸣声、仅保留显示提示。静音状态可与自动/手动模式叠加，由按键 3 切换开启/取消。",
+      "priority": "must",
+      "category": "functional",
+      "source": {
+        "section": "3.1 工作模式"
+      },
+      "acceptance": "静音开启时触发告警无蜂鸣声但显示项仍闪烁；再次按按键 3 后恢复蜂鸣。"
+    },
+    {
+      "id": "REQ-008",
+      "title": "数据上报",
+      "description": "每 5 秒向上位机（PC 端或云端）上报一帧数据，内容包括当前温度、湿度、光照、工作模式、告警状态，以 JSON 字符串格式组织。",
+      "priority": "must",
+      "category": "interface",
+      "source": {
+        "section": "2.5 数据上报"
+      },
+      "acceptance": "上位机每 5 秒收到一帧包含温度、湿度、光照、模式、告警状态的 JSON 数据。"
+    },
+    {
+      "id": "REQ-009",
+      "title": "上报失败容错",
+      "description": "上报失败时随上报周期自动重试；连续 3 次失败判定为上报连续失败，记录日志并以运行指示灯快速闪烁提示，设备其余功能继续正常工作。",
+      "priority": "must",
+      "category": "functional",
+      "source": {
+        "section": "5.2 上报失败"
+      },
+      "acceptance": "断开上位机链路后设备继续采集、显示与控制，运行灯快闪提示；链路恢复后上报自动恢复。"
+    },
+    {
+      "id": "REQ-010",
+      "title": "初始化失败降级",
+      "description": "部分模块初始化失败时跳过该模块对应功能，其余功能继续工作；通过运行指示灯的闪烁模式提示初始化失败状态。",
+      "priority": "must",
+      "category": "functional",
+      "source": {
+        "section": "5.3 初始化失败"
+      },
+      "acceptance": "模拟某模块初始化失败后，其余功能可用，运行灯以慢闪模式提示。"
+    },
+    {
+      "id": "REQ-011",
+      "title": "运行指示灯",
+      "description": "设备有 2 个指示灯：运行灯正常运行时心跳闪烁，上报连续失败时快闪，部分初始化失败时慢闪；执行灯亮表示执行器开、灭表示执行器关。",
+      "priority": "must",
+      "category": "functional",
+      "source": {
+        "section": "6 运行指示"
+      },
+      "acceptance": "正常运行时运行灯以 1Hz 心跳；执行器开关状态与执行灯亮灭一致。"
+    },
+    {
+      "id": "REQ-012",
+      "title": "工作模式管理",
+      "description": "设备具有自动/手动两种控制模式，上电默认进入自动模式；自动模式下自动控制生效，手动模式下手动控制生效且自动逻辑不干预。",
+      "priority": "must",
+      "category": "functional",
+      "source": {
+        "section": "3.1 工作模式"
+      },
+      "acceptance": "上电后设备处于自动模式且运行灯开始心跳；按按键 1 后模式切换。"
+    },
+    {
+      "id": "REQ-013",
+      "title": "环境数据有效范围",
+      "description": "温度有效范围 -20~60°C、湿度有效范围 0~100%、光照有效范围 0~100%（相对值），超出有效范围的数据视为异常。",
+      "priority": "must",
+      "category": "constraint",
+      "source": {
+        "section": "8 约束与边界"
+      },
+      "acceptance": "注入超范围数据时被判为异常，不产生错误的环境控制动作。"
+    },
+    {
+      "id": "REQ-014",
+      "title": "系统级约束",
+      "description": "系统不使用动态内存分配；产品级可用性要求连续工作 24 小时无异常。",
+      "priority": "must",
+      "category": "constraint",
+      "source": {
+        "section": "8 约束与边界"
+      },
+      "acceptance": null
+    }
+  ],
+  "features": [
+    {
+      "id": "F-001",
+      "name": "环境采集",
+      "description": "周期采集温度、湿度、光照数据并提供采集失败容错",
+      "requirements": ["REQ-001", "REQ-002"]
+    },
+    {
+      "id": "F-002",
+      "name": "本地显示",
+      "description": "本地屏幕实时显示环境数据、模式与告警状态",
+      "requirements": ["REQ-003"]
+    },
+    {
+      "id": "F-003",
+      "name": "按键交互",
+      "description": "三个按键的模式切换、执行器控制与静音切换输入",
+      "requirements": ["REQ-004"]
+    },
+    {
+      "id": "F-004",
+      "name": "自动控制",
+      "description": "自动模式下按环境阈值联动控制执行器",
+      "requirements": ["REQ-005"]
+    },
+    {
+      "id": "F-005",
+      "name": "告警管理",
+      "description": "四级告警的优先级管理与静音控制",
+      "requirements": ["REQ-006", "REQ-007"]
+    },
+    {
+      "id": "F-006",
+      "name": "数据上报",
+      "description": "周期性向上位机上报环境数据与设备状态并容错",
+      "requirements": ["REQ-008", "REQ-009"]
+    },
+    {
+      "id": "F-007",
+      "name": "运行指示",
+      "description": "运行灯与执行灯的状态指示",
+      "requirements": ["REQ-011"]
+    },
+    {
+      "id": "F-008",
+      "name": "工作模式管理",
+      "description": "自动/手动控制模式的定义、默认值与切换语义",
+      "requirements": ["REQ-012"]
+    },
+    {
+      "id": "F-009",
+      "name": "初始化与容错",
+      "description": "模块初始化失败的降级运行与提示",
+      "requirements": ["REQ-010"]
+    },
+    {
+      "id": "F-010",
+      "name": "系统约束",
+      "description": "数据有效范围与内存、可用性等系统级约束",
+      "requirements": ["REQ-013", "REQ-014"]
+    }
+  ],
+  "business_states": [
+    {
+      "module_hint": "工作模式管理",
+      "states": [
+        {"name": "自动模式", "description": "自动控制生效"},
+        {"name": "手动模式", "description": "手动控制生效，自动逻辑不干预执行器"}
+      ],
+      "transitions": [
+        {"from": "自动模式", "to": "手动模式", "event": "按键1短按"},
+        {"from": "手动模式", "to": "自动模式", "event": "按键1短按"}
+      ]
+    },
+    {
+      "module_hint": "告警管理",
+      "states": [
+        {"name": "静音关闭", "description": "告警正常蜂鸣提示"},
+        {"name": "静音开启", "description": "告警不发出蜂鸣声，仅保留显示提示"}
+      ],
+      "transitions": [
+        {"from": "静音关闭", "to": "静音开启", "event": "按键3短按开启静音"},
+        {"from": "静音开启", "to": "静音关闭", "event": "按键3短按取消静音"}
+      ]
+    },
+    {
+      "module_hint": "告警管理",
+      "states": [
+        {"name": "正常", "description": "无告警"},
+        {"name": "高温告警", "description": "温度 > 30°C 触发，优先级 1（最高）"},
+        {"name": "低温告警", "description": "温度 < 10°C 触发，优先级 2"},
+        {"name": "低光照告警", "description": "光照 < 20% 触发，优先级 3"},
+        {"name": "传感器故障", "description": "连续采集失败 5 次触发，优先级 4"}
+      ],
+      "transitions": [
+        {"from": "正常", "to": "高温告警", "event": "温度超过 30°C"},
+        {"from": "正常", "to": "低温告警", "event": "温度低于 10°C"},
+        {"from": "正常", "to": "低光照告警", "event": "光照低于 20%"},
+        {"from": "正常", "to": "传感器故障", "event": "采集连续失败 5 次"},
+        {"from": "高温告警", "to": "正常", "event": "温度回落至阈值内自动解除"},
+        {"from": "低温告警", "to": "正常", "event": "温度回升至阈值内自动解除"},
+        {"from": "低光照告警", "to": "正常", "event": "光照恢复至阈值以上自动解除"},
+        {"from": "传感器故障", "to": "正常", "event": "采集成功自动恢复"}
+      ]
+    },
+    {
+      "module_hint": "自动控制",
+      "states": [
+        {"name": "执行器关", "description": "执行灯灭"},
+        {"name": "执行器开", "description": "执行灯亮"}
+      ],
+      "transitions": [
+        {"from": "执行器关", "to": "执行器开", "event": "自动模式温度超过 30°C，或手动模式按键2短按"},
+        {"from": "执行器开", "to": "执行器关", "event": "自动模式温度低于 10°C 或告警解除恢复，或手动模式按键2短按"}
+      ]
+    }
+  ],
+  "business_timing": [
+    {
+      "name": "环境采集周期",
+      "period_ms": 2000,
+      "pattern": null,
+      "description": "每 2 秒采集一次环境数据",
+      "requirement": "REQ-001"
+    },
+    {
+      "name": "本地显示刷新",
+      "period_ms": 200,
+      "pattern": null,
+      "description": "本地屏幕每 200ms 刷新一次",
+      "requirement": "REQ-003"
+    },
+    {
+      "name": "数据上报周期",
+      "period_ms": 5000,
+      "pattern": null,
+      "description": "每 5 秒向上位机上报一帧数据",
+      "requirement": "REQ-008"
+    },
+    {
+      "name": "告警蜂鸣节奏",
+      "period_ms": null,
+      "pattern": "1s 响 / 1s 停",
+      "description": "告警激活时蜂鸣器以 1 秒响 1 秒停的节奏提示",
+      "requirement": "REQ-005"
+    },
+    {
+      "name": "运行灯心跳",
+      "period_ms": 1000,
+      "pattern": null,
+      "description": "正常运行时运行灯以 1Hz 心跳闪烁",
+      "requirement": "REQ-011"
+    },
+    {
+      "name": "告警显示闪烁",
+      "period_ms": 1000,
+      "pattern": null,
+      "description": "告警激活时对应显示项以 1Hz 闪烁提示",
+      "requirement": "REQ-003"
+    }
+  ],
+  "error_handling": [
+    {
+      "scenario": "采集失败",
+      "strategy": "跳过本次并保留上次有效值；连续 5 次失败触发传感器故障告警，采集成功后自动恢复",
+      "requirement": "REQ-002"
+    },
+    {
+      "scenario": "上报失败",
+      "strategy": "随上报周期自动重试；连续 3 次失败判定为上报连续失败，记录日志并以运行灯快闪提示，设备继续工作",
+      "requirement": "REQ-009"
+    },
+    {
+      "scenario": "模块初始化失败",
+      "strategy": "跳过该模块对应功能，其余功能继续工作，运行灯以闪烁模式提示",
+      "requirement": "REQ-010"
+    },
+    {
+      "scenario": "环境数据超出有效范围",
+      "strategy": "数据视为异常，不作为有效环境数据参与显示与控制",
+      "requirement": "REQ-013"
+    }
+  ],
+  "thresholds": [
+    {
+      "name": "高温告警阈值",
+      "value": 30,
+      "unit": "°C",
+      "condition": ">",
+      "requirement": "REQ-005"
+    },
+    {
+      "name": "低温告警阈值",
+      "value": 10,
+      "unit": "°C",
+      "condition": "<",
+      "requirement": "REQ-005"
+    },
+    {
+      "name": "低光照告警阈值",
+      "value": 20,
+      "unit": "%",
+      "condition": "<",
+      "requirement": "REQ-005"
+    },
+    {
+      "name": "温度有效范围",
+      "value": "-20~60",
+      "unit": "°C",
+      "condition": "范围内",
+      "requirement": "REQ-013"
+    },
+    {
+      "name": "湿度有效范围",
+      "value": "0~100",
+      "unit": "%RH",
+      "condition": "范围内",
+      "requirement": "REQ-013"
+    },
+    {
+      "name": "光照有效范围",
+      "value": "0~100",
+      "unit": "%",
+      "condition": "范围内",
+      "requirement": "REQ-013"
+    },
+    {
+      "name": "传感器故障判定次数",
+      "value": 5,
+      "unit": null,
+      "condition": ">=",
+      "requirement": "REQ-002"
+    },
+    {
+      "name": "上报连续失败判定次数",
+      "value": 3,
+      "unit": null,
+      "condition": ">=",
+      "requirement": "REQ-009"
+    }
+  ]
+}

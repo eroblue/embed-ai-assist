@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.s5b.flow_diff.v1",
+  "title": "流程图 diff 结果（单模块）",
+  "type": "object",
+  "required": ["module", "file", "graph_type", "base_version", "current_version", "status", "nodes", "edges", "change_count", "change_ratio", "generation_mode", "baseline_source", "updated_at"],
+  "properties": {
+    "module": {"type": "string", "description": "模块名（= 代码文件基名，如 app_wifi）"},
+    "file": {"type": "string", "description": "流程图文件相对路径（docs/flow/<模块>_<类型>.md）"},
+    "graph_type": {"type": "string", "enum": ["stateDiagram-v2", "flowchart", "sequenceDiagram"]},
+    "base_version": {"type": ["string", "null"], "description": "基线版本（.history 快照）；首次生成为 null"},
+    "current_version": {"type": ["string", "null"], "description": "front-matter 当前版本号"},
+    "status": {"type": "string", "enum": ["draft", "review", "approved", "dirty", "deprecated"]},
+    "nodes": {
+      "type": "object",
+      "required": ["total", "added", "removed", "renamed"],
+      "properties": {
+        "total": {"type": "integer", "minimum": 0, "description": "当前图节点总数"},
+        "added": {"type": "array", "items": {"type": "string"}},
+        "removed": {"type": "array", "items": {"type": "string"}},
+        "renamed": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["from", "to"],
+            "properties": {"from": {"type": "string"}, "to": {"type": "string"}}
+          },
+          "description": "重命名节点（flowchart 按 label 匹配检测；stateDiagram/sequence 置空）"
+        }
+      }
+    },
+    "edges": {
+      "type": "object",
+      "required": ["total", "added", "removed", "modified"],
+      "properties": {
+        "total": {"type": "integer", "minimum": 0, "description": "当前图边总数"},
+        "added": {"type": "array", "items": {"type": "string"}, "description": "元素格式 '<from> -> <to> [label]'"},
+        "removed": {"type": "array", "items": {"type": "string"}},
+        "modified": {"type": "array", "items": {"type": "string"}, "description": "起止点未变但标签/条件变化的边"}
+      }
+    },
+    "change_count": {"type": "integer", "minimum": 0, "description": "变更元素总数（节点 added+removed+renamed + 边 added+removed+modified），diff 范围校验的预期依据"},
+    "change_ratio": {"type": "number", "minimum": 0, "description": "变化率 = 变更元素数 / max(当前节点+边总数, 1)"},
+    "generation_mode": {
+      "type": "string",
+      "enum": ["full", "incremental", "skip", "blocked", "deprecated"],
+      "description": "full=首次/变化率>60%；incremental=变化率≤60%；skip=无变更；blocked=未 approved（不生成代码）；deprecated=废弃"
+    },
+    "baseline_source": {"type": ["string", "null"], "description": "基线快照路径（docs/flow/.history/<模块>/<版本>.md）；首次为 null"},
+    "change_summary": {"type": ["string", "null"], "description": "变更摘要（一句话，供任务书/审核参考）"},
+    "updated_at": {"type": "string"}
+  }
+}
