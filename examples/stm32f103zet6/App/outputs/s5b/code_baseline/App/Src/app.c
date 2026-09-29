@@ -7,14 +7,14 @@
  *  按键(10ms) → 采集(2s) → 告警评估(10ms) → 显示(200ms) → 上报(5s)。
  * 按键事件路由：MODE/MUTE → app_mode_control，SWITCH → app_alarm_control。
  * LED_RUN 运行指示优先级：
- *  慢闪（OLED 初始化失败）> 快闪（上报持续失败）> 心跳 1Hz。
+ *  慢闪（LCD 初始化失败）> 快闪（上报持续失败）> 心跳 1Hz。
  */
 #include "app.h"
 #include "app_mode_control.h"
 #include "app_key_handler.h"
 #include "app_env_sensor.h"
 #include "app_alarm_control.h"
-#include "app_oled_display.h"
+#include "app_lcd_display.h"
 #include "app_uart_report.h"
 #include "gpio_port.h"
 #include "timer_port.h"
@@ -30,6 +30,13 @@ int32_t app_init(void)
     }; /* LED_RUN：初始灭，激活=低（心跳/故障闪烁） */
     int32_t r;
 
+    /* 系统节拍 + 延时基座先行（driver_lcd 上电延时依赖 timer_port） */
+    r = timer_port_init(TIMER_PORT_TICK_10MS);
+    if (r != PORT_OK) { return r; }
+    s_tick_flag = 0;
+    r = timer_port_start_periodic(TIMER_PORT_TICK_10MS, 10u, app_on_tick, 0);
+    if (r != PORT_OK) { return r; }
+
     /* 纯逻辑模块 */
     app_mode_control_init();
 
@@ -43,17 +50,14 @@ int32_t app_init(void)
     r = app_alarm_control_init();
     if (r != PORT_OK) { return r; }
 
-    /* 输出（OLED/UART 初始化失败不阻断启动：软失败由模块就绪标志处理） */
-    (void)app_oled_display_init();
+    /* 输出（LCD/UART 初始化失败不阻断启动：软失败由模块就绪标志处理） */
+    (void)app_lcd_display_init();
     (void)app_uart_report_init();
 
-    /* 运行指示灯 + 系统 10ms 节拍 */
+    /* 运行指示灯 */
     r = gpio_port_init(GPIO_PORT_LED_RUN, &cfg_led_run);
     if (r != PORT_OK) { return r; }
-    r = timer_port_init(TIMER_PORT_TICK_10MS);
-    if (r != PORT_OK) { return r; }
-    s_tick_flag = 0;
-    return timer_port_start_periodic(TIMER_PORT_TICK_10MS, 10u, app_on_tick, 0);
+    return PORT_OK;
 }
 
 void app_loop(void)
@@ -90,12 +94,12 @@ void app_loop(void)
         /* 2. 采集 → 告警评估 → 显示 → 上报（各自内部按周期触发） */
         app_env_sensor_poll();
         app_alarm_control_poll();
-        app_oled_display_poll();
+        app_lcd_display_poll();
         app_uart_report_poll();
 
         /* 3. LED_RUN 运行指示（节拍 200 为公共周期） */
         led_tick++;
-        if (app_oled_display_is_ready() == 0) {
+        if (app_lcd_display_is_ready() == 0) {
             /* 慢闪：亮 1s / 灭 1s（初始化失败，最高优先级） */
             (void)gpio_port_set_active(GPIO_PORT_LED_RUN,
                                        (uint8_t)(((led_tick / 100u) % 2u) == 0u));

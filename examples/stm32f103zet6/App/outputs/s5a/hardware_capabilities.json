@@ -14,9 +14,86 @@
     "hse_hz": null,
     "lse_hz": null
   },
-  "peripherals": [],
+  "peripherals": [
+    {
+      "type": "uart",
+      "instance": "USART1",
+      "pins": {"tx": "PA9", "rx": "PA10"},
+      "irq": "USART1",
+      "capabilities": ["115200-8N1", "tx-polling", "rx-rxne-int"]
+    },
+    {
+      "type": "par",
+      "instance": "FSMC_Bank1_NE4",
+      "pins": {"cs": "PG12", "rs": "PG0", "backlight": "PB0"},
+      "irq": null,
+      "capabilities": ["16bit-bus", "cmd-addr-0x6C000000", "data-addr-0x6C000800", "mem-mapped-sync-write"]
+    },
+    {
+      "type": "gpio",
+      "instance": "GPIOA",
+      "pins": {"actuator_ctrl": "PA4", "key_mute_wkup": "PA0", "uart_tx": "PA9", "uart_rx": "PA10"},
+      "irq": null,
+      "capabilities": ["output-pp", "input"]
+    },
+    {
+      "type": "gpio",
+      "instance": "GPIOB",
+      "pins": {"led_exec": "PB5", "lcd_backlight": "PB0", "buzzer_pwm": "PB8"},
+      "irq": null,
+      "capabilities": ["output-pp"]
+    },
+    {
+      "type": "gpio",
+      "instance": "GPIOE",
+      "pins": {"led_run": "PE5", "key_switch": "PE3", "key_mode": "PE4", "key_reserved": "PE2"},
+      "irq": null,
+      "capabilities": ["output-pp", "input-pull-up"]
+    },
+    {
+      "type": "gpio",
+      "instance": "GPIOF",
+      "pins": {"light_sensor_ao": "PF8"},
+      "irq": null,
+      "capabilities": ["analog-input"]
+    },
+    {
+      "type": "gpio",
+      "instance": "GPIOG",
+      "pins": {"dht11_data": "PG11", "fsmc_ne4_cs": "PG12", "fsmc_a10_rs": "PG0"},
+      "irq": null,
+      "capabilities": ["input-pull-up", "af-pp-50m"]
+    },
+    {
+      "type": "adc",
+      "instance": "ADC3",
+      "pins": {"in6": "PF8"},
+      "irq": null,
+      "capabilities": ["12bit", "soft-trigger", "sample-55.5cyc", "ref-vdd", "right-align"]
+    },
+    {
+      "type": "timer",
+      "instance": "TIM4",
+      "pins": {"ch3": "PB8"},
+      "irq": null,
+      "capabilities": ["pwm-2khz", "psc71-arr499", "buzzer-pwm-occupied", "duty-by-TIM_SetCompare3"]
+    },
+    {
+      "type": "timer",
+      "instance": "SysTick",
+      "pins": {},
+      "irq": "SysTick",
+      "capabilities": ["24bit-downcounter", "clk-source-hclk-or-div8", "available-for-system-tick", "available-for-delay-us"]
+    }
+  ],
   "power": null,
   "constraints": [
-    "58 个已连接引脚网络名无语义（如 PE2），未生成 GPIO 配置，待 AI/人工补充"
+    "58 个已连接引脚网络名无语义（如 PE2），未生成 GPIO 配置，待 AI/人工补充",
+    "ADC 差异：S5b manifest 写 ADC1_IN1(PA1)，S5a 实际初始化 ADC3_IN6(PF8)（战舰板光敏电阻真实接法）；S5c 实现按实际硬件 ADC3/PF8 对接",
+    "蜂鸣器差异：S5b manifest 按简单 GPIO 建模（PB8 active_level=1），S5a 实际配置 TIM4_CH3 PWM（2kHz）；S5c 的 gpio_port_set_active(buzzer) 应映射 TIM_SetCompare3(TIM4, 250=响/0=停) 而非直写 PB8",
+    "10ms 节拍载体：TIM4 已被蜂鸣器 PWM 占用，timer_port 的 system_tick 实例应使用 SysTick（见 REC-005）",
+    "key_mute(PA0/WK_UP)：S5a gpio_init 未配置 PA0（S5b 设计输入指定），S5c gpio 实现需自行补配 PA0 下拉输入（按 manifest config pull=down）",
+    "PE2 已被 S5a 配置为按键输入但 S5b manifest 未使用（保留）",
+    "FSMC 数据线 D0~D15 分布在 PD/PE 口（复用推挽 50MHz），由 S5a fsmc_init 统一配置，S5c 不重复配置"
   ]
 }

@@ -8,8 +8,8 @@
         "App/Src/app_alarm_control.c",
         "App/Src/app_env_sensor.c",
         "App/Src/app_key_handler.c",
+        "App/Src/app_lcd_display.c",
         "App/Src/app_mode_control.c",
-        "App/Src/app_oled_display.c",
         "App/Src/app_uart_report.c",
         "App/Src/main.c"
       ]
@@ -21,7 +21,7 @@
         "Drivers/BSP/Src/clock_init.c",
         "Drivers/BSP/Src/dht11_init.c",
         "Drivers/BSP/Src/driver_dht11.c",
-        "Drivers/BSP/Src/driver_oled.c",
+        "Drivers/BSP/Src/driver_lcd.c",
         "Drivers/BSP/Src/fsmc_init.c",
         "Drivers/BSP/Src/gpio_init.c",
         "Drivers/BSP/Src/hal_init.c",

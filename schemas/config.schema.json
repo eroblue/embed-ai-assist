@@ -86,6 +86,10 @@
               "type": "string",
               "description": "S5b 用户设计输入路径（可选，缺省 docs/s5b_design_input.md）"
             },
+            "s5c_design_input": {
+              "type": "string",
+              "description": "S5c 用户设计输入路径（可选，缺省 docs/s5c_design_input.md；低功耗方案/已有实现参考）"
+            },
             "demos": {
               "type": ["string", "array"],
               "description": "demo 程序路径或列表（S5b 代码风格学习材料）"
@@ -116,6 +120,20 @@
           "type": "integer",
           "default": 115200,
           "description": "调试串口波特率（缺省 115200）"
+        }
+      }
+    },
+    "s5c": {
+      "type": "object",
+      "description": "S5c port-implementer 专属选项（项目层）",
+      "properties": {
+        "platform": {
+          "type": "string",
+          "description": "平台标识（port_impl_<外设>_<平台>.c 文件命名后缀，小写）；缺省取顶层 platform 小写化"
+        },
+        "hal_framework": {
+          "type": "string",
+          "description": "HAL 框架标识（如 std_periph / hal / ll / sdk），用于定位参考材料与 API 写法"
         }
       }
     },

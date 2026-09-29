@@ -1,0 +1,11 @@
+.\objects\app.o: ..\App\Src\app.c
+.\objects\app.o: ..\App\Inc\app.h
+.\objects\app.o: C:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdint.h
+.\objects\app.o: ..\App\Inc\app_mode_control.h
+.\objects\app.o: ..\App\Inc\app_key_handler.h
+.\objects\app.o: ..\App\Inc\app_env_sensor.h
+.\objects\app.o: ..\App\Inc\app_alarm_control.h
+.\objects\app.o: ..\App\Inc\app_lcd_display.h
+.\objects\app.o: ..\App\Inc\app_uart_report.h
+.\objects\app.o: ..\Drivers\Port\Inc\gpio_port.h
+.\objects\app.o: ..\Drivers\Port\Inc\timer_port.h

@@ -102,6 +102,8 @@ int32_t app_boot_run(void)
    - **Port 接口签名**：`A->>PORT: f(x)` 中的 `f` 即 Port 接口设计稿——生成 `uart_port.h` 时以时序图签名为准，同步登记进 `port_interface_manifest.json`（含调用方模块、回调方向）。
    - **模块间调用点**：`A->>B: g(x)` 在 A 模块代码中生成对 B 公开 API 的调用，调用次序按时序图纵向顺序。
 2. `-->>` 返回消息 → 紧随调用的返回值检查（错误码比较 + 失败分支处理，失败分支对应图中的 alt 失败块）。
+   检查用到的 `PORT_OK`/`PORT_ERR_*` 须在本文件 include 块显式引入定义它的
+   Port 头（如 `if (ret != PORT_OK)` → 该文件 include 对应 `*_port.h`）。
 3. 回调消息（`PORT->>DRV: on_rx_data`）→ DRV 侧注册回调 + 处理函数；上下文标注（ISR/task）与 `port_design_principle.md` 第四节的回调上下文约定一致。
 
 ## 五、增量映射（diff 结果 → 代码动作）
@@ -130,4 +132,5 @@ int32_t app_boot_run(void)
 - [ ] 命名映射总表逐条符合（枚举前缀、动作函数前缀、节点标记注释）。
 - [ ] traceability.json 的 `flow`/`files`/`functions` 与实际产物一致。
 - [ ] 时序图涉及的接口签名与 `port_interface_manifest.json` 一致。
+- [ ] 使用 `PORT_OK`/`PORT_ERR_*`/`port_err_t` 的文件已显式 include 定义它的 Port 头。
 - [ ] 增量修改后无关行零改动（跑 `diff_range_checker.py` 前自查）。

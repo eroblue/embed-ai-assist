@@ -390,6 +390,9 @@ state.json 写入统一经公共工具 `skills/_shared/scripts/state_store.py`
   （`hal_init.h`/`board_init.h` 为项目内部总入口头，允许在 main.c 中 include；
   flat 架构允许 APP include S5a 的 `*_init.h`）
 - RTOS 相关调用必须通过 `osal.h`；Port 层头文件不 include 任何 app/driver 头
+- **使用 `PORT_OK`/`PORT_ERR_*`/`port_err_t` 的 APP/Driver 文件必须显式
+  include 定义该枚举的 Port 头**（如 `par_port.h`）——不得依赖其他头文件
+  间接传递（validate 机械校验）
 - Port 接口只使用 `<stdint.h>` 基本类型和不透明句柄；DMA 不得暴露给 APP
 - 不得把所有 APP 逻辑塞进一个 `app.c`，不得把所有 Port 接口塞进一个 `port.h`
 - 不得把代码（含 Mock）放在 `outputs/` 中；Mock Port 放 `outputs/s5b/mocks/`

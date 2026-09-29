@@ -10,8 +10,9 @@
 
 校验内容：流程图规范（复用 flow_validator）与 index 一致性、approved 模块代码
 存在、main.c/app.c/manifest/traceability 存在且过 schema、产物引用文件存在、
-禁止 include（HAL/RTOS 黑名单 + 分层白名单）、mtime 守卫（full/incremental 模块
-代码须晚于任务书）；通过后输出 IDE 待添加清单、调用公共工具 ide_sync.py
+禁止 include（HAL/RTOS 黑名单 + 分层白名单）、Port 符号引用规则（使用
+PORT_OK/port_err_t 的 APP/Driver 文件须显式 include 定义它的 Port 头）、
+mtime 守卫（full/incremental 模块代码须晚于任务书）；通过后输出 IDE 待添加清单、调用公共工具 ide_sync.py
 同步 IDE 工程（失败不中断）、写 state.s5b = done。
 
 产物校验失败 → 退出码 1（state 保持 running，Agent 修复后重跑）；
@@ -77,6 +78,10 @@ _PORT_WHITELIST = re.compile(rf"^(?:{_C_STD}|\w+_port\.h|osal\.h|power_port\.h)$
 _S5A_ENTRY = re.compile(r"^(?:board_init|hal_init)\.h$")
 _S5A_INIT = re.compile(r"^\w+_init\.h$")
 
+# ---- Port 符号引用规则：谁用 PORT_OK/port_err_t 谁显式 include Port 头 ----
+_PORT_SYMBOL = re.compile(r"\b(?:PORT_OK|PORT_ERR_\w+|port_err_t)\b")
+_PORT_HEADER_INC = re.compile(r"^(?:\w+_port|power_port|osal)\.h$")
+
 
 def _log(msg: str) -> None:
     print(f"[s5b-validate] {msg}", file=sys.stderr)
@@ -127,6 +132,31 @@ def check_forbidden_includes(files: list[Path], workspace: Path,
             if not ok:
                 errors.append(f"{rel}: 非白名单 include '{name}'（"
                               f"{'Port 头只能依赖 C 标准库与 Port 层' if role == 'port' else '按分层规则 include 本层与 Port 头'}）")
+    return errors
+
+
+def check_port_symbol_includes(files: list[Path], workspace: Path) -> list[str]:
+    """Port 符号引用规则：使用 PORT_OK / PORT_ERR_* / port_err_t 的
+    APP/Driver 文件必须显式 include 定义该枚举的 Port 头
+    （uart_port.h 等），不得依赖其他头文件间接传递。
+
+    Port 层头文件自身是定义者（PORT_ERR_T_DEFINED 守卫共享），不在检查范围。
+    注释中的提及（如 @return PORT_OK）不构成引用，剥离后判定。
+    """
+    errors: list[str] = []
+    for f in files:
+        text = _read(f)
+        code = re.sub(r"/\*.*?\*/", "", text, flags=re.S)
+        code = re.sub(r"//[^\n]*", "", code)
+        if not _PORT_SYMBOL.search(code):
+            continue
+        rel = str(f.resolve().relative_to(workspace)).replace("\\", "/")
+        inc_names = re.findall(r'#\s*include\s*[<"]([^>"]+)[>"]', text)
+        if not any(_PORT_HEADER_INC.match(n) for n in inc_names):
+            errors.append(
+                f"{rel}: 使用 PORT_OK/PORT_ERR_*/port_err_t 但未显式 include "
+                "定义它的 Port 头（uart_port.h 等）——不得依赖其他头文件间接"
+                "传递，请在 include 块补上对应 Port 头")
     return errors
 
 
@@ -242,6 +272,9 @@ def check_products(ctx: dict, src_dirs: list[Path], inc_dirs: list[Path],
                   if analysis.classify_rel_path(str(f)) == "port"]
     errors.extend(check_forbidden_includes(
         app_files + driver_files + port_files, ws, ctx["architecture"]))
+
+    # 5b. Port 符号引用规则（PORT_OK 等错误码须显式 include 定义它的 Port 头）
+    errors.extend(check_port_symbol_includes(app_files + driver_files, ws))
 
     # 6. mtime 守卫：本轮 full/incremental 模块代码须晚于任务书
     brief = ctx["outputs_dir"] / "s5b" / "generation_brief.md"

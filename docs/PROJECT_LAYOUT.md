@@ -87,23 +87,22 @@ agent 选择目录布局时，读取两个维度的信息：
 
 ```text
 App/
-├── Core/                                  # 内核相关（CubeMX 生成 / 用户手动放）
-│   ├── Inc/
-│   │   ├── main.h
+├── Core/                                  # MCU 平台相关（用户手动放，S5 不生成）
+│   ├── Inc/                               # 设备头文件
+│   │   ├── xxx.h                          # 厂商设备头（如 stm32f10x.h）
 │   │   ├── xxx_it.h                       # 中断服务函数声明
-│   │   └── xxx_hal_conf.h                 # HAL 库配置文件
-│   └── Src/
-│       ├── main.c                         # 主入口
-│       ├── xxx_it.c                       # 中断服务函数
-│       └── system_xxx.c                   # 系统初始化
+│   │   ├── system_xxx.h                   # 系统初始化声明
+│   │   └── xxx_conf.h                     # 库配置文件
+│   ├── Src/                               # 平台源文件
+│   │   ├── xxx_it.c                       # 中断服务函数
+│   │   └── system_xxx.c                   # 系统初始化（SystemInit）
+│   └── Startup/                           # 启动文件
+│       └── startup_xxx.s                  # 向量表 + 复位入口（如 startup_stm32f10x_hd.s）
 │
 ├── Drivers/
-│   ├── CMSIS/                             # ARM 内核支持包（用户手动放）
-│   │   ├── Device/
-│   │   │   └── <厂商>/<系列>/
-│   │   │       ├── Include/
-│   │   │       └── Source/Templates/arm/  # 启动文件
-│   │   └── Include/
+│   ├── CMSIS/                             # ARM 内核文件（用户手动放，仅内核层）
+│   │   ├── core_cmX.c                     # Cortex 内核实现（如 core_cm3.c）
+│   │   └── core_cmX.h                     # Cortex 内核定义（如 core_cm3.h）
 │   ├── HAL_Driver/                        # 厂商 HAL 库（用户手动放，去平台化命名）
 │   │   ├── Inc/
 │   │   └── Src/
@@ -171,9 +170,8 @@ App/
 ├── MDK-ARM/                               # Keil 工程目录（用户创建，也可用 IAR/、GCC/）
 │   ├── xxx.uvprojx
 │   ├── xxx.uvoptx
-│   └── xxx/
-│       ├── Objects/
-│       └── Listings/
+│   ├── Objects/                           # 编译输出（.o/.hex/.axf 等，Keil 对象输出目录）
+│   └── Listings/                          # 列表文件（.lst/.map）
 │
 └── README.md
 ```
@@ -182,8 +180,8 @@ App/
 
 | 目录 | 职责 | 归属 | 平台相关 |
 |---|---|---|---|
-| `Core/` | 内核相关：主入口、系统时钟、中断向量表、HAL 配置 | CubeMX / 用户 | 是 |
-| `Drivers/CMSIS/` | ARM 内核支持包、启动文件 | 用户 | 是 |
+| `Core/` | MCU 平台相关：设备头文件、中断服务函数、系统初始化、启动文件 | 用户 | 是 |
+| `Drivers/CMSIS/` | ARM Cortex 内核文件（core_cmX.c/h，仅内核层） | 用户 | 是 |
 | `Drivers/HAL_Driver/` | 厂商 HAL 库 | 用户 | 是 |
 | `Drivers/BSP/`（初始化） | 外设初始化：时钟、GPIO、UART 等 | S5a | 是 |
 | `Drivers/BSP/`（器件驱动） | 板载器件业务逻辑：AT 协议、寄存器操作 | S5b | 否 |
@@ -303,13 +301,21 @@ App/
 
 ## 五、为什么这样分目录
 
-### 5.1 Core/ —— 只放内核相关
+### 5.1 Core/ —— MCU 平台相关文件
 
-`Core/` 的语义是**芯片内核层面**的东西：主入口、系统时钟、中断向量表、HAL 配置。这些文件与芯片内核强绑定，换 MCU 时整个换掉，属于 CubeMX / 用户管理范畴，S5 不生成。
+`Core/` 放**这块芯片的平台资料**：设备头文件（`stm32f10x.h` 等）、中断服务函数
+（`xxx_it.c/h`）、系统初始化（`system_xxx.c`，提供 `SystemInit`）、启动文件
+（`Core/Startup/startup_xxx.s`，向量表 + 复位入口）。这些文件与 MCU 型号强绑定，
+换芯片时整个换掉，属于用户管理范畴，S5 不生成。
+**注意**：主入口 `main.c` 不在 Core（S5b 生成到 `App/Src/`，见 5.6）。
 
 ### 5.2 Drivers/CMSIS/ 和 Drivers/HAL_Driver/ —— 平台资料
 
-ARM 官方内核支持包和厂商 HAL 库。**平台相关，但不属于任何 Skill 生成**，由用户从 SDK 复制。命名去平台化（`HAL_Driver` 而非 `STM32F1xx_HAL_Driver`），使目录骨架能跨平台复用。
+`Drivers/CMSIS/` 只放 ARM **Cortex 内核层文件**（`core_cm3.c/h` 等）；
+启动文件已移至 `Core/Startup/`，设备头文件已移至 `Core/Inc/`。
+`Drivers/HAL_Driver/` 放厂商外设库。两者**平台相关，但不属于任何 Skill
+生成**，由用户从 SDK 复制。命名去平台化（`HAL_Driver` 而非
+`STM32F1xx_HAL_Driver`），使目录骨架能跨平台复用。
 
 ### 5.3 Drivers/BSP/ —— 板级支持包
 
@@ -351,8 +357,8 @@ IDE 工程文件和编译输出集中在这里，与源码分离。用户手动�
 
 | 目录 | 32 位 | 8 位 | Skill | 平台相关 |
 |---|---|---|---|---|
-| 内核相关 | `Core/` | 无 | CubeMX / 用户 | 是 |
-| CMSIS | `Drivers/CMSIS/` | 无 | 用户 | 是 |
+| MCU 平台资料 | `Core/`（含 `Startup/`） | 无 | 用户 | 是 |
+| Cortex 内核文件 | `Drivers/CMSIS/` | 无 | 用户 | 是 |
 | HAL 库 | `Drivers/HAL_Driver/` | 无 | 用户 | 是 |
 | 外设初始化 | `Drivers/BSP/` | `Drivers/BSP/` | S5a | 是 |
 | 器件驱动 | `Drivers/BSP/` | `Drivers/BSP/` | S5b | 否 |
@@ -373,7 +379,9 @@ IDE 工程文件和编译输出集中在这里，与源码分离。用户手动�
    - 8 位：在厂商 IDE（Keil C51、SDCC、IAR 8051）中新建空工程。
 2. **用户手动放置平台资料**：
    - 从 SDK 复制 HAL 库到 `Drivers/HAL_Driver/`。
-   - 从 SDK 复制 CMSIS 和启动文件到 `Drivers/CMSIS/`（仅 32 位）。
+   - 从 SDK 复制 Cortex 内核文件（`core_cm3.c/h` 等）到 `Drivers/CMSIS/`（仅 32 位）。
+   - 从 SDK 复制启动文件到 `Core/Startup/`、设备头文件到 `Core/Inc/`、
+     中断服务/系统初始化源文件到 `Core/Src/`（仅 32 位）。
 3. **agent 按本文档创建目录骨架**：
    - 扫描缺失的目录，创建空目录。
    - 不创建任何文件（`README.md` 可选）。

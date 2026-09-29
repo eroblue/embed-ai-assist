@@ -59,7 +59,8 @@ VALID_ARCHITECTURES = ("flat", "layered", "full")
 _BUILTIN_CORTEX_M = """App/
 ├── Core/
 │   ├── Inc/
-│   └── Src/
+│   ├── Src/
+│   └── Startup/
 ├── Drivers/
 │   ├── CMSIS/
 │   ├── HAL_Driver/

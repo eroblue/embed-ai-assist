@@ -75,8 +75,9 @@
 | app_alarm_control | state | 1.0 | approved | 否 |
 | app_env_sensor | flow | 1.0 | approved | 否 |
 | app_key_handler | state | 1.0 | approved | 否 |
+| app_lcd_display | flow | 1.0 | approved | 否 |
 | app_mode_control | state | 1.0 | approved | 否 |
-| app_oled_display | flow | 1.0 | approved | 否 |
+| app_oled_display | flow | 1.0 | deprecated | 否 |
 | app_uart_report | sequence | 1.0 | approved | 否 |
 
 - 修改已有流程图时**以现有文件为锚点做定点修改**，不重新生成；approved 后修改须将 status 置 dirty，重新审核后 version 递增

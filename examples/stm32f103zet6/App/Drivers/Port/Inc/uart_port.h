@@ -2,9 +2,11 @@
  * @file    uart_port.h
  * @brief   UART Port 接口（平台无关）
  *
- * 逻辑实例：UART_PORT_REPORT（环境数据 JSON 上报通道，115200-8N1）。
- * 接口按上报场景裁剪：只发送，不接收（read/回调已裁剪）。
- * write 同步拷贝语义：返回后 buf 可安全复用。
+ * 逻辑实例：UART_PORT_REPORT（环境数据 JSON 上报 + 上位机指令接收通道，115200-8N1）。
+ * 发送：write 同步拷贝语义，返回后 buf 可安全复用。
+ * 接收：中断驱动——实现层 ISR 搬运字节入环形缓冲并通知回调；
+ *       read 非阻塞取走缓冲数据（0=暂无数据），两种方式可并用。
+ *       上位机指令协议未定义，本层只提供接收通道，不含协议解析。
  *
  * 硬约束：<stdint.h> 基本类型；不 include HAL/RTOS/app/driver 头；
  *         无 DMA 字样（实现细节归 S5c）。
@@ -47,6 +49,17 @@ typedef struct {
     uint8_t  stop_bits;     /* 停止位：1 / 2 */
 } uart_port_cfg_t;
 
+/* ---------------- 回调（上下文约定：实现层与 APP 注册都须遵守） ---------------- */
+
+/**
+ * 接收数据回调。
+ * @context isr —— 本工程 RTOS=none，实现层在 USART1 接收中断内直接调用：
+ *          回调内只做置标志/短拷贝，禁止阻塞与长逻辑（长逻辑投主循环）。
+ *          data 仅在回调执行期间有效，需要留存须自行拷贝。
+ */
+typedef void (*uart_port_rx_cb_t)(uart_port_id_t id, const uint8_t *data,
+                                  uint16_t len, void *user_data);
+
 /* ---------------- 生命周期：init → 使用 → deinit ---------------- */
 
 /** 绑定逻辑实例与配置（实现层对接 S5a 的外设初始化成果）。 */
@@ -57,6 +70,19 @@ int32_t uart_port_init(uart_port_id_t id, const uart_port_cfg_t *cfg);
  * @return 成功返回发送字节数；负值为 port_err_t。
  */
 int32_t uart_port_write(uart_port_id_t id, const uint8_t *buf, uint16_t len);
+
+/**
+ * 注册接收回调（user_data 在回调时透传；cb 传 NULL 取消注册）。
+ * @note 未注册时中断仍搬运入环形缓冲，仅不通知（数据可由 read 取走）。
+ */
+int32_t uart_port_set_rx_cb(uart_port_id_t id, uart_port_rx_cb_t cb,
+                            void *user_data);
+
+/**
+ * 非阻塞读：取走接收环形缓冲中当前可用数据（最多 len 字节）。
+ * @return 实际读取字节数（0=暂无数据）；负值为 port_err_t。
+ */
+int32_t uart_port_read(uart_port_id_t id, uint8_t *buf, uint16_t len);
 
 /** 反初始化：释放该实例全部资源。 */
 int32_t uart_port_deinit(uart_port_id_t id);

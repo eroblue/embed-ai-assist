@@ -116,13 +116,128 @@
     ]
   },
   "s5b": {
-    "status": "running",
+    "status": "done",
     "rtos": "none",
     "architecture": "layered",
     "power_enabled": false,
+    "port_manifest": "outputs/s5b/port_interface_manifest.json",
+    "osal_header": null,
+    "power_header": null,
     "generation_brief": "outputs/s5b/generation_brief.md",
     "incremental": true,
+    "traceability": "outputs/s5b/traceability.json",
+    "capability_gap": null,
+    "ide_pending_files": "outputs/s5b/ide_pending_files.json",
     "error": null,
-    "updated_at": "2026-09-24T13:49:21"
+    "updated_at": "2026-09-28T14:56:50",
+    "port_headers": [
+      "Drivers/Port/Inc/adc_port.h",
+      "Drivers/Port/Inc/gpio_port.h",
+      "Drivers/Port/Inc/par_port.h",
+      "Drivers/Port/Inc/timer_port.h",
+      "Drivers/Port/Inc/uart_port.h"
+    ],
+    "app_sources": [
+      "App/Src/app.c",
+      "App/Src/app_alarm_control.c",
+      "App/Src/app_env_sensor.c",
+      "App/Src/app_key_handler.c",
+      "App/Src/app_lcd_display.c",
+      "App/Src/app_mode_control.c",
+      "App/Src/app_uart_report.c"
+    ],
+    "app_headers": [
+      "App/Inc/app.h",
+      "App/Inc/app_alarm_control.h",
+      "App/Inc/app_env_sensor.h",
+      "App/Inc/app_key_handler.h",
+      "App/Inc/app_lcd_display.h",
+      "App/Inc/app_mode_control.h",
+      "App/Inc/app_uart_report.h"
+    ],
+    "app_task_sources": [],
+    "protocol_sources": [],
+    "driver_sources": [
+      "Drivers/BSP/Src/driver_dht11.c",
+      "Drivers/BSP/Src/driver_lcd.c"
+    ],
+    "driver_headers": [
+      "Drivers/BSP/Inc/driver_dht11.h",
+      "Drivers/BSP/Inc/driver_lcd.h"
+    ],
+    "main_source": "App/Src/main.c",
+    "flows": [
+      {
+        "file": "docs/flow/app_alarm_control_state.md",
+        "module": "app_alarm_control",
+        "version": "1.0",
+        "status": "approved"
+      },
+      {
+        "file": "docs/flow/app_env_sensor_flow.md",
+        "module": "app_env_sensor",
+        "version": "1.0",
+        "status": "approved"
+      },
+      {
+        "file": "docs/flow/app_key_handler_state.md",
+        "module": "app_key_handler",
+        "version": "1.0",
+        "status": "approved"
+      },
+      {
+        "file": "docs/flow/app_lcd_display_flow.md",
+        "module": "app_lcd_display",
+        "version": "1.0",
+        "status": "approved"
+      },
+      {
+        "file": "docs/flow/app_mode_control_state.md",
+        "module": "app_mode_control",
+        "version": "1.0",
+        "status": "approved"
+      },
+      {
+        "file": "docs/flow/app_oled_display_flow.md",
+        "module": "app_oled_display",
+        "version": "1.0",
+        "status": "deprecated"
+      },
+      {
+        "file": "docs/flow/app_uart_report_sequence.md",
+        "module": "app_uart_report",
+        "version": "1.0",
+        "status": "approved"
+      }
+    ],
+    "flow_diffs": {
+      "app_alarm_control": "skip",
+      "app_env_sensor": "skip",
+      "app_key_handler": "skip",
+      "app_lcd_display": "skip",
+      "app_mode_control": "skip",
+      "app_oled_display": "deprecated",
+      "app_uart_report": "skip"
+    }
+  },
+  "s5c": {
+    "status": "done",
+    "rtos": "none",
+    "architecture": "layered",
+    "power_enabled": false,
+    "generation_brief": "outputs/s5c/generation_brief.md",
+    "port_impl_sources": [
+      "Drivers/Port/Src/port_impl_adc_stm32f103zet6.c",
+      "Drivers/Port/Src/port_impl_gpio_stm32f103zet6.c",
+      "Drivers/Port/Src/port_impl_par_stm32f103zet6.c",
+      "Drivers/Port/Src/port_impl_timer_stm32f103zet6.c",
+      "Drivers/Port/Src/port_impl_uart_stm32f103zet6.c"
+    ],
+    "osal_impl": null,
+    "power_impl": null,
+    "skipped_files": [],
+    "capability_gap": null,
+    "error": null,
+    "updated_at": "2026-09-28T15:06:00"
   }
 }

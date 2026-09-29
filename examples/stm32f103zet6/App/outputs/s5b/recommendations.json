@@ -2,10 +2,10 @@
   "items": [
     {
       "id": "REC-001",
-      "topic": "OLED 显示文案语言",
-      "description": "中文显示需 GB2312 16x16 点阵字库（每字 32 字节），超出本次 ASCII 字库范围（43 个 8x16 字形，提取自正点原子 oledfont.h）",
-      "impact": "OLED 四行画面使用英文短标签（ENV MONITOR / T:25C H:60% / L:75% / M:AUTO A:NORMAL）",
-      "suggestion": "如需中文显示，后续扩充 driver_oled 字库并引入中文编码映射；当前英文标签满足全部信息项"
+      "topic": "LCD 显示文案语言",
+      "description": "中文显示需 GB2312 点阵字库，超出本次 ASCII 字库范围；本次复用 OLED 阶段已验证的 43 个 8x16 ASCII 字形（提取自正点原子 oledfont.h），2 倍放大渲染为 16x32 大字体",
+      "impact": "LCD 竖屏 4 行画面使用英文短标签（ENV MONITOR / T:25C H:60% / L:75% / M:AUTO A:NORMAL），每行 15 字符",
+      "suggestion": "如需中文显示或更精细字形，后续扩充 driver_lcd 字库并引入中文编码映射；当前英文标签满足全部信息项"
     },
     {
       "id": "REC-002",
@@ -48,7 +48,14 @@
       "description": "磁盘残留 App/Core/Src/main.c（旧示例入口）；validate 后复核 Keil 工程（stm32f103zet6.uvprojx）全部 19 个源文件引用，未包含 Core/Src/main.c，不存在双 main 链接冲突",
       "impact": "无需任何手动处理；孤儿文件不参与编译",
       "suggestion": "可选清理：删除磁盘上的 App/Core/Src/main.c 孤儿文件，并移除 IncludePath 中残留的 ..\\Core\\Inc（均为无害遗留）"
+    },
+    {
+      "id": "REC-008",
+      "topic": "LCD 时序参数与竖屏方向待硬件复核",
+      "description": "driver_lcd 的 ILI9341 上电寄存器序列/Gamma/竖屏方向（MADCTL 0x48）取 ILI9341 类典型值，设计输入亦注明'以实际模块为准'；FSMC 地址映射沿用 S5a 校正值（命令 0x6C000000 / 数据 0x6C000800）",
+      "impact": "实际 LCD 模块（2.4/2.8/3.5 寸，ILI9341 或兼容控制器）方向字节或 Gamma 可能不同，表现为画面镜像/颜色偏差",
+      "suggestion": "S5c 联调时按实际面板微调 driver_lcd 的 MADCTL（0x36）参数与 Gamma 表；16x32 字体为 8x16 字模 2 倍放大渲染，如需原生 16x32 字模可后续替换 s_lcd_font"
     }
   ],
-  "generated_at": "2026-09-24T11:40:00"
+  "generated_at": "2026-09-28T08:18:00"
 }

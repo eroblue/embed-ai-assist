@@ -1,8 +1,8 @@
 {
   "files": {
     "App/Src/app.c": {
-      "sha256": "eca6bbc48cd9bb9dcda29aab57b73a02a2539e3e049ffc7718745f92f77d4038",
-      "lines": 123
+      "sha256": "b7d545966bd7bc6d07f153b0efd17d0992d6a343e062b567e27750a4b608ed6c",
+      "lines": 127
     },
     "App/Src/app_alarm_control.c": {
       "sha256": "490fff32daf9c12864cb693adbbfe0e21f703f7488096a2220be045a3bb1d446",
@@ -16,13 +16,13 @@
       "sha256": "5461e131aa6e8508873411a659b2cb6a2be1072aa97fea6788655d32cee4ca40",
       "lines": 169
     },
+    "App/Src/app_lcd_display.c": {
+      "sha256": "83e345b545651084c31b097afd1801f55ef746975c3b9cc01e778340bdca2dd4",
+      "lines": 150
+    },
     "App/Src/app_mode_control.c": {
       "sha256": "a99207ef28f60fa1740b5adf3947b45d0e8d4175f81db6e2c311c6fc6470067a",
       "lines": 48
-    },
-    "App/Src/app_oled_display.c": {
-      "sha256": "392471f6d78d56b8a8e89eb4df5d703740022965058f0873c5b99a90abaf9932",
-      "lines": 149
     },
     "App/Src/app_uart_report.c": {
       "sha256": "7053a00c8c951dbdc2e09d76eafb91b9f8ffd72b74bf7922b0598ed013407228",
@@ -48,9 +48,9 @@
       "sha256": "0591ad32fc0b730d095b9fd4fedc9e0b5e299450beef41e3c7e7220c3be05077",
       "lines": 124
     },
-    "Drivers/BSP/Src/driver_oled.c": {
-      "sha256": "60463d74d27095e7d732832c69932900a84705d654b78cb3c285dfeb4248a522",
-      "lines": 214
+    "Drivers/BSP/Src/driver_lcd.c": {
+      "sha256": "e7648d679f2963797a2052fb7ad78dfa1d6107b97c496c2c745cfaecbdb02a41",
+      "lines": 274
     },
     "Drivers/BSP/Src/fsmc_init.c": {
       "sha256": "102cc6ecdb74c1fc4f67b0f8f91236b0297732a6007ae307da2270ce6ce4cc69",
@@ -92,13 +92,13 @@
       "sha256": "3e0db2bf3f35708253e1aae1c285b508622b1bdf701931c6be911591b5b3bfb6",
       "lines": 40
     },
+    "App/Inc/app_lcd_display.h": {
+      "sha256": "79777e13e05ab4b6585699c42fa0f798c41cd3b4752d4c00b10edf451f200fe9",
+      "lines": 31
+    },
     "App/Inc/app_mode_control.h": {
       "sha256": "e0211c291cf5d37f811532216c7ef9a6c5df9ca36beff921faf502fc239b5b1f",
       "lines": 46
-    },
-    "App/Inc/app_oled_display.h": {
-      "sha256": "ebb8e285883e92d98a305fa2daaf12cc1f539bb4eadd4f95463cf0abf607016a",
-      "lines": 31
     },
     "App/Inc/app_uart_report.h": {
       "sha256": "20d91cc5540eb84dd6739c916245e639f8ff05827ae3f579ce8f5882a8101877",
@@ -120,9 +120,9 @@
       "sha256": "c6acd9c82fc99fec83026988e38a99506c158a75c46a237e9f9dec7c8c508f6c",
       "lines": 41
     },
-    "Drivers/BSP/Inc/driver_oled.h": {
-      "sha256": "012c0d5dfb9699e95b70382d6aef98ade4aab5a41ce2e73a800c412a5d97d9a8",
-      "lines": 45
+    "Drivers/BSP/Inc/driver_lcd.h": {
+      "sha256": "c7b3a8ed13d701e6de88ebe5f019af763a4b656e34452eceaa9bdab702ca0a51",
+      "lines": 46
     },
     "Drivers/BSP/Inc/fsmc_init.h": {
       "sha256": "c10f54dd72cdb77658ced9ddbd92f9ce3ae3116f47ec07cfffec06de6bdd376d",
@@ -156,9 +156,9 @@
       "sha256": "71974ba494d7fdf4e33fc9d91b6ee7c22048463ad5f1269eee79c0b010b59fb4",
       "lines": 101
     },
-    "Drivers/Port/Inc/i2c_port.h": {
-      "sha256": "a356be136087dbf0ee46534846a1bbb9bc71dbbb46cfca45abedb0ff8ec4584e",
-      "lines": 59
+    "Drivers/Port/Inc/par_port.h": {
+      "sha256": "f0dc3551930e783a3ffbe563c3cba8ed66413267651a4ab8133505efb0408be2",
+      "lines": 61
     },
     "Drivers/Port/Inc/timer_port.h": {
       "sha256": "de9c565aeba231c64d01cfbfb6197bafcec1a28499ab8ce55d3eec1d589e11a3",
@@ -169,5 +169,5 @@
       "lines": 68
     }
   },
-  "created_at": "2026-09-24T13:49:21"
+  "created_at": "2026-09-28T14:53:57"
 }

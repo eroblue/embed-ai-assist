@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.s5c.input.v1",
+  "title": "S5c port-implementer 输入契约（state.json 就绪性与一致性检查）",
+  "type": "object",
+  "description": "S5c 触发前置：S5a 与 S5b 均已完成（status=done）。两者的 rtos/architecture/power_enabled 三元组必须一致（防漂移，不一致 → S5c 写 error 并终止，需重跑其中一方使配置对齐）。",
+  "required": ["s5a", "s5b"],
+  "properties": {
+    "s5a": {
+      "type": "object",
+      "description": "S5a hardware-initializer 写入",
+      "required": ["status"],
+      "properties": {
+        "status": {"type": "string", "enum": ["pending", "running", "done", "error"]},
+        "rtos": {"type": "string", "enum": ["none", "FreeRTOS", "RT-Thread", "Zephyr"]},
+        "architecture": {"type": "string", "enum": ["flat", "layered", "full"]},
+        "power_enabled": {"type": "boolean"},
+        "init_sources": {"type": "array", "items": {"type": "string"}, "description": "S5a 产物源文件列表（Drivers/BSP/Src/ 下）"},
+        "init_headers": {"type": "array", "items": {"type": "string"}},
+        "entry_source": {"type": "string", "description": "S5a 总入口源文件路径"},
+        "rtos_hw_init": {"type": ["string", "null"], "description": "RTOS 硬件初始化文件路径（可选）"},
+        "power_init": {"type": ["string", "null"], "description": "低功耗初始化文件路径（可选）"},
+        "hardware_capabilities": {"type": "string", "description": "硬件能力清单路径（outputs/s5a/hardware_capabilities.json，S5c 实现 Port 的唯一硬件依据）"}
+      }
+    },
+    "s5b": {
+      "type": "object",
+      "description": "S5b port-contract-and-app 写入",
+      "required": ["status"],
+      "properties": {
+        "status": {"type": "string", "enum": ["pending", "running", "done", "error"]},
+        "rtos": {"type": "string", "enum": ["none", "FreeRTOS", "RT-Thread", "Zephyr"]},
+        "architecture": {"type": "string", "enum": ["flat", "layered", "full"]},
+        "power_enabled": {"type": "boolean"},
+        "port_manifest": {"type": "string", "description": "outputs/s5b/port_interface_manifest.json 相对路径（S5c 实现 Port 的唯一接口依据）"},
+        "port_headers": {"type": "array", "items": {"type": "string"}},
+        "osal_header": {"type": ["string", "null"]},
+        "power_header": {"type": ["string", "null"]}
+      }
+    }
+  }
+}

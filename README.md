@@ -27,7 +27,7 @@ embed-ai-assist/
 │   ├── circuit-investigator/            # S4 电路侦查（S1×S3 交叉验证 → 硬件事实）
 │   ├── hardware-initializer/            # S5a 硬件初始化（时钟/GPIO/NVIC/外设 → Drivers/BSP/）
 │   ├── port-contract-and-app/           # S5b Port 契约 + APP（已实现，rule/Agent 三段式 + 流程图驱动增量）
-│   └── port-implementer/                # S5c Port 实现（规划中，SKILL.md 为实现规格）
+│   └── port-implementer/                # S5c Port 实现（已实现，rule/Agent 三段式 + 能力缺口前置检测）
 ├── platforms/                           # 共享的芯片资料库（只读）
 │   ├── stm32f103zet6/
 │   │   ├── datasheets/                  # PDF 手册（人类阅读）
@@ -62,9 +62,9 @@ embed-ai-assist/
 │   │   ├── outputs/                     # 跨工程产物（合并固件等）
 │   │   ├── App/                         # 目标工程（build_target 缺省 App）
 │   │   │   ├── state.json               # 运行时状态（每目标独立）
-│   │   │   ├── MDK-ARM/                 # IDE 工程目录（IAR 为 IAR/，8 位为 Project/）
-│   │   │   ├── Core/                    # 内核相关（main.c 等，用户/CubeMX）
-│   │   │   ├── Drivers/                 # BSP（S5a+S5b）/ Port（S5b 接口+S5c 实现）/ CMSIS / HAL
+│   │   │   ├── MDK-ARM/                 # IDE 工程目录（IAR 为 IAR/，8 位为 Project/；编译输出在 Objects/）
+│   │   │   ├── Core/                    # MCU 平台相关（Inc/ 设备头 + Src/ it/system 源 + Startup/ 启动文件，用户手动放）
+│   │   │   ├── Drivers/                 # BSP（S5a+S5b）/ Port（S5b 接口+S5c 实现）/ CMSIS（仅 Cortex 内核文件）/ HAL
 │   │   │   ├── App/                     # 应用逻辑（S5b 输出）
 │   │   │   └── outputs/                 # 本目标输出（网表/Excel/硬件事实/s5a/s5b 等）
 │   │   └── BootLoader/                  # 目标工程（结构同 App）
@@ -169,7 +169,7 @@ embed-ai-assist/
 | S4 | circuit-investigator | 验证 | 电路覆盖门禁，输出硬件事实 | 已实现 |
 | S5a | hardware-initializer | 核心处理 | 平台相关硬件初始化 + 硬件能力清单 | 已实现 |
 | S5b | port-contract-and-app | 核心处理 | Port 契约 + APP/协议/驱动（平台无关；S2/S4 均可选降级） | 已实现 |
-| S5c | port-implementer | 核心处理 | Port 实现（依赖 S5a 能力清单 + S5b 契约） | 规划中 |
+| S5c | port-implementer | 核心处理 | Port 实现（依赖 S5a 能力清单 + S5b 契约） | 已实现 |
 | S6 | firmware-merger | 编译构建 | 固件合并（Boot + App、多核、OTA 包等） | 规划中 |
 | S7 | build | 编译构建 | 调用工具链编译工程 | 规划中 |
 | S8 | unit-test | 编译构建 | 单元测试 | 规划中 |

@@ -1,0 +1,11 @@
+.\objects\hal_init.o: ..\Drivers\BSP\Src\hal_init.c
+.\objects\hal_init.o: ..\Drivers\BSP\Inc\hal_init.h
+.\objects\hal_init.o: ..\Drivers\BSP\Inc\clock_init.h
+.\objects\hal_init.o: ..\Drivers\BSP\Inc\nvic_init.h
+.\objects\hal_init.o: ..\Drivers\BSP\Inc\gpio_init.h
+.\objects\hal_init.o: ..\Drivers\BSP\Inc\tim_init.h
+.\objects\hal_init.o: ..\Drivers\BSP\Inc\adc_init.h
+.\objects\hal_init.o: ..\Drivers\BSP\Inc\fsmc_init.h
+.\objects\hal_init.o: C:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdint.h
+.\objects\hal_init.o: ..\Drivers\BSP\Inc\uart_init.h
+.\objects\hal_init.o: ..\Drivers\BSP\Inc\dht11_init.h

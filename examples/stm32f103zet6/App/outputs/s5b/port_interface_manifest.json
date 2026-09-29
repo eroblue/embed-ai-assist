@@ -9,11 +9,11 @@
       "file": "Drivers/Port/Inc/uart_port.h",
       "kind": "peripheral",
       "peripheral": "uart",
-      "description": "UART Port 接口：环境数据 JSON 上报通道",
+      "description": "UART Port 接口：环境数据 JSON 上报 + 上位机指令接收通道",
       "logical_instances": [
         {
           "name": "report_uart",
-          "description": "5s 周期 JSON 环境数据上报，115200-8N1；S4 facts 引脚未吸附，按设计输入硬件表映射",
+          "description": "5s 周期 JSON 环境数据上报 + 上位机指令接收（USART1_IRQn 接收中断，抢占2/子0），115200-8N1；S4 facts 引脚未吸附，按设计输入硬件表映射",
           "hw_instance": "USART1（PA9=TX / PA10=RX）",
           "hw_source": "design_input",
           "config": {"baudrate": 115200, "data_bits": 8, "parity": 0, "stop_bits": 1}
@@ -35,6 +35,20 @@
           "callback": null
         },
         {
+          "function": "uart_port_set_rx_cb",
+          "signature": "int32_t uart_port_set_rx_cb(uart_port_id_t id, uart_port_rx_cb_t cb, void *user_data)",
+          "description": "注册接收回调（cb 为 NULL 取消注册）；未注册时中断仍搬运入环形缓冲，仅不通知",
+          "isr_safe": false,
+          "callback": "uart_port_rx_cb_t"
+        },
+        {
+          "function": "uart_port_read",
+          "signature": "int32_t uart_port_read(uart_port_id_t id, uint8_t *buf, uint16_t len)",
+          "description": "非阻塞读环形缓冲中可用数据（0=暂无数据），返回实际读取字节数",
+          "isr_safe": true,
+          "callback": null
+        },
+        {
           "function": "uart_port_deinit",
           "signature": "int32_t uart_port_deinit(uart_port_id_t id)",
           "description": "释放实例全部资源",
@@ -42,45 +56,67 @@
           "callback": null
         }
       ],
-      "callbacks": [],
+      "callbacks": [
+        {
+          "name": "uart_port_rx_cb_t",
+          "signature": "void (*)(uart_port_id_t id, const uint8_t *data, uint16_t len, void *user_data)",
+          "description": "接收数据回调：本工程 RTOS=none，实现层在 USART1 接收中断内直接调用；只做置标志/短拷贝，data 仅回调期间有效",
+          "context": "isr"
+        }
+      ],
       "notes": [
         "write 同步拷贝（返回后 buf 可复用）",
-        "仅发送无接收（read/回调已按应用裁剪）",
+        "接收中断驱动：ISR 搬运入环形缓冲 + 通知回调；read 非阻塞取数据（两种方式可并用）",
+        "指令协议未定义，本期只打通接收通道，APP 侧不消费（不注册回调、不读）",
         "hw_instance 由设计输入硬件表映射；换板只改本 manifest，不改代码"
       ]
     },
     {
-      "file": "Drivers/Port/Inc/i2c_port.h",
+      "file": "Drivers/Port/Inc/par_port.h",
       "kind": "peripheral",
-      "peripheral": "i2c",
-      "description": "I2C Port 接口：OLED 显示总线",
+      "peripheral": "par",
+      "description": "16 位并行总线 Port 接口：TFT_LCD 显存写入通道",
       "logical_instances": [
         {
-          "name": "oled_bus",
-          "description": "OLED（SSD1306 128x64）显示总线，400kHz；器件 7 位地址 0x3C 由 driver_oled 传参；S4 facts 引脚未吸附，按设计输入硬件表映射",
-          "hw_instance": "I2C1（PB6=SCL / PB7=SDA）",
+          "name": "lcd_bus",
+          "description": "TFT_LCD（ILI9341 类 240x320）显存总线；命令/数据由地址线区分（对接 S5a fsmc_lcd_init 总线成果）；竖屏方向与 Gamma 序列由 driver_lcd 承载",
+          "hw_instance": "FSMC Bank1-NE4（命令 0x6C000000 / 数据 0x6C000800，PG12=CS、PG0=RS，背光 PB0）",
           "hw_source": "design_input",
-          "config": {"speed_hz": 400000, "pullup_internal": 1}
+          "config": {"bus_width_bits": 16}
         }
       ],
       "interfaces": [
         {
-          "function": "i2c_port_init",
-          "signature": "int32_t i2c_port_init(i2c_port_id_t id, const i2c_port_cfg_t *cfg)",
-          "description": "绑定逻辑实例与配置",
+          "function": "par_port_init",
+          "signature": "int32_t par_port_init(par_port_id_t id)",
+          "description": "绑定逻辑实例（对接 S5a fsmc_lcd_init 总线成果）",
           "isr_safe": false,
           "callback": null
         },
         {
-          "function": "i2c_port_write_raw",
-          "signature": "int32_t i2c_port_write_raw(i2c_port_id_t id, uint8_t dev_addr, const uint8_t *data, uint16_t len)",
-          "description": "原始写（无寄存器地址段，OLED commanded 器件用），同步阻塞",
-          "isr_safe": false,
+          "function": "par_port_write_cmd",
+          "signature": "int32_t par_port_write_cmd(par_port_id_t id, uint16_t cmd)",
+          "description": "写一个命令字（16 位并口下低 8 位有效按器件协议）",
+          "isr_safe": true,
           "callback": null
         },
         {
-          "function": "i2c_port_deinit",
-          "signature": "int32_t i2c_port_deinit(i2c_port_id_t id)",
+          "function": "par_port_write_data",
+          "signature": "int32_t par_port_write_data(par_port_id_t id, uint16_t data)",
+          "description": "写一个数据字",
+          "isr_safe": true,
+          "callback": null
+        },
+        {
+          "function": "par_port_write_data_block",
+          "signature": "int32_t par_port_write_data_block(par_port_id_t id, const uint16_t *buf, uint32_t len)",
+          "description": "数据字块流式写（同步拷贝语义，返回后 buf 可复用；像素流用）",
+          "isr_safe": true,
+          "callback": null
+        },
+        {
+          "function": "par_port_deinit",
+          "signature": "int32_t par_port_deinit(par_port_id_t id)",
           "description": "释放实例全部资源",
           "isr_safe": false,
           "callback": null
@@ -88,8 +124,8 @@
       ],
       "callbacks": [],
       "notes": [
-        "transfer 同步阻塞（超时保护归实现层）",
-        "控制字节约定：0x00=命令 / 0x40=显存数据（driver_oled 组帧）"
+        "存储器映射同步写直达，无缓冲/DMA 语义暴露",
+        "命令/数据地址映射只登记在 manifest 数据侧，换板/换平台只改本 manifest 与 S5a 成果"
       ]
     },
     {
@@ -264,7 +300,7 @@
       "logical_instances": [
         {
           "name": "system_tick",
-          "description": "10ms 周期节拍（主循环软轮询调度）；delay_us 供 DHT11 位时序",
+          "description": "10ms 周期节拍（主循环软轮询调度）；delay_us 供 DHT11 位时序与 LCD 上电延时",
           "hw_instance": null,
           "hw_source": "design_input",
           "config": {"period_ms": 10}
@@ -295,7 +331,7 @@
         {
           "function": "timer_port_delay_us",
           "signature": "int32_t timer_port_delay_us(uint32_t delay_us)",
-          "description": "[扩展] 微秒级忙等延时（DHT11 位时序 26~70µs 量级）；仅任务上下文",
+          "description": "[扩展] 微秒级忙等延时（DHT11 位时序 26~70µs / LCD 上电延时 120ms、20ms）；仅任务上下文",
           "isr_safe": false,
           "callback": null
         },
@@ -322,7 +358,7 @@
     }
   ],
   "power": null,
-  "generated_at": "2026-09-24T11:30:00",
+  "generated_at": "2026-09-28T08:18:00",
   "notes": [
     "统一错误码 port_err_t（PORT_OK/ERR_PARAM/ERR_STATE/ERR_TIMEOUT/ERR_BUSY）跨头共享，由 PORT_ERR_T_DEFINED 防护宏保证只定义一次",
     "hw_instance=null 表示无法从 S4 facts/设计输入确定，由 S5c 按 hardware_capabilities 匹配",

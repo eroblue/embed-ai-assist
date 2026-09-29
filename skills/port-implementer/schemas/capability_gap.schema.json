@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.s5c.capability_gap.v1",
+  "title": "S5c 能力缺口报告（manifest 硬件需求 × hardware_capabilities 供给）",
+  "type": "object",
+  "description": "prepare 阶段机械比对：manifest 需要的外设能力在 S5a 能力清单中不存在 → 输出本报告并终止（退出码 2）。缺口是契约层问题，修复要回 S5a/S5b——不得降级实现、不得改接口。",
+  "required": ["checked", "checked_against", "gaps", "generated_at"],
+  "properties": {
+    "checked": {"type": "boolean", "description": "true=已完成机械比对；false=能力清单缺失/不可解析，未做比对"},
+    "checked_against": {"type": ["string", "null"], "description": "比对依据（outputs/s5a/hardware_capabilities.json 路径）；checked=false 为 null"},
+    "gaps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["requirement", "peripheral", "available", "detail", "severity"],
+        "properties": {
+          "requirement": {"type": "string", "description": "引发缺口的需求描述（manifest 头/逻辑实例）"},
+          "peripheral": {"type": "string", "description": "涉及外设类型（uart/i2c/spi/gpio/adc/timer/pwm/par/...）"},
+          "needed": {"type": ["string", "null"], "description": "需要的能力/实例（如 uart 类型级 / 低功耗能力段）"},
+          "available": {"type": "boolean", "description": "硬件是否支持"},
+          "detail": {"type": "string", "description": "缺口详情（类型不在能力清单 / 能力段缺失 / 清单为空退化）"},
+          "severity": {"type": "string", "enum": ["error", "warning"], "description": "error=契约缺口，S5c 终止（rule 检出均为 error）；warning=可由 Agent 复核的疑似缺口"},
+          "source": {"type": "string", "enum": ["rule", "agent"], "description": "rule=prepare 机械比对发现；agent=Agent 生成过程发现"}
+        }
+      }
+    },
+    "generated_at": {"type": "string"}
+  }
+}

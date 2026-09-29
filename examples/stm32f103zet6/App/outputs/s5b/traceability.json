@@ -23,11 +23,11 @@
       "requirement": "REQ-003 本地数据显示：200ms 刷新显示模式/温湿度/光照/告警；告警激活时显示项 1Hz 闪烁",
       "source": "spec",
       "source_ref": "spec#REQ-003",
-      "flow": "docs/flow/app_oled_display_flow.md",
-      "files": ["App/Src/app_oled_display.c", "App/Inc/app_oled_display.h",
-                "Drivers/BSP/Src/driver_oled.c"],
-      "functions": ["app_oled_display_init", "app_oled_display_poll",
-                    "app_oled_display_is_ready", "driver_oled_show_line"],
+      "flow": "docs/flow/app_lcd_display_flow.md",
+      "files": ["App/Src/app_lcd_display.c", "App/Inc/app_lcd_display.h",
+                "Drivers/BSP/Src/driver_lcd.c"],
+      "functions": ["app_lcd_display_init", "app_lcd_display_poll",
+                    "app_lcd_display_is_ready", "driver_lcd_show_line"],
       "status": "covered"
     },
     {
@@ -89,12 +89,21 @@
       "status": "partial"
     },
     {
+      "requirement": "INT-UART-RX 上位机指令接收通道：USART1 接收中断（USART1_IRQn 抢占2/子0）使能，接收字节经环形缓冲供非阻塞读取；指令协议未定义，本期只打通接收通道（APP 不消费）",
+      "source": "design_input",
+      "source_ref": "s5a_design_input#中断配置 / s5b_design_input#串口接收",
+      "flow": null,
+      "files": ["Drivers/Port/Inc/uart_port.h"],
+      "functions": ["uart_port_set_rx_cb", "uart_port_read"],
+      "status": "covered"
+    },
+    {
       "requirement": "REQ-010 初始化失败降级：跳过失败模块其余功能继续；运行灯闪烁模式提示",
       "source": "spec",
       "source_ref": "spec#REQ-010",
       "flow": null,
-      "files": ["App/Src/app.c", "App/Src/app_oled_display.c", "App/Src/app_uart_report.c"],
-      "functions": ["app_init", "app_loop", "app_oled_display_is_ready", "app_uart_report_is_ready"],
+      "files": ["App/Src/app.c", "App/Src/app_lcd_display.c", "App/Src/app_uart_report.c"],
+      "functions": ["app_init", "app_loop", "app_lcd_display_is_ready", "app_uart_report_is_ready"],
       "status": "covered"
     },
     {
@@ -131,12 +140,12 @@
       "source_ref": "spec#REQ-014",
       "flow": null,
       "files": ["App/Src/app.c", "App/Src/app_env_sensor.c", "App/Src/app_alarm_control.c",
-                "App/Src/app_oled_display.c", "App/Src/app_uart_report.c",
-                "Drivers/BSP/Src/driver_oled.c", "Drivers/BSP/Src/driver_dht11.c"],
+                "App/Src/app_lcd_display.c", "App/Src/app_uart_report.c",
+                "Drivers/BSP/Src/driver_lcd.c", "Drivers/BSP/Src/driver_dht11.c"],
       "functions": [],
       "status": "covered"
     }
   ],
-  "summary": {"total": 14, "covered": 13, "partial": 1, "uncovered": 0},
-  "generated_at": "2026-09-24T11:35:00"
+  "summary": {"total": 15, "covered": 14, "partial": 1, "uncovered": 0},
+  "generated_at": "2026-09-28T08:18:00"
 }

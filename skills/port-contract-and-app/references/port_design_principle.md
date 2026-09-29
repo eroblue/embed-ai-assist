@@ -26,6 +26,10 @@
    只能依赖 C 标准库与同层 Port 头）。
 5. **错误码统一**：`PORT_OK=0 / PORT_ERR_PARAM / PORT_ERR_STATE / PORT_ERR_TIMEOUT / PORT_ERR_BUSY`
    （各 Port 头自定义同名枚举，值域不冲突时直接复用 `port_common` 风格前缀注释说明）。
+   **引用规则**：使用 `PORT_OK`/`PORT_ERR_*`/`port_err_t` 的 APP/Driver 文件
+   必须显式 include 定义该枚举的 Port 头（谁用谁 include，不依赖其他头文件
+   间接传递）——validate.py 按此机械校验，漏 include 会在编译期报
+   `identifier "PORT_OK" is undefined`。
 
 ## 三、生命周期与命名
 

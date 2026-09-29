@@ -1,0 +1,12 @@
+{
+  "items": [
+    {
+      "id": "REC-001",
+      "topic": "system_tick 硬件实例未指定",
+      "description": "manifest 中 system_tick 的 hw_instance=null（10ms 周期节拍（主循环软轮询调度）；delay_us 供 DHT11 位时序与 LCD 上电延时）",
+      "impact": "Agent 将按 hardware_capabilities/设计输入/S5a init 产物选定实现载体",
+      "suggestion": "核对 Agent 选定的实例并在 s5c_design_input.md 登记，固化选择"
+    }
+  ],
+  "generated_at": "2026-09-28T15:05:26"
+}
