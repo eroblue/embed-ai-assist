@@ -113,7 +113,7 @@
 ## 7. 增量模式（本轮生成范围）
 
 - 流程图无变化：对应模块走 skip 分支，不重跑代码生成
-- 已有 42 个现有产物文件（基线快照 outputs/s5b/code_baseline/）；增量修改后必须运行 diff_range_checker.py（变更行数超预期 3 倍即报错）
+- 已有 43 个现有产物文件（基线快照 outputs/s5b/code_baseline/）；增量修改后必须运行 diff_range_checker.py（变更行数超预期 3 倍即报错）
 
 ## 8. 禁止事项（硬约束）
 

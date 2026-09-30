@@ -65,7 +65,7 @@ hardware-initializer/
 │   ├── analysis.py                   ← 共享分析：配置/usage/时钟数值/设计输入
 │   ├── prepare.py                    ← 第 1 段：分析 + 输出 Agent 任务书
 │   ├── validate.py                   ← 第 3 段：产物校验 + 能力清单 + IDE 清单
-│   ├── capability_extractor.py       ← 硬件能力清单聚合
+│   ├── capability_extractor.py       ← 硬件能力清单聚合（规则产出按 (type,instance) 合并进已有文件）
 │   └── ide_pending_exporter.py       ← IDE 待添加清单导出（兜底参考；实际同步由公共工具 skills/_shared/scripts/ide_sync.py 完成）
 ├── references/
 │   ├── init_code_templates.md        ← Agent 代码生成规范（平台 API 惯例 + 示例）
@@ -152,7 +152,7 @@ hardware-initializer/
 |------|----------|
 | `generation_brief.md` | Agent 任务书（prepare 段）：项目信息/时钟数值/外设清单/生成要求/禁止事项/数据来源，含"增量模式"节（CHANGED/UNCHANGED 模块清单） |
 | `module_snapshot.json` | 模块数值快照（prepare 段）：增量 diff 依据，域级数值（时钟/GPIO/各外设/中断）与上轮比对得出 CHANGED 模块 |
-| `hardware_capabilities.json` | 硬件能力清单（mcu/rtos/architecture/clocks/peripherals[]/power/constraints），S5c 实现 Port 的唯一硬件依据 |
+| `hardware_capabilities.json` | 硬件能力清单（mcu/rtos/architecture/clocks/peripherals[]/power/constraints），S5c 实现 Port 的唯一硬件依据。**按 `(type, instance)` 合并写回**：规则轨命中的条目被规则值替换，规则推不出的已有条目保留（数据源退化时的手工补全成果不被清空），constraints 取并集——代价是真正移除的外设条目需人工清理 |
 | `ide_pending_files.json` | IDE 待添加清单（源文件 + group + include 路径，兜底参考）。IDE 工程同步由公共工具 `skills/_shared/scripts/ide_sync.py` 完成：validate 段自动调用（谁跑完谁同步，全局文件锁防并行冲突），失败不中断并输出 `outputs/_shared/ide_sync_manual.md` 手动清单 |
 
 ### 写入 state.json（仅 s5a 字段）

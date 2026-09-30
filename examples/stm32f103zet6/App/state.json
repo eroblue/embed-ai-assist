@@ -82,6 +82,8 @@
       "Drivers/BSP/Src/adc_init.c",
       "Drivers/BSP/Src/clock_init.c",
       "Drivers/BSP/Src/dht11_init.c",
+      "Drivers/BSP/Src/driver_dht11.c",
+      "Drivers/BSP/Src/driver_lcd.c",
       "Drivers/BSP/Src/fsmc_init.c",
       "Drivers/BSP/Src/gpio_init.c",
       "Drivers/BSP/Src/hal_init.c",
@@ -93,6 +95,8 @@
       "Drivers/BSP/Inc/adc_init.h",
       "Drivers/BSP/Inc/clock_init.h",
       "Drivers/BSP/Inc/dht11_init.h",
+      "Drivers/BSP/Inc/driver_dht11.h",
+      "Drivers/BSP/Inc/driver_lcd.h",
       "Drivers/BSP/Inc/fsmc_init.h",
       "Drivers/BSP/Inc/gpio_init.h",
       "Drivers/BSP/Inc/hal_init.h",
@@ -107,13 +111,9 @@
     "hardware_capabilities": "outputs/s5a/hardware_capabilities.json",
     "ide_pending_files": "outputs/s5a/ide_pending_files.json",
     "error": null,
-    "updated_at": "2026-09-24T10:09:21",
-    "incremental": false,
-    "changed_modules": [
-      "clock_init",
-      "hal_init",
-      "nvic_init"
-    ]
+    "updated_at": "2026-09-29T17:36:33",
+    "incremental": true,
+    "changed_modules": []
   },
   "s5b": {
     "status": "done",
@@ -129,13 +129,14 @@
     "capability_gap": null,
     "ide_pending_files": "outputs/s5b/ide_pending_files.json",
     "error": null,
-    "updated_at": "2026-09-28T14:56:50",
+    "updated_at": "2026-09-29T18:21:49",
     "port_headers": [
       "Drivers/Port/Inc/adc_port.h",
       "Drivers/Port/Inc/gpio_port.h",
       "Drivers/Port/Inc/par_port.h",
       "Drivers/Port/Inc/timer_port.h",
-      "Drivers/Port/Inc/uart_port.h"
+      "Drivers/Port/Inc/uart_port.h",
+      "Drivers/Port/Inc/wdt_port.h"
     ],
     "app_sources": [
       "App/Src/app.c",
@@ -170,13 +171,13 @@
       {
         "file": "docs/flow/app_alarm_control_state.md",
         "module": "app_alarm_control",
-        "version": "1.0",
+        "version": "1.1",
         "status": "approved"
       },
       {
         "file": "docs/flow/app_env_sensor_flow.md",
         "module": "app_env_sensor",
-        "version": "1.0",
+        "version": "1.1",
         "status": "approved"
       },
       {
@@ -231,13 +232,33 @@
       "Drivers/Port/Src/port_impl_gpio_stm32f103zet6.c",
       "Drivers/Port/Src/port_impl_par_stm32f103zet6.c",
       "Drivers/Port/Src/port_impl_timer_stm32f103zet6.c",
-      "Drivers/Port/Src/port_impl_uart_stm32f103zet6.c"
+      "Drivers/Port/Src/port_impl_uart_stm32f103zet6.c",
+      "Drivers/Port/Src/port_impl_wdt_stm32f103zet6.c"
     ],
     "osal_impl": null,
     "power_impl": null,
-    "skipped_files": [],
+    "skipped_files": [
+      "Drivers/Port/Src/port_impl_wdt_stm32f103zet6.c"
+    ],
     "capability_gap": null,
+    "port_manifest_snapshot": "outputs/s5c/port_manifest_snapshot.json",
+    "port_diffs": [
+      "outputs/s5c/port_diffs/adc_diff.json",
+      "outputs/s5c/port_diffs/gpio_diff.json",
+      "outputs/s5c/port_diffs/par_diff.json",
+      "outputs/s5c/port_diffs/timer_diff.json",
+      "outputs/s5c/port_diffs/uart_diff.json",
+      "outputs/s5c/port_diffs/wdt_diff.json"
+    ],
+    "generation_modes": {
+      "adc": "skip",
+      "gpio": "skip",
+      "par": "skip",
+      "timer": "skip",
+      "uart": "skip",
+      "wdt": "skip"
+    },
     "error": null,
-    "updated_at": "2026-09-28T15:06:00"
+    "updated_at": "2026-09-29T18:21:49"
   }
 }

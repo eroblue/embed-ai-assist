@@ -15,8 +15,8 @@ void fsmc_lcd_init(void)
 
     RCC_AHBPeriphClockCmd(RCC_AHBPeriph_FSMC, ENABLE);
 
-    /* 读写独立时序（ExtendedMode + AccessMode B），参数为设计输入
-       ILI9341 类典型值，请按实际 LCD 手册微调（docs/s5a_design_input.md） */
+    /* 读写独立时序（ExtendedMode + AccessMode B），16 位并口 TFTLCD 典型值
+       （本工程实际面板为 4.3 寸 480x800 NT35510，与 ILI9341 类同构，见 docs/s5a_design_input.md） */
     read_timing.FSMC_AddressSetupTime = 0;
     read_timing.FSMC_AddressHoldTime = 0;
     read_timing.FSMC_DataSetupTime = 15;

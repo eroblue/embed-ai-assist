@@ -1,15 +1,17 @@
 ---
 name: app_env_sensor_flow
 status: approved
-version: 1.0
+version: "1.1"
 created_at: 2026-09-24T10:20:00
 approved_at: 2026-09-24T10:32:00
 approved_by: user
-base_version: null
+base_version: "1.0"
 ---
 
 <!-- app_env_sensor 环境采集（REQ-001/002/013）：2s 周期采集 DHT11 温湿度 + 光照 ADC，
-     数据有效性范围校验，DHT11 连续 5 次失败触发传感器故障事件，成功后恢复。
+     数据有效性范围校验，DHT11 连续 5 次失败或"尚无有效读数"触发传感器故障事件，成功后恢复。
+     尚无有效读数时（上电初始阶段）init 即置故障态并发布故障事件——没有"上次值"可保留，
+     且初值会被告警阈值逻辑误判为低温告警（详见 app_env_sensor_init）。
      器件单总线协议由 driver_dht11 承载，光照经 adc_port 采样 -->
 
 ```mermaid
@@ -17,7 +19,7 @@ flowchart TD
     A[采集周期到达 /* period_ms=2000 */] --> B[读取 DHT11 温湿度]
     B --> C{读取成功?}
     C -- 否 --> D[失败计数+1 保留上次值]
-    D --> E{连续失败达到阈值? /* fail_threshold=5 */}
+    D --> E{连续失败达到阈值 或尚无有效读数? /* fail_threshold=5 */}
     E -- 是 --> F[发布传感器故障事件 清零失败计数 置故障标志]
     E -- 否 --> G[读取光照 ADC 并换算 /* light=adc*100/4095 */]
     F --> G

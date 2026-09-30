@@ -18,72 +18,154 @@
     {
       "type": "uart",
       "instance": "USART1",
-      "pins": {"tx": "PA9", "rx": "PA10"},
+      "pins": {
+        "tx": "PA9",
+        "rx": "PA10"
+      },
       "irq": "USART1",
-      "capabilities": ["115200-8N1", "tx-polling", "rx-rxne-int"]
+      "capabilities": [
+        "115200-8N1",
+        "tx-polling",
+        "rx-rxne-int"
+      ]
     },
     {
       "type": "par",
       "instance": "FSMC_Bank1_NE4",
-      "pins": {"cs": "PG12", "rs": "PG0", "backlight": "PB0"},
+      "pins": {
+        "cs": "PG12",
+        "rs": "PG0",
+        "backlight": "PB0"
+      },
       "irq": null,
-      "capabilities": ["16bit-bus", "cmd-addr-0x6C000000", "data-addr-0x6C000800", "mem-mapped-sync-write"]
+      "capabilities": [
+        "16bit-bus",
+        "cmd-addr-0x6C000000",
+        "data-addr-0x6C000800",
+        "mem-mapped-sync-write"
+      ]
     },
     {
       "type": "gpio",
       "instance": "GPIOA",
-      "pins": {"actuator_ctrl": "PA4", "key_mute_wkup": "PA0", "uart_tx": "PA9", "uart_rx": "PA10"},
+      "pins": {
+        "actuator_ctrl": "PA4",
+        "key_mute_wkup": "PA0",
+        "uart_tx": "PA9",
+        "uart_rx": "PA10"
+      },
       "irq": null,
-      "capabilities": ["output-pp", "input"]
+      "capabilities": [
+        "output-pp",
+        "input"
+      ]
     },
     {
       "type": "gpio",
       "instance": "GPIOB",
-      "pins": {"led_exec": "PB5", "lcd_backlight": "PB0", "buzzer_pwm": "PB8"},
+      "pins": {
+        "led_exec": "PB5",
+        "lcd_backlight": "PB0",
+        "buzzer_pwm": "PB8"
+      },
       "irq": null,
-      "capabilities": ["output-pp"]
+      "capabilities": [
+        "output-pp"
+      ]
     },
     {
       "type": "gpio",
       "instance": "GPIOE",
-      "pins": {"led_run": "PE5", "key_switch": "PE3", "key_mode": "PE4", "key_reserved": "PE2"},
+      "pins": {
+        "led_run": "PE5",
+        "key_switch": "PE3",
+        "key_mode": "PE4",
+        "key_reserved": "PE2"
+      },
       "irq": null,
-      "capabilities": ["output-pp", "input-pull-up"]
+      "capabilities": [
+        "output-pp",
+        "input-pull-up"
+      ]
     },
     {
       "type": "gpio",
       "instance": "GPIOF",
-      "pins": {"light_sensor_ao": "PF8"},
+      "pins": {
+        "light_sensor_ao": "PF8"
+      },
       "irq": null,
-      "capabilities": ["analog-input"]
+      "capabilities": [
+        "analog-input"
+      ]
     },
     {
       "type": "gpio",
       "instance": "GPIOG",
-      "pins": {"dht11_data": "PG11", "fsmc_ne4_cs": "PG12", "fsmc_a10_rs": "PG0"},
+      "pins": {
+        "dht11_data": "PG11",
+        "fsmc_ne4_cs": "PG12",
+        "fsmc_a10_rs": "PG0"
+      },
       "irq": null,
-      "capabilities": ["input-pull-up", "af-pp-50m"]
+      "capabilities": [
+        "input-pull-up",
+        "af-pp-50m"
+      ]
     },
     {
       "type": "adc",
       "instance": "ADC3",
-      "pins": {"in6": "PF8"},
+      "pins": {
+        "in6": "PF8"
+      },
       "irq": null,
-      "capabilities": ["12bit", "soft-trigger", "sample-55.5cyc", "ref-vdd", "right-align"]
+      "capabilities": [
+        "12bit",
+        "soft-trigger",
+        "sample-55.5cyc",
+        "ref-vdd",
+        "right-align"
+      ]
     },
     {
       "type": "timer",
       "instance": "TIM4",
-      "pins": {"ch3": "PB8"},
+      "pins": {
+        "ch3": "PB8"
+      },
       "irq": null,
-      "capabilities": ["pwm-2khz", "psc71-arr499", "buzzer-pwm-occupied", "duty-by-TIM_SetCompare3"]
+      "capabilities": [
+        "pwm-2khz",
+        "psc71-arr499",
+        "buzzer-pwm-occupied",
+        "duty-by-TIM_SetCompare3"
+      ]
     },
     {
       "type": "timer",
       "instance": "SysTick",
       "pins": {},
       "irq": "SysTick",
-      "capabilities": ["24bit-downcounter", "clk-source-hclk-or-div8", "available-for-system-tick", "available-for-delay-us"]
+      "capabilities": [
+        "24bit-downcounter",
+        "clk-source-hclk-or-div8",
+        "available-for-system-tick",
+        "available-for-delay-us"
+      ]
+    },
+    {
+      "type": "wdt",
+      "instance": "IWDG",
+      "pins": {},
+      "irq": null,
+      "capabilities": [
+        "lsi-40khz",
+        "prescaler-4to256",
+        "reload-12bit",
+        "timeout-range-0.1ms-to-26.2s",
+        "cannot-disable-after-enable"
+      ]
     }
   ],
   "power": null,
@@ -94,6 +176,7 @@
     "10ms 节拍载体：TIM4 已被蜂鸣器 PWM 占用，timer_port 的 system_tick 实例应使用 SysTick（见 REC-005）",
     "key_mute(PA0/WK_UP)：S5a gpio_init 未配置 PA0（S5b 设计输入指定），S5c gpio 实现需自行补配 PA0 下拉输入（按 manifest config pull=down）",
     "PE2 已被 S5a 配置为按键输入但 S5b manifest 未使用（保留）",
-    "FSMC 数据线 D0~D15 分布在 PD/PE 口（复用推挽 50MHz），由 S5a fsmc_init 统一配置，S5c 不重复配置"
+    "FSMC 数据线 D0~D15 分布在 PD/PE 口（复用推挽 50MHz），由 S5a fsmc_init 统一配置，S5c 不重复配置",
+    "看门狗：IWDG 无 S5a 初始化（LSI 由硬件在使能 IWDG 时自动开启、无引脚、无 NVIC）；**超时属应用策略**，由 APP 经 wdt_port_init(timeout_ms) 传入、S5c port_impl_wdt 按本清单的 LSI 频率换算 PR/RLR 并启动——本工程 APP 以 1000ms 启动、app_loop 每 10ms 喂狗"
   ]
 }

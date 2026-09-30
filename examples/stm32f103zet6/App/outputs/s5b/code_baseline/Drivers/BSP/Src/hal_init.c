@@ -10,7 +10,8 @@
 #include "dht11_init.h"
 
 /* 初始化顺序按 docs/s5a_design_input.md：
- * 时钟 → 中断分组 → GPIO → 蜂鸣器 PWM → 光照 ADC → FSMC LCD → 串口 → DHT11 */
+ * 时钟 → 中断分组 → GPIO → 蜂鸣器 PWM → 光照 ADC → FSMC LCD → 串口 → DHT11
+ * （看门狗无 S5a 初始化：IWDG 的 LSI 由硬件自动使能、无引脚，超时属应用设定） */
 void hal_init(void)
 {
     clock_init();

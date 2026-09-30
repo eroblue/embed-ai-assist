@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.s5c.port_manifest_snapshot.v1",
+  "title": "S5c manifest per-peripheral 签名快照（下轮 diff 的接口变化检测基线）",
+  "type": "object",
+  "required": ["manifest_hash", "captured_at", "units"],
+  "properties": {
+    "manifest_hash": {
+      "type": "string",
+      "description": "本轮 port_interface_manifest.json 文件 sha256（整体指纹，快速判断 manifest 是否动过）"
+    },
+    "captured_at": {
+      "type": "string",
+      "description": "快照捕获时间（ISO 时间戳）"
+    },
+    "design_input_hash": {
+      "type": ["string", "null"],
+      "description": "本轮 docs/s5c_design_input.md 的 sha256（文件不存在/全 none 时为 null）；作为**设计输入变化的判定基线**（port_differ 第三维度）"
+    },
+    "units": {
+      "type": "object",
+      "description": "按实现单元组织的签名摘要 {单元键: 摘要}；单元键 = 外设名 或 osal/power",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["kind", "signature_hash"],
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": ["peripheral", "osal", "power"],
+            "description": "单元类别"
+          },
+          "signature_hash": {
+            "type": "string",
+            "description": "该单元签名原子集的 sha256（快速判断是否变化）"
+          },
+          "instances": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "逻辑实例名列表（人工核对用）"
+          },
+          "interface_count": {"type": "integer", "minimum": 0},
+          "callback_count": {"type": "integer", "minimum": 0},
+          "fields": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "规范化原子字段集（如 'instance:wifi' / 'iface:uart_port_write|signature|isr_safe:true'），下轮据此做字段级 diff 与变化率计算"
+          }
+        }
+      }
+    }
+  }
+}

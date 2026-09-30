@@ -8,18 +8,27 @@
 
 - 平台：stm32f103zet6（文件命名后缀 `stm32f103zet6`）
 - 架构：layered；RTOS：none；低功耗：未启用
-- Port 接口头（S5b 产出，只读）：Drivers/Port/Inc/adc_port.h, Drivers/Port/Inc/gpio_port.h, Drivers/Port/Inc/par_port.h, Drivers/Port/Inc/timer_port.h, Drivers/Port/Inc/uart_port.h
-- S5a 总入口：Drivers/BSP/Src/hal_init.c（init 产物 9 个源文件，可对接其初始化成果）
+- Port 接口头（S5b 产出，只读）：Drivers/Port/Inc/adc_port.h, Drivers/Port/Inc/gpio_port.h, Drivers/Port/Inc/par_port.h, Drivers/Port/Inc/timer_port.h, Drivers/Port/Inc/uart_port.h, Drivers/Port/Inc/wdt_port.h
+- S5a 总入口：Drivers/BSP/Src/hal_init.c（init 产物 11 个源文件，可对接其初始化成果）
 - 实现输出目录（PROJECT_LAYOUT.md 解析）：`Drivers/Port/Src/`
 
 ## 2. 用户设计输入（docs/s5c_design_input.md，优先级高于自动推断）
 
-- 无（缺失/为空/全部 none）——Agent 基于 hardware_capabilities 与参考材料自主判断
+来源：`docs/s5c_design_input.md`，原文段落：
+
+**低功耗方案**：
+> - none
+
+**已有实现**：
+> - SysTick周期为1000ms；
+> - uart缓存大小为1KB；
+
+（注意：低功耗未启用，'低功耗方案' 段本轮不生效）
 
 ## 3. S5a 能力清单摘要（实现 Port 的唯一硬件依据）
 
 - 时钟：SYSCLK 72000000 Hz（内部 72MHz 直跑（S4 未发现外部晶振，未启 PLL））
-- 外设能力 10 项：
+- 外设能力 11 项：
   | 类型 | 实例 | 引脚 | 中断 | 能力标签 |
   |---|---|---|---|---|
   | uart | USART1 | tx=PA9，rx=PA10 | USART1 | 115200-8N1;tx-polling;rx-rxne-int |
@@ -32,6 +41,7 @@
   | adc | ADC3 | in6=PF8 | - | 12bit;soft-trigger;sample-55.5cyc;ref-vdd;right-align |
   | timer | TIM4 | ch3=PB8 | - | pwm-2khz;psc71-arr499;buzzer-pwm-occupied;duty-by-TIM_SetCompare3 |
   | timer | SysTick | - | SysTick | 24bit-downcounter;clk-source-hclk-or-div8;available-for-system-tick;available-for-delay-us |
+  | wdt | IWDG | - | - | lsi-40khz;prescaler-4to256;reload-12bit;timeout-range-0.1ms-to-26.2s;cannot-disable-after-enable |
 - 约束：58 个已连接引脚网络名无语义（如 PE2），未生成 GPIO 配置，待 AI/人工补充
 - 约束：ADC 差异：S5b manifest 写 ADC1_IN1(PA1)，S5a 实际初始化 ADC3_IN6(PF8)（战舰板光敏电阻真实接法）；S5c 实现按实际硬件 ADC3/PF8 对接
 - 约束：蜂鸣器差异：S5b manifest 按简单 GPIO 建模（PB8 active_level=1），S5a 实际配置 TIM4_CH3 PWM（2kHz）；S5c 的 gpio_port_set_active(buzzer) 应映射 TIM_SetCompare3(TIM4, 250=响/0=停) 而非直写 PB8
@@ -39,6 +49,7 @@
 - 约束：key_mute(PA0/WK_UP)：S5a gpio_init 未配置 PA0（S5b 设计输入指定），S5c gpio 实现需自行补配 PA0 下拉输入（按 manifest config pull=down）
 - 约束：PE2 已被 S5a 配置为按键输入但 S5b manifest 未使用（保留）
 - 约束：FSMC 数据线 D0~D15 分布在 PD/PE 口（复用推挽 50MHz），由 S5a fsmc_init 统一配置，S5c 不重复配置
+- 约束：看门狗：IWDG 无 S5a 初始化（LSI 由硬件在使能 IWDG 时自动开启、无引脚、无 NVIC）；**超时属应用策略**，由 APP 经 wdt_port_init(timeout_ms) 传入、S5c port_impl_wdt 按本清单的 LSI 频率换算 PR/RLR 并启动——本工程 APP 以 1000ms 启动、app_loop 每 10ms 喂狗
 
 ## 4. S5b manifest 接口清单（实现 Port 的唯一接口依据）
 
@@ -70,6 +81,7 @@
   - `par_port_init`：int32_t par_port_init(par_port_id_t id) —— 绑定逻辑实例（对接 S5a fsmc_lcd_init 总线成果）
   - `par_port_write_cmd`：int32_t par_port_write_cmd(par_port_id_t id, uint16_t cmd)（isr_safe） —— 写一个命令字（16 位并口下低 8 位有效按器件协议）
   - `par_port_write_data`：int32_t par_port_write_data(par_port_id_t id, uint16_t data)（isr_safe） —— 写一个数据字
+  - `par_port_read_data`：int32_t par_port_read_data(par_port_id_t id, uint16_t *data) —— 读一个数据字（总线读原语）：器件 ID / 寄存器回读用，用于区分“总线不通”与“初始化序列不匹配”；读时序由 S5a 总线初始化配置
   - `par_port_write_data_block`：int32_t par_port_write_data_block(par_port_id_t id, const uint16_t *buf, uint32_t len)（isr_safe） —— 数据字块流式写（同步拷贝语义，返回后 buf 可复用；像素流用）
   - `par_port_deinit`：int32_t par_port_deinit(par_port_id_t id) —— 释放实例全部资源
 - 注：存储器映射同步写直达，无缓冲/DMA 语义暴露
@@ -124,7 +136,7 @@
 - 说明：Timer Port 接口：系统 10ms 节拍 + µs 级短延时
 - **实现落点：`port_impl_timer_stm32f103zet6.c`**（include 对应 Port 头，只实现本外设接口）
 - 逻辑实例 `system_tick`：10ms 周期节拍（主循环软轮询调度）；delay_us 供 DHT11 位时序与 LCD 上电延时
-  - hw_instance：**null（Agent 按 capabilities/设计输入选定，并在文件头注释登记）**（来源 design_input）；config：{'period_ms': 10}
+  - hw_instance：**null（Agent 按 capabilities/设计输入选定，并在文件头注释登记）**（来源 design_input）；config：{}
 - 接口：
   - `timer_port_init`：int32_t timer_port_init(timer_port_id_t id) —— 绑定逻辑定时器
   - `timer_port_start_periodic`：int32_t timer_port_start_periodic(timer_port_id_t id, uint32_t period_ms, timer_port_cb_t cb, void *user_data)（回调经 timer_port_cb_t） —— 启动周期定时（重复触发；重复启动返回 PORT_ERR_STATE）
@@ -133,15 +145,45 @@
   - `timer_port_deinit`：int32_t timer_port_deinit(timer_port_id_t id) —— 释放逻辑定时器资源
 - 回调约定：`timer_port_cb_t` = void (*)(timer_port_id_t id, void *user_data)（上下文 isr）—— 周期到期回调：只做置标志/计数，长逻辑投主循环（app_on_tick 仅置标志）
 - 注：hw_instance=null：设计输入仅约定 10ms 主循环节拍，未指定硬件定时器，S5c 按 hardware_capabilities 匹配（建议 SysTick 或空闲通用定时器，见 REC-005）
+- 注：周期不在 manifest 登记：由调用方经 timer_port_start_periodic(period_ms) 传入，属 APP 决策（本工程设计输入为 10ms）；manifest 只登记硬件映射，避免与实现重复维护同一数值
 - 注：delay_us 实现基于定时器计数（SysTick/总线时钟皆可），禁止在中断内调用
 
-## 5. 待生成文件清单（按外设一文件，跳过'用户已修改'文件）
+### Drivers/Port/Inc/wdt_port.h（外设 wdt）
 
-- `port_impl_uart_stm32f103zet6.c`
-- `port_impl_par_stm32f103zet6.c`
-- `port_impl_gpio_stm32f103zet6.c`
-- `port_impl_adc_stm32f103zet6.c`
-- `port_impl_timer_stm32f103zet6.c`
+- 说明：Watchdog Port 接口：系统固件存活监测（独立看门狗 IWDG）
+- **实现落点：`port_impl_wdt_stm32f103zet6.c`**（include 对应 Port 头，只实现本外设接口）
+- 逻辑实例 `system_wdt`：系统看门狗（整个固件存活监测，超时 ≈ 1s）
+  - hw_instance：IWDG（来源 design_input）；config：{}
+- 接口：
+  - `wdt_port_init`：int32_t wdt_port_init(wdt_port_id_t id, uint32_t timeout_ms) —— 按调用方给定的超时（ms）换算预分频/重装载、配置并启动看门狗（换算基取 hardware_capabilities 的 IWDG 能力）；超量程返回 PORT_ERR_PARAM，重复调用返回 PORT_ERR_STATE
+  - `wdt_port_feed`：int32_t wdt_port_feed(wdt_port_id_t id)（isr_safe） —— 喂狗（刷新计数），须在 timeout_ms 窗口内周期调用
+  - `wdt_port_reset_caused`：int32_t wdt_port_reset_caused(wdt_port_id_t id, uint8_t *caused) —— 查询上次复位是否由看门狗引起（读并清 IWDGRST 标志；caused：1=是 / 0=否）
+- 注：超时窗口是应用策略：由调用方经 wdt_port_init(timeout_ms) 传入，**不在 manifest config 登记**（同一数值两处维护必然漂移），实现层按 hardware_capabilities 的 LSI 频率换算 PR/RLR
+- 注：S5a 不生成看门狗初始化代码（IWDG 无时钟门控/无引脚，LSI 由硬件自动使能），只声明硬件能力；本层负责全部配置（PR/RLR）与启动（IWDG_Enable）
+- 注：换算量程约 0.1ms ~ 26.2s（LSI 40kHz / PR 4~256 / RLR 12 位），超出返回 PORT_ERR_PARAM
+- 注：IWDG 一旦启动不可关闭，故无 deinit
+- 注：本工程调用方：app_init 以 APP_WDT_TIMEOUT_MS(1000ms) 启动、app_loop 每 10ms 喂狗
+
+## 5. 生成模式表（逐单元处理依据）
+
+| 单元 | 类型 | 模式 | 实现文件 | 原因 | 用户手改 | 接口变化 |
+|---|---|---|---|---|---|---|
+| adc | peripheral | **skip** | Drivers/Port/Src/port_impl_adc_stm32f103zet6.c | 接口签名与文件哈希均未变，跳过该文件 | 否 | 无变化 |
+| gpio | peripheral | **skip** | Drivers/Port/Src/port_impl_gpio_stm32f103zet6.c | 接口签名与文件哈希均未变，跳过该文件 | 否 | 无变化 |
+| par | peripheral | **skip** | Drivers/Port/Src/port_impl_par_stm32f103zet6.c | 接口签名与文件哈希均未变，跳过该文件 | 否 | 无变化 |
+| timer | peripheral | **skip** | Drivers/Port/Src/port_impl_timer_stm32f103zet6.c | 接口签名与文件哈希均未变，跳过该文件 | 否 | 无变化 |
+| uart | peripheral | **skip** | Drivers/Port/Src/port_impl_uart_stm32f103zet6.c | 接口签名与文件哈希均未变，跳过该文件 | 否 | 无变化 |
+| wdt | peripheral | **skip** | Drivers/Port/Src/port_impl_wdt_stm32f103zet6.c | 用户手改且上游接口未变，保留手改（该实现已与 manifest 脱钩） | 是 | 无变化 |
+
+**处置规则**：`full`=全量重生成该文件；`incremental`=**只做定点修改**（见 `references/incremental_generation_rules.md`，无权整文件重写）；`skip`=**绝对不动该文件**（含用户手改与接口未变两类）；`blocked`=**报告用户**（手改 + 上游变更冲突，不自行处理）；`deprecated`=移除该实现文件（IDE 引用由 ide_sync 收口）。
+
+### ⚠️ 用户修改文件清单（跳过重写——接口漂移风险）
+
+- `Drivers/Port/Src/port_impl_wdt_stm32f103zet6.c`：⚠️ 接口漂移风险：该文件由用户维护，不接收上游变化；删除该文件即恢复自动生成
+
+### 用户修改检测（skip-if-modified）
+
+- `Drivers/Port/Src/port_impl_wdt_stm32f103zet6.c`：文件哈希与上轮基线不一致（用户改过）——按上表模式处置（接口未变=skip 保留手改；接口变化=blocked 报告用户）
 
 ## 6. 映射要点与规范引用
 
@@ -153,6 +195,8 @@
   - `Drivers/BSP/Inc/adc_init.h`
   - `Drivers/BSP/Inc/clock_init.h`
   - `Drivers/BSP/Inc/dht11_init.h`
+  - `Drivers/BSP/Inc/driver_dht11.h`
+  - `Drivers/BSP/Inc/driver_lcd.h`
   - `Drivers/BSP/Inc/fsmc_init.h`
   - `Drivers/BSP/Inc/gpio_init.h`
   - `Drivers/BSP/Inc/hal_init.h`

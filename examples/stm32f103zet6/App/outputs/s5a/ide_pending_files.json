@@ -5,6 +5,8 @@
     "Drivers/BSP/Src/adc_init.c",
     "Drivers/BSP/Src/clock_init.c",
     "Drivers/BSP/Src/dht11_init.c",
+    "Drivers/BSP/Src/driver_dht11.c",
+    "Drivers/BSP/Src/driver_lcd.c",
     "Drivers/BSP/Src/fsmc_init.c",
     "Drivers/BSP/Src/gpio_init.c",
     "Drivers/BSP/Src/hal_init.c",

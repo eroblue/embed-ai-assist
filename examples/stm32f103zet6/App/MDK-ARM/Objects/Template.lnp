@@ -23,6 +23,7 @@
 ".\objects\port_impl_par_stm32f103zet6.o"
 ".\objects\port_impl_timer_stm32f103zet6.o"
 ".\objects\port_impl_uart_stm32f103zet6.o"
+".\objects\port_impl_wdt_stm32f103zet6.o"
 ".\objects\stm32f10x_it.o"
 ".\objects\system_stm32f10x.o"
 ".\objects\startup_stm32f10x_hd.o"

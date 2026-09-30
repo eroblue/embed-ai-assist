@@ -1,0 +1,17 @@
+{
+  "peripheral": "wdt",
+  "kind": "peripheral",
+  "file": "Drivers/Port/Src/port_impl_wdt_stm32f103zet6.c",
+  "file_exists": true,
+  "generation_mode": "skip",
+  "signature_changed": false,
+  "snapshot_missing": false,
+  "change_rate": 0.0,
+  "change_count": 0,
+  "file_hash_changed": true,
+  "changes": [],
+  "reason": "用户手改且上游接口未变，保留手改（该实现已与 manifest 脱钩）",
+  "drift_warning": "⚠️ 接口漂移风险：该文件由用户维护，不接收上游变化；删除该文件即恢复自动生成",
+  "updated_at": "2026-09-29T16:57:28",
+  "design_input_changed": false
+}

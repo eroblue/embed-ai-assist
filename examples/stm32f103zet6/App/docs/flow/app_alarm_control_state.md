@@ -1,11 +1,11 @@
 ---
 name: app_alarm_control_state
 status: approved
-version: 1.0
+version: "1.1"
 created_at: 2026-09-24T10:20:00
 approved_at: 2026-09-24T10:32:00
 approved_by: user
-base_version: null
+base_version: "1.0"
 ---
 
 <!-- app_alarm_control 告警管理（REQ-005/REQ-006）：四级优先级告警状态机
@@ -13,7 +13,8 @@ base_version: null
      多条件同时满足时迁移到优先级最高的告警态。每次环境数据更新/故障事件触发重评估，
      全部条件解除回 NORMAL。迁移动作联动执行器（仅自动模式生效）：
      进 HIGH_TEMP 执行器开、进 LOW_TEMP 执行器关、其他迁移保持（设计输入：高温开低温关其他保持）。
-     告警态蜂鸣器 1s 响 1s 停节奏（静音态不响，由模块 poll 按模式/静音门控）。
+     阈值类告警态蜂鸣器 1s 响 1s 停节奏（静音态不响，由模块 poll 按模式/静音门控）；
+     SENSOR_FAULT 不蜂鸣——传感器缺失/掉线时持续鸣响无意义，改由 LCD 告警行显示 "SENSOR ERR"。
      手动模式 KEY1 开关执行器走模块公开接口 on_key_switch，不经过本状态机迁移 -->
 
 ```mermaid
@@ -52,5 +53,5 @@ stateDiagram-v2
     HIGH_TEMP : 执行器开（自动模式），蜂鸣 1s 节奏
     LOW_TEMP : 执行器关（自动模式），蜂鸣 1s 节奏
     LOW_LIGHT : 执行器保持，蜂鸣 1s 节奏
-    SENSOR_FAULT : 显示保持上次值，蜂鸣 1s 节奏
+    SENSOR_FAULT : 显示保持上次值，不蜂鸣（LCD 告警行显示 SENSOR ERR）
 ```

@@ -12,7 +12,7 @@
 |---|---|---|
 | DHT11 温湿度传感器 | 单总线（PG11） | 采集温度和湿度 |
 | 光敏传感器 | ADC1_IN1（PA1） | 采集光照强度 |
-| TFT_LCD 显示屏（240x320，ILI9341 类，以实际模块为准） | FSMC 16 位并口（NE4：PG12=CS，PG0=RS，背光 PB0） | 本地显示 |
+| TFT_LCD 显示屏（4.3 寸 480x800，控制器 NT35510；上电序列/分辨率属驱动层） | FSMC 16 位并口（NE4：PG12=CS，PG0=RS，背光 PB0） | 本地显示 |
 | LED0 | GPIO 输出（PB5） | 模拟执行器（继电器/风扇） |
 | LED1 | GPIO 输出（PE5） | 运行状态指示 |
 | 蜂鸣器 | GPIO 输出（PB8） | 告警提示 |
@@ -20,6 +20,7 @@
 | KEY1 | GPIO 输入（PE3，上拉） | 手动开关 |
 | WK_UP | GPIO 输入（PA0，下拉） | 静音切换 |
 | USART1 | PA9=TX，PA10=RX，115200-8N1，接收中断（USART1_IRQn） | 上位机上报 + 指令接收 |
+| 独立看门狗 IWDG | 内部（LSI 40kHz，无引脚；预分频 64 / 重装载 625，超时 ≈ 1s） | 固件存活监测（S5a 只配置，启动/喂狗经 wdt_port 层） |
 
 ---
 
@@ -58,7 +59,9 @@
 ### 自动控制
 - 控制逻辑在 AUTO 模式生效。
 - LED0 由自动逻辑控制：高温开、低温关、其他保持。
-- 蜂鸣器：有告警时 1s 响 1s 停，MUTED 模式下不响。
+- 蜂鸣器：**阈值类告警**（HIGH_TEMP / LOW_TEMP / LOW_LIGHT）1s 响 1s 停，MUTED 模式下不响。
+- **传感器故障（SENSOR_FAULT）不蜂鸣**：传感器缺失/掉线时持续鸣响无意义，故障内容改由
+  LCD 告警行显示 "SENSOR ERR"（见「采集失败」段）。
 
 ### 串口上报
 - USART1，115200-8N1，周期 5 秒。
@@ -74,6 +77,20 @@
   中断内只做搬运与回调通知，不做协议解析。
 - 上位机指令协议（帧格式/命令字/校验）**尚未定义**，本层只打通接收通道；
   业务解析待指令协议确定后由 APP 层接入，本期 APP 侧不消费（不注册回调、不读）。
+
+### 看门狗（wdt_port 层）
+
+- 硬件看门狗为 IWDG（见硬件资源表）；**超时窗口是应用策略，由 APP 决定**，
+  经 `wdt_port_init(id, timeout_ms)` 传入（本工程 1000ms），Port 实现层按
+  S5a 能力清单的 LSI 频率换算预分频/重装载并启动。
+- S5a 不生成看门狗初始化代码（IWDG 无时钟门控/无引脚，LSI 由硬件自动使能），
+  只声明硬件能力——**超时不写进 s5a_design_input，也不登记进 manifest config**。
+- 接口形态取 `assets/port_templates/wdt_port.h.tpl`（默认接口，通用必备外设）：
+  `wdt_port_init` / `wdt_port_feed` / `wdt_port_reset_caused`。
+- 逻辑实例：`system_wdt`（`WDT_PORT_SYSTEM`）；硬件实例 IWDG 只登记在 manifest。
+- APP 接入：`app_init()` 末尾调用 `wdt_port_init(WDT_PORT_SYSTEM, APP_WDT_TIMEOUT_MS)`
+  启动；`app_loop()` 每个 10ms 节拍调用 `wdt_port_feed(WDT_PORT_SYSTEM)` 喂狗
+  （远小于超时窗口）。启动失败不阻断系统（看门狗属安全兜底，非功能项）。
 
 ---
 
@@ -111,7 +128,7 @@
 | LCD 刷新 | 200ms |
 | 串口上报 | 5s |
 | 按键去抖 | 50ms |
-| 蜂鸣器告警 | 1s 响 / 1s 停 |
+| 蜂鸣器告警 | 1s 响 / 1s 停（仅阈值类告警；传感器故障不响） |
 | LED1 心跳 | 1Hz（500ms 亮 / 500ms 灭） |
 | LCD 告警闪烁 | 1Hz |
 
@@ -122,6 +139,8 @@
 ### 采集失败
 - DHT11 读取失败：跳过本次，保留上次值，失败计数 +1。
 - 连续 5 次失败：触发 SENSOR_FAULT 告警，LCD 显示 "SENSOR ERR"。
+- **尚无有效读数时（上电初始阶段）立即进入 SENSOR_FAULT**：此时没有"上次值"可保留，
+  且初值会被阈值逻辑误判为低温告警并鸣响；首次成功读数后自动恢复（清故障标志）。
 - 一次成功后清零失败计数。
 
 ### 串口上报失败

@@ -45,6 +45,14 @@ int32_t par_port_write_cmd(par_port_id_t id, uint16_t cmd);
 int32_t par_port_write_data(par_port_id_t id, uint16_t data);
 
 /**
+ * 读一个数据字（总线读原语）。
+ * 用途：器件 ID / 寄存器回读——LCD 类器件只有"读得到响应"才能区分
+ * "总线不通"与"初始化序列不匹配"。读时序由 S5a 的总线初始化配置。
+ * @param data 出参：读回的数据字（低 8 位有效时按器件协议理解）
+ */
+int32_t par_port_read_data(par_port_id_t id, uint16_t *data);
+
+/**
  * 数据字块流式写（同步拷贝语义：返回后 buf 可复用；用于像素流）。
  * @return PORT_OK 或负值错误码。
  */

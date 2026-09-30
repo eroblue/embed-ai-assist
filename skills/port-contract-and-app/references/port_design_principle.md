@@ -83,10 +83,39 @@
 
 ## 八、模板使用流程（Agent 操作）
 
-1. 从 `assets/port_templates/` 挑选对应外设模板（uart/i2c/spi/gpio/adc/timer）；
+1. 从 `assets/port_templates/` 挑选对应外设模板（uart/i2c/spi/gpio/adc/timer/wdt）；
 2. **裁剪**：删除应用用不到的接口（如不用 DMA 相关回调、不用 ioctl）；
 3. **扩展**：应用特有需求（如 UART 帧协议裁剪回调）加在本层语义上；
 4. 逻辑实例枚举按应用需求命名（见第六节）；
 5. 同步登记 `port_interface_manifest.json`（每个接口一条 `interfaces` 记录，
    签名/ISR 安全/回调上下文完整）；
 6. 校验：不含厂商名/引脚号/网络名；include 只有标准库与 Port 层。
+
+## 九、看门狗接口（wdt_port.h，通用必备外设）
+
+看门狗与具体应用需求无关（任何固件都需要存活监测），故模板
+`assets/port_templates/wdt_port.h.tpl` 是**默认接口**：工程用到看门狗时
+直接取用，不重新设计接口形态。
+
+**核心：超时窗口是应用策略，必须由 APP 通过接口给定。**
+
+- 接口形态：`wdt_port_init(id, uint32_t timeout_ms)` / `wdt_port_feed(id)` /
+  `wdt_port_reset_caused(id, *caused)`。APP 决定"多久未喂狗即复位"
+  （`timeout_ms`），并据此安排喂狗节奏。
+- **超时不写进 S5a 设计输入**：`docs/s5a_design_input.md` 只描述**硬件事实**
+  （用哪个看门狗、时钟源、无引脚等），不得指定预分频/重装载/超时值——
+  否则即用硬件文档干涉应用层设定。
+- **超时不登记进 manifest**：`logical_instances[].config` 留空
+  （同 timer 周期归调用方：同一数值两处维护必然漂移）。
+- 三方职责：
+  S5a 只声明硬件能力（时钟源频率、可用预分频档位、重装载位宽、是否可关闭），
+  **不固化超时、通常不生成看门狗初始化代码**（平台确需硬件侧准备时才生成，
+  如 WWDG 的 PCLK1 时钟门控、独立 RC 振荡器使能）；
+  S5b 定义本接口 + manifest 登记实例映射；
+  S5c 按 `timeout_ms` 换算预分频/重装载（换算基取 S5a 能力清单的时钟频率）、
+  写配置并启动、喂狗。超时超量程返回 `PORT_ERR_PARAM`。
+- 独立看门狗多数**一旦启动不可关闭** → 不提供 `deinit`；MCU 无看门狗硬件时
+  由 S5c 报能力缺口（`capability_gap`），不得用软件计数假装实现。
+- 实现文件头须登记：选定的换算档位与量程（如 IWDG LSI 40kHz、
+  PR 4~256、RLR 12 位 → `0.1ms ~ 26.2s`），便于调用方判断
+  `PORT_ERR_PARAM` 边界。

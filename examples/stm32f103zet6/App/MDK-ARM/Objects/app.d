@@ -9,3 +9,4 @@
 .\objects\app.o: ..\App\Inc\app_uart_report.h
 .\objects\app.o: ..\Drivers\Port\Inc\gpio_port.h
 .\objects\app.o: ..\Drivers\Port\Inc\timer_port.h
+.\objects\app.o: ..\Drivers\Port\Inc\wdt_port.h

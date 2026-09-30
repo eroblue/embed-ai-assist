@@ -47,7 +47,9 @@ sys.path.insert(0, str(SCRIPT_DIR))
 sys.path.insert(0, str(SKILL_DIR.parent / "_shared" / "scripts"))
 
 import analysis  # noqa: E402
+import diff_range_checker  # noqa: E402
 import layout_resolver  # noqa: E402
+import port_differ  # noqa: E402
 import state_store  # noqa: E402
 
 EXIT_OK = 0
@@ -280,6 +282,25 @@ def main(argv: list[str] | None = None) -> int:
 
     # ---- 1. 产物校验（失败保持 running，Agent 修复后重跑）----
     errors, collected = check_products(ctx, src_paths)
+
+    # ---- 1b. 增量范围校验（有 incremental 单元时；requirement 阶段 C 步骤 20）----
+    # 复用 diff_range_checker 的判定（基线 outputs/s5c/code_baseline/）：
+    # 异常不算环境错误，计入 errors → 退出码 1，state 保持 running（Agent 按
+    # references/incremental_generation_rules.md 处置后重跑）。
+    _reports, anomalies = diff_range_checker.run_check(
+        ctx, ctx["outputs_dir"] / "s5c" / "code_baseline")
+    if anomalies:
+        analysis.save_json(ctx["outputs_dir"] / "s5c" / "diff_anomaly.json", {
+            "anomalies": anomalies,
+            "advice": ("增量生成 diff 范围异常，请人工审核：上轮内容见 "
+                       "outputs/s5c/code_baseline/；处置规则见 "
+                       "references/incremental_generation_rules.md 第四节。"),
+            "updated_at": datetime.now().isoformat(timespec="seconds")})
+        for a in anomalies:
+            for m in (a.get("anomalies") or [a.get("detail", "")]):
+                if m:
+                    errors.append(f"增量范围异常：{m}")
+
     if errors:
         _log("产物校验失败（state 保持 running，修复后重跑 validate.py）:")
         for e in errors:
@@ -299,6 +320,29 @@ def main(argv: list[str] | None = None) -> int:
         recorded[rel] = analysis.file_sha256(f)
     analysis.save_file_hashes(ctx["outputs_dir"] / "s5c", recorded)
 
+    # ---- 2b. manifest 快照 + per-unit diff 汇总（requirement 阶段 C 步骤 22）----
+    # 快照作为下轮 port_differ 的接口变化检测基线；旧版本追加到 *_history/。
+    snapshot = port_differ.build_snapshot(ctx)
+    snap_errs = analysis.validate_schema(
+        snapshot, SKILL_DIR / "schemas" / "port_manifest_snapshot.schema.json",
+        "port_manifest_snapshot")
+    if snap_errs:
+        return _env_error("manifest 快照契约校验失败: " + "; ".join(snap_errs))
+    analysis.save_manifest_snapshot(ctx["outputs_dir"] / "s5c", snapshot)
+
+    diffs_dir = ctx["outputs_dir"] / "s5c" / "port_diffs"
+    port_diffs_rel: list[str] = []
+    generation_modes: dict[str, str] = {}
+    if diffs_dir.is_dir():
+        for p in sorted(diffs_dir.glob("*_diff.json")):
+            port_diffs_rel.append(f"outputs/s5c/port_diffs/{p.name}")
+            try:
+                d = analysis.load_json(p)
+                generation_modes[str(d.get("peripheral") or p.stem)] = \
+                    str(d.get("generation_mode") or "")
+            except (json.JSONDecodeError, OSError):
+                continue
+
     # ---- 3. state.s5c = done ----
     payload = {
         "status": "done",
@@ -311,6 +355,9 @@ def main(argv: list[str] | None = None) -> int:
         "power_impl": collected["power_impl"],
         "skipped_files": collected["skipped_files"],
         "capability_gap": collected["capability_gap"],
+        "port_manifest_snapshot": "outputs/s5c/port_manifest_snapshot.json",
+        "port_diffs": port_diffs_rel,
+        "generation_modes": generation_modes,
         "error": None,
         "updated_at": datetime.now().isoformat(timespec="seconds"),
     }

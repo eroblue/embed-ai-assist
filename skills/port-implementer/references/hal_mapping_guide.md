@@ -73,7 +73,29 @@ hw_instance=null 时（典型如 10ms 系统节拍）：优先 SysTick（不占�
 | `pwm_port_set_freq(id, hz)` | ARR = timer_clk / (psc·hz) 重装（按 clocks 实算） |
 | `pwm_port_set_duty(id, permille)` | `TIM_SetCompareX(TIMx, channel, ARR * permille / 1000)` |
 
-### 2.6 并行总线 par（FSMC 存储器映射，LCD 类器件）
+### 2.6 Watchdog（wdt_port）
+
+| Port 接口 | 典型 HAL 序列 |
+|---|---|
+| `wdt_port_init(id, timeout_ms)` | 按 `timeout_ms` 换算预分频/重装载 → `IWDG_WriteAccessCmd(IWDG_WriteAccess_Enable)` → `IWDG_SetPrescaler()` → `IWDG_SetReload()` → `IWDG_ReloadCounter()` → `IWDG_Enable()`；已启动返回 `PORT_ERR_STATE`，超量程返回 `PORT_ERR_PARAM` |
+| `wdt_port_feed(id)` | `IWDG_ReloadCounter()`（只写 Key 寄存器，无阻塞 → `isr_safe`，可在 ISR 调用） |
+| `wdt_port_reset_caused(id, *caused)` | `RCC_GetFlagStatus(RCC_FLAG_IWDGRST)` → `RCC_ClearFlag()`（RCC 无单标志清除位，清即清整组复位标志），`*caused = 1/0` |
+
+IWDG 超时换算（STM32F1，LSI 标称 40kHz，PR ∈ 4/8/16/32/64/128/256、RLR 12 位）：
+`T = (4 × 2^PR) × (RLR + 1) / F_LSI`；取**最小的预分频**使 RLR 落进 12 位
+（精度最高），量程约 0.1ms ~ 26.2s，超出返回 `PORT_ERR_PARAM`。
+换算基（时钟源频率、档位、位宽）以 `hardware_capabilities` 的 wdt 能力标签为准，
+不硬编码假设。
+
+- **超时由调用方给定**（应用策略）：实现层不设默认值、不读 manifest config
+  （同 timer 周期归调用方）。
+- 看门狗**硬件侧准备**（时钟门控、独立 RC 振荡器使能等）若平台需要，由 S5a 的
+  `wdt_init` 提供（可选）；**超时（PR/RLR）一律不归 S5a**。
+- 独立看门狗多数**一旦启动不可关闭** → 无 `deinit`；复位原因查询属上电状态
+  查询，可在 `wdt_port_init` 之前调用（启动自检场景）。
+- MCU 无看门狗硬件时**报能力缺口**（`capability_gap`），不得用软件计数假装实现。
+
+### 2.7 并行总线 par（FSMC 存储器映射，LCD 类器件）
 
 16 位并口走 FSMC Bank1 NE 区，命令/数据地址映射已由 S5a `fsmc_init.c`
 配置（命令/数据各一个地址），manifest 数据侧登记（如命令 0x6C000000 /
@@ -101,7 +123,8 @@ hw_instance=null 时（典型如 10ms 系统节拍）：优先 SysTick（不占�
 
 ## 4. hw_instance=null 的实例选定流程
 
-1. 读 manifest 该实例的 description/config（如 `period_ms: 10`）；
+1. 读 manifest 该实例的 description/config（如 par 的 `bus_width_bits: 16`；
+   周期/超时这类**由调用方或 S5a 决定的数值**不在 manifest 登记）；
 2. 在 hardware_capabilities.peripherals 中按类型筛选未被占用的实例
    （对照其余逻辑实例已绑定的 hw_instance，避免冲突）；
 3. 参考用户设计输入（docs/s5c_design_input.md）与 S5a init 产物（哪个定时器

@@ -87,5 +87,40 @@ def extract(mcu: str, platform_name: str, architecture: str, rtos: str,
     return caps
 
 
+def merge_caps(existing: dict | None, rule_caps: dict) -> dict:
+    """把规则轨产出合并进已有能力清单（保留规则推不出的条目）。
+
+    规则轨只从 S4 事实推导能力：数据源退化（如 PDF 网表未吸附导致 usage
+    为空）时产出为空，直接覆盖会清空手工补全的能力清单。合并策略：
+
+    - `peripherals`：以 (type, instance) 为键——规则命中的条目被规则值替换
+      （规则是权威数值源），规则推不出的已有条目原样保留（手工补全成果）；
+    - `constraints`：并集（已有在前，规则新增在后，去重）；
+    - 其余字段（mcu/platform/rtos/architecture/power_enabled/clocks/power）
+      以规则产出为准（它们来自 config 与确定性数值计算）。
+
+    代价：真正被移除的外设条目不会自动消失，需人工清理。
+    """
+    if not existing:
+        return rule_caps
+
+    def _key(p: dict) -> tuple[str, str]:
+        return (str(p.get("type") or "").strip().lower(),
+                str(p.get("instance") or "").strip().lower())
+
+    rule_peripherals = list(rule_caps.get("peripherals") or [])
+    rule_keys = {_key(p) for p in rule_peripherals}
+    kept = [p for p in (existing.get("peripherals") or []) if _key(p) not in rule_keys]
+
+    merged = dict(rule_caps)
+    merged["peripherals"] = rule_peripherals + kept
+    constraints = list(existing.get("constraints") or [])
+    for c in rule_caps.get("constraints") or []:
+        if c not in constraints:
+            constraints.append(c)
+    merged["constraints"] = constraints
+    return merged
+
+
 def dumps(caps: dict) -> str:
     return json.dumps(caps, ensure_ascii=False, indent=2)

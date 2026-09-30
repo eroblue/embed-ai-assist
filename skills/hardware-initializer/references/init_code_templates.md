@@ -130,6 +130,12 @@ void gpio_init(void)
 - FSMC/EXMC（LCD 并口）：引脚复用（AF_PP）在 gpio_init.c 完成，本模块只有
   bank/时序本体；bank 用 NE1（基址 0x60000000），数据宽度按任务书，
   时序取保守默认值并注释"请按 LCD 驱动手册调整 setup 时间"
+- 看门狗（通用必备外设）：**超时属应用策略，S5a 不生成看门狗初始化代码**
+  （预分频/重装载由 S5c 按 APP 经 `wdt_port_init(timeout_ms)` 传入的超时换算）。
+  S5a 的职责是把**硬件事实**登记进 hardware_capabilities（时钟源频率、可用
+  预分频档位、重装载位宽、是否可关闭）。仅当平台确需**硬件侧准备**时才生成
+  `wdt_init`（如 WWDG 的 PCLK1 时钟门控、独立 RC 振荡器使能）——该文件只做
+  硬件准备，**不接受超时参数**
 
 GD32F20x FSMC 已验证示例（8 位，EXMC Bank0 子bank0）：
 

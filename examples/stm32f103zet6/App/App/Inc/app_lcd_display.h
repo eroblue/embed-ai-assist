@@ -15,7 +15,7 @@
 extern "C" {
 #endif
 
-/** 初始化 LCD（并口 + ILI9341 上电 + 清屏）。 @return PORT_OK 或负值错误码。 */
+/** 初始化 LCD（并口 + NT35510 上电 + 清屏）。 @return PORT_OK 或负值错误码。 */
 int32_t app_lcd_display_init(void);
 
 /** 10ms 节拍轮询：内部按 200ms 周期渲染刷新。 */
@@ -23,6 +23,12 @@ void app_lcd_display_poll(void);
 
 /** 就绪标志（init 成功后置 1；未就绪时 poll 跳过刷新）。 */
 uint8_t app_lcd_display_is_ready(void);
+
+/**
+ * 初始化自检结果码（联调定位用，详见 driver_lcd.h）：
+ * 0=正常 / 1=总线无响应 / 2=面板 ID 不符 / 3=寄存器回读异常。
+ */
+uint8_t app_lcd_display_diag_code(void);
 
 #ifdef __cplusplus
 }

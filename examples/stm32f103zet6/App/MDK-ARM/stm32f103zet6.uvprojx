@@ -514,6 +514,11 @@
               <FileType>1</FileType>
               <FilePath>..\Drivers\Port\Src\port_impl_uart_stm32f103zet6.c</FilePath>
             </File>
+            <File>
+              <FileName>port_impl_wdt_stm32f103zet6.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Drivers\Port\Src\port_impl_wdt_stm32f103zet6.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

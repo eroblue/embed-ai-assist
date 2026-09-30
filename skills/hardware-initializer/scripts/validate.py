@@ -288,16 +288,30 @@ def main(argv: list[str] | None = None) -> int:
         return EXIT_PRODUCT_INVALID
     _log(f"产物校验通过: {sum(1 for d in src_dirs if d.is_dir() for _ in d.glob('*.c'))} 个源文件")
 
-    # ---- 2. 硬件能力清单 ----
+    # ---- 2. 硬件能力清单（规则产出合并进已有文件：保留规则推不出的手工条目）----
     mcu = ctx["facts"].get("mcu") or ctx["platform_name"]
     caps = capability_extractor.extract(
         mcu, ctx["platform_name"], ctx["architecture"], ctx["rtos"], ctx["power_enabled"],
         clock_cfg, usage, hse_hz, lse_hz)
+    caps_path = ctx["outputs_dir"] / "s5a" / "hardware_capabilities.json"
+    existing_caps = None
+    if caps_path.is_file():
+        try:
+            existing_caps = analysis.load_json(caps_path)
+        except (json.JSONDecodeError, OSError):
+            existing_caps = None
+    if existing_caps:
+        before = len(caps.get("peripherals") or [])
+        caps = capability_extractor.merge_caps(existing_caps, caps)
+        kept = len(caps["peripherals"]) - before
+        if kept:
+            _log(f"能力清单合并：规则轨产出 {before} 项，保留已有未覆盖条目 {kept} 项"
+                 "（数据源退化时的手工补全成果不会丢失）")
     cap_errors = analysis.validate_schema(
         caps, SKILL_DIR / "schemas" / "hardware_capabilities.schema.json", "capabilities")
     if cap_errors:
         return _env_error("hardware_capabilities 校验失败: " + "; ".join(cap_errors))
-    analysis.save_json(ctx["outputs_dir"] / "s5a" / "hardware_capabilities.json", caps)
+    analysis.save_json(caps_path, caps)
 
     # ---- 3. IDE 待添加清单（兜底参考；实际同步由公共工具 ide_sync.py 完成）----
     src_rel_base = plan["skill_dirs"]["s5a"]["src"][0]

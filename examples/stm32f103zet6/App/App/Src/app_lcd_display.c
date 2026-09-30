@@ -2,7 +2,7 @@
  * @file    app_lcd_display.c
  * @brief   LCD 显示模块实现（流程图 app_lcd_display_flow.md 的 1:1 映射）
  *
- * 画面（4 行 ASCII，16x32 大字体，240x320 竖屏）：
+ * 画面（4 行 ASCII，16x32 大字体，NT35510 480x800 竖屏）：
  *   L0: ENV MONITOR
  *   L1: T:25C H:60%
  *   L2: L:75%
@@ -17,11 +17,13 @@
 #include "par_port.h"
 
 #define DISP_PERIOD_TICKS   20u   /* 刷新周期 200ms / 10ms */
+#define DIAG_DUMP_TICKS    500u   /* 自检摘要重复输出周期 5s / 10ms（联调用） */
 
 static uint8_t  s_ready;       /* B{LCD 就绪?} */
 static uint16_t s_tick;        /* 刷新周期计数 */
 static uint8_t  s_blink_on;    /* 告警闪烁相位（1Hz：每次刷新取反） */
 static uint8_t  s_fail_count;  /* K[显示失败计数+1] */
+static uint16_t s_diag_tick;   /* 自检摘要输出计时（联调） */
 static char     s_line[DRIVER_LCD_LINE_CHARS + 1u];
 
 static uint16_t disp_copy(char *dst, const char *src);
@@ -44,6 +46,14 @@ void app_lcd_display_poll(void)
     app_alarm_t alarm;
     uint16_t len;
     int32_t r;
+
+    /* 联调：每 5s 重复输出一次自检摘要——终端晚于上电接入也能看到结果
+       （放在就绪判断之前：初始化失败时更需要这条信息） */
+    s_diag_tick++;
+    if (s_diag_tick >= DIAG_DUMP_TICKS) {
+        s_diag_tick = 0u;
+        driver_lcd_diag_dump();
+    }
 
     if (s_ready == 0) {
         return; /* B{LCD 就绪?} → Z[跳过本次刷新] */
@@ -101,6 +111,11 @@ void app_lcd_display_poll(void)
 uint8_t app_lcd_display_is_ready(void)
 {
     return s_ready;
+}
+
+uint8_t app_lcd_display_diag_code(void)
+{
+    return driver_lcd_get_diag_code();
 }
 
 /** 拷贝字符串到行缓冲（含终止符），返回长度。 */

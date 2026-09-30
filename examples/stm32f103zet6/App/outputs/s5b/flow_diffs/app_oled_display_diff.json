@@ -22,5 +22,5 @@
   "generation_mode": "deprecated",
   "baseline_source": null,
   "change_summary": "流程图已废弃：对应代码应由 Agent 移除（含 IDE 工程引用）",
-  "updated_at": "2026-09-28T14:55:59"
+  "updated_at": "2026-09-29T18:13:30"
 }

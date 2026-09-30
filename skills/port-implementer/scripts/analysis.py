@@ -19,6 +19,7 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+import shutil
 from datetime import datetime
 from pathlib import Path
 
@@ -283,6 +284,19 @@ def load_context(config_path: Path, workspace: Path | None = None) -> dict:
 _KNOWN_SECTIONS = ("低功耗方案", "已有实现")
 
 
+def design_input_file_hash(project_root: Path,
+                           rel_path: str = "docs/s5c_design_input.md") -> str | None:
+    """设计输入文件的 sha256（不存在返回 None）。
+
+    作为 port_differ 的**第三个判定维度**：设计输入不参与 manifest 签名 diff，
+    但会影响实现约束（缓冲大小/命名风格等），变化时需提示用户确认受影响单元。
+    """
+    path = project_root / rel_path
+    if not path.is_file():
+        return None
+    return file_sha256(path)
+
+
 def load_design_input(project_root: Path, rel_path: str = "docs/s5c_design_input.md") -> dict | None:
     """读取 s5c_design_input.md，按二级标题拆段。
 
@@ -439,3 +453,226 @@ def scan_impl_files(workspace: Path, src_dirs: list[Path], platform_token: str,
                     user_modified.append(rel)
     return {"current": current, "stale": stale, "user_modified": user_modified,
             "foreign": foreign}
+
+
+# ================= per-peripheral 增量机制（requirement"生成模式总览"） =================
+
+# 变化率阈值（对标 S5b flow_differ：> 60% 判大重构走全量）
+FULL_RATIO_THRESHOLD = 0.60
+
+
+def manifest_units(manifest: dict) -> dict[str, dict]:
+    """manifest → {实现单元键: {kind, header}}。
+
+    单元键：peripheral 外设取 slug(peripheral)；osal / power 按 kind 取同名键
+    （一个单元 = 一个 port_impl 文件 = 一次 per-peripheral 判定）。
+    """
+    units: dict[str, dict] = {}
+    for h in manifest.get("headers", []):
+        kind = h.get("kind") or "peripheral"
+        if kind == "peripheral":
+            key = slug_token(h.get("peripheral") or "")
+        else:
+            key = kind
+        if not key:
+            continue
+        units[key] = {"kind": kind, "header": h}
+    return units
+
+
+def manifest_unit_file(unit_key: str, kind: str, platform_token: str, rtos: str) -> str:
+    """实现单元 → 期望实现文件名。"""
+    if kind == "osal":
+        return osal_impl_file_name(rtos)
+    if kind == "power":
+        return power_impl_file_name(platform_token)
+    return impl_file_name(unit_key, platform_token)
+
+
+def unit_fields(header: dict, kind: str) -> list[str]:
+    """manifest 单元 → 规范化原子字段集（签名 diff 与变化率的计算粒度）。
+
+    原子格式 `类别:名称|属性`（集合语义，顺序无关）：
+      instance:<名>|<描述> / hw:<名>|<hw_instance> / config:<名>.<键>=<值>
+      iface:<函数名>|<签名> / iface_isr|iface_cb|iface_desc:<函数名>|<属性>
+      callback|callback_ctx|callback_desc:<回调名>|<属性>
+      note:<文本>
+    """
+    fields: list[str] = []
+    for inst in header.get("logical_instances") or []:
+        nm = inst.get("name") or ""
+        fields.append(f"instance:{nm}|{inst.get('description') or ''}")
+        hw = inst.get("hw_instance")
+        fields.append(f"hw:{nm}|{hw if hw is not None else ''}")
+        cfg = inst.get("config") or {}
+        for k in sorted(cfg):
+            fields.append(f"config:{nm}.{k}={cfg[k]}")
+    for i in header.get("interfaces") or []:
+        fn = i.get("function") or ""
+        fields.append(f"iface:{fn}|{i.get('signature') or ''}")
+        fields.append(f"iface_isr:{fn}|{1 if i.get('isr_safe') else 0}")
+        fields.append(f"iface_cb:{fn}|{i.get('callback') or ''}")
+        fields.append(f"iface_desc:{fn}|{i.get('description') or ''}")
+    for cb in header.get("callbacks") or []:
+        nm = cb.get("name") or ""
+        fields.append(f"callback:{nm}|{cb.get('signature') or ''}")
+        fields.append(f"callback_ctx:{nm}|{cb.get('context') or ''}")
+        fields.append(f"callback_desc:{nm}|{cb.get('description') or ''}")
+    for n in header.get("notes") or []:
+        fields.append(f"note:{n}")
+    return sorted(set(fields))
+
+
+def unit_signature(header: dict, kind: str) -> dict:
+    """单元签名摘要（port_manifest_snapshot.json 的条目结构）。"""
+    fields = unit_fields(header, kind)
+    return {
+        "kind": kind,
+        "signature_hash": hashlib.sha256("\n".join(fields).encode("utf-8")).hexdigest(),
+        "instances": [i.get("name") for i in (header.get("logical_instances") or [])
+                      if i.get("name")],
+        "interface_count": len(header.get("interfaces") or []),
+        "callback_count": len(header.get("callbacks") or []),
+        "fields": fields,
+    }
+
+
+def _atom_key(atom: str) -> tuple[str, str]:
+    """原子字段 → (变化类别, 名称)，用于 add/remove 配对成 modified。"""
+    head, _, _detail = atom.partition("|")
+    cat, _, name = head.partition(":")
+    if cat in ("iface", "iface_isr", "iface_cb", "iface_desc"):
+        return "interface", name
+    if cat in ("callback", "callback_ctx", "callback_desc"):
+        return "callback", name
+    if cat in ("instance", "hw"):
+        return "instance", name
+    if cat == "config":
+        # config 原子独立成类：与 instance 同键会把"删一个 config 键"误报为
+        # instance_removed（逻辑实例其实还在），误导 Agent 删实例
+        return "config", name.split(".")[0]
+    if cat == "note":
+        return "note", ""
+    return "other", name
+
+
+def diff_unit_fields(prev_fields: list[str], curr_fields: list[str]) -> dict:
+    """原子字段集 diff → {changes, change_count, change_rate, added, removed}。
+
+    配对：同类别同名的原子若一方 added、一方 removed → 归为 *_modified
+    （避免"签名改一个字段"被算成删+增两个变更点）。
+
+    change_count：配对后的**变更点数**（任务书展示 + 增量范围校验的预期基数）。
+    change_rate：按 requirement 口径 —— **有增/删/改的字段数 ÷ 当前字段总数**
+    （字段=原子属性；阈值见 FULL_RATIO_THRESHOLD，> 60% 判 full）。
+    """
+    prev_set, curr_set = set(prev_fields or []), set(curr_fields or [])
+    added = sorted(curr_set - prev_set)
+    removed = sorted(prev_set - curr_set)
+
+    add_by: dict[tuple[str, str], list[str]] = {}
+    for a in added:
+        add_by.setdefault(_atom_key(a), []).append(a)
+    rem_by: dict[tuple[str, str], list[str]] = {}
+    for r in removed:
+        rem_by.setdefault(_atom_key(r), []).append(r)
+
+    changes: list[dict] = []
+    for key in sorted(set(add_by) | set(rem_by)):
+        cat, name = key
+        a_list, r_list = add_by.get(key, []), rem_by.get(key, [])
+        if cat == "config":
+            keys = sorted({x.partition("|")[0].split(":", 1)[-1].split("=")[0]
+                           .split(".", 1)[-1] for x in a_list + r_list})
+            changes.append({"type": "config_changed", "name": name or None,
+                            "field": "/".join(f"config.{k}" for k in keys),
+                            "detail": f"{len(r_list)} 项旧配置 → {len(a_list)} 项新配置"})
+        elif cat == "note":
+            changes.append({"type": "note_changed", "name": None, "field": None,
+                            "detail": f"{len(a_list) + len(r_list)} 条说明变化"})
+        elif cat == "other":
+            changes.append({"type": "other", "name": name or None, "field": None,
+                            "detail": None})
+        elif a_list and r_list:
+            fields_changed = sorted({x.partition("|")[0].partition(":")[0]
+                                     for x in a_list + r_list})
+            changes.append({"type": f"{cat}_modified", "name": name or None,
+                            "field": "/".join(fields_changed),
+                            "detail": f"{len(r_list)} 项旧属性 → {len(a_list)} 项新属性"})
+        elif a_list:
+            changes.append({"type": f"{cat}_added", "name": name or None,
+                            "field": None, "detail": None})
+        else:
+            changes.append({"type": f"{cat}_removed", "name": name or None,
+                            "field": None, "detail": None})
+    return {
+        "changes": changes,
+        "change_count": len(changes),
+        # 变化率按 requirement 口径：有增/删/改的字段数 ÷ 当前字段总数
+        "change_rate": round((len(added) + len(removed)) / max(len(curr_set), 1), 4),
+        "added": len(added),
+        "removed": len(removed),
+    }
+
+
+def load_manifest_snapshot(s5c_outputs_dir: Path) -> dict | None:
+    """读 outputs/s5c/port_manifest_snapshot.json；不存在/损坏返回 None（首跑）。"""
+    path = s5c_outputs_dir / "port_manifest_snapshot.json"
+    if not path.is_file():
+        return None
+    try:
+        return load_json(path)
+    except (json.JSONDecodeError, OSError):
+        return None
+
+
+def save_manifest_snapshot(s5c_outputs_dir: Path, snapshot: dict) -> None:
+    """写 manifest 快照（下轮 diff 基线）；**manifest 真变了**才把旧版追加到
+    `*_history/` 保留回溯（同 hash 重复写入不产生历史堆积）。
+
+    requirement：不修改历史版本（只追加新版本）。
+    """
+    path = s5c_outputs_dir / "port_manifest_snapshot.json"
+    if path.is_file():
+        try:
+            old = load_json(path)
+            if old.get("manifest_hash") != snapshot.get("manifest_hash"):
+                stamp = re.sub(r"[^0-9A-Za-z]", "",
+                               str(old.get("captured_at") or "unknown"))
+                hist_dir = s5c_outputs_dir / "port_manifest_snapshot_history"
+                hist_dir.mkdir(parents=True, exist_ok=True)
+                hist = hist_dir / f"{stamp or 'unknown'}.json"
+                if not hist.is_file():
+                    save_json(hist, old)
+        except (json.JSONDecodeError, OSError):
+            pass
+    save_json(path, snapshot)
+
+
+def mirror_code_baseline(s5c_outputs_dir: Path, workspace: Path,
+                         src_dirs: list[Path]) -> dict:
+    """镜像本轮开始时的实现文件到 outputs/s5c/code_baseline/（增量范围校验基线）。
+
+    与 S5b 同模式：prepare 段在 Agent 修改前镜像，供 diff_range_checker 对照。
+    返回 {rel: {sha256, lines}} 并写 code_snapshot.json；首跑无产物时索引为空。
+    """
+    baseline_dir = s5c_outputs_dir / "code_baseline"
+    if baseline_dir.exists():
+        shutil.rmtree(baseline_dir)
+    index: dict[str, dict] = {}
+    for d in src_dirs:
+        if not d.is_dir():
+            continue
+        for f in sorted(d.glob("*.c")):
+            rel = str(f.resolve().relative_to(workspace)).replace("\\", "/")
+            dst = baseline_dir / rel
+            dst.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(f, dst)
+            index[rel] = {
+                "sha256": file_sha256(f),
+                "lines": len(f.read_text(encoding="utf-8", errors="replace").splitlines()),
+            }
+    save_json(s5c_outputs_dir / "code_snapshot.json",
+              {"files": index,
+               "created_at": datetime.now().isoformat(timespec="seconds")})
+    return index

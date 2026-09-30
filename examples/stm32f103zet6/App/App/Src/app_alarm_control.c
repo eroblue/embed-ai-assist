@@ -5,7 +5,11 @@
  * 阈值（spec）：高温 30°C、低温 10°C、低光照 20%。
  * 执行器语义（设计输入优先）：高温开、低温关、其他迁移保持（恢复告警不自动关），
  * 联动仅自动模式；手动模式 KEY_SWITCH 翻转。
- * 蜂鸣节奏：任何非 NORMAL 态 1s 响/1s 停，静音键门控。
+ * 蜂鸣节奏：阈值类告警（HIGH_TEMP/LOW_TEMP/LOW_LIGHT）1s 响/1s 停，静音键门控；
+ *           传感器故障（SENSOR_FAULT）不蜂鸣，仅在 LCD 告警行显示 "SENSOR ERR"
+ *           ——避免传感器缺失/掉线时持续鸣响，故障信息改由屏幕呈现。
+ *           SENSOR_FAULT 亦覆盖"上电尚无有效读数"的初始阶段：采集模块 init 即发布故障事件
+ *           （否则初值会被阈值逻辑误判为低温告警）；首次成功读数后自动恢复。
  * 硬件有效电平（LED 低有效/蜂鸣高有效）由 manifest 实例 active_level 固化在 S5c。
  */
 #include "app_alarm_control.h"
@@ -78,12 +82,15 @@ void app_alarm_control_poll(void)
         s_state = next;
     }
 
-    /* 蜂鸣节奏：非 NORMAL 态 1s 响/1s 停；静音（任意模式叠加）门控 */
+    /* 蜂鸣节奏：仅阈值类告警 1s 响/1s 停；静音（任意模式叠加）门控。
+       SENSOR_FAULT 不蜂鸣——传感器缺失/掉线时持续鸣响无意义且扰民，
+       故障内容改由 LCD 告警行显示（app_lcd_display 的 A: 字段） */
     s_buzz_tick++;
     if (s_buzz_tick >= BUZZER_HALF_TICKS) {
         s_buzz_tick = 0;
     }
     if ((s_state != APP_ALARM_NORMAL) &&
+        (s_state != APP_ALARM_SENSOR_FAULT) &&
         (app_mode_control_is_muted() == 0)) {
         (void)gpio_port_set_active(GPIO_PORT_BUZZER,
                                    (uint8_t)((s_buzz_tick < (BUZZER_HALF_TICKS / 2u)) ? 1u : 0u));
@@ -124,7 +131,7 @@ const char *app_alarm_control_get_display(void)
     case APP_ALARM_HIGH_TEMP:    return "HIGH_T";
     case APP_ALARM_LOW_TEMP:     return "LOW_T";
     case APP_ALARM_LOW_LIGHT:    return "LOW_L";
-    case APP_ALARM_SENSOR_FAULT: return "FAULT";
+    case APP_ALARM_SENSOR_FAULT: return "SENSOR ERR";
     default:                     return "NORMAL";
     }
 }

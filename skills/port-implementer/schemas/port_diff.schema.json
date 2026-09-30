@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.s5c.port_diff.v1",
+  "title": "S5c per-peripheral diff 结果（单实现单元）",
+  "type": "object",
+  "required": ["peripheral", "kind", "generation_mode", "signature_changed",
+               "change_rate", "change_count", "file_hash_changed", "changes",
+               "reason", "updated_at"],
+  "properties": {
+    "peripheral": {
+      "type": "string",
+      "description": "实现单元键：外设名（uart/i2c/gpio/...）或 osal/power（osal/power 用 kind 区分）"
+    },
+    "kind": {
+      "type": "string",
+      "enum": ["peripheral", "osal", "power"],
+      "description": "单元类别（peripheral=外设 Port；osal=RTOS 移植层；power=低功耗层）"
+    },
+    "file": {
+      "type": ["string", "null"],
+      "description": "对应实现文件相对路径（port_impl_<外设>_<平台>.c 等）；无当前平台文件时为 null"
+    },
+    "file_exists": {
+      "type": "boolean",
+      "description": "实现文件是否存在于当前平台/RTOS 命名下"
+    },
+    "generation_mode": {
+      "type": "string",
+      "enum": ["full", "incremental", "skip", "blocked", "deprecated"],
+      "description": "full=首次/快照缺失/变化率>60%；incremental=变化率≤60%；skip=接口与 hash 均未变（含用户手改+接口未变的漂移场景）；blocked=用户手改与上游接口变化冲突；deprecated=外设已从 manifest 删除"
+    },
+    "signature_changed": {
+      "type": "boolean",
+      "description": "接口签名相对上轮快照是否变化"
+    },
+    "snapshot_missing": {
+      "type": "boolean",
+      "description": "无 port_manifest_snapshot.json 基线（首次执行 → 全部 full 建基线）"
+    },
+    "design_input_changed": {
+      "type": "boolean",
+      "description": "本轮 docs/s5c_design_input.md 相对上轮快照是否变化（**第三判定维度**）；变化时不自动改文件，仅在任务书提示用户确认受影响单元"
+    },
+    "change_rate": {
+      "type": "number",
+      "minimum": 0,
+      "description": "变化率 = 变更字段数 / max(当前字段总数, 1)；阈值 >0.60 判 full"
+    },
+    "change_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "变更字段数（有增/删/改的原子字段数），增量范围校验的预期依据"
+    },
+    "file_hash_changed": {
+      "type": "boolean",
+      "description": "文件当前 sha256 与 file_hashes.json 基线不一致（= 用户手改）"
+    },
+    "changes": {
+      "type": "array",
+      "description": "变更明细（字段级，供任务书与人工核对）",
+      "items": {
+        "type": "object",
+        "required": ["type"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["instance_added", "instance_removed", "instance_modified",
+                     "interface_added", "interface_removed", "interface_modified",
+                     "callback_added", "callback_removed", "callback_modified",
+                     "config_changed", "note_changed", "other"]
+          },
+          "name": {"type": ["string", "null"], "description": "涉及的实例/接口/回调名"},
+          "field": {"type": ["string", "null"], "description": "变化的字段（如 signature/config.baudrate）"},
+          "detail": {"type": ["string", "null"], "description": "变化前后摘要"}
+        }
+      }
+    },
+    "reason": {
+      "type": "string",
+      "description": "判定原因（一句话，写入任务书生成模式表）"
+    },
+    "drift_warning": {
+      "type": ["string", "null"],
+      "description": "skip+漂移场景提示：文件被用户手改且上游接口未变，该实现已与 manifest 脱钩"
+    },
+    "updated_at": {"type": "string"}
+  }
+}

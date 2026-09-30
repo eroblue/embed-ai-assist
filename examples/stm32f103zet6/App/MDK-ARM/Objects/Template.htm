@@ -3,11 +3,11 @@
 <title>Static Call Graph - [.\Objects\Template.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\Template.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Tue Sep 29 08:40:31 2026
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Wed Sep 30 08:03:07 2026
 <BR><P>
-<H3>Maximum Stack Usage =        184 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        192 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
-__rt_entry_main &rArr; main &rArr; app_loop &rArr; app_uart_report_poll &rArr; __2snprintf &rArr; _printf_char_common &rArr; __printf
+__rt_entry_main &rArr; main &rArr; app_init &rArr; app_lcd_display_init &rArr; driver_lcd_init &rArr; par_port_init &rArr; fsmc_lcd_init &rArr; __aeabi_memcpy4
 <P>
 <H3>
 Functions with no stack information
@@ -117,9 +117,9 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry
 </UL>
 
-<P><STRONG><a name="[f7]"></a>__scatterload_rt2_thumb_only</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
+<P><STRONG><a name="[109]"></a>__scatterload_rt2_thumb_only</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
 
-<P><STRONG><a name="[f8]"></a>__scatterload_null</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
+<P><STRONG><a name="[10a]"></a>__scatterload_null</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
 
 <P><STRONG><a name="[54]"></a>__scatterload_copy</STRONG> (Thumb, 26 bytes, Stack size unknown bytes, __scatter_copy.o(!!handler_copy), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_copy
@@ -127,7 +127,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_copy
 </UL>
 
-<P><STRONG><a name="[f9]"></a>__scatterload_zeroinit</STRONG> (Thumb, 28 bytes, Stack size unknown bytes, __scatter_zi.o(!!handler_zi), UNUSED)
+<P><STRONG><a name="[10b]"></a>__scatterload_zeroinit</STRONG> (Thumb, 28 bytes, Stack size unknown bytes, __scatter_zi.o(!!handler_zi), UNUSED)
 
 <P><STRONG><a name="[55]"></a>_printf_d</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, _printf_d.o(.ARM.Collect$$_printf_percent$$00000009))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56 + Unknown Stack Size
@@ -154,80 +154,80 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_string
 </UL>
 
-<P><STRONG><a name="[fa]"></a>_printf_percent_end</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, _printf_percent_end.o(.ARM.Collect$$_printf_percent$$00000017))
+<P><STRONG><a name="[10c]"></a>_printf_percent_end</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, _printf_percent_end.o(.ARM.Collect$$_printf_percent$$00000017))
 
 <P><STRONG><a name="[5d]"></a>__rt_lib_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit.o(.ARM.Collect$$libinit$$00000000))
 <BR><BR>[Called By]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_li
 </UL>
 
-<P><STRONG><a name="[fb]"></a>__rt_lib_init_alloca_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000002E))
+<P><STRONG><a name="[10d]"></a>__rt_lib_init_alloca_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000002E))
 
-<P><STRONG><a name="[fc]"></a>__rt_lib_init_argv_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000002C))
+<P><STRONG><a name="[10e]"></a>__rt_lib_init_argv_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000002C))
 
-<P><STRONG><a name="[fd]"></a>__rt_lib_init_atexit_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001B))
+<P><STRONG><a name="[10f]"></a>__rt_lib_init_atexit_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001B))
 
-<P><STRONG><a name="[fe]"></a>__rt_lib_init_clock_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000021))
+<P><STRONG><a name="[110]"></a>__rt_lib_init_clock_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000021))
 
-<P><STRONG><a name="[ff]"></a>__rt_lib_init_cpp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000032))
+<P><STRONG><a name="[111]"></a>__rt_lib_init_cpp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000032))
 
-<P><STRONG><a name="[100]"></a>__rt_lib_init_exceptions_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000030))
+<P><STRONG><a name="[112]"></a>__rt_lib_init_exceptions_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000030))
 
-<P><STRONG><a name="[101]"></a>__rt_lib_init_fp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000002))
+<P><STRONG><a name="[113]"></a>__rt_lib_init_fp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000002))
 
-<P><STRONG><a name="[102]"></a>__rt_lib_init_fp_trap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001F))
+<P><STRONG><a name="[114]"></a>__rt_lib_init_fp_trap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001F))
 
-<P><STRONG><a name="[103]"></a>__rt_lib_init_getenv_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000023))
+<P><STRONG><a name="[115]"></a>__rt_lib_init_getenv_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000023))
 
-<P><STRONG><a name="[104]"></a>__rt_lib_init_heap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000A))
+<P><STRONG><a name="[116]"></a>__rt_lib_init_heap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000A))
 
-<P><STRONG><a name="[105]"></a>__rt_lib_init_lc_collate_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000011))
+<P><STRONG><a name="[117]"></a>__rt_lib_init_lc_collate_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000011))
 
-<P><STRONG><a name="[106]"></a>__rt_lib_init_lc_ctype_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000013))
+<P><STRONG><a name="[118]"></a>__rt_lib_init_lc_ctype_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000013))
 
-<P><STRONG><a name="[107]"></a>__rt_lib_init_lc_monetary_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000015))
+<P><STRONG><a name="[119]"></a>__rt_lib_init_lc_monetary_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000015))
 
-<P><STRONG><a name="[108]"></a>__rt_lib_init_lc_numeric_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000017))
+<P><STRONG><a name="[11a]"></a>__rt_lib_init_lc_numeric_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000017))
 
-<P><STRONG><a name="[109]"></a>__rt_lib_init_lc_time_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000019))
+<P><STRONG><a name="[11b]"></a>__rt_lib_init_lc_time_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000019))
 
-<P><STRONG><a name="[10a]"></a>__rt_lib_init_preinit_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000004))
+<P><STRONG><a name="[11c]"></a>__rt_lib_init_preinit_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000004))
 
-<P><STRONG><a name="[10b]"></a>__rt_lib_init_rand_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000E))
+<P><STRONG><a name="[11d]"></a>__rt_lib_init_rand_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000E))
 
-<P><STRONG><a name="[10c]"></a>__rt_lib_init_return</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000033))
+<P><STRONG><a name="[11e]"></a>__rt_lib_init_return</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000033))
 
-<P><STRONG><a name="[10d]"></a>__rt_lib_init_signal_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001D))
+<P><STRONG><a name="[11f]"></a>__rt_lib_init_signal_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001D))
 
-<P><STRONG><a name="[10e]"></a>__rt_lib_init_stdio_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000025))
+<P><STRONG><a name="[120]"></a>__rt_lib_init_stdio_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000025))
 
-<P><STRONG><a name="[10f]"></a>__rt_lib_init_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000C))
+<P><STRONG><a name="[121]"></a>__rt_lib_init_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000C))
 
 <P><STRONG><a name="[62]"></a>__rt_lib_shutdown</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown.o(.ARM.Collect$$libshutdown$$00000000))
 <BR><BR>[Called By]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit_ls
 </UL>
 
-<P><STRONG><a name="[110]"></a>__rt_lib_shutdown_cpp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000004))
+<P><STRONG><a name="[122]"></a>__rt_lib_shutdown_cpp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000004))
 
-<P><STRONG><a name="[111]"></a>__rt_lib_shutdown_fini_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000002))
+<P><STRONG><a name="[123]"></a>__rt_lib_shutdown_fini_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000002))
 
-<P><STRONG><a name="[112]"></a>__rt_lib_shutdown_fp_trap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000009))
+<P><STRONG><a name="[124]"></a>__rt_lib_shutdown_fp_trap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000009))
 
-<P><STRONG><a name="[113]"></a>__rt_lib_shutdown_heap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000011))
+<P><STRONG><a name="[125]"></a>__rt_lib_shutdown_heap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000011))
 
-<P><STRONG><a name="[114]"></a>__rt_lib_shutdown_return</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000012))
+<P><STRONG><a name="[126]"></a>__rt_lib_shutdown_return</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000012))
 
-<P><STRONG><a name="[115]"></a>__rt_lib_shutdown_signal_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000C))
+<P><STRONG><a name="[127]"></a>__rt_lib_shutdown_signal_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000C))
 
-<P><STRONG><a name="[116]"></a>__rt_lib_shutdown_stdio_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000006))
+<P><STRONG><a name="[128]"></a>__rt_lib_shutdown_stdio_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000006))
 
-<P><STRONG><a name="[117]"></a>__rt_lib_shutdown_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000E))
+<P><STRONG><a name="[129]"></a>__rt_lib_shutdown_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000E))
 
 <P><STRONG><a name="[52]"></a>__rt_entry</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry.o(.ARM.Collect$$rtentry$$00000000))
 <BR><BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_rt2
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
 </UL>
 
-<P><STRONG><a name="[118]"></a>__rt_entry_presh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000002))
+<P><STRONG><a name="[12a]"></a>__rt_entry_presh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000002))
 
 <P><STRONG><a name="[5a]"></a>__rt_entry_sh</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry4.o(.ARM.Collect$$rtentry$$00000004))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
@@ -240,17 +240,17 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init
 </UL>
 
-<P><STRONG><a name="[119]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
+<P><STRONG><a name="[12b]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
 <P><STRONG><a name="[5e]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
-<BR><BR>[Stack]<UL><LI>Max Depth = 184 + Unknown Stack Size
-<LI>Call Chain = __rt_entry_main &rArr; main &rArr; app_loop &rArr; app_uart_report_poll &rArr; __2snprintf &rArr; _printf_char_common &rArr; __printf
+<BR><BR>[Stack]<UL><LI>Max Depth = 192 + Unknown Stack Size
+<LI>Call Chain = __rt_entry_main &rArr; main &rArr; app_init &rArr; app_lcd_display_init &rArr; driver_lcd_init &rArr; par_port_init &rArr; fsmc_lcd_init &rArr; __aeabi_memcpy4
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
 </UL>
 
-<P><STRONG><a name="[11a]"></a>__rt_entry_postli_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000C))
+<P><STRONG><a name="[12c]"></a>__rt_entry_postli_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000C))
 
 <P><STRONG><a name="[6f]"></a>__rt_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit.o(.ARM.Collect$$rtexit$$00000000))
 <BR><BR>[Called By]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
@@ -260,7 +260,7 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_shutdown
 </UL>
 
-<P><STRONG><a name="[11b]"></a>__rt_exit_prels_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit2.o(.ARM.Collect$$rtexit$$00000002))
+<P><STRONG><a name="[12d]"></a>__rt_exit_prels_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit2.o(.ARM.Collect$$rtexit$$00000002))
 
 <P><STRONG><a name="[63]"></a>__rt_exit_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit2.o(.ARM.Collect$$rtexit$$00000004))
 <BR><BR>[Calls]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_exit
@@ -460,7 +460,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sputc
 <LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_char_common
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_uart_report_poll
+<BR>[Called By]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_uart_report_poll
 </UL>
 
 <P><STRONG><a name="[68]"></a>__printf</STRONG> (Thumb, 104 bytes, Stack size 24 bytes, __printf.o(.text))
@@ -487,27 +487,27 @@ Global Symbols
 <LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_d
 </UL>
 
-<P><STRONG><a name="[e9]"></a>strchr</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, strchr.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_font_index
+<P><STRONG><a name="[f4]"></a>strchr</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, strchr.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_font_index
 </UL>
 
-<P><STRONG><a name="[d4]"></a>__aeabi_memcpy4</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, rt_memcpy_w.o(.text))
+<P><STRONG><a name="[df]"></a>__aeabi_memcpy4</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, rt_memcpy_w.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __aeabi_memcpy4
 </UL>
-<BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fsmc_lcd_init
+<BR>[Called By]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fsmc_lcd_init
 </UL>
 
-<P><STRONG><a name="[11c]"></a>__aeabi_memcpy8</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, rt_memcpy_w.o(.text), UNUSED)
+<P><STRONG><a name="[12e]"></a>__aeabi_memcpy8</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, rt_memcpy_w.o(.text), UNUSED)
 
-<P><STRONG><a name="[11d]"></a>__rt_memcpy_w</STRONG> (Thumb, 100 bytes, Stack size 8 bytes, rt_memcpy_w.o(.text), UNUSED)
+<P><STRONG><a name="[12f]"></a>__rt_memcpy_w</STRONG> (Thumb, 100 bytes, Stack size 8 bytes, rt_memcpy_w.o(.text), UNUSED)
 
-<P><STRONG><a name="[11e]"></a>_memcpy_lastbytes_aligned</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memcpy_w.o(.text), UNUSED)
+<P><STRONG><a name="[130]"></a>_memcpy_lastbytes_aligned</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memcpy_w.o(.text), UNUSED)
 
-<P><STRONG><a name="[11f]"></a>__use_two_region_memory</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+<P><STRONG><a name="[131]"></a>__use_two_region_memory</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
 
-<P><STRONG><a name="[120]"></a>__rt_heap_escrow$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+<P><STRONG><a name="[132]"></a>__rt_heap_escrow$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
 
-<P><STRONG><a name="[121]"></a>__rt_heap_expand$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+<P><STRONG><a name="[133]"></a>__rt_heap_expand$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
 
 <P><STRONG><a name="[6a]"></a>_printf_int_common</STRONG> (Thumb, 178 bytes, Stack size 32 bytes, _printf_intcommon.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = _printf_int_common
@@ -571,27 +571,27 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
 
-<P><STRONG><a name="[122]"></a>__user_libspace</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
+<P><STRONG><a name="[134]"></a>__user_libspace</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
 
 <P><STRONG><a name="[6e]"></a>__user_perproc_libspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, libspace.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
 </UL>
 
-<P><STRONG><a name="[123]"></a>__user_perthread_libspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
+<P><STRONG><a name="[135]"></a>__user_perthread_libspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
 
 <P><STRONG><a name="[64]"></a>_sys_exit</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, sys_exit.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit_exit
 </UL>
 
-<P><STRONG><a name="[124]"></a>__I$use$semihosting</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
+<P><STRONG><a name="[136]"></a>__I$use$semihosting</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[125]"></a>__use_no_semihosting_swi</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
+<P><STRONG><a name="[137]"></a>__use_no_semihosting_swi</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
 
 <P><STRONG><a name="[80]"></a>ADC_Cmd</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, stm32f10x_adc.o(i.ADC_Cmd))
 <BR><BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;adc3_init
 </UL>
 
-<P><STRONG><a name="[126]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, indicate_semi.o(.text), UNUSED)
+<P><STRONG><a name="[138]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, indicate_semi.o(.text), UNUSED)
 
 <P><STRONG><a name="[84]"></a>ADC_GetCalibrationStatus</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, stm32f10x_adc.o(i.ADC_GetCalibrationStatus))
 <BR><BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;adc3_init
@@ -639,75 +639,96 @@ Global Symbols
 <P><STRONG><a name="[a]"></a>DebugMon_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f10x_it.o(i.DebugMon_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
 </UL>
-<P><STRONG><a name="[b4]"></a>FLASH_PrefetchBufferCmd</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, stm32f10x_flash.o(i.FLASH_PrefetchBufferCmd))
-<BR><BR>[Called By]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clock_init
+<P><STRONG><a name="[b9]"></a>FLASH_PrefetchBufferCmd</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, stm32f10x_flash.o(i.FLASH_PrefetchBufferCmd))
+<BR><BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clock_init
 </UL>
 
-<P><STRONG><a name="[b5]"></a>FLASH_SetLatency</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_flash.o(i.FLASH_SetLatency))
-<BR><BR>[Called By]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clock_init
+<P><STRONG><a name="[ba]"></a>FLASH_SetLatency</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_flash.o(i.FLASH_SetLatency))
+<BR><BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clock_init
 </UL>
 
-<P><STRONG><a name="[d6]"></a>FSMC_NORSRAMCmd</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, stm32f10x_fsmc.o(i.FSMC_NORSRAMCmd))
-<BR><BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fsmc_lcd_init
+<P><STRONG><a name="[e1]"></a>FSMC_NORSRAMCmd</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, stm32f10x_fsmc.o(i.FSMC_NORSRAMCmd))
+<BR><BR>[Called By]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fsmc_lcd_init
 </UL>
 
-<P><STRONG><a name="[d5]"></a>FSMC_NORSRAMInit</STRONG> (Thumb, 230 bytes, Stack size 0 bytes, stm32f10x_fsmc.o(i.FSMC_NORSRAMInit))
-<BR><BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fsmc_lcd_init
+<P><STRONG><a name="[e0]"></a>FSMC_NORSRAMInit</STRONG> (Thumb, 230 bytes, Stack size 0 bytes, stm32f10x_fsmc.o(i.FSMC_NORSRAMInit))
+<BR><BR>[Called By]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fsmc_lcd_init
 </UL>
 
 <P><STRONG><a name="[7c]"></a>GPIO_Init</STRONG> (Thumb, 278 bytes, Stack size 24 bytes, stm32f10x_gpio.o(i.GPIO_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = GPIO_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart1_init
-<LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tim4_init
-<LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_led_init
-<LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_lcd_backlight_init
-<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_key_init
-<LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_fsmc_bus_init
-<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_actuator_init
-<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dht11_init
+<BR>[Called By]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart1_init
+<LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tim4_init
+<LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_led_init
+<LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_lcd_backlight_init
+<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_key_init
+<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_fsmc_bus_init
+<LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_actuator_init
+<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dht11_init
 <LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;adc3_init
-<LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_apply_dir
+<LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_apply_dir
 </UL>
 
-<P><STRONG><a name="[e2]"></a>GPIO_ReadInputDataBit</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_gpio.o(i.GPIO_ReadInputDataBit))
-<BR><BR>[Called By]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_read
+<P><STRONG><a name="[ed]"></a>GPIO_ReadInputDataBit</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_gpio.o(i.GPIO_ReadInputDataBit))
+<BR><BR>[Called By]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_read
 </UL>
 
-<P><STRONG><a name="[e1]"></a>GPIO_ReadOutputDataBit</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_gpio.o(i.GPIO_ReadOutputDataBit))
-<BR><BR>[Called By]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_read
+<P><STRONG><a name="[ec]"></a>GPIO_ReadOutputDataBit</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_gpio.o(i.GPIO_ReadOutputDataBit))
+<BR><BR>[Called By]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_read
 </UL>
 
-<P><STRONG><a name="[d8]"></a>GPIO_ResetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_gpio.o(i.GPIO_ResetBits))
-<BR><BR>[Called By]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_actuator_init
+<P><STRONG><a name="[e3]"></a>GPIO_ResetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_gpio.o(i.GPIO_ResetBits))
+<BR><BR>[Called By]<UL><LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_actuator_init
 </UL>
 
-<P><STRONG><a name="[df]"></a>GPIO_SetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_gpio.o(i.GPIO_SetBits))
-<BR><BR>[Called By]<UL><LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_led_init
-<LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_lcd_backlight_init
+<P><STRONG><a name="[ea]"></a>GPIO_SetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_gpio.o(i.GPIO_SetBits))
+<BR><BR>[Called By]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_led_init
+<LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_lcd_backlight_init
 </UL>
 
-<P><STRONG><a name="[e4]"></a>GPIO_WriteBit</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f10x_gpio.o(i.GPIO_WriteBit))
-<BR><BR>[Called By]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_write
+<P><STRONG><a name="[ef]"></a>GPIO_WriteBit</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f10x_gpio.o(i.GPIO_WriteBit))
+<BR><BR>[Called By]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_write
 </UL>
 
 <P><STRONG><a name="[5]"></a>HardFault_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_it.o(i.HardFault_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
 </UL>
+<P><STRONG><a name="[108]"></a>IWDG_Enable</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f10x_iwdg.o(i.IWDG_Enable))
+<BR><BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wdt_port_init
+</UL>
+
+<P><STRONG><a name="[104]"></a>IWDG_ReloadCounter</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f10x_iwdg.o(i.IWDG_ReloadCounter))
+<BR><BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wdt_port_init
+<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wdt_port_feed
+</UL>
+
+<P><STRONG><a name="[106]"></a>IWDG_SetPrescaler</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f10x_iwdg.o(i.IWDG_SetPrescaler))
+<BR><BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wdt_port_init
+</UL>
+
+<P><STRONG><a name="[107]"></a>IWDG_SetReload</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f10x_iwdg.o(i.IWDG_SetReload))
+<BR><BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wdt_port_init
+</UL>
+
+<P><STRONG><a name="[105]"></a>IWDG_WriteAccessCmd</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f10x_iwdg.o(i.IWDG_WriteAccessCmd))
+<BR><BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wdt_port_init
+</UL>
+
 <P><STRONG><a name="[6]"></a>MemManage_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_it.o(i.MemManage_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
 </UL>
 <P><STRONG><a name="[4]"></a>NMI_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f10x_it.o(i.NMI_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
 </UL>
-<P><STRONG><a name="[f1]"></a>NVIC_Init</STRONG> (Thumb, 100 bytes, Stack size 16 bytes, misc.o(i.NVIC_Init))
+<P><STRONG><a name="[fe]"></a>NVIC_Init</STRONG> (Thumb, 100 bytes, Stack size 16 bytes, misc.o(i.NVIC_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = NVIC_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_nvic_config
+<BR>[Called By]<UL><LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_nvic_config
 </UL>
 
-<P><STRONG><a name="[ea]"></a>NVIC_PriorityGroupConfig</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, misc.o(i.NVIC_PriorityGroupConfig))
-<BR><BR>[Called By]<UL><LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nvic_init
+<P><STRONG><a name="[f7]"></a>NVIC_PriorityGroupConfig</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, misc.o(i.NVIC_PriorityGroupConfig))
+<BR><BR>[Called By]<UL><LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nvic_init
 </UL>
 
 <P><STRONG><a name="[b]"></a>PendSV_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f10x_it.o(i.PendSV_Handler))
@@ -717,25 +738,25 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;adc3_init
 </UL>
 
-<P><STRONG><a name="[d3]"></a>RCC_AHBPeriphClockCmd</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_AHBPeriphClockCmd))
-<BR><BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fsmc_lcd_init
+<P><STRONG><a name="[de]"></a>RCC_AHBPeriphClockCmd</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_AHBPeriphClockCmd))
+<BR><BR>[Called By]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fsmc_lcd_init
 </UL>
 
-<P><STRONG><a name="[c0]"></a>RCC_APB1PeriphClockCmd</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_APB1PeriphClockCmd))
-<BR><BR>[Called By]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tim4_init
-<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_timebase_init
+<P><STRONG><a name="[c5]"></a>RCC_APB1PeriphClockCmd</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_APB1PeriphClockCmd))
+<BR><BR>[Called By]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tim4_init
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_timebase_init
 </UL>
 
 <P><STRONG><a name="[7b]"></a>RCC_APB2PeriphClockCmd</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_APB2PeriphClockCmd))
 <BR><BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_init
-<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart1_init
-<LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tim4_init
-<LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_led_init
-<LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_lcd_backlight_init
-<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_key_init
-<LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_fsmc_bus_init
-<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_actuator_init
-<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dht11_init
+<LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart1_init
+<LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tim4_init
+<LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_led_init
+<LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_lcd_backlight_init
+<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_key_init
+<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_fsmc_bus_init
+<LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_actuator_init
+<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dht11_init
 <LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;adc3_init
 </UL>
 
@@ -749,39 +770,39 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = RCC_GetFlagStatus
 </UL>
 <BR>[Called By]<UL><LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_WaitForHSEStartUp
-<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clock_init
+<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clock_init
 </UL>
 
-<P><STRONG><a name="[bd]"></a>RCC_GetSYSCLKSource</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_GetSYSCLKSource))
-<BR><BR>[Called By]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clock_init
+<P><STRONG><a name="[c2]"></a>RCC_GetSYSCLKSource</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_GetSYSCLKSource))
+<BR><BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clock_init
 </UL>
 
-<P><STRONG><a name="[b8]"></a>RCC_HCLKConfig</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_HCLKConfig))
-<BR><BR>[Called By]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clock_init
+<P><STRONG><a name="[bd]"></a>RCC_HCLKConfig</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_HCLKConfig))
+<BR><BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clock_init
 </UL>
 
-<P><STRONG><a name="[b6]"></a>RCC_HSEConfig</STRONG> (Thumb, 70 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_HSEConfig))
-<BR><BR>[Called By]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clock_init
+<P><STRONG><a name="[bb]"></a>RCC_HSEConfig</STRONG> (Thumb, 70 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_HSEConfig))
+<BR><BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clock_init
 </UL>
 
-<P><STRONG><a name="[b9]"></a>RCC_PCLK1Config</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_PCLK1Config))
-<BR><BR>[Called By]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clock_init
+<P><STRONG><a name="[be]"></a>RCC_PCLK1Config</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_PCLK1Config))
+<BR><BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clock_init
 </UL>
 
-<P><STRONG><a name="[ba]"></a>RCC_PCLK2Config</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_PCLK2Config))
-<BR><BR>[Called By]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clock_init
+<P><STRONG><a name="[bf]"></a>RCC_PCLK2Config</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_PCLK2Config))
+<BR><BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clock_init
 </UL>
 
-<P><STRONG><a name="[bb]"></a>RCC_PLLCmd</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_PLLCmd))
-<BR><BR>[Called By]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clock_init
+<P><STRONG><a name="[c0]"></a>RCC_PLLCmd</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_PLLCmd))
+<BR><BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clock_init
 </UL>
 
-<P><STRONG><a name="[b7]"></a>RCC_PLLConfig</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_PLLConfig))
-<BR><BR>[Called By]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clock_init
+<P><STRONG><a name="[bc]"></a>RCC_PLLConfig</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_PLLConfig))
+<BR><BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clock_init
 </UL>
 
-<P><STRONG><a name="[bc]"></a>RCC_SYSCLKConfig</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_SYSCLKConfig))
-<BR><BR>[Called By]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clock_init
+<P><STRONG><a name="[c1]"></a>RCC_SYSCLKConfig</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_SYSCLKConfig))
+<BR><BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clock_init
 </UL>
 
 <P><STRONG><a name="[70]"></a>RCC_WaitForHSEStartUp</STRONG> (Thumb, 56 bytes, Stack size 16 bytes, stm32f10x_rcc.o(i.RCC_WaitForHSEStartUp))
@@ -789,7 +810,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_GetFlagStatus
 </UL>
-<BR>[Called By]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clock_init
+<BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clock_init
 </UL>
 
 <P><STRONG><a name="[9]"></a>SVC_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f10x_it.o(i.SVC_Handler))
@@ -800,10 +821,10 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
 </UL>
-<P><STRONG><a name="[be]"></a>SystemCoreClockUpdate</STRONG> (Thumb, 142 bytes, Stack size 8 bytes, system_stm32f10x.o(i.SystemCoreClockUpdate))
+<P><STRONG><a name="[c3]"></a>SystemCoreClockUpdate</STRONG> (Thumb, 142 bytes, Stack size 8 bytes, system_stm32f10x.o(i.SystemCoreClockUpdate))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = SystemCoreClockUpdate
 </UL>
-<BR>[Called By]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clock_init
+<BR>[Called By]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clock_init
 </UL>
 
 <P><STRONG><a name="[49]"></a>SystemInit</STRONG> (Thumb, 78 bytes, Stack size 8 bytes, system_stm32f10x.o(i.SystemInit))
@@ -813,40 +834,40 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(.text)
 </UL>
-<P><STRONG><a name="[ed]"></a>TIM_ARRPreloadConfig</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, stm32f10x_tim.o(i.TIM_ARRPreloadConfig))
-<BR><BR>[Called By]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tim4_init
+<P><STRONG><a name="[fa]"></a>TIM_ARRPreloadConfig</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, stm32f10x_tim.o(i.TIM_ARRPreloadConfig))
+<BR><BR>[Called By]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tim4_init
 </UL>
 
-<P><STRONG><a name="[c2]"></a>TIM_Cmd</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, stm32f10x_tim.o(i.TIM_Cmd))
-<BR><BR>[Called By]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tim4_init
-<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_timebase_init
+<P><STRONG><a name="[c7]"></a>TIM_Cmd</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, stm32f10x_tim.o(i.TIM_Cmd))
+<BR><BR>[Called By]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tim4_init
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_timebase_init
 </UL>
 
-<P><STRONG><a name="[e0]"></a>TIM_GetCapture3</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f10x_tim.o(i.TIM_GetCapture3))
-<BR><BR>[Called By]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_read
+<P><STRONG><a name="[eb]"></a>TIM_GetCapture3</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f10x_tim.o(i.TIM_GetCapture3))
+<BR><BR>[Called By]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_read
 </UL>
 
-<P><STRONG><a name="[ee]"></a>TIM_GetCounter</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f10x_tim.o(i.TIM_GetCounter))
-<BR><BR>[Called By]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_port_delay_us
+<P><STRONG><a name="[fb]"></a>TIM_GetCounter</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f10x_tim.o(i.TIM_GetCounter))
+<BR><BR>[Called By]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_port_delay_us
 </UL>
 
-<P><STRONG><a name="[eb]"></a>TIM_OC3Init</STRONG> (Thumb, 150 bytes, Stack size 16 bytes, stm32f10x_tim.o(i.TIM_OC3Init))
+<P><STRONG><a name="[f8]"></a>TIM_OC3Init</STRONG> (Thumb, 150 bytes, Stack size 16 bytes, stm32f10x_tim.o(i.TIM_OC3Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = TIM_OC3Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tim4_init
+<BR>[Called By]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tim4_init
 </UL>
 
-<P><STRONG><a name="[ec]"></a>TIM_OC3PreloadConfig</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_tim.o(i.TIM_OC3PreloadConfig))
-<BR><BR>[Called By]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tim4_init
+<P><STRONG><a name="[f9]"></a>TIM_OC3PreloadConfig</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_tim.o(i.TIM_OC3PreloadConfig))
+<BR><BR>[Called By]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tim4_init
 </UL>
 
-<P><STRONG><a name="[e3]"></a>TIM_SetCompare3</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_tim.o(i.TIM_SetCompare3))
-<BR><BR>[Called By]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_write
+<P><STRONG><a name="[ee]"></a>TIM_SetCompare3</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_tim.o(i.TIM_SetCompare3))
+<BR><BR>[Called By]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_write
 </UL>
 
-<P><STRONG><a name="[c1]"></a>TIM_TimeBaseInit</STRONG> (Thumb, 122 bytes, Stack size 0 bytes, stm32f10x_tim.o(i.TIM_TimeBaseInit))
-<BR><BR>[Called By]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tim4_init
-<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_timebase_init
+<P><STRONG><a name="[c6]"></a>TIM_TimeBaseInit</STRONG> (Thumb, 122 bytes, Stack size 0 bytes, stm32f10x_tim.o(i.TIM_TimeBaseInit))
+<BR><BR>[Called By]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tim4_init
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_timebase_init
 </UL>
 
 <P><STRONG><a name="[32]"></a>USART1_IRQHandler</STRONG> (Thumb, 90 bytes, Stack size 24 bytes, port_impl_uart_stm32f103zet6.o(i.USART1_IRQHandler))
@@ -857,13 +878,13 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
 </UL>
-<P><STRONG><a name="[f6]"></a>USART_Cmd</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, stm32f10x_usart.o(i.USART_Cmd))
-<BR><BR>[Called By]<UL><LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart1_init
+<P><STRONG><a name="[103]"></a>USART_Cmd</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, stm32f10x_usart.o(i.USART_Cmd))
+<BR><BR>[Called By]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart1_init
 </UL>
 
-<P><STRONG><a name="[f3]"></a>USART_GetFlagStatus</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f10x_usart.o(i.USART_GetFlagStatus))
-<BR><BR>[Called By]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_port_write
-<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_port_init
+<P><STRONG><a name="[100]"></a>USART_GetFlagStatus</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f10x_usart.o(i.USART_GetFlagStatus))
+<BR><BR>[Called By]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_port_init
+<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_port_write
 </UL>
 
 <P><STRONG><a name="[74]"></a>USART_GetITStatus</STRONG> (Thumb, 84 bytes, Stack size 16 bytes, stm32f10x_usart.o(i.USART_GetITStatus))
@@ -872,11 +893,11 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_IRQHandler
 </UL>
 
-<P><STRONG><a name="[f4]"></a>USART_ITConfig</STRONG> (Thumb, 74 bytes, Stack size 20 bytes, stm32f10x_usart.o(i.USART_ITConfig))
+<P><STRONG><a name="[101]"></a>USART_ITConfig</STRONG> (Thumb, 74 bytes, Stack size 20 bytes, stm32f10x_usart.o(i.USART_ITConfig))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = USART_ITConfig
 </UL>
-<BR>[Called By]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_port_init
-<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart1_init
+<BR>[Called By]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_port_init
+<LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart1_init
 </UL>
 
 <P><STRONG><a name="[76]"></a>USART_Init</STRONG> (Thumb, 210 bytes, Stack size 56 bytes, stm32f10x_usart.o(i.USART_Init))
@@ -884,22 +905,22 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_GetClocksFreq
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart1_init
+<BR>[Called By]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart1_init
 </UL>
 
 <P><STRONG><a name="[75]"></a>USART_ReceiveData</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f10x_usart.o(i.USART_ReceiveData))
-<BR><BR>[Called By]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_port_init
+<BR><BR>[Called By]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_port_init
 <LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_IRQHandler
 </UL>
 
-<P><STRONG><a name="[f5]"></a>USART_SendData</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, stm32f10x_usart.o(i.USART_SendData))
-<BR><BR>[Called By]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_port_write
+<P><STRONG><a name="[102]"></a>USART_SendData</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, stm32f10x_usart.o(i.USART_SendData))
+<BR><BR>[Called By]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_port_write
 </UL>
 
 <P><STRONG><a name="[8]"></a>UsageFault_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_it.o(i.UsageFault_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
 </UL>
-<P><STRONG><a name="[7a]"></a>adc3_init</STRONG> (Thumb, 140 bytes, Stack size 32 bytes, adc_init.o(i.adc3_init))
+<P><STRONG><a name="[7a]"></a>adc3_init</STRONG> (Thumb, 172 bytes, Stack size 32 bytes, adc_init.o(i.adc3_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = adc3_init &rArr; GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
@@ -914,7 +935,7 @@ Global Symbols
 <LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_Cmd
 </UL>
 <BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;adc_port_init
-<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;hal_init
+<LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;hal_init
 </UL>
 
 <P><STRONG><a name="[85]"></a>adc_port_init</STRONG> (Thumb, 82 bytes, Stack size 16 bytes, port_impl_adc_stm32f103zet6.o(i.adc_port_init))
@@ -932,19 +953,19 @@ Global Symbols
 <LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_GetFlagStatus
 <LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_GetConversionValue
 </UL>
-<BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_env_sensor_poll
+<BR>[Called By]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_env_sensor_poll
 </UL>
 
-<P><STRONG><a name="[a3]"></a>app_alarm_control_get_alarm</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, app_alarm_control.o(i.app_alarm_control_get_alarm))
-<BR><BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_lcd_display_poll
+<P><STRONG><a name="[a7]"></a>app_alarm_control_get_alarm</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, app_alarm_control.o(i.app_alarm_control_get_alarm))
+<BR><BR>[Called By]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_lcd_display_poll
 </UL>
 
-<P><STRONG><a name="[a8]"></a>app_alarm_control_get_display</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, app_alarm_control.o(i.app_alarm_control_get_display))
-<BR><BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_lcd_display_poll
+<P><STRONG><a name="[ac]"></a>app_alarm_control_get_display</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, app_alarm_control.o(i.app_alarm_control_get_display))
+<BR><BR>[Called By]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_lcd_display_poll
 </UL>
 
-<P><STRONG><a name="[b1]"></a>app_alarm_control_get_name</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, app_alarm_control.o(i.app_alarm_control_get_name))
-<BR><BR>[Called By]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_uart_report_poll
+<P><STRONG><a name="[b6]"></a>app_alarm_control_get_name</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, app_alarm_control.o(i.app_alarm_control_get_name))
+<BR><BR>[Called By]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_uart_report_poll
 </UL>
 
 <P><STRONG><a name="[8a]"></a>app_alarm_control_init</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, app_alarm_control.o(i.app_alarm_control_init))
@@ -962,18 +983,19 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_mode_control_get_mode
 <LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;actuator_apply
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_loop
+<BR>[Called By]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_loop
 </UL>
 
-<P><STRONG><a name="[95]"></a>app_alarm_control_on_sensor_fault</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, app_alarm_control.o(i.app_alarm_control_on_sensor_fault))
-<BR><BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_env_sensor_poll
+<P><STRONG><a name="[93]"></a>app_alarm_control_on_sensor_fault</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, app_alarm_control.o(i.app_alarm_control_on_sensor_fault))
+<BR><BR>[Called By]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_env_sensor_poll
+<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_env_sensor_init
 </UL>
 
 <P><STRONG><a name="[96]"></a>app_alarm_control_on_sensor_recovered</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, app_alarm_control.o(i.app_alarm_control_on_sensor_recovered))
-<BR><BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_env_sensor_poll
+<BR><BR>[Called By]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_env_sensor_poll
 </UL>
 
-<P><STRONG><a name="[8e]"></a>app_alarm_control_poll</STRONG> (Thumb, 164 bytes, Stack size 16 bytes, app_alarm_control.o(i.app_alarm_control_poll))
+<P><STRONG><a name="[8e]"></a>app_alarm_control_poll</STRONG> (Thumb, 172 bytes, Stack size 16 bytes, app_alarm_control.o(i.app_alarm_control_poll))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = app_alarm_control_poll &rArr; actuator_apply &rArr; gpio_port_set_active &rArr; gpio_port_write
 </UL>
 <BR>[Calls]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_mode_control_is_muted
@@ -982,53 +1004,55 @@ Global Symbols
 <LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;actuator_apply
 <LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_set_active
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_loop
+<BR>[Called By]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_loop
 </UL>
 
 <P><STRONG><a name="[8f]"></a>app_env_sensor_get_data</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, app_env_sensor.o(i.app_env_sensor_get_data))
-<BR><BR>[Called By]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_uart_report_poll
-<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_lcd_display_poll
+<BR><BR>[Called By]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_uart_report_poll
+<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_lcd_display_poll
 <LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_alarm_control_poll
 </UL>
 
-<P><STRONG><a name="[91]"></a>app_env_sensor_init</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, app_env_sensor.o(i.app_env_sensor_init))
+<P><STRONG><a name="[91]"></a>app_env_sensor_init</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, app_env_sensor.o(i.app_env_sensor_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = app_env_sensor_init &rArr; adc_port_init &rArr; adc3_init &rArr; GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;adc_port_init
+<LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_alarm_control_on_sensor_fault
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_dht11_init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_init
 </UL>
 
-<P><STRONG><a name="[93]"></a>app_env_sensor_poll</STRONG> (Thumb, 204 bytes, Stack size 24 bytes, app_env_sensor.o(i.app_env_sensor_poll))
+<P><STRONG><a name="[94]"></a>app_env_sensor_poll</STRONG> (Thumb, 216 bytes, Stack size 24 bytes, app_env_sensor.o(i.app_env_sensor_poll))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = app_env_sensor_poll &rArr; driver_dht11_read &rArr; dht11_wait_level &rArr; timer_port_delay_us &rArr; delay_timebase_init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;adc_port_sample_mv
 <LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_alarm_control_on_sensor_recovered
-<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_alarm_control_on_sensor_fault
-<LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_dht11_read
+<LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_alarm_control_on_sensor_fault
+<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_dht11_read
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_loop
+<BR>[Called By]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_loop
 </UL>
 
-<P><STRONG><a name="[97]"></a>app_init</STRONG> (Thumb, 110 bytes, Stack size 8 bytes, app.o(i.app_init))
-<BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = app_init &rArr; app_lcd_display_init &rArr; driver_lcd_init &rArr; par_port_init &rArr; fsmc_lcd_init &rArr; __aeabi_memcpy4
+<P><STRONG><a name="[97]"></a>app_init</STRONG> (Thumb, 120 bytes, Stack size 8 bytes, app.o(i.app_init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = app_init &rArr; app_lcd_display_init &rArr; driver_lcd_init &rArr; par_port_init &rArr; fsmc_lcd_init &rArr; __aeabi_memcpy4
 </UL>
-<BR>[Calls]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_port_start_periodic
+<BR>[Calls]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wdt_port_init
+<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_port_start_periodic
 <LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_port_init
-<LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_init
-<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_uart_report_init
+<LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_uart_report_init
 <LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_mode_control_init
-<LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_lcd_display_init
+<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_lcd_display_init
 <LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_key_handler_init
 <LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_env_sensor_init
 <LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_alarm_control_init
+<LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[aa]"></a>app_key_handler_get_event</STRONG> (Thumb, 82 bytes, Stack size 0 bytes, app_key_handler.o(i.app_key_handler_get_event))
-<BR><BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_loop
+<P><STRONG><a name="[af]"></a>app_key_handler_get_event</STRONG> (Thumb, 82 bytes, Stack size 0 bytes, app_key_handler.o(i.app_key_handler_get_event))
+<BR><BR>[Called By]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_loop
 </UL>
 
 <P><STRONG><a name="[9b]"></a>app_key_handler_init</STRONG> (Thumb, 88 bytes, Stack size 16 bytes, app_key_handler.o(i.app_key_handler_init))
@@ -1039,67 +1063,78 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_init
 </UL>
 
-<P><STRONG><a name="[9e]"></a>app_key_handler_poll</STRONG> (Thumb, 38 bytes, Stack size 16 bytes, app_key_handler.o(i.app_key_handler_poll))
+<P><STRONG><a name="[9f]"></a>app_key_handler_poll</STRONG> (Thumb, 38 bytes, Stack size 16 bytes, app_key_handler.o(i.app_key_handler_poll))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = app_key_handler_poll &rArr; gpio_port_read_active &rArr; gpio_port_read
 </UL>
-<BR>[Calls]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_read_active
-<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;key_scan
+<BR>[Calls]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_read_active
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;key_scan
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_loop
+<BR>[Called By]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_loop
 </UL>
 
-<P><STRONG><a name="[9c]"></a>app_lcd_display_init</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, app_lcd_display.o(i.app_lcd_display_init))
-<BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = app_lcd_display_init &rArr; driver_lcd_init &rArr; par_port_init &rArr; fsmc_lcd_init &rArr; __aeabi_memcpy4
+<P><STRONG><a name="[a2]"></a>app_lcd_display_diag_code</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, app_lcd_display.o(i.app_lcd_display_diag_code))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = app_lcd_display_diag_code
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_init
+<BR>[Calls]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_get_diag_code
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_loop
+</UL>
+
+<P><STRONG><a name="[9d]"></a>app_lcd_display_init</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, app_lcd_display.o(i.app_lcd_display_init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = app_lcd_display_init &rArr; driver_lcd_init &rArr; par_port_init &rArr; fsmc_lcd_init &rArr; __aeabi_memcpy4
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_init
 </UL>
 
-<P><STRONG><a name="[ae]"></a>app_lcd_display_is_ready</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, app_lcd_display.o(i.app_lcd_display_is_ready))
-<BR><BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_loop
+<P><STRONG><a name="[b3]"></a>app_lcd_display_is_ready</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, app_lcd_display.o(i.app_lcd_display_is_ready))
+<BR><BR>[Called By]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_loop
 </UL>
 
-<P><STRONG><a name="[a2]"></a>app_lcd_display_poll</STRONG> (Thumb, 322 bytes, Stack size 24 bytes, app_lcd_display.o(i.app_lcd_display_poll))
-<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = app_lcd_display_poll &rArr; driver_lcd_show_line &rArr; lcd_set_window
+<P><STRONG><a name="[a5]"></a>app_lcd_display_poll</STRONG> (Thumb, 350 bytes, Stack size 24 bytes, app_lcd_display.o(i.app_lcd_display_poll))
+<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = app_lcd_display_poll &rArr; driver_lcd_show_line &rArr; lcd_set_window &rArr; lcd_write_reg
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;disp_copy
-<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;disp_append_int
-<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_mode_control_get_display
+<BR>[Calls]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_mode_control_get_display
 <LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_env_sensor_get_data
-<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_alarm_control_get_display
-<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_alarm_control_get_alarm
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_show_line
+<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_alarm_control_get_display
+<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_alarm_control_get_alarm
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_show_line
+<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_diag_dump
+<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;disp_copy
+<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;disp_append_int
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_loop
+<BR>[Called By]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_loop
 </UL>
 
-<P><STRONG><a name="[a9]"></a>app_loop</STRONG> (Thumb, 188 bytes, Stack size 0 bytes, app.o(i.app_loop))
+<P><STRONG><a name="[ad]"></a>app_loop</STRONG> (Thumb, 242 bytes, Stack size 0 bytes, app.o(i.app_loop))
 <BR><BR>[Stack]<UL><LI>Max Depth = 176 + Unknown Stack Size
 <LI>Call Chain = app_loop &rArr; app_uart_report_poll &rArr; __2snprintf &rArr; _printf_char_common &rArr; __printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_set_active
-<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_uart_report_poll
-<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_uart_report_is_failing
-<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_mode_control_on_key_mute
-<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_mode_control_on_key_mode
-<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_lcd_display_poll
-<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_lcd_display_is_ready
-<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_key_handler_poll
-<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_key_handler_get_event
-<LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_env_sensor_poll
+<BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wdt_port_feed
+<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_set_active
+<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_uart_report_poll
+<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_uart_report_is_failing
+<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_mode_control_on_key_mute
+<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_mode_control_on_key_mode
+<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_lcd_display_poll
+<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_lcd_display_is_ready
+<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_lcd_display_diag_code
+<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_key_handler_poll
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_key_handler_get_event
+<LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_env_sensor_poll
 <LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_alarm_control_poll
 <LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_alarm_control_on_key_switch
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[a7]"></a>app_mode_control_get_display</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, app_mode_control.o(i.app_mode_control_get_display))
-<BR><BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_lcd_display_poll
+<P><STRONG><a name="[ab]"></a>app_mode_control_get_display</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, app_mode_control.o(i.app_mode_control_get_display))
+<BR><BR>[Called By]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_lcd_display_poll
 </UL>
 
 <P><STRONG><a name="[8d]"></a>app_mode_control_get_mode</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, app_mode_control.o(i.app_mode_control_get_mode))
-<BR><BR>[Called By]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_uart_report_poll
+<BR><BR>[Called By]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_uart_report_poll
 <LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_alarm_control_poll
 <LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_alarm_control_on_key_switch
 </UL>
@@ -1112,293 +1147,334 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_alarm_control_poll
 </UL>
 
-<P><STRONG><a name="[ab]"></a>app_mode_control_on_key_mode</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, app_mode_control.o(i.app_mode_control_on_key_mode))
-<BR><BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_loop
+<P><STRONG><a name="[b0]"></a>app_mode_control_on_key_mode</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, app_mode_control.o(i.app_mode_control_on_key_mode))
+<BR><BR>[Called By]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_loop
 </UL>
 
-<P><STRONG><a name="[ac]"></a>app_mode_control_on_key_mute</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, app_mode_control.o(i.app_mode_control_on_key_mute))
-<BR><BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_loop
+<P><STRONG><a name="[b1]"></a>app_mode_control_on_key_mute</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, app_mode_control.o(i.app_mode_control_on_key_mute))
+<BR><BR>[Called By]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_loop
 </UL>
 
-<P><STRONG><a name="[9d]"></a>app_uart_report_init</STRONG> (Thumb, 42 bytes, Stack size 8 bytes, app_uart_report.o(i.app_uart_report_init))
+<P><STRONG><a name="[9c]"></a>app_uart_report_init</STRONG> (Thumb, 42 bytes, Stack size 8 bytes, app_uart_report.o(i.app_uart_report_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 124<LI>Call Chain = app_uart_report_init &rArr; uart_port_init &rArr; usart1_init &rArr; USART_Init &rArr; RCC_GetClocksFreq
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_port_init
+<BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_port_init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_init
 </UL>
 
-<P><STRONG><a name="[af]"></a>app_uart_report_is_failing</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, app_uart_report.o(i.app_uart_report_is_failing))
-<BR><BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_loop
+<P><STRONG><a name="[b4]"></a>app_uart_report_is_failing</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, app_uart_report.o(i.app_uart_report_is_failing))
+<BR><BR>[Called By]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_loop
 </UL>
 
-<P><STRONG><a name="[ad]"></a>app_uart_report_poll</STRONG> (Thumb, 192 bytes, Stack size 48 bytes, app_uart_report.o(i.app_uart_report_poll))
+<P><STRONG><a name="[b2]"></a>app_uart_report_poll</STRONG> (Thumb, 192 bytes, Stack size 48 bytes, app_uart_report.o(i.app_uart_report_poll))
 <BR><BR>[Stack]<UL><LI>Max Depth = 176 + Unknown Stack Size
 <LI>Call Chain = app_uart_report_poll &rArr; __2snprintf &rArr; _printf_char_common &rArr; __printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_port_write
-<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_mode_control_get_mode
+<BR>[Calls]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_mode_control_get_mode
 <LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_env_sensor_get_data
-<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_alarm_control_get_name
+<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_alarm_control_get_name
+<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_port_write
 <LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2snprintf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_loop
+<BR>[Called By]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_loop
 </UL>
 
-<P><STRONG><a name="[b3]"></a>clock_init</STRONG> (Thumb, 106 bytes, Stack size 8 bytes, clock_init.o(i.clock_init))
+<P><STRONG><a name="[b8]"></a>clock_init</STRONG> (Thumb, 106 bytes, Stack size 8 bytes, clock_init.o(i.clock_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = clock_init &rArr; RCC_WaitForHSEStartUp &rArr; RCC_GetFlagStatus
 </UL>
-<BR>[Calls]<UL><LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemCoreClockUpdate
+<BR>[Calls]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemCoreClockUpdate
 <LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_WaitForHSEStartUp
-<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_SYSCLKConfig
-<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_PLLConfig
-<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_PLLCmd
-<LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_PCLK2Config
-<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_PCLK1Config
-<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_HSEConfig
-<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_HCLKConfig
-<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_GetSYSCLKSource
+<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_SYSCLKConfig
+<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_PLLConfig
+<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_PLLCmd
+<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_PCLK2Config
+<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_PCLK1Config
+<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_HSEConfig
+<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_HCLKConfig
+<LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_GetSYSCLKSource
 <LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_GetFlagStatus
-<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_SetLatency
-<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_PrefetchBufferCmd
+<LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_SetLatency
+<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_PrefetchBufferCmd
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;hal_init
+<BR>[Called By]<UL><LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;hal_init
 </UL>
 
-<P><STRONG><a name="[c3]"></a>dht11_init</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, dht11_init.o(i.dht11_init))
+<P><STRONG><a name="[c8]"></a>dht11_init</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, dht11_init.o(i.dht11_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = dht11_init &rArr; GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
 <LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;hal_init
+<BR>[Called By]<UL><LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;hal_init
 </UL>
 
-<P><STRONG><a name="[92]"></a>driver_dht11_init</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, driver_dht11.o(i.driver_dht11_init))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = driver_dht11_init &rArr; gpio_port_set_dir &rArr; gpio_apply_dir &rArr; GPIO_Init
+<P><STRONG><a name="[92]"></a>driver_dht11_init</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, driver_dht11.o(i.driver_dht11_init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = driver_dht11_init &rArr; gpio_port_init &rArr; gpio_apply_dir &rArr; GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_set_dir
+<BR>[Calls]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_set_dir
+<LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_env_sensor_init
 </UL>
 
-<P><STRONG><a name="[94]"></a>driver_dht11_read</STRONG> (Thumb, 298 bytes, Stack size 40 bytes, driver_dht11.o(i.driver_dht11_read))
+<P><STRONG><a name="[95]"></a>driver_dht11_read</STRONG> (Thumb, 298 bytes, Stack size 40 bytes, driver_dht11.o(i.driver_dht11_read))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = driver_dht11_read &rArr; dht11_wait_level &rArr; timer_port_delay_us &rArr; delay_timebase_init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_port_delay_us
-<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_write
-<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_set_dir
-<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dht11_wait_level
+<BR>[Calls]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_port_delay_us
+<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_write
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_set_dir
+<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dht11_wait_level
 </UL>
-<BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_env_sensor_poll
-</UL>
-
-<P><STRONG><a name="[ca]"></a>driver_lcd_clear</STRONG> (Thumb, 80 bytes, Stack size 16 bytes, driver_lcd.o(i.driver_lcd_clear))
-<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = driver_lcd_clear &rArr; lcd_set_window
-</UL>
-<BR>[Calls]<UL><LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;par_port_write_data_block
-<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_window
-</UL>
-<BR>[Called By]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_init
+<BR>[Called By]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_env_sensor_poll
 </UL>
 
-<P><STRONG><a name="[a1]"></a>driver_lcd_init</STRONG> (Thumb, 150 bytes, Stack size 16 bytes, driver_lcd.o(i.driver_lcd_init))
-<BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = driver_lcd_init &rArr; par_port_init &rArr; fsmc_lcd_init &rArr; __aeabi_memcpy4
+<P><STRONG><a name="[cf]"></a>driver_lcd_clear</STRONG> (Thumb, 86 bytes, Stack size 16 bytes, driver_lcd.o(i.driver_lcd_clear))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = driver_lcd_clear &rArr; lcd_set_window &rArr; lcd_write_reg
 </UL>
-<BR>[Calls]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;par_port_write_data
-<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;par_port_write_cmd
-<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;par_port_init
-<LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_clear
-<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_port_delay_us
+<BR>[Calls]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;par_port_write_data_block
+<LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_window
 </UL>
-<BR>[Called By]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_lcd_display_init
+<BR>[Called By]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_init
 </UL>
 
-<P><STRONG><a name="[a5]"></a>driver_lcd_show_line</STRONG> (Thumb, 218 bytes, Stack size 56 bytes, driver_lcd.o(i.driver_lcd_show_line))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = driver_lcd_show_line &rArr; lcd_set_window
+<P><STRONG><a name="[a6]"></a>driver_lcd_diag_dump</STRONG> (Thumb, 82 bytes, Stack size 8 bytes, driver_lcd.o(i.driver_lcd_diag_dump))
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = driver_lcd_diag_dump &rArr; lcd_diag_hex &rArr; lcd_diag_str &rArr; uart_port_write
 </UL>
-<BR>[Calls]<UL><LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;par_port_write_data_block
-<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_window
-<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_glyph_bit
-<LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_font_index
+<BR>[Calls]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_get_diag_code
+<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_diag_str
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_diag_hex
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_lcd_display_poll
+<BR>[Called By]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_lcd_display_poll
 </UL>
 
-<P><STRONG><a name="[d2]"></a>fsmc_lcd_init</STRONG> (Thumb, 118 bytes, Stack size 120 bytes, fsmc_init.o(i.fsmc_lcd_init))
+<P><STRONG><a name="[a3]"></a>driver_lcd_get_diag_code</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, driver_lcd.o(i.driver_lcd_get_diag_code))
+<BR><BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_lcd_display_diag_code
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_init
+<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_diag_dump
+</UL>
+
+<P><STRONG><a name="[a4]"></a>driver_lcd_init</STRONG> (Thumb, 288 bytes, Stack size 24 bytes, driver_lcd.o(i.driver_lcd_init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = driver_lcd_init &rArr; par_port_init &rArr; fsmc_lcd_init &rArr; __aeabi_memcpy4
+</UL>
+<BR>[Calls]<UL><LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;par_port_write_cmd
+<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;par_port_init
+<LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_read_id
+<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_get_diag_code
+<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_clear
+<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_write_table
+<LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_write_reg
+<LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_write_gamma_page
+<LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_read_reg8
+<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_diag_str
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_diag_hex
+<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_port_delay_us
+</UL>
+<BR>[Called By]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_lcd_display_init
+</UL>
+
+<P><STRONG><a name="[d6]"></a>driver_lcd_read_id</STRONG> (Thumb, 272 bytes, Stack size 24 bytes, driver_lcd.o(i.driver_lcd_read_id))
+<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = driver_lcd_read_id &rArr; lcd_diag_hex &rArr; lcd_diag_str &rArr; uart_port_write
+</UL>
+<BR>[Calls]<UL><LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_read_reg8
+<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_diag_str
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_diag_hex
+</UL>
+<BR>[Called By]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_init
+</UL>
+
+<P><STRONG><a name="[a9]"></a>driver_lcd_show_line</STRONG> (Thumb, 224 bytes, Stack size 56 bytes, driver_lcd.o(i.driver_lcd_show_line))
+<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = driver_lcd_show_line &rArr; lcd_set_window &rArr; lcd_write_reg
+</UL>
+<BR>[Calls]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;par_port_write_data_block
+<LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_window
+<LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_glyph_bit
+<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_font_index
+</UL>
+<BR>[Called By]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_lcd_display_poll
+</UL>
+
+<P><STRONG><a name="[dd]"></a>fsmc_lcd_init</STRONG> (Thumb, 118 bytes, Stack size 120 bytes, fsmc_init.o(i.fsmc_lcd_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = fsmc_lcd_init &rArr; __aeabi_memcpy4
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_AHBPeriphClockCmd
-<LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FSMC_NORSRAMInit
-<LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FSMC_NORSRAMCmd
-<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
+<BR>[Calls]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_AHBPeriphClockCmd
+<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FSMC_NORSRAMInit
+<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FSMC_NORSRAMCmd
+<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
 </UL>
-<BR>[Called By]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;par_port_init
-<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;hal_init
+<BR>[Called By]<UL><LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;par_port_init
+<LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;hal_init
 </UL>
 
-<P><STRONG><a name="[db]"></a>gpio_init</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, gpio_init.o(i.gpio_init))
+<P><STRONG><a name="[e6]"></a>gpio_init</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, gpio_init.o(i.gpio_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = gpio_init &rArr; gpio_led_init &rArr; GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_led_init
-<LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_lcd_backlight_init
-<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_key_init
-<LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_fsmc_bus_init
-<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_actuator_init
+<BR>[Calls]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_led_init
+<LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_lcd_backlight_init
+<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_key_init
+<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_fsmc_bus_init
+<LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_actuator_init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;hal_init
+<BR>[Called By]<UL><LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;hal_init
 </UL>
 
 <P><STRONG><a name="[8b]"></a>gpio_port_init</STRONG> (Thumb, 168 bytes, Stack size 24 bytes, port_impl_gpio_stm32f103zet6.o(i.gpio_port_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = gpio_port_init &rArr; gpio_apply_dir &rArr; GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_write
+<BR>[Calls]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_write
 <LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
-<LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_apply_dir
+<LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_apply_dir
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_key_handler_init
 <LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_alarm_control_init
 <LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_init
+<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_dht11_init
 </UL>
 
-<P><STRONG><a name="[c5]"></a>gpio_port_read</STRONG> (Thumb, 102 bytes, Stack size 24 bytes, port_impl_gpio_stm32f103zet6.o(i.gpio_port_read))
+<P><STRONG><a name="[ca]"></a>gpio_port_read</STRONG> (Thumb, 102 bytes, Stack size 24 bytes, port_impl_gpio_stm32f103zet6.o(i.gpio_port_read))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = gpio_port_read
 </UL>
-<BR>[Calls]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_GetCapture3
-<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ReadOutputDataBit
-<LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ReadInputDataBit
+<BR>[Calls]<UL><LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_GetCapture3
+<LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ReadOutputDataBit
+<LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ReadInputDataBit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_read_active
-<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dht11_wait_level
+<BR>[Called By]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_read_active
+<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dht11_wait_level
 </UL>
 
-<P><STRONG><a name="[9f]"></a>gpio_port_read_active</STRONG> (Thumb, 72 bytes, Stack size 24 bytes, port_impl_gpio_stm32f103zet6.o(i.gpio_port_read_active))
+<P><STRONG><a name="[a0]"></a>gpio_port_read_active</STRONG> (Thumb, 72 bytes, Stack size 24 bytes, port_impl_gpio_stm32f103zet6.o(i.gpio_port_read_active))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = gpio_port_read_active &rArr; gpio_port_read
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_read
+<BR>[Calls]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_read
 </UL>
-<BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_key_handler_poll
+<BR>[Called By]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_key_handler_poll
 </UL>
 
 <P><STRONG><a name="[79]"></a>gpio_port_set_active</STRONG> (Thumb, 64 bytes, Stack size 24 bytes, port_impl_gpio_stm32f103zet6.o(i.gpio_port_set_active))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = gpio_port_set_active &rArr; gpio_port_write
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_write
+<BR>[Calls]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_write
 </UL>
 <BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;actuator_apply
 <LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_alarm_control_poll
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_loop
+<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_loop
 </UL>
 
-<P><STRONG><a name="[c8]"></a>gpio_port_set_dir</STRONG> (Thumb, 76 bytes, Stack size 16 bytes, port_impl_gpio_stm32f103zet6.o(i.gpio_port_set_dir))
+<P><STRONG><a name="[cd]"></a>gpio_port_set_dir</STRONG> (Thumb, 76 bytes, Stack size 16 bytes, port_impl_gpio_stm32f103zet6.o(i.gpio_port_set_dir))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = gpio_port_set_dir &rArr; gpio_apply_dir &rArr; GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_apply_dir
+<BR>[Calls]<UL><LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_apply_dir
 </UL>
-<BR>[Called By]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_dht11_read
+<BR>[Called By]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_dht11_read
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_dht11_init
 </UL>
 
-<P><STRONG><a name="[c9]"></a>gpio_port_write</STRONG> (Thumb, 94 bytes, Stack size 16 bytes, port_impl_gpio_stm32f103zet6.o(i.gpio_port_write))
+<P><STRONG><a name="[ce]"></a>gpio_port_write</STRONG> (Thumb, 94 bytes, Stack size 16 bytes, port_impl_gpio_stm32f103zet6.o(i.gpio_port_write))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = gpio_port_write
 </UL>
-<BR>[Calls]<UL><LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_SetCompare3
-<LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_WriteBit
+<BR>[Calls]<UL><LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_SetCompare3
+<LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_WriteBit
 </UL>
 <BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_set_active
 <LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_init
-<LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_dht11_read
+<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_dht11_read
 </UL>
 
-<P><STRONG><a name="[e5]"></a>hal_init</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, hal_init.o(i.hal_init))
+<P><STRONG><a name="[f0]"></a>hal_init</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, hal_init.o(i.hal_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = hal_init &rArr; fsmc_lcd_init &rArr; __aeabi_memcpy4
 </UL>
-<BR>[Calls]<UL><LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart1_init
-<LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tim4_init
-<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nvic_init
-<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
-<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fsmc_lcd_init
-<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dht11_init
-<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clock_init
+<BR>[Calls]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart1_init
+<LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tim4_init
+<LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nvic_init
+<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
+<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fsmc_lcd_init
+<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dht11_init
+<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clock_init
 <LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;adc3_init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[5f]"></a>main</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 184 + Unknown Stack Size
-<LI>Call Chain = main &rArr; app_loop &rArr; app_uart_report_poll &rArr; __2snprintf &rArr; _printf_char_common &rArr; __printf
+<BR><BR>[Stack]<UL><LI>Max Depth = 192 + Unknown Stack Size
+<LI>Call Chain = main &rArr; app_init &rArr; app_lcd_display_init &rArr; driver_lcd_init &rArr; par_port_init &rArr; fsmc_lcd_init &rArr; __aeabi_memcpy4
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_loop
+<BR>[Calls]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_loop
 <LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_init
-<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;hal_init
+<LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;hal_init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
 
-<P><STRONG><a name="[e6]"></a>nvic_init</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, nvic_init.o(i.nvic_init))
+<P><STRONG><a name="[f1]"></a>nvic_init</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, nvic_init.o(i.nvic_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = nvic_init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_PriorityGroupConfig
+<BR>[Calls]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_PriorityGroupConfig
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;hal_init
+<BR>[Called By]<UL><LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;hal_init
 </UL>
 
-<P><STRONG><a name="[cd]"></a>par_port_init</STRONG> (Thumb, 38 bytes, Stack size 16 bytes, port_impl_par_stm32f103zet6.o(i.par_port_init))
+<P><STRONG><a name="[d4]"></a>par_port_init</STRONG> (Thumb, 38 bytes, Stack size 16 bytes, port_impl_par_stm32f103zet6.o(i.par_port_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = par_port_init &rArr; fsmc_lcd_init &rArr; __aeabi_memcpy4
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fsmc_lcd_init
+<BR>[Calls]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fsmc_lcd_init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_init
-</UL>
-
-<P><STRONG><a name="[ce]"></a>par_port_write_cmd</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, port_impl_par_stm32f103zet6.o(i.par_port_write_cmd))
-<BR><BR>[Called By]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_init
-<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_window
+<BR>[Called By]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_init
 </UL>
 
-<P><STRONG><a name="[cf]"></a>par_port_write_data</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, port_impl_par_stm32f103zet6.o(i.par_port_write_data))
-<BR><BR>[Called By]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_init
-<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_window
+<P><STRONG><a name="[f5]"></a>par_port_read_data</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, port_impl_par_stm32f103zet6.o(i.par_port_read_data))
+<BR><BR>[Called By]<UL><LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_read_reg8
 </UL>
 
-<P><STRONG><a name="[cc]"></a>par_port_write_data_block</STRONG> (Thumb, 48 bytes, Stack size 12 bytes, port_impl_par_stm32f103zet6.o(i.par_port_write_data_block))
+<P><STRONG><a name="[d5]"></a>par_port_write_cmd</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, port_impl_par_stm32f103zet6.o(i.par_port_write_cmd))
+<BR><BR>[Called By]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_init
+<LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_write_reg
+<LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_window
+<LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_read_reg8
+</UL>
+
+<P><STRONG><a name="[f6]"></a>par_port_write_data</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, port_impl_par_stm32f103zet6.o(i.par_port_write_data))
+<BR><BR>[Called By]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_write_reg
+</UL>
+
+<P><STRONG><a name="[d1]"></a>par_port_write_data_block</STRONG> (Thumb, 48 bytes, Stack size 12 bytes, port_impl_par_stm32f103zet6.o(i.par_port_write_data_block))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = par_port_write_data_block
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_show_line
-<LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_clear
+<BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_show_line
+<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_clear
 </UL>
 
-<P><STRONG><a name="[e7]"></a>tim4_init</STRONG> (Thumb, 140 bytes, Stack size 40 bytes, tim_init.o(i.tim4_init))
+<P><STRONG><a name="[f2]"></a>tim4_init</STRONG> (Thumb, 140 bytes, Stack size 40 bytes, tim_init.o(i.tim4_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = tim4_init &rArr; GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_TimeBaseInit
-<LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_OC3PreloadConfig
-<LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_OC3Init
-<LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_Cmd
-<LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_ARRPreloadConfig
-<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB1PeriphClockCmd
+<BR>[Calls]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_TimeBaseInit
+<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_OC3PreloadConfig
+<LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_OC3Init
+<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_Cmd
+<LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_ARRPreloadConfig
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB1PeriphClockCmd
 <LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
 <LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;hal_init
+<BR>[Called By]<UL><LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;hal_init
 </UL>
 
-<P><STRONG><a name="[c6]"></a>timer_port_delay_us</STRONG> (Thumb, 70 bytes, Stack size 16 bytes, port_impl_timer_stm32f103zet6.o(i.timer_port_delay_us))
+<P><STRONG><a name="[cb]"></a>timer_port_delay_us</STRONG> (Thumb, 70 bytes, Stack size 16 bytes, port_impl_timer_stm32f103zet6.o(i.timer_port_delay_us))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = timer_port_delay_us &rArr; delay_timebase_init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_GetCounter
-<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_timebase_init
+<BR>[Calls]<UL><LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_GetCounter
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_timebase_init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_init
-<LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_dht11_read
-<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dht11_wait_level
+<BR>[Called By]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_init
+<LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_read_reg8
+<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_dht11_read
+<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dht11_wait_level
 </UL>
 
 <P><STRONG><a name="[98]"></a>timer_port_init</STRONG> (Thumb, 46 bytes, Stack size 16 bytes, port_impl_timer_stm32f103zet6.o(i.timer_port_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = timer_port_init &rArr; delay_timebase_init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_timebase_init
+<BR>[Calls]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_timebase_init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_init
 </UL>
@@ -1409,123 +1485,204 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_init
 </UL>
 
-<P><STRONG><a name="[b0]"></a>uart_port_init</STRONG> (Thumb, 130 bytes, Stack size 24 bytes, port_impl_uart_stm32f103zet6.o(i.uart_port_init))
+<P><STRONG><a name="[b5]"></a>uart_port_init</STRONG> (Thumb, 130 bytes, Stack size 24 bytes, port_impl_uart_stm32f103zet6.o(i.uart_port_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 116<LI>Call Chain = uart_port_init &rArr; usart1_init &rArr; USART_Init &rArr; RCC_GetClocksFreq
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ITConfig
-<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart1_init
+<BR>[Calls]<UL><LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ITConfig
+<LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart1_init
 <LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ReceiveData
-<LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_GetFlagStatus
-<LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_nvic_config
-<LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_map_instance
+<LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_GetFlagStatus
+<LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_nvic_config
+<LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_map_instance
 </UL>
-<BR>[Called By]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_uart_report_init
+<BR>[Called By]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_uart_report_init
 </UL>
 
-<P><STRONG><a name="[b2]"></a>uart_port_write</STRONG> (Thumb, 142 bytes, Stack size 32 bytes, port_impl_uart_stm32f103zet6.o(i.uart_port_write))
+<P><STRONG><a name="[b7]"></a>uart_port_write</STRONG> (Thumb, 142 bytes, Stack size 32 bytes, port_impl_uart_stm32f103zet6.o(i.uart_port_write))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = uart_port_write
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_SendData
-<LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_GetFlagStatus
+<BR>[Calls]<UL><LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_SendData
+<LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_GetFlagStatus
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_uart_report_poll
+<BR>[Called By]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_uart_report_poll
+<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_diag_str
 </UL>
 
-<P><STRONG><a name="[e8]"></a>usart1_init</STRONG> (Thumb, 126 bytes, Stack size 24 bytes, uart_init.o(i.usart1_init))
+<P><STRONG><a name="[f3]"></a>usart1_init</STRONG> (Thumb, 126 bytes, Stack size 24 bytes, uart_init.o(i.usart1_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = usart1_init &rArr; USART_Init &rArr; RCC_GetClocksFreq
 </UL>
 <BR>[Calls]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_Init
-<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ITConfig
-<LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_Cmd
+<LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ITConfig
+<LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_Cmd
 <LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
 <LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_port_init
-<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;hal_init
+<BR>[Called By]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_port_init
+<LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;hal_init
+</UL>
+
+<P><STRONG><a name="[ae]"></a>wdt_port_feed</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, port_impl_wdt_stm32f103zet6.o(i.wdt_port_feed))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = wdt_port_feed
+</UL>
+<BR>[Calls]<UL><LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IWDG_ReloadCounter
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_loop
+</UL>
+
+<P><STRONG><a name="[9e]"></a>wdt_port_init</STRONG> (Thumb, 134 bytes, Stack size 24 bytes, port_impl_wdt_stm32f103zet6.o(i.wdt_port_init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = wdt_port_init
+</UL>
+<BR>[Calls]<UL><LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IWDG_WriteAccessCmd
+<LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IWDG_SetReload
+<LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IWDG_SetPrescaler
+<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IWDG_ReloadCounter
+<LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IWDG_Enable
+</UL>
+<BR>[Called By]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_init
 </UL>
 <P>
 <H3>
 Local Symbols
 </H3>
-<P><STRONG><a name="[d7]"></a>gpio_actuator_init</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, gpio_init.o(i.gpio_actuator_init))
+<P><STRONG><a name="[e2]"></a>gpio_actuator_init</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, gpio_init.o(i.gpio_actuator_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = gpio_actuator_init &rArr; GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
+<BR>[Calls]<UL><LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
 <LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
 <LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
+<BR>[Called By]<UL><LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
 </UL>
 
-<P><STRONG><a name="[da]"></a>gpio_fsmc_bus_init</STRONG> (Thumb, 116 bytes, Stack size 8 bytes, gpio_init.o(i.gpio_fsmc_bus_init))
+<P><STRONG><a name="[e5]"></a>gpio_fsmc_bus_init</STRONG> (Thumb, 116 bytes, Stack size 8 bytes, gpio_init.o(i.gpio_fsmc_bus_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = gpio_fsmc_bus_init &rArr; GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
 <LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
+<BR>[Called By]<UL><LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
 </UL>
 
-<P><STRONG><a name="[dd]"></a>gpio_key_init</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, gpio_init.o(i.gpio_key_init))
+<P><STRONG><a name="[e8]"></a>gpio_key_init</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, gpio_init.o(i.gpio_key_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = gpio_key_init &rArr; GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
 <LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
+<BR>[Called By]<UL><LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
 </UL>
 
-<P><STRONG><a name="[de]"></a>gpio_lcd_backlight_init</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, gpio_init.o(i.gpio_lcd_backlight_init))
+<P><STRONG><a name="[e9]"></a>gpio_lcd_backlight_init</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, gpio_init.o(i.gpio_lcd_backlight_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = gpio_lcd_backlight_init &rArr; GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
+<BR>[Calls]<UL><LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
 <LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
 <LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
+<BR>[Called By]<UL><LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
 </UL>
 
-<P><STRONG><a name="[dc]"></a>gpio_led_init</STRONG> (Thumb, 68 bytes, Stack size 8 bytes, gpio_init.o(i.gpio_led_init))
+<P><STRONG><a name="[e7]"></a>gpio_led_init</STRONG> (Thumb, 68 bytes, Stack size 8 bytes, gpio_init.o(i.gpio_led_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = gpio_led_init &rArr; GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
+<BR>[Calls]<UL><LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
 <LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
 <LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
+<BR>[Called By]<UL><LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
 </UL>
 
-<P><STRONG><a name="[c4]"></a>dht11_wait_level</STRONG> (Thumb, 68 bytes, Stack size 32 bytes, driver_dht11.o(i.dht11_wait_level))
+<P><STRONG><a name="[c9]"></a>dht11_wait_level</STRONG> (Thumb, 68 bytes, Stack size 32 bytes, driver_dht11.o(i.dht11_wait_level))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = dht11_wait_level &rArr; timer_port_delay_us &rArr; delay_timebase_init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_port_delay_us
-<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_read
+<BR>[Calls]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_port_delay_us
+<LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_read
 </UL>
-<BR>[Called By]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_dht11_read
+<BR>[Called By]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_dht11_read
 </UL>
 
-<P><STRONG><a name="[d0]"></a>lcd_font_index</STRONG> (Thumb, 38 bytes, Stack size 16 bytes, driver_lcd.o(i.lcd_font_index))
+<P><STRONG><a name="[d3]"></a>lcd_diag_hex</STRONG> (Thumb, 66 bytes, Stack size 16 bytes, driver_lcd.o(i.lcd_diag_hex))
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = lcd_diag_hex &rArr; lcd_diag_str &rArr; uart_port_write
+</UL>
+<BR>[Calls]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_diag_str
+</UL>
+<BR>[Called By]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_read_id
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_init
+<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_diag_dump
+</UL>
+
+<P><STRONG><a name="[d2]"></a>lcd_diag_str</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, driver_lcd.o(i.lcd_diag_str))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = lcd_diag_str &rArr; uart_port_write
+</UL>
+<BR>[Calls]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_port_write
+</UL>
+<BR>[Called By]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_read_id
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_init
+<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_diag_dump
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_diag_hex
+</UL>
+
+<P><STRONG><a name="[db]"></a>lcd_font_index</STRONG> (Thumb, 38 bytes, Stack size 16 bytes, driver_lcd.o(i.lcd_font_index))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = lcd_font_index
 </UL>
-<BR>[Calls]<UL><LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strchr
+<BR>[Calls]<UL><LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strchr
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_show_line
+<BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_show_line
 </UL>
 
-<P><STRONG><a name="[d1]"></a>lcd_glyph_bit</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, driver_lcd.o(i.lcd_glyph_bit))
+<P><STRONG><a name="[dc]"></a>lcd_glyph_bit</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, driver_lcd.o(i.lcd_glyph_bit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = lcd_glyph_bit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_show_line
+<BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_show_line
 </UL>
 
-<P><STRONG><a name="[cb]"></a>lcd_set_window</STRONG> (Thumb, 188 bytes, Stack size 24 bytes, driver_lcd.o(i.lcd_set_window))
-<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = lcd_set_window
+<P><STRONG><a name="[da]"></a>lcd_read_reg8</STRONG> (Thumb, 66 bytes, Stack size 24 bytes, driver_lcd.o(i.lcd_read_reg8))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = lcd_read_reg8 &rArr; timer_port_delay_us &rArr; delay_timebase_init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;par_port_write_data
-<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;par_port_write_cmd
+<BR>[Calls]<UL><LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;par_port_write_cmd
+<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;par_port_read_data
+<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_port_delay_us
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_show_line
-<LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_clear
+<BR>[Called By]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_read_id
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_init
+</UL>
+
+<P><STRONG><a name="[d0]"></a>lcd_set_window</STRONG> (Thumb, 146 bytes, Stack size 24 bytes, driver_lcd.o(i.lcd_set_window))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = lcd_set_window &rArr; lcd_write_reg
+</UL>
+<BR>[Calls]<UL><LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;par_port_write_cmd
+<LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_write_reg
+</UL>
+<BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_show_line
+<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_clear
+</UL>
+
+<P><STRONG><a name="[d8]"></a>lcd_write_gamma_page</STRONG> (Thumb, 52 bytes, Stack size 16 bytes, driver_lcd.o(i.lcd_write_gamma_page))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = lcd_write_gamma_page &rArr; lcd_write_reg
+</UL>
+<BR>[Calls]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_write_reg
+</UL>
+<BR>[Called By]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_init
+</UL>
+
+<P><STRONG><a name="[d9]"></a>lcd_write_reg</STRONG> (Thumb, 32 bytes, Stack size 16 bytes, driver_lcd.o(i.lcd_write_reg))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = lcd_write_reg
+</UL>
+<BR>[Calls]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;par_port_write_data
+<LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;par_port_write_cmd
+</UL>
+<BR>[Called By]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_init
+<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_write_table
+<LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_write_gamma_page
+<LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_window
+</UL>
+
+<P><STRONG><a name="[d7]"></a>lcd_write_table</STRONG> (Thumb, 48 bytes, Stack size 24 bytes, driver_lcd.o(i.lcd_write_table))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = lcd_write_table &rArr; lcd_write_reg
+</UL>
+<BR>[Calls]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_write_reg
+</UL>
+<BR>[Called By]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;driver_lcd_init
 </UL>
 
 <P><STRONG><a name="[4d]"></a>app_on_tick</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, app.o(i.app_on_tick))
@@ -1541,63 +1698,63 @@ Local Symbols
 <LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_alarm_control_init
 </UL>
 
-<P><STRONG><a name="[a0]"></a>key_scan</STRONG> (Thumb, 172 bytes, Stack size 8 bytes, app_key_handler.o(i.key_scan))
+<P><STRONG><a name="[a1]"></a>key_scan</STRONG> (Thumb, 172 bytes, Stack size 8 bytes, app_key_handler.o(i.key_scan))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = key_scan
 </UL>
-<BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_key_handler_poll
+<BR>[Called By]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_key_handler_poll
 </UL>
 
-<P><STRONG><a name="[a6]"></a>disp_append_int</STRONG> (Thumb, 120 bytes, Stack size 32 bytes, app_lcd_display.o(i.disp_append_int))
+<P><STRONG><a name="[aa]"></a>disp_append_int</STRONG> (Thumb, 120 bytes, Stack size 32 bytes, app_lcd_display.o(i.disp_append_int))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = disp_append_int
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;disp_len
+<BR>[Calls]<UL><LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;disp_len
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_lcd_display_poll
-</UL>
-
-<P><STRONG><a name="[a4]"></a>disp_copy</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, app_lcd_display.o(i.disp_copy))
-<BR><BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_lcd_display_poll
+<BR>[Called By]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_lcd_display_poll
 </UL>
 
-<P><STRONG><a name="[c7]"></a>disp_len</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, app_lcd_display.o(i.disp_len))
-<BR><BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;disp_append_int
+<P><STRONG><a name="[a8]"></a>disp_copy</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, app_lcd_display.o(i.disp_copy))
+<BR><BR>[Called By]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_lcd_display_poll
 </UL>
 
-<P><STRONG><a name="[d9]"></a>gpio_apply_dir</STRONG> (Thumb, 66 bytes, Stack size 16 bytes, port_impl_gpio_stm32f103zet6.o(i.gpio_apply_dir))
+<P><STRONG><a name="[cc]"></a>disp_len</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, app_lcd_display.o(i.disp_len))
+<BR><BR>[Called By]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;disp_append_int
+</UL>
+
+<P><STRONG><a name="[e4]"></a>gpio_apply_dir</STRONG> (Thumb, 66 bytes, Stack size 16 bytes, port_impl_gpio_stm32f103zet6.o(i.gpio_apply_dir))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = gpio_apply_dir &rArr; GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_init
-<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_set_dir
+<BR>[Called By]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_set_dir
+<LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_port_init
 </UL>
 
-<P><STRONG><a name="[bf]"></a>delay_timebase_init</STRONG> (Thumb, 62 bytes, Stack size 16 bytes, port_impl_timer_stm32f103zet6.o(i.delay_timebase_init))
+<P><STRONG><a name="[c4]"></a>delay_timebase_init</STRONG> (Thumb, 62 bytes, Stack size 16 bytes, port_impl_timer_stm32f103zet6.o(i.delay_timebase_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = delay_timebase_init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_TimeBaseInit
-<LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_Cmd
-<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB1PeriphClockCmd
+<BR>[Calls]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_TimeBaseInit
+<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_Cmd
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB1PeriphClockCmd
 </UL>
 <BR>[Called By]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_port_init
-<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_port_delay_us
+<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_port_delay_us
 </UL>
 
-<P><STRONG><a name="[f2]"></a>uart_map_instance</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, port_impl_uart_stm32f103zet6.o(i.uart_map_instance))
-<BR><BR>[Called By]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_port_init
+<P><STRONG><a name="[ff]"></a>uart_map_instance</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, port_impl_uart_stm32f103zet6.o(i.uart_map_instance))
+<BR><BR>[Called By]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_port_init
 </UL>
 
-<P><STRONG><a name="[f0]"></a>uart_map_irqn</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, port_impl_uart_stm32f103zet6.o(i.uart_map_irqn))
-<BR><BR>[Called By]<UL><LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_nvic_config
+<P><STRONG><a name="[fd]"></a>uart_map_irqn</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, port_impl_uart_stm32f103zet6.o(i.uart_map_irqn))
+<BR><BR>[Called By]<UL><LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_nvic_config
 </UL>
 
-<P><STRONG><a name="[ef]"></a>uart_nvic_config</STRONG> (Thumb, 42 bytes, Stack size 16 bytes, port_impl_uart_stm32f103zet6.o(i.uart_nvic_config))
+<P><STRONG><a name="[fc]"></a>uart_nvic_config</STRONG> (Thumb, 42 bytes, Stack size 16 bytes, port_impl_uart_stm32f103zet6.o(i.uart_nvic_config))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = uart_nvic_config &rArr; NVIC_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_Init
-<LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_map_irqn
+<BR>[Calls]<UL><LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_Init
+<LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_map_irqn
 </UL>
-<BR>[Called By]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_port_init
+<BR>[Called By]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_port_init
 </UL>
 
 <P><STRONG><a name="[72]"></a>SetSysClock</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, system_stm32f10x.o(i.SetSysClock))

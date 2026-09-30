@@ -4,4 +4,5 @@
 - none
 
 ## 已有实现
-- none
+- SysTick周期为1000ms；
+- uart缓存大小为1KB；

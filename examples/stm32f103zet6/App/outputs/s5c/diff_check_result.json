@@ -1,0 +1,18 @@
+{
+  "reports": [
+    {
+      "peripheral": "par",
+      "status": "ok",
+      "files": [
+        {
+          "file": "Drivers/Port/Src/port_impl_par_stm32f103zet6.c",
+          "added": 13,
+          "removed": 0,
+          "baseline_lines": 96
+        }
+      ]
+    }
+  ],
+  "anomaly_count": 0,
+  "updated_at": "2026-09-29T15:22:03"
+}

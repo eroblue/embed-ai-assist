@@ -108,6 +108,13 @@
           "callback": null
         },
         {
+          "function": "par_port_read_data",
+          "signature": "int32_t par_port_read_data(par_port_id_t id, uint16_t *data)",
+          "description": "读一个数据字（总线读原语）：器件 ID / 寄存器回读用，用于区分“总线不通”与“初始化序列不匹配”；读时序由 S5a 总线初始化配置",
+          "isr_safe": false,
+          "callback": null
+        },
+        {
           "function": "par_port_write_data_block",
           "signature": "int32_t par_port_write_data_block(par_port_id_t id, const uint16_t *buf, uint32_t len)",
           "description": "数据字块流式写（同步拷贝语义，返回后 buf 可复用；像素流用）",
@@ -303,7 +310,7 @@
           "description": "10ms 周期节拍（主循环软轮询调度）；delay_us 供 DHT11 位时序与 LCD 上电延时",
           "hw_instance": null,
           "hw_source": "design_input",
-          "config": {"period_ms": 10}
+          "config": {}
         }
       ],
       "interfaces": [
@@ -353,7 +360,54 @@
       ],
       "notes": [
         "hw_instance=null：设计输入仅约定 10ms 主循环节拍，未指定硬件定时器，S5c 按 hardware_capabilities 匹配（建议 SysTick 或空闲通用定时器，见 REC-005）",
+        "周期不在 manifest 登记：由调用方经 timer_port_start_periodic(period_ms) 传入，属 APP 决策（本工程设计输入为 10ms）；manifest 只登记硬件映射，避免与实现重复维护同一数值",
         "delay_us 实现基于定时器计数（SysTick/总线时钟皆可），禁止在中断内调用"
+      ]
+    },
+    {
+      "file": "Drivers/Port/Inc/wdt_port.h",
+      "kind": "peripheral",
+      "peripheral": "wdt",
+      "description": "Watchdog Port 接口：系统固件存活监测（独立看门狗 IWDG）",
+      "logical_instances": [
+        {
+          "name": "system_wdt",
+          "description": "系统看门狗（整个固件存活监测，超时 ≈ 1s）",
+          "hw_instance": "IWDG",
+          "hw_source": "design_input",
+          "config": {}
+        }
+      ],
+      "interfaces": [
+        {
+          "function": "wdt_port_init",
+          "signature": "int32_t wdt_port_init(wdt_port_id_t id, uint32_t timeout_ms)",
+          "description": "按调用方给定的超时（ms）换算预分频/重装载、配置并启动看门狗（换算基取 hardware_capabilities 的 IWDG 能力）；超量程返回 PORT_ERR_PARAM，重复调用返回 PORT_ERR_STATE",
+          "isr_safe": false,
+          "callback": null
+        },
+        {
+          "function": "wdt_port_feed",
+          "signature": "int32_t wdt_port_feed(wdt_port_id_t id)",
+          "description": "喂狗（刷新计数），须在 timeout_ms 窗口内周期调用",
+          "isr_safe": true,
+          "callback": null
+        },
+        {
+          "function": "wdt_port_reset_caused",
+          "signature": "int32_t wdt_port_reset_caused(wdt_port_id_t id, uint8_t *caused)",
+          "description": "查询上次复位是否由看门狗引起（读并清 IWDGRST 标志；caused：1=是 / 0=否）",
+          "isr_safe": false,
+          "callback": null
+        }
+      ],
+      "callbacks": [],
+      "notes": [
+        "超时窗口是应用策略：由调用方经 wdt_port_init(timeout_ms) 传入，**不在 manifest config 登记**（同一数值两处维护必然漂移），实现层按 hardware_capabilities 的 LSI 频率换算 PR/RLR",
+        "S5a 不生成看门狗初始化代码（IWDG 无时钟门控/无引脚，LSI 由硬件自动使能），只声明硬件能力；本层负责全部配置（PR/RLR）与启动（IWDG_Enable）",
+        "换算量程约 0.1ms ~ 26.2s（LSI 40kHz / PR 4~256 / RLR 12 位），超出返回 PORT_ERR_PARAM",
+        "IWDG 一旦启动不可关闭，故无 deinit",
+        "本工程调用方：app_init 以 APP_WDT_TIMEOUT_MS(1000ms) 启动、app_loop 每 10ms 喂狗"
       ]
     }
   ],

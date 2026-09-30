@@ -98,6 +98,15 @@
       "status": "covered"
     },
     {
+      "requirement": "INT-WDT 看门狗存活监测通道：IWDG 硬件（LSI 40kHz，PR 4~256 / RLR 12 位，S5a 只声明能力、不生成初始化代码），超时窗口为应用策略——APP 经 wdt_port_init(timeout_ms) 传入（本工程 1000ms），Port 层换算 PR/RLR 并启动，app_loop 每 10ms 喂狗",
+      "source": "design_input",
+      "source_ref": "s5a_design_input#IWDG / s5b_design_input#看门狗",
+      "flow": null,
+      "files": ["Drivers/Port/Inc/wdt_port.h", "App/Src/app.c"],
+      "functions": ["wdt_port_init", "wdt_port_feed", "wdt_port_reset_caused", "app_init", "app_loop"],
+      "status": "covered"
+    },
+    {
       "requirement": "REQ-010 初始化失败降级：跳过失败模块其余功能继续；运行灯闪烁模式提示",
       "source": "spec",
       "source_ref": "spec#REQ-010",
@@ -146,6 +155,6 @@
       "status": "covered"
     }
   ],
-  "summary": {"total": 15, "covered": 14, "partial": 1, "uncovered": 0},
+  "summary": {"total": 16, "covered": 15, "partial": 1, "uncovered": 0},
   "generated_at": "2026-09-28T08:18:00"
 }

@@ -7,7 +7,8 @@
  *  按键(10ms) → 采集(2s) → 告警评估(10ms) → 显示(200ms) → 上报(5s)。
  * 按键事件路由：MODE/MUTE → app_mode_control，SWITCH → app_alarm_control。
  * LED_RUN 运行指示优先级：
- *  慢闪（LCD 初始化失败）> 快闪（上报持续失败）> 心跳 1Hz。
+ *  慢闪（LCD 初始化失败）> N 快闪+长停（LCD 自检故障码）> 快闪（上报持续失败）> 心跳 1Hz。
+ * 看门狗：app_init 末尾以 APP_WDT_TIMEOUT_MS 启动（wdt_port_init），主循环每 10ms 喂狗（wdt_port_feed）。
  */
 #include "app.h"
 #include "app_mode_control.h"
@@ -18,6 +19,11 @@
 #include "app_uart_report.h"
 #include "gpio_port.h"
 #include "timer_port.h"
+#include "wdt_port.h"
+
+/* 看门狗超时窗口（**应用策略**）：本工程 1000ms。主循环每 10ms 喂狗（100 倍余量）；
+   该数值由 APP 决定并经 wdt_port_init 下发——S5a 设计输入与 manifest 都不固化它 */
+#define APP_WDT_TIMEOUT_MS  1000u
 
 static volatile uint8_t s_tick_flag; /* ISR 置标志，主循环消费 */
 
@@ -44,19 +50,28 @@ int32_t app_init(void)
     r = app_key_handler_init();
     if (r != PORT_OK) { return r; }
 
-    /* 采集 + 告警（env_sensor 的恢复/故障事件直接连到 alarm_control） */
-    r = app_env_sensor_init();
-    if (r != PORT_OK) { return r; }
+    /* 告警须先于采集初始化：采集模块在"尚无有效读数"时会立即发布传感器故障事件，
+       而 app_alarm_control_init 会把告警状态复位为 NORMAL——后 init 会覆盖该事件 */
     r = app_alarm_control_init();
     if (r != PORT_OK) { return r; }
 
-    /* 输出（LCD/UART 初始化失败不阻断启动：软失败由模块就绪标志处理） */
-    (void)app_lcd_display_init();
+    /* 采集（env_sensor 的恢复/故障事件直接连到 alarm_control） */
+    r = app_env_sensor_init();
+    if (r != PORT_OK) { return r; }
+
+    /* 输出（LCD/UART 初始化失败不阻断启动：软失败由模块就绪标志处理）
+       串口先行：LCD 初始化过程要经 uart_port 输出联调诊断（driver_lcd 的
+       DRIVER_LCD_DIAG_LOG 开关），故 uart 实例须先绑定 */
     (void)app_uart_report_init();
+    (void)app_lcd_display_init();
 
     /* 运行指示灯 */
     r = gpio_port_init(GPIO_PORT_LED_RUN, &cfg_led_run);
     if (r != PORT_OK) { return r; }
+
+    /* 看门狗最后启动（全部初始化完成后），超时由本层按应用策略给定；
+       IWDG 一旦启动不可关闭，且属安全兜底而非功能项——启动失败不阻断系统 */
+    (void)wdt_port_init(WDT_PORT_SYSTEM, APP_WDT_TIMEOUT_MS);
     return PORT_OK;
 }
 
@@ -70,6 +85,10 @@ void app_loop(void)
             /* 等 10ms 节拍（裸机轮询；RTOS 工程此处为 OSAL 延时/信号量） */
         }
         s_tick_flag = 0;
+
+        /* 0. 喂狗：每个 10ms 节拍喂一次（IWDG 超时 ≈1s，余量充足）；
+           未启动时接口返回 PORT_ERR_STATE，无害 */
+        (void)wdt_port_feed(WDT_PORT_SYSTEM);
 
         /* 1. 按键采样 → 事件分发 */
         app_key_handler_poll();
@@ -100,9 +119,20 @@ void app_loop(void)
         /* 3. LED_RUN 运行指示（节拍 200 为公共周期） */
         led_tick++;
         if (app_lcd_display_is_ready() == 0) {
-            /* 慢闪：亮 1s / 灭 1s（初始化失败，最高优先级） */
+            /* 慢闪：亮 1s / 灭 1s（LCD 初始化失败：端口失败或总线无响应） */
             (void)gpio_port_set_active(GPIO_PORT_LED_RUN,
                                        (uint8_t)(((led_tick / 100u) % 2u) == 0u));
+        } else if (app_lcd_display_diag_code() != 0u) {
+            /* LCD 自检故障码：N 快闪（150ms）+ 长停，N=码值
+               （2=面板 ID 不符 / 3=寄存器回读异常；无串口时的定位手段） */
+            uint8_t  n = app_lcd_display_diag_code();
+            uint16_t phase = (uint16_t)(led_tick / 15u);   /* 15 拍 = 150ms 一相 */
+            if (phase < (uint16_t)(2u * (uint16_t)n)) {
+                (void)gpio_port_set_active(GPIO_PORT_LED_RUN,
+                                           (uint8_t)((phase % 2u) == 0u));
+            } else {
+                (void)gpio_port_set_active(GPIO_PORT_LED_RUN, 0u);
+            }
         } else if (app_uart_report_is_failing() != 0) {
             /* 快闪：亮 250ms / 灭 250ms（上报持续失败） */
             (void)gpio_port_set_active(GPIO_PORT_LED_RUN,

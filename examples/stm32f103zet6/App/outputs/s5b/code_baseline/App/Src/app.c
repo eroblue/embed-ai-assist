@@ -8,6 +8,7 @@
  * 按键事件路由：MODE/MUTE → app_mode_control，SWITCH → app_alarm_control。
  * LED_RUN 运行指示优先级：
  *  慢闪（LCD 初始化失败）> 快闪（上报持续失败）> 心跳 1Hz。
+ * 看门狗：app_init 末尾以 APP_WDT_TIMEOUT_MS 启动（wdt_port_init），主循环每 10ms 喂狗（wdt_port_feed）。
  */
 #include "app.h"
 #include "app_mode_control.h"
@@ -18,6 +19,11 @@
 #include "app_uart_report.h"
 #include "gpio_port.h"
 #include "timer_port.h"
+#include "wdt_port.h"
+
+/* 看门狗超时窗口（**应用策略**）：本工程 1000ms。主循环每 10ms 喂狗（100 倍余量）；
+   该数值由 APP 决定并经 wdt_port_init 下发——S5a 设计输入与 manifest 都不固化它 */
+#define APP_WDT_TIMEOUT_MS  1000u
 
 static volatile uint8_t s_tick_flag; /* ISR 置标志，主循环消费 */
 
@@ -57,6 +63,10 @@ int32_t app_init(void)
     /* 运行指示灯 */
     r = gpio_port_init(GPIO_PORT_LED_RUN, &cfg_led_run);
     if (r != PORT_OK) { return r; }
+
+    /* 看门狗最后启动（全部初始化完成后），超时由本层按应用策略给定；
+       IWDG 一旦启动不可关闭，且属安全兜底而非功能项——启动失败不阻断系统 */
+    (void)wdt_port_init(WDT_PORT_SYSTEM, APP_WDT_TIMEOUT_MS);
     return PORT_OK;
 }
 
@@ -70,6 +80,10 @@ void app_loop(void)
             /* 等 10ms 节拍（裸机轮询；RTOS 工程此处为 OSAL 延时/信号量） */
         }
         s_tick_flag = 0;
+
+        /* 0. 喂狗：每个 10ms 节拍喂一次（IWDG 超时 ≈1s，余量充足）；
+           未启动时接口返回 PORT_ERR_STATE，无害 */
+        (void)wdt_port_feed(WDT_PORT_SYSTEM);
 
         /* 1. 按键采样 → 事件分发 */
         app_key_handler_poll();

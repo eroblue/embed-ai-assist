@@ -107,9 +107,10 @@ port-contract-and-app/
 │   ├── incremental_generation_rules.md ← 定点修改原则/范围校验阈值
 │   └── ide_project_formats.md        ← IDE 工程说明（Agent 不碰工程文件）
 └── assets/
-    ├── port_templates/               ← 8 个 Port 接口模板（挑选→裁剪→扩展）
+    ├── port_templates/               ← 9 个 Port 接口模板（挑选→裁剪→扩展）
     │   ├── uart_port.h.tpl / i2c_port.h.tpl / spi_port.h.tpl
     │   ├── gpio_port.h.tpl / adc_port.h.tpl / timer_port.h.tpl
+    │   ├── wdt_port.h.tpl（通用必备外设的默认接口，用看门狗时取用）
     │   ├── osal.h.tpl（rtos != none 时生成）
     │   └── power_port.h.tpl（power.enabled 时生成）
     ├── flow_skeletons/               ← 3 个流程图骨架（front-matter + 围栏）
@@ -186,7 +187,7 @@ capability_gap.json 由 Agent 复核）。
 | `app_<功能>_task.c/h` | `App/Src/` | RTOS 且非 flat；任务创建统一在 app.c |
 | `app.c/h` | `App/Src/` | 总是（初始化汇总 + 主循环/任务创建） |
 | `driver_<设备>.c/h` | `Drivers/BSP/{Src,Inc}/` | 板载器件驱动（与 S5a 初始化同层不同名前缀） |
-| `<外设>_port.h`（uart/i2c/spi/gpio/adc/timer…） | `Drivers/Port/Inc/` | **非 flat** 且该外设有使用（模板 assets/port_templates/） |
+| `<外设>_port.h`（uart/i2c/spi/gpio/adc/timer/wdt…） | `Drivers/Port/Inc/` | **非 flat** 且该外设有使用（模板 assets/port_templates/；wdt 为通用必备外设，用看门狗时直接取 `wdt_port.h.tpl` —— 超时值归 S5a，接口只含 init/feed/reset_caused） |
 | `osal.h` | `Drivers/Port/Inc/` | **RTOS 时总是生成（含 flat）** |
 | `power_port.h` | `Drivers/Port/Inc/` | power.enabled 且非 flat |
 

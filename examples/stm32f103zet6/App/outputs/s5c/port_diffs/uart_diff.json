@@ -1,0 +1,17 @@
+{
+  "peripheral": "uart",
+  "kind": "peripheral",
+  "file": "Drivers/Port/Src/port_impl_uart_stm32f103zet6.c",
+  "file_exists": true,
+  "generation_mode": "skip",
+  "signature_changed": false,
+  "snapshot_missing": false,
+  "change_rate": 0.0,
+  "change_count": 0,
+  "file_hash_changed": false,
+  "changes": [],
+  "reason": "接口签名与文件哈希均未变，跳过该文件",
+  "drift_warning": null,
+  "updated_at": "2026-09-29T16:57:28",
+  "design_input_changed": false
+}

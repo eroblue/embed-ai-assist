@@ -51,6 +51,7 @@ sys.path.insert(0, str(SKILL_DIR.parent / "_shared" / "scripts"))
 import analysis  # noqa: E402
 import ensure_layout as ensure_layout_mod  # noqa: E402
 import layout_resolver  # noqa: E402
+import port_differ  # noqa: E402
 import state_store  # noqa: E402
 
 EXIT_OK = 0
@@ -137,8 +138,13 @@ def _manifest_inventory_lines(manifest: dict, platform_token: str, rtos: str) ->
     return lines
 
 
-def build_brief(ctx: dict, plan: dict, impl_scan: dict, recommendations: list[dict]) -> str:
-    """构建 generation_brief.md（S5c Agent 任务书）。"""
+def build_brief(ctx: dict, plan: dict, impl_scan: dict, recommendations: list[dict],
+                diff_results: list[dict] | None = None,
+                snapshot_missing: bool = False) -> str:
+    """构建 generation_brief.md（S5c Agent 任务书）。
+
+    diff_results：port_differ 的 per-peripheral 判定结果（None=未执行，兜底全部 full）。
+    """
     platform_token = ctx["platform_token"]
     rtos, arch = ctx["rtos"], ctx["architecture"]
     src_dirs = plan["skill_dirs"]["s5c"]["src"]
@@ -219,23 +225,70 @@ def build_brief(ctx: dict, plan: dict, impl_scan: dict, recommendations: list[di
             f"{ctx['s5a'].get('power_init') or '-'}）")
         add("")
 
-    # ---- 5. 待生成文件清单 ----
-    add("## 5. 待生成文件清单（按外设一文件，跳过'用户已修改'文件）")
+    # ---- 5. 生成模式表（per-peripheral 增量判定结果，逐单元处理依据）----
+    add("## 5. 生成模式表（逐单元处理依据）")
     add("")
-    for h in analysis.manifest_peripheral_headers(ctx["manifest"]):
-        periph = analysis.slug_token(h.get("peripheral") or "")
-        add(f"- `{analysis.impl_file_name(periph, platform_token)}`")
-    if rtos != "none":
-        add(f"- `{analysis.osal_impl_file_name(rtos)}`")
-    if ctx["power_enabled"] and arch != "flat":
-        add(f"- `{analysis.power_impl_file_name(platform_token)}`")
-    add("")
+    if snapshot_missing:
+        add("- **首次执行（无 `port_manifest_snapshot.json`）**：全部单元按 `full` "
+            "建立基线，不跳过任何文件；validate 成功后写入第一份快照。")
+        add("")
+    if not diff_results:
+        add("- 无判定结果（manifest 无实现单元？）")
+        add("")
+    else:
+        add("| 单元 | 类型 | 模式 | 实现文件 | 原因 | 用户手改 | 接口变化 |")
+        add("|---|---|---|---|---|---|---|")
+        for r in diff_results:
+            fname = analysis.manifest_unit_file(
+                r["peripheral"], r["kind"], platform_token, rtos)
+            fdisp = r["file"] or f"{fname}（待生成）"
+            sig = (f"{r['change_count']} 处（{r['change_rate']:.0%}）"
+                   if r["signature_changed"] else "无变化")
+            add(f"| {r['peripheral']} | {r['kind']} | **{r['generation_mode']}** | "
+                f"{fdisp} | {r['reason']} | "
+                f"{'是' if r['file_hash_changed'] else '否'} | {sig} |")
+        add("")
+        add("**处置规则**：`full`=全量重生成该文件；`incremental`=**只做定点修改**"
+            "（见 `references/incremental_generation_rules.md`，无权整文件重写）；"
+            "`skip`=**绝对不动该文件**（含用户手改与接口未变两类）；"
+            "`blocked`=**报告用户**（手改 + 上游变更冲突，不自行处理）；"
+            "`deprecated`=移除该实现文件（IDE 引用由 ide_sync 收口）。")
+        add("")
+        blocked = [r for r in diff_results if r["generation_mode"] == "blocked"]
+        if blocked:
+            add("### ⚠️ blocked——必须报告用户（不得自行处理）")
+            add("")
+            for r in blocked:
+                add(f"- `{r['peripheral']}`（{r['file'] or '文件缺失'}）：{r['reason']}")
+            add("")
+        deprecated = [r for r in diff_results if r["generation_mode"] == "deprecated"]
+        if deprecated:
+            add("### deprecated——移除对应实现文件")
+            add("")
+            for r in deprecated:
+                add(f"- `{r['peripheral']}`：{r['reason']}")
+            add("")
+        drifted = [r for r in diff_results if r.get("drift_warning")]
+        if drifted:
+            add("### ⚠️ 用户修改文件清单（跳过重写——接口漂移风险）")
+            add("")
+            for r in drifted:
+                add(f"- `{r['file']}`：{r['drift_warning']}")
+            add("")
+        if any(r.get("design_input_changed") for r in diff_results):
+            add("### ⚠️ 设计输入已变化（需确认受影响单元）")
+            add("")
+            add("`docs/s5c_design_input.md` 相对上轮快照已变化（**第三判定维度**）。"
+                "设计输入变化**不自动触发重生成**——请按第 2 节原文核对哪些实现单元的"
+                "约束受影响（如缓冲大小/命名风格/低功耗策略），确认后二选一："
+                "删除受影响实现文件（下轮判 `full`）或走 `code-fix` 定点修改。")
+            add("")
     if impl_scan["user_modified"]:
-        add("### 用户修改文件清单（⚠️ 跳过重写——接口漂移风险）")
+        add("### 用户修改检测（skip-if-modified）")
         add("")
         for rel in impl_scan["user_modified"]:
-            add(f"- `{rel}`：用户已修改，**本轮不得重写**；该文件与上游 manifest 会逐渐漂移"
-                "（接口变了、实现没跟上），自行判断保留手改还是删除该文件恢复自动生成")
+            add(f"- `{rel}`：文件哈希与上轮基线不一致（用户改过）——"
+                "按上表模式处置（接口未变=skip 保留手改；接口变化=blocked 报告用户）")
         add("")
 
     # ---- 6. 映射要点与规范引用 ----
@@ -394,6 +447,26 @@ def main(argv: list[str] | None = None) -> int:
     if impl_scan["stale"]:
         analysis.save_file_hashes(ctx["outputs_dir"] / "s5c", removed_hashes)
 
+    # ---- 5b. 代码基线镜像（增量范围校验对照；在 Agent 修改前镜像）----
+    baseline = analysis.mirror_code_baseline(
+        ctx["outputs_dir"] / "s5c", ctx["workspace"],
+        [ctx["workspace"] / d for d in src_dirs])
+    _log(f"代码基线已镜像: {len(baseline)} 文件 → outputs/s5c/code_baseline/")
+
+    # ---- 5c. per-peripheral diff（生成模式判定，requirement 阶段 A 步骤 7）----
+    snapshot = analysis.load_manifest_snapshot(ctx["outputs_dir"] / "s5c")
+    snapshot_missing = snapshot is None
+    if snapshot_missing:
+        _log("无 manifest 快照（首次执行）→ 全部单元 full 建立基线")
+    diff_results = port_differ.diff_all(ctx, plan, removed_hashes, snapshot)
+    diff_modes = {r["peripheral"]: r["generation_mode"] for r in diff_results}
+    diff_paths = [f"outputs/s5c/port_diffs/{r['peripheral']}_diff.json"
+                  for r in diff_results]
+    blocked = [r["peripheral"] for r in diff_results
+               if r["generation_mode"] == "blocked"]
+    if blocked:
+        _log(f"⚠️ blocked 单元（须报告用户，不自行处理）: {', '.join(blocked)}")
+
     # ---- 6. 推荐清单（未指定项）----
     recommendations: list[dict] = []
     rid = 0
@@ -432,7 +505,8 @@ def main(argv: list[str] | None = None) -> int:
     brief_rel = "outputs/s5c/generation_brief.md"
     brief_path = ctx["outputs_dir"] / "s5c" / "generation_brief.md"
     brief_path.parent.mkdir(parents=True, exist_ok=True)
-    brief_path.write_text(build_brief(ctx, plan, impl_scan, recommendations),
+    brief_path.write_text(build_brief(ctx, plan, impl_scan, recommendations,
+                                      diff_results, snapshot_missing),
                           encoding="utf-8", newline="\n")
 
     # ---- 8. state.s5c = running ----
@@ -443,6 +517,10 @@ def main(argv: list[str] | None = None) -> int:
         "power_enabled": ctx["power_enabled"],
         "generation_brief": brief_rel,
         "skipped_files": impl_scan["user_modified"],
+        "port_manifest_snapshot": "outputs/s5c/port_manifest_snapshot.json"
+                                  if not snapshot_missing else None,
+        "port_diffs": diff_paths,
+        "generation_modes": diff_modes,
         "error": None,
         "updated_at": datetime.now().isoformat(timespec="seconds"),
     }

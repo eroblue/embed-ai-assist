@@ -19,6 +19,9 @@
     "power_impl": {"type": ["string", "null"], "description": "Power 实现源文件相对路径（port_impl_power_<平台>.c）；未启用低功耗为 null"},
     "skipped_files": {"type": "array", "items": {"type": "string"}, "description": "因用户已修改而跳过重写的文件列表（skip-if-modified；删除该文件即恢复自动生成）"},
     "capability_gap": {"type": ["string", "null"], "description": "outputs/s5c/capability_gap.json 路径，无缺口时为 null"},
+    "port_manifest_snapshot": {"type": ["string", "null"], "description": "本轮写入的 manifest 快照路径（outputs/s5c/port_manifest_snapshot.json）；接口变化检测基线，首次执行前为 null"},
+    "port_diffs": {"type": "array", "items": {"type": "string"}, "description": "本轮每单元 diff 结果文件路径列表（outputs/s5c/port_diffs/<单元>_diff.json）；首次执行（无快照）可为空"},
+    "generation_modes": {"type": "object", "additionalProperties": {"type": "string", "enum": ["full", "incremental", "skip", "blocked", "deprecated"]}, "description": "每单元生成模式映射 { \"uart\": \"incremental\", \"gpio\": \"skip\", ... }；首次执行可为空"},
     "error": {"type": ["string", "null"]},
     "updated_at": {"type": "string"}
   },
@@ -29,7 +32,8 @@
         "required": [
           "rtos", "architecture", "power_enabled", "generation_brief",
           "port_impl_sources", "osal_impl", "power_impl", "skipped_files",
-          "capability_gap"
+          "capability_gap", "port_manifest_snapshot", "port_diffs",
+          "generation_modes"
         ]
       }
     },
