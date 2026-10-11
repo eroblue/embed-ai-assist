@@ -28,6 +28,8 @@ embed-ai-assist/
 │   ├── hardware-initializer/            # S5a 硬件初始化（时钟/GPIO/NVIC/外设 → Drivers/BSP/）
 │   ├── port-contract-and-app/           # S5b Port 契约 + APP（已实现，rule/Agent 三段式 + 流程图驱动增量）
 │   └── port-implementer/                # S5c Port 实现（已实现，rule/Agent 三段式 + 能力缺口前置 + per-peripheral 增量生成 + code-fix 分支）
+│   ├── toolchain-setup/                 # S7a 工具链检测与安装（已实现一期：检测跳过 + 手动指引；可选旁路技能）
+│   └── build/                           # S7b 编译构建（已实现：Keil/GCC-Make CLI 全链路 + Makefile/链接脚本自动生成 + 日志解析 + bin/hex 转换 + GUI 机制框架）
 ├── platforms/                           # 共享的芯片资料库（只读）
 │   ├── stm32f103zet6/
 │   │   ├── datasheets/                  # PDF 手册（人类阅读）
@@ -98,6 +100,11 @@ embed-ai-assist/
 {
   "tool_paths": {
     "keil": "C:/Keil_v5/UV4/UV4.exe",
+    "keil_fromelf": "C:/Keil_v5/ARM/ARMCLANG/bin/fromelf.exe",
+    "iar": "C:/Program Files/IAR Systems/Embedded Workbench/common/bin/IarBuild.exe",
+    "gcc": "C:/gcc-arm/bin/arm-none-eabi-gcc.exe",
+    "make": "C:/gnu-make/bin/make.exe",
+    "cmake": "C:/cmake/bin/cmake.exe",
     "jflash": "C:/Program Files/SEGGER/JLink/JFlash.exe",
     "python": "C:/Python314/python.exe"
   },
@@ -105,6 +112,11 @@ embed-ai-assist/
   "skills_root": "skills/"
 }
 ```
+
+> `tool_paths` 为机器属性（工具装在哪），全局共享；除 `keil`/`python`/`jflash` 外均可省略——
+> `keil_fromelf` 从 Keil 根按 `ARM/ARMCLANG|ARMCC/bin/` 自动推导、`iar_ielftool` 从 IarBuild
+> 同目录探测、`gcc_objcopy` 从 gcc 同目录探测；缺哪些 S7a toolchain-setup 会检测并给出
+> 安装指引（开源工具经确认后安装，商业工具仅手动指引）。
 
 ### 项目 config.json（项目特有，如 examples/stm32f103zet6/config.json）
 
@@ -115,7 +127,11 @@ embed-ai-assist/
     "build_target": "App",
     "architecture": "layered",
     "rtos": "none",
-    "power": { "enabled": false }
+    "power": { "enabled": false },
+    "build_system": "keil",
+    "build_config": "Template",
+    "vendor_ide": null,
+    "vendor_ide_output_dir": null
   },
   "schematic_path": "schematic/STM32F103ZET6_MinSystem/STM32F103ZET6_MinSystem.SchDoc",
   "datasheet_path": "platforms/stm32f103zet6/datasheets/STM32F103ZET6.pdf",
@@ -127,10 +143,18 @@ embed-ai-assist/
 }
 ```
 
+> `build_system`/`build_config` 等为工程属性（S7b build 消费），写在项目层：
+> `build_system` 缺省 `null` 时 S7b 按工程文件自动推断（`*.uvprojx`→keil、`*.ewp`→iar、
+> `Makefile`→gcc_make、`CMakeLists.txt`→gcc_cmake；多候选/零候选报错）；`build_config` 缺省
+> 取工程内唯一 target/configuration 名（多 target 且未显式配置时报错，不猜）；
+> 厂家自研 IDE 无 CLI 时显式配 `build_system=vendor_ide` + `vendor_ide` 标识走 GUI 编译机制
+> （不参与推断，mcu8 平台必须显式配置）。示例工程当前未配置这两项，走自动推断。
+
 ### 工程选项（project 段）
 
 以下工程级开关决定目标工程与 S5 代码生成形态：`build_target` 由 S1–S5 全部 Skill
 消费（决定 `state.json` / 源码目录 / `outputs` / IDE 工程目录所在的目标工程根）；
+`build_system` 等构建字段由 S7b build 消费（工具路径在全局层 `tool_paths`）；
 其余由 S5a 读取校验后写入 `state.json`，S5b/S5c 消费（S5c 校验三者一致性）。
 枚举值填错时，任一 Skill 加载配置即报错并列出合法值——
 契约统一由根目录 `schemas/config.schema.json` 定义，字段名拼错也会被拦截。
@@ -142,6 +166,11 @@ embed-ai-assist/
 | `project.architecture` | `flat` / `layered` / `full` | `layered`（32 位惯例） | 软件分层程度：`flat` 单层平铺（8 位 MCU，`board_init.c`，无 Port 层）；`layered` HAL+APP（`hal_init.c`）；`full` HAL+Port+APP 全分层 |
 | `project.rtos` | `none` / `FreeRTOS` / `RT-Thread` / `Zephyr` | `none`（裸机） | RTOS 类型：决定 S5b 的 main.c 骨架（裸机 `while(1)` / RTOS `osal_kernel_start`）与 S5c 的 OSAL 移植层；`flat` + RTOS 仍生成 `osal_port.h`（OSAL 与 Port 正交） |
 | `project.power.enabled` | `true` / `false` | `false` | 是否启用低功耗设计：S5a 据此生成低功耗初始化代码（策略见 S5a `references/low_power_strategies.md`） |
+| `project.build_system` | `keil` / `iar` / `gcc_make` / `gcc_cmake` / `vendor_ide` / `null` | `null`（自动推断） | 构建系统（S7b build 消费）：缺省按工程文件证据推断（`*.uvprojx`→keil、`*.ewp`→iar、`Makefile`→gcc_make、`CMakeLists.txt`→gcc_cmake；多候选/零候选报错，不猜）；显式 `gcc_make` 且工程根无 Makefile 时自动生成 Makefile + 链接脚本（含生成标记可重覆盖，用户自维护文件不动）；`vendor_ide`=厂家自研 IDE 无 CLI，走 GUI 编译机制（不参与推断） |
+| `project.build_config` | 字符串（如 `Template` / `Debug`） | 自动推断 | 构建配置名（S7b build 消费）：Keil target 名 / IAR configuration 名 / CMake config；缺省取工程内唯一 target/configuration 名，多 target 且未显式配置时报错 |
+| `project.flash_offset` | 整数（字节，如 `65536`） | `0` | App 在 Flash 中的重定向偏移（OTA App 场景，相对 Flash 基址）：>0 且非 flat 时 S5b 生成 `sys_port.h` 并在 main.c 首句显式调用 `sys_port_relocate_vector(0x...)`；S7b 链接脚本 `ORIGIN=基址+偏移`、`LENGTH=容量-偏移`；S6/S9 消费同一值做 bin 拼接/烧录地址（config 为唯一权威来源，四处必须一致） |
+| `project.vendor_ide` | 字符串（如 `fmd_ft`） | 无 | 厂家 IDE 标识：`build_system=vendor_ide` 时必填，用于定位 `skills/build/references/vendor_ide/<标识>.md` 操作指南（mcu8 平台必须显式配置 build_system） |
+| `project.vendor_ide_output_dir` | 字符串（如 `Project/Output/`） | 按 vendor 指南推断 | 厂家 IDE 编译输出目录（相对目标工程根）：GUI 编译后 `--collect` 从该目录按 mtime 检测产物 |
 
 > 更换 MCU 时：`layered` / `full` 的 S5b 产物（APP/Port）保持不变，仅重跑 S5a/S5c；
 > `flat` 架构因产物与平台耦合，需重跑 S5b。
@@ -170,8 +199,9 @@ embed-ai-assist/
 | S5a | hardware-initializer | 核心处理 | 平台相关硬件初始化 + 硬件能力清单 | 已实现 |
 | S5b | port-contract-and-app | 核心处理 | Port 契约 + APP/协议/驱动（平台无关；S2/S4 均可选降级） | 已实现 |
 | S5c | port-implementer | 核心处理 | Port 实现（依赖 S5a 能力清单 + S5b 契约；per-peripheral 增量生成 + code-fix 维护入口） | 已实现 |
-| S6 | firmware-merger | 编译构建 | 固件合并（Boot + App、多核、OTA 包等） | 规划中 |
-| S7 | build | 编译构建 | 调用工具链编译工程 | 规划中 |
+| S6 | firmware-merger | 编译构建 | 固件合并（Boot + App、多核、OTA 包等）；**消费 S7b 的 bin 产物**，实际执行顺序 S7b → S6 | 规划中 |
+| S7a | toolchain-setup | 编译构建 | 工具链检测与安装（**可选旁路技能**：已就绪直接 `skipped`；开源工具经用户确认后引导安装并回填 `tool_paths`——全项目唯一 config 写入例外；Keil/IAR/厂家 IDE 仅手动指引） | 已实现（一期：检测跳过 + 手动指引） |
+| S7b | build | 编译构建 | 调用工具链编译工程，双机制：CLI（Keil / IAR / GCC Make / CMake，纯 rule；显式 `gcc_make` 无 Makefile 时自动生成 Makefile + 链接脚本）+ GUI（厂家 IDE 无 CLI 时 Agent 发送编译快捷键，如辉芒微/和泰）；必须产出 bin 供 S6 | 已实现（Keil / GCC-Make CLI 全链路实测通过；IAR/CMake/GUI 按演进路径） |
 | S8 | unit-test | 编译构建 | 单元测试 | 规划中 |
 | S9 | flash | 烧录部署 | 烧录固件（J-Link/OpenOCD 等） | 规划中 |
 | S10 | serial-monitor | 调试监控 | 串口日志采集 | 规划中 |
@@ -266,10 +296,28 @@ python skills/port-contract-and-app/scripts/validate.py --config examples/stm32f
 #                                                + traceability.json + flow_index.json
 #    examples/stm32f103zet6/App/docs/flow/    -> Mermaid 流程图（含 .history/ 版本基线）
 #    examples/stm32f103zet6/App/App/Src/      -> app_*.c/h + protocol_*.c/h + main.c（S5b 应用层）
+
+# 9. （可选）S7a 工具链检测（已装好工具链可跳过；全就绪时 state.s7a.status=skipped，
+#     不安装任何东西；开源工具缺失时经用户确认后引导安装并回填 tool_paths）
+python skills/toolchain-setup/scripts/prepare.py --config examples/stm32f103zet6/config.json
+#    → 有缺失时 Agent 按 outputs/s7a/install_plan.md 引导安装（商业工具仅手动指引）
+python skills/toolchain-setup/scripts/validate.py --config examples/stm32f103zet6/config.json
+
+# 10. S7b 编译（S5a/S5b/S5c 收口后；prepare → build → validate）
+python skills/build/scripts/prepare.py --config examples/stm32f103zet6/config.json
+python skills/build/scripts/build.py --config examples/stm32f103zet6/config.json
+#    → 编译失败时：Agent 读 outputs/s7b/build.log 产出 error_analysis.md，再 validate
+python skills/build/scripts/validate.py --config examples/stm32f103zet6/config.json
+#    （产物：App/state.json 的 s7a/s7b 字段 + App/outputs/s7b/build_result.json；
+#      编译成功生成 .axf/.hex/.bin，bin 供 S6 固件合并消费）
+#    GCC 工具链：项目 config 显式 "build_system": "gcc_make" 后同上三步——
+#    prepare 自动生成 Makefile + Template.ld（uvprojx 解析），make 编译产出 .elf/.hex/.bin
 ```
 
-> 按步骤 1–7 顺序执行即可生成上述结果文件（`examples/` 的产物按 `.gitignore`
-> 现行策略随仓库提供，可对照参考；S5b 步骤 6 需 Agent 参与流程图审核，见 S5b SKILL.md）。
+> 按步骤 1–10 顺序执行即可生成上述结果文件（`examples/` 的产物按 `.gitignore`
+> 现行策略随仓库提供，可对照参考；S5b 步骤 6 需 Agent 参与流程图审核，见 S5b SKILL.md；
+> 步骤 9 可选，步骤 10 的编译命令以本机 Keil 为例，构建系统缺省按工程文件自动推断，
+> GCC-Make 路线需显式配置且走 Makefile 自动生成分支）。
 
 ## 工作流（workflows/）
 

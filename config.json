@@ -1,6 +1,12 @@
 {
   "tool_paths": {
     "keil": "C:/Keil_v5/UV4/UV4.exe",
+    "keil_fromelf": "C:/Keil_v5/ARM/ARMCLANG/bin/fromelf.exe",
+    "iar": "C:/Program Files/IAR Systems/Embedded Workbench/common/bin/IarBuild.exe",
+    "gcc": "C:/gcc-arm/bin/arm-none-eabi-gcc.exe",
+    "gcc_objcopy": "C:/gcc-arm/bin/arm-none-eabi-objcopy.exe",
+    "make": "C:/msys64/usr/bin/make.exe",
+    "cmake": "C:/cmake/bin/cmake.exe",
     "jflash": "C:/Program Files/SEGGER/JLink/JFlash.exe",
     "python": "C:/Python314/python.exe"
   },

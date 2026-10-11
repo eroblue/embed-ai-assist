@@ -152,6 +152,7 @@ port-implementer/
 | 产物 | 生成条件 |
 |------|----------|
 | `port_impl_<外设>_<平台>.c`（uart/i2c/spi/gpio/adc/timer/pwm/par/…，按 manifest 的 peripheral 字段数据驱动） | manifest 中存在该外设 Port |
+| `port_impl_sys_<平台>.c`（OTA 向量表重定向） | manifest 中存在 kind=sys 的 `sys_port.h` 条目（config `project.flash_offset > 0` 且非 flat 时 S5b 生成）。实现要点：`SCB->VTOR = FLASH_BASE + flash_offset` + `__DSB(); __ISB();` 屏障；偏移对齐按芯片手册校验（如 Cortex-M3 须 512 字节对齐），非法值返回 `PORT_ERR_PARAM`；VTOR 为内核寄存器，不做能力缺口比对 |
 | `port_impl_osal_<rtos>.c`（freertos / rtthread / zephyr） | `project.rtos != "none"`（含 flat 架构）※ |
 | `port_impl_power_<平台>.c` | `project.power.enabled == true` 且非 flat |
 

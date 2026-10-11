@@ -333,18 +333,26 @@ def load_design_input(project_root: Path, rel_path: str = "docs/s5c_design_input
 # ---------------- manifest 接口索引 ----------------
 
 def manifest_peripheral_headers(manifest: dict) -> list[dict]:
-    """manifest 中 kind=peripheral 的头条目（每个外设一个 port_impl 文件）。"""
-    return [h for h in manifest.get("headers", []) if h.get("kind") == "peripheral"]
+    """manifest 中需要 port_impl 实现文件的头条目（kind=peripheral/sys）。
+
+    peripheral=外设实现（每外设一个 port_impl_<peripheral>_<platform>.c）；
+    sys=系统接口实现（如 OTA 向量表重定位 port_impl_sys_<platform>.c）。
+    """
+    return [h for h in manifest.get("headers", [])
+            if h.get("kind") in ("peripheral", "sys")]
 
 
 def manifest_interface_index(manifest: dict) -> dict[str, list[str]]:
     """{peripheral: [接口函数名]}（validate 接口全覆盖检查用）。
 
-    peripheral 取头条目的 peripheral 字段（manifest 数据侧，不硬解析 C 头）。
+    peripheral 取头条目的 peripheral 字段（manifest 数据侧，不硬解析 C 头）；
+    kind=sys 的头条目以 "sys" 为键（与实现文件 port_impl_sys_<platform>.c 对应）。
     """
     index: dict[str, list[str]] = {}
     for h in manifest_peripheral_headers(manifest):
-        periph = slug_token(h.get("peripheral") or "")
+        periph = (slug_token(h.get("peripheral") or "")
+                  or (slug_token(h.get("kind") or "")
+                      if h.get("kind") == "sys" else ""))
         if not periph:
             continue
         fns = [i.get("function") for i in h.get("interfaces", []) if i.get("function")]

@@ -13,6 +13,7 @@
     "rtos": {"type": "string", "enum": ["none", "FreeRTOS", "RT-Thread", "Zephyr"], "description": "本次生成使用的 RTOS 配置"},
     "architecture": {"type": "string", "enum": ["flat", "layered", "full"], "description": "本次使用的架构"},
     "power_enabled": {"type": "boolean"},
+    "flash_offset": {"type": "integer", "minimum": 0, "default": 0, "description": "config project.flash_offset（OTA App 偏移）：>0 时本 skill 生成 sys_port.h 并在 main.c 首句显式调用向量表重定位；S7b/S6/S9 消费同一配置"},
     "port_manifest": {"type": "string", "description": "outputs/s5b/port_interface_manifest.json 相对路径（S5c 实现 Port 的唯一依据）"},
     "port_headers": {"type": "array", "items": {"type": "string"}, "description": "Drivers/Port/Inc/ 下 Port 头文件相对路径列表（flat 架构为空数组）"},
     "osal_header": {"type": ["string", "null"], "description": "osal.h 相对路径；裸机或 flat 架构为 null"},

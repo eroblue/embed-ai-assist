@@ -26,9 +26,21 @@
 static int32_t dht11_wait_level(gpio_port_level_t want, uint32_t timeout_us,
                                 uint32_t *elapsed_us);
 
+/* DHT11 单总线 Port 实例配置（manifest 数据侧 dht11_data：dir=input / pull=none /
+   init_level=0 / active_level=1；总线有外部上拉，pull=none 亦安全） */
+static const gpio_port_cfg_t s_dht11_cfg = {
+    GPIO_PORT_DIR_INPUT, GPIO_PORT_PULL_NONE, GPIO_PORT_LEVEL_LOW, GPIO_PORT_LEVEL_HIGH,
+};
+
 int32_t driver_dht11_init(void)
 {
-    /* 上电稳定由 APP 侧时序保证（首次采集前已运行 >1s）；总线置输入即可 */
+    int32_t r;
+
+    /* 上电稳定由 APP 侧时序保证（首次采集前已运行 >1s）。
+       必须先用 gpio_port_init 绑定本实例再换向：未绑定的实例 set_dir 会返回
+       PORT_ERR_STATE，该错误被 app_init 上抛后 UART/LCD/主循环将全部不执行。 */
+    r = gpio_port_init(GPIO_PORT_DHT11_DATA, &s_dht11_cfg);
+    if (r != PORT_OK) { return r; }
     return gpio_port_set_dir(GPIO_PORT_DHT11_DATA, GPIO_PORT_DIR_INPUT);
 }
 

@@ -37,11 +37,22 @@ platforms/**/datasheets/ft61f14x_ds_rev1p09_cn.pdf
 # Examples/*/App/App/Inc/
 # Examples/*/BootLoader/**
 
-# IDE 工程编译输出
-**/MDK-ARM/*/Objects/
-**/MDK-ARM/*/Listings/
+# IDE 工程编译输出（Objects/Listings 为编译中间产物，体积大且可再生）
+**/MDK-ARM/Objects/
+**/MDK-ARM/Listings/
+**/MDK-ARM/*.uvguix.*
 **/Project/Objects/
 **/Project/Listings/
+
+# GCC/Make 构建输出（S7b 阶段 A' 编译产物；不可用 **/build/，会误伤 skills/build/）
+examples/**/App/build/
+examples/**/BootLoader/build/
+projects/**/App/build/
+projects/**/BootLoader/build/
+
+# S7 运行时数据（build.log / gui_build_log.md / build_result.json 等过程文件）
+**/outputs/s7a/
+**/outputs/s7b/
 
 # 备份文件
 *.bak

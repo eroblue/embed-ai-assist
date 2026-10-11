@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.s7a.toolchain_check.v1",
+  "title": "S7a toolchain-setup 检测结果数据契约（outputs/s7a/toolchain_check.json）",
+  "type": "object",
+  "required": ["build_system", "checked_at", "tools", "intelhex_available",
+               "all_present", "missing", "open_missing", "commercial_missing", "warnings"],
+  "properties": {
+    "build_system": { "type": "string", "enum": ["keil", "iar", "gcc_make", "gcc_cmake", "vendor_ide"] },
+    "checked_at": { "type": "string", "description": "ISO 时间戳" },
+    "tools": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "path", "present", "commercial"],
+        "properties": {
+          "name": { "type": "string", "description": "工具名（tool_paths 键名）" },
+          "label": { "type": "string", "description": "工具显示名" },
+          "path": { "type": ["string", "null"], "description": "实际可用路径（显式配置或推导）；缺失为 null" },
+          "configured": { "type": "boolean", "description": "是否来自 tool_paths 显式配置" },
+          "derived": { "type": "boolean", "description": "是否为自动推导（如 fromelf 从 Keil 根推导）" },
+          "present": { "type": "boolean", "description": "路径存在且为文件" },
+          "version": { "type": ["string", "null"], "description": "版本探测结果" },
+          "min_version": { "type": ["string", "null"], "description": "最低版本要求（开源白名单）" },
+          "version_ok": { "type": ["boolean", "null"], "description": "版本是否满足最低要求（无要求/无法探测为 null）" },
+          "commercial": { "type": "boolean", "description": "是否商业软件（只检测不安装）" }
+        }
+      }
+    },
+    "intelhex_available": { "type": "boolean", "description": "Python intelhex 包可用性（vendor_ide hex→bin 依赖）" },
+    "all_present": { "type": "boolean", "description": "检查清单是否全部就绪" },
+    "missing": { "type": "array", "items": { "type": "string" } },
+    "open_missing": { "type": "array", "items": { "type": "string" }, "description": "缺失的开源工具（可自动安装）" },
+    "commercial_missing": { "type": "array", "items": { "type": "string" }, "description": "缺失的商业工具（手动安装，S7a 不自动安装）" },
+    "warnings": { "type": "array", "items": { "type": "string" } }
+  }
+}

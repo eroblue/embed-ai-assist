@@ -22,7 +22,10 @@ typedef struct {
     uint8_t light;  /* 光照 % */
 } env_data_t;
 
-/** 初始化 DHT11 与光照 ADC（数据清零，故障标志复位）。 */
+/**
+ * 初始化 DHT11 与光照 ADC（数据清零）。
+ * 尚无有效读数，故初始化即置故障标志并发布故障事件（避免初值被阈值逻辑误判）。
+ */
 int32_t app_env_sensor_init(void);
 
 /** 10ms 节拍轮询：内部按 2s 周期触发一次采集。 */
@@ -31,7 +34,7 @@ void app_env_sensor_poll(void);
 /** 读共享数据指针（实时快照，调用方不得修改）。 */
 const env_data_t *app_env_sensor_get_data(void);
 
-/** 传感器故障标志（连续 5 次采集失败置位，恢复事件清零）。 */
+/** 传感器故障标志（尚无有效读数或连续 5 次采集失败置位，恢复事件清零）。 */
 uint8_t app_env_sensor_is_fault(void);
 
 #ifdef __cplusplus

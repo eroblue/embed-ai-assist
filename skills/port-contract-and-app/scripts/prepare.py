@@ -153,6 +153,7 @@ def build_brief(ctx: dict, plan: dict, design_input: dict | None,
     arch, rtos = ctx["architecture"], ctx["rtos"]
     use_osal = rtos != "none"
     use_power = ctx["power_enabled"] and arch != "flat"
+    use_sys = ctx["flash_offset"] > 0 and arch != "flat"
     inputs = ctx["inputs"]
     lines: list[str] = []
     add = lines.append
@@ -178,6 +179,11 @@ def build_brief(ctx: dict, plan: dict, design_input: dict | None,
     if rtos != "none" and arch == "flat":
         add("- **注意**：flat + RTOS 组合仍生成 osal.h（OSAL 与外设 Port 层正交），"
             "但任务化 APP 不生成——APP 在主循环中经 osal 调用 RTOS 原语（见 SKILL.md）")
+    if ctx["flash_offset"] > 0:
+        note = "" if arch != "flat" else "（**flat 架构无 Port 层，本配置不生效，建议改用 layered/full 或取消配置**）"
+        add(f"- **flash 偏移（OTA App）**：`0x{ctx['flash_offset']:X}`{note}——"
+            "生成 sys_port.h 契约并在 main.c 首句显式调用向量表重定位（见第 6 节）；"
+            "该值同时被 S7b 链接脚本（ORIGIN=基址+偏移）与 S6/S9（bin 拼接/烧录地址）消费")
     add("")
 
     # ---- 2. 输入材料清单 ----
@@ -289,6 +295,13 @@ def build_brief(ctx: dict, plan: dict, design_input: dict | None,
         add("- OSAL：生成 `osal.h`（单文件，接口原则见 `references/osal_design_principle.md`）")
     if use_power:
         add("- Power：生成 `power_port.h`（接口命名由设计输入/已有方案决定，见 `references/port_design_principle.md`）")
+    if use_sys:
+        add(f"- **Sys（OTA App 向量表重定向）**：生成 `sys_port.h`（模板 "
+            f"`assets/port_templates/sys_port.h.tpl`）——接口 "
+            f"`sys_port_relocate_vector(uint32_t flash_offset)`（返回 port_err_t）；"
+            f"manifest 登记为 kind=sys（无 hw_instance，逻辑实例 SYS_PORT_VECTOR）。"
+            f"**main.c 首句显式调用**（hal_init 之前，偏移量以字面值 0x{ctx['flash_offset']:X} "
+            f"写入并注释与 config 对应）——见 SKILL.md main.c 骨架（OTA 形态）")
     add("- 流程图：`docs/flow/<模块>_<state|flow|sequence>.md`（front-matter + Mermaid）")
     add("")
     add("### 命名与拆分规范")
@@ -297,7 +310,9 @@ def build_brief(ctx: dict, plan: dict, design_input: dict | None,
     add("- APP 功能模块 `app_<功能>.c/h`；任务化 `app_<功能>_task.c/h`（仅 RTOS 且非 flat）；"
         "协议层 `protocol_<名称>.c/h`；驱动 `driver_<设备>.c/h`")
     add("- `app.c/h` 只做初始化汇总与主循环/任务创建；`main.c` 不存在时创建"
-        "（只调 S5a 总入口 `board_init/hal_init` 与 `app_init`，不含业务逻辑）")
+        "（只调 S5a 总入口 `board_init/hal_init` 与 `app_init`，不含业务逻辑"
+        + ("；**flash_offset>0 时首句为 sys_port_relocate_vector 显式调用**" if use_sys else "")
+        + "）")
     add("- 未被使用的模块不生成；文件拆分细则见 `references/file_split_guide.md`")
     add("")
     add("### 数据产物（outputs/s5b/）")
@@ -446,7 +461,9 @@ def main(argv: list[str] | None = None) -> int:
     prev = ctx["state"].get("s5b") or {}
     config_changed = []
     if isinstance(prev, dict) and prev.get("status") in ("done", "error"):
-        for key, label in (("rtos", "RTOS"), ("architecture", "架构"), ("power_enabled", "低功耗")):
+        for key, label in (("rtos", "RTOS"), ("architecture", "架构"),
+                           ("power_enabled", "低功耗"),
+                           ("flash_offset", "flash 偏移")):
             if key in prev and prev[key] != ctx[key]:
                 config_changed.append(label)
 
@@ -465,6 +482,7 @@ def main(argv: list[str] | None = None) -> int:
         "rtos": ctx["rtos"],
         "architecture": ctx["architecture"],
         "power_enabled": ctx["power_enabled"],
+        "flash_offset": ctx["flash_offset"],
         "generation_brief": brief_rel,
         "incremental": flow_inv["index_exists"],
         "error": None,

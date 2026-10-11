@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.s7b.input.v1",
+  "title": "S7b build 输入契约（state.json 的 S5 系列就绪性）",
+  "description": "S7b 编译需要全部源码就位，不只查 S5c：s5a/s5b 必须 done，s5c 须 done 或 skipped（flat 架构）",
+  "type": "object",
+  "required": ["s5a", "s5b", "s5c"],
+  "properties": {
+    "s5a": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {
+        "status": { "const": "done", "description": "初始化代码已生成" }
+      }
+    },
+    "s5b": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {
+        "status": { "const": "done", "description": "APP/Port 契约已生成" }
+      }
+    },
+    "s5c": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {
+        "status": { "enum": ["done", "skipped"], "description": "Port 实现已生成或 flat 架构跳过" }
+      }
+    }
+  }
+}

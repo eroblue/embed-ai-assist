@@ -39,6 +39,7 @@
 - `project.rtos`：RTOS 类型
 - `project.architecture`：架构
 - `project.power.enabled`：是否启用低功耗
+- `project.flash_offset`：OTA App 偏移（S5b 据此生成 sys_port.h 契约；S5c 经 manifest kind=sys 条目实现 `port_impl_sys_<平台>.c`，偏移值由调用方传入，实现层只写 VTOR+屏障）
 - `project.inputs.ide_project`：IDE 项目文件路径（可选，缺省按 IDE 工程目录自动发现）
 - `s5c.platform`：平台标识（文件命名后缀）
 - `s5c.hal_framework`：HAL 框架（用于定位参考材料）
@@ -88,6 +89,7 @@ S5c 生成的 Port 实现**必须按外设拆分成多个文件**，输出目录
 | `port_impl_adc_<平台>.c` | manifest 中存在 ADC Port |
 | `port_impl_timer_<平台>.c` | manifest 中存在 Timer Port |
 | `port_impl_pwm_<平台>.c` | manifest 中存在 PWM Port |
+| `port_impl_sys_<平台>.c` | manifest 中存在 kind=sys 的 `sys_port.h` 条目（config `project.flash_offset > 0` 且非 flat 时 S5b 生成）。实现：`SCB->VTOR = FLASH_BASE + flash_offset` + `__DSB(); __ISB();` 屏障；偏移对齐按芯片手册校验（如 Cortex-M3 须 512 字节对齐），非法值返回 `PORT_ERR_PARAM` |
 | `port_impl_osal_<rtos>.c` | `project.rtos != "none"`（含 flat 架构） |
 | `port_impl_power_<平台>.c` | `project.power.enabled == true` 且非 flat |
 

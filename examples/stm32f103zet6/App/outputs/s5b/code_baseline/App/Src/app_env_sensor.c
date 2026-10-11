@@ -4,8 +4,10 @@
  *
  * 时序：10ms 节拍计数，200 拍（2s）触发一次采集（A[采集周期到达]）。
  * 失败语义：DHT11 读取失败或数据越界均计一次失败（D[失败计数+1 保留上次值]），
- *           连续 5 次（E[达到阈值]）发布一次故障事件并清零计数（F）；
+ *           连续 5 次（E[达到阈值]）或"尚无有效读数"时发布一次故障事件并清零计数（F）；
  *           成功且此前故障（J）则发布恢复事件并清故障标志（K）。
+ * 初始态：init 后尚无有效读数即置故障态并发布故障事件，避免 Initialize 初值被
+ *         阈值逻辑误判为低温告警（详见 app_env_sensor_init）。
  * 光照：mv*100/ref_mv 换算（G[读取光照 ADC 并换算]），越界视为无效保留上次值（N）。
  */
 #include "app_env_sensor.h"
@@ -18,8 +20,7 @@
 #define ENV_FAIL_THRESHOLD    5u   /* 连续失败阈值 fail_threshold=5 */
 #define ENV_TEMP_MIN        (-20)  /* 有效范围 -20~60 °C */
 #define ENV_TEMP_MAX         60
-#define ENV_HUMI_MIN          0u   /* 有效范围 0~100 % */
-#define ENV_HUMI_MAX        100u
+#define ENV_HUMI_MAX        100u   /* 有效范围 0~100 %；下界 0 由无符号类型结构保证，不参与比较 */
 #define ENV_LIGHT_MAX       100u   /* 光照上限 100% */
 #define ENV_REF_MV         3300u   /* 满量程锚点（mv*100/ref_mv = 百分比） */
 
@@ -30,7 +31,8 @@ static const adc_port_cfg_t s_adc_cfg = {
 };
 
 static env_data_t s_data;          /* 最近有效数据（失败保留上次值） */
-static uint8_t    s_fault;         /* 故障标志 */
+static uint8_t    s_fault;         /* 故障标志（无有效读数 / 连续 5 次失败） */
+static uint8_t    s_has_data;      /* 是否已取得过有效读数（上电初始为 0） */
 static uint16_t   s_tick;          /* 节拍计数 */
 static uint8_t    s_fail_count;     /* 连续失败计数 */
 
@@ -42,12 +44,21 @@ int32_t app_env_sensor_init(void)
     s_data.humi = 0;
     s_data.light = 0;
     s_fault = 0;
+    s_has_data = 0;
     s_tick = 0;
     s_fail_count = 0;
 
     r = driver_dht11_init();
     if (r != PORT_OK) { return r; }
-    return adc_port_init(ADC_PORT_LIGHT, &s_adc_cfg);
+    r = adc_port_init(ADC_PORT_LIGHT, &s_adc_cfg);
+    if (r != PORT_OK) { return r; }
+
+    /* 尚无有效读数 → 立即进入故障态：此时没有"上次值"可保留，不必等 5 次失败去抖；
+       否则初值（temp=0）会被告警阈值逻辑误判为低温告警并驱动蜂鸣器。
+       首次成功读数会发布恢复事件自动退出（app_alarm_control_on_sensor_recovered）。 */
+    s_fault = 1;
+    app_alarm_control_on_sensor_fault();
+    return PORT_OK;
 }
 
 void app_env_sensor_poll(void)
@@ -65,9 +76,10 @@ void app_env_sensor_poll(void)
 
     /* B[读取 DHT11 温湿度] */
     if (driver_dht11_read(&temp, &humi) == PORT_OK) {
-        /* H{数据在有效范围内?} */
+        /* H{数据在有效范围内?}：humi 为无符号，下界 0 结构上必然满足
+           （写 < 0u 是无意义比较，触发 #186-D），只校验上界 */
         if ((temp < ENV_TEMP_MIN) || (temp > ENV_TEMP_MAX) ||
-            (humi < ENV_HUMI_MIN) || (humi > ENV_HUMI_MAX)) {
+            (humi > ENV_HUMI_MAX)) {
             fail = 1;
         }
     } else {
@@ -77,8 +89,8 @@ void app_env_sensor_poll(void)
     if (fail != 0) {
         /* D[失败计数+1 保留上次值] */
         s_fail_count++;
-        /* E{连续失败达到阈值?} */
-        if (s_fail_count >= ENV_FAIL_THRESHOLD) {
+        /* E{连续失败达到阈值? 或尚无有效读数?}：从未成功读过时立即置故障 */
+        if ((s_fail_count >= ENV_FAIL_THRESHOLD) || (s_has_data == 0)) {
             /* F[发布传感器故障事件 清零失败计数 置故障标志] */
             s_fail_count = 0;
             if (s_fault == 0) {
@@ -91,6 +103,7 @@ void app_env_sensor_poll(void)
         s_fail_count = 0;
         s_data.temp = temp;
         s_data.humi = humi;
+        s_has_data = 1;
         /* J{此前处于故障状态?} → K[发布传感器恢复事件 清故障标志] */
         if (s_fault != 0) {
             s_fault = 0;

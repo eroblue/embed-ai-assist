@@ -24,6 +24,7 @@
 - `project.architecture`：`"flat"` / `"layered"` / `"full"`，未配置时由 Agent 推断
 - `project.power.enabled`：是否启用低功耗
 - `project.rtos`：RTOS 类型（可选，未配置时由 Agent 从 S2 推断）
+- `project.flash_offset`：App 在 Flash 中的重定向偏移（字节，OTA App 场景，缺省 0）——>0 且非 flat 时生成 `sys_port.h` 并在 main.c 首句显式调用向量表重定位（偏移量字面值写入）；S7b 链接脚本 / S6 合并 / S9 烧录消费同一配置值
 - `project.rtos_config.max_prio`：最大任务优先级（可选）
 - `project.inputs.software_spec`：软件规格书路径（可选）
 - `project.inputs.s5b_design_input`：S5b 设计输入路径（可选，默认 `docs/s5b_design_input.md`）
@@ -83,6 +84,7 @@ S5b 生成的代码**必须按功能模块拆分成多个文件**，统一输出
 - Port 接口：`Drivers/Port/Inc/<外设>_port.h`（按外设拆分）
 - OSAL 接口：`Drivers/Port/Inc/osal.h`（单文件，如启用 RTOS，含 flat 架构——OSAL 与外设 Port 层正交）
 - Power 接口：`Drivers/Port/Inc/power_port.h`（单文件，如启用低功耗且 `architecture != "flat"`）
+- Sys 接口：`Drivers/Port/Inc/sys_port.h`（单文件，如 `project.flash_offset > 0` 且非 flat——OTA App 向量表重定向契约，接口 `sys_port_relocate_vector(uint32_t flash_offset)`；**main.c 首句显式调用**，偏移量以字面值写入并注释与 config 对应，不藏进编译宏；同一值被 S7b 链接脚本与 S6/S9 消费，config 为权威来源）
 - APP 主入口：`App/Src/app.c/h`（只做初始化和主循环/任务创建）
 - APP 功能模块：`App/Src/app_<功能>.c/h`
 - 任务化 APP：`App/Src/app_<功能>_task.c/h`（如启用 RTOS 且非 flat 架构；flat + RTOS 时 APP 在主循环中经 osal 调用 RTOS 原语，不建任务）
@@ -100,6 +102,7 @@ S5b 生成的代码**必须按功能模块拆分成多个文件**，统一输出
 | `s5b.rtos` | string | 本次生成使用的 RTOS 配置 |
 | `s5b.architecture` | string | 本次使用的架构 |
 | `s5b.power_enabled` | bool | 是否启用低功耗 |
+| `s5b.flash_offset` | int | config `project.flash_offset`（OTA App 偏移，缺省 0）；>0 时生成 sys_port.h 并在 main.c 首句调用向量表重定位 |
 | `s5b.port_manifest` | string | `outputs/s5b/port_interface_manifest.json` 相对路径 |
 | `s5b.port_headers` | array | `Drivers/Port/Inc/` 下 Port 头文件相对路径列表 |
 | `s5b.osal_header` | string/null | `Drivers/Port/Inc/osal.h` 相对路径，裸机时为 null |

@@ -10,6 +10,14 @@
       "description": "工具路径（全局层）",
       "properties": {
         "keil": { "type": "string", "description": "Keil UV4.exe 路径" },
+        "keil_fromelf": { "type": "string", "description": "Keil fromelf.exe 路径（bin/hex 生成；未配置时 S7a/S7b 从 Keil 根按 ARM/ARMCLANG|ARMCC/bin/ 推导，ARMCLANG 优先）" },
+        "iar": { "type": "string", "description": "IAR IarBuild.exe 路径" },
+        "iar_ielftool": { "type": "string", "description": "IAR ielftool.exe 路径（bin 生成；未配置时从 IarBuild 同目录 common/bin/ 探测）" },
+        "gcc": { "type": "string", "description": "arm-none-eabi-gcc 路径（gcc_make/gcc_cmake 构建系统）" },
+        "gcc_objcopy": { "type": "string", "description": "arm-none-eabi-objcopy 路径（bin/hex 生成；未配置时从 gcc 同目录探测）" },
+        "make": { "type": "string", "description": "GNU Make 路径（gcc_make 构建系统）" },
+        "cmake": { "type": "string", "description": "CMake 路径（gcc_cmake 构建系统）" },
+        "vendor_ide": { "type": "string", "description": "厂家 IDE 可执行文件路径（build_system=vendor_ide 时必填）" },
         "jflash": { "type": "string", "description": "J-Flash 可执行文件路径" },
         "python": { "type": "string", "description": "Python 解释器路径" }
       },
@@ -41,6 +49,24 @@
           "default": "App",
           "description": "当前开发目标工程（项目层）：决定 state.json/源码目录/outputs/IDE 工程目录归属 Examples/<project>/App/ 或 BootLoader/；docs/schematic/references 为项目根共享，不随目标切换"
         },
+        "build_system": {
+          "type": ["string", "null"],
+          "enum": ["keil", "iar", "gcc_make", "gcc_cmake", "vendor_ide", null],
+          "default": null,
+          "description": "构建系统（项目层，S7b build 消费）：缺省 null 时 S7b 按工程文件智能推断（*.uvprojx→keil、*.ewp→iar、Makefile→gcc_make、CMakeLists.txt→gcc_cmake，多候选/零候选报错）；vendor_ide=厂家自研 IDE 无 CLI 走 GUI 编译机制（不参与推断，mcu8 平台必须显式配置）"
+        },
+        "build_config": {
+          "type": "string",
+          "description": "构建配置名（项目层，S7b build 消费）：Keil target 名 / IAR configuration 名 / CMake config（如 Debug/Release）；缺省推断，多 target/configuration 且未显式配置时 S7b 报错（不猜）"
+        },
+        "vendor_ide": {
+          "type": "string",
+          "description": "厂家 IDE 标识（项目层，build_system=vendor_ide 时必填，如 fmd_ft）：用于定位 skills/build/references/vendor_ide/<标识>.md 操作指南"
+        },
+        "vendor_ide_output_dir": {
+          "type": "string",
+          "description": "厂家 IDE 编译输出目录（项目层，相对目标工程根；缺省按 vendor 指南推断，如 Project/Output/）"
+        },
         "architecture": {
           "type": "string",
           "enum": ["flat", "layered", "full"],
@@ -51,6 +77,12 @@
           "type": "string",
           "enum": ["cortex_m", "mcu8"],
           "description": "平台架构族（项目层，可选）：cortex_m=32 位 Cortex-M；mcu8=8 位 MCU。显式指定优先于型号前缀推断（见 docs/PROJECT_LAYOUT.md 2.3 目录选择逻辑）"
+        },
+        "flash_offset": {
+          "type": "integer",
+          "minimum": 0,
+          "default": 0,
+          "description": "App 在 Flash 中的重定向偏移（字节，OTA App 场景，相对 Flash 基址如 0x08000000；缺省 0=无偏移）。消费方：S5b（>0 时生成 sys_port.h 契约并在 main.c 首句显式调用向量表重定位）、S7b（链接脚本 ORIGIN=基址+偏移，LENGTH=总容量-偏移）、S6/S9（bin 拼接位置/烧录目标地址）。仅 cortex_m 的 layered/full 架构生效（flat 无 Port 层，8 位 MCU 无 VTOR）"
         },
         "rtos": {
           "type": "string",
@@ -104,7 +136,7 @@
             },
             "ide_project": {
               "type": "string",
-              "description": "IDE 项目文件路径（S5b 参考）"
+              "description": "IDE 项目文件路径（S5b 参考；S7b build 赋予编译语义：缺省按工程目录自动发现，build_system=vendor_ide 时必填——GUI 打开的目标）"
             }
           },
           "additionalProperties": false

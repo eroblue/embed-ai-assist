@@ -260,5 +260,59 @@
     },
     "error": null,
     "updated_at": "2026-09-29T18:21:49"
+  },
+  "s7a": {
+    "status": "done",
+    "build_system": "gcc_make",
+    "checked_tools": [
+      {
+        "name": "gcc",
+        "path": "C:\\gcc-arm\\bin\\arm-none-eabi-gcc.exe",
+        "present": true,
+        "version": "14.2"
+      },
+      {
+        "name": "gcc_objcopy",
+        "path": "C:\\gcc-arm\\bin\\arm-none-eabi-objcopy.exe",
+        "present": true,
+        "version": "14.2"
+      },
+      {
+        "name": "make",
+        "path": "C:\\msys64\\usr\\bin\\make.exe",
+        "present": true,
+        "version": "4.4.1"
+      }
+    ],
+    "installed_tools": [
+      "gcc",
+      "gcc_objcopy",
+      "make"
+    ],
+    "config_updated": true,
+    "check_result": "outputs/s7a/toolchain_check.json",
+    "install_report": "outputs/s7a/install_report.md",
+    "error": null,
+    "updated_at": "2026-09-30T19:45:45"
+  },
+  "s7b": {
+    "status": "done",
+    "build_system": "keil",
+    "build_mode": "cli",
+    "build_config": "Template",
+    "build_target": "App",
+    "artifact_path": "MDK-ARM/Objects/Template.axf",
+    "artifact_format": "axf",
+    "hex_path": "MDK-ARM/Objects/Template.hex",
+    "bin_path": "MDK-ARM/Objects/Template.bin",
+    "error_count": 0,
+    "warning_count": 0,
+    "build_log": "outputs/s7b/build.log",
+    "build_result": "outputs/s7b/build_result.json",
+    "error_analysis": null,
+    "gui_build_log": null,
+    "bin_warning": null,
+    "error": null,
+    "updated_at": "2026-10-11T12:10:18"
   }
 }

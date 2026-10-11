@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.s7a.input.v1",
+  "title": "S7a toolchain-setup 输入契约（合并后 config.json 的相关字段）",
+  "type": "object",
+  "properties": {
+    "tool_paths": {
+      "type": "object",
+      "description": "现有工具路径（全局层）；S7a 检测对象"
+    },
+    "project": {
+      "type": "object",
+      "properties": {
+        "build_system": {
+          "type": ["string", "null"],
+          "enum": ["keil", "iar", "gcc_make", "gcc_cmake", "vendor_ide", null],
+          "description": "构建系统：决定检查哪些工具；null 时按 S7b 共享规则扫描推断"
+        },
+        "build_target": {
+          "type": "string",
+          "enum": ["App", "BootLoader"],
+          "description": "目标工程（决定扫描哪个工程根，缺省 App）"
+        }
+      }
+    }
+  }
+}

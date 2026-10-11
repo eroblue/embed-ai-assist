@@ -18,8 +18,8 @@
         "required": ["file", "kind", "description", "logical_instances", "interfaces"],
         "properties": {
           "file": {"type": "string", "description": "头文件相对路径（如 Drivers/Port/Inc/uart_port.h）"},
-          "kind": {"type": "string", "enum": ["peripheral", "osal", "power"]},
-          "peripheral": {"type": ["string", "null"], "description": "外设类型（uart/i2c/spi/gpio/adc/timer）；osal/power 为 null"},
+          "kind": {"type": "string", "enum": ["peripheral", "osal", "power", "sys"]},
+          "peripheral": {"type": ["string", "null"], "description": "外设类型（uart/i2c/spi/gpio/adc/timer）；osal/power/sys 为 null"},
           "description": {"type": "string"},
           "logical_instances": {
             "type": "array",

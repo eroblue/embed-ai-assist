@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.s7b.build_result.v1",
+  "title": "S7b build 编译结果摘要契约（outputs/s7b/build_result.json）",
+  "type": "object",
+  "required": ["success", "build_system", "build_mode", "build_target",
+               "error_count", "warning_count", "build_log", "generated_at"],
+  "properties": {
+    "success": { "type": "boolean", "description": "编译是否成功（按各工具链退出码语义 + 日志解析错误数判定）" },
+    "build_system": { "type": "string", "enum": ["keil", "iar", "gcc_make", "gcc_cmake", "vendor_ide"] },
+    "build_mode": { "type": "string", "enum": ["cli", "gui"] },
+    "build_config": { "type": ["string", "null"], "description": "本次使用的构建配置（无 config 概念为 null）" },
+    "build_target": { "type": "string", "enum": ["App", "BootLoader"] },
+    "artifact_path": { "type": ["string", "null"], "description": "主调试产物路径（工作区内相对 POSIX 路径）" },
+    "artifact_format": { "type": ["string", "null"], "enum": ["axf", "out", "elf", null] },
+    "hex_path": { "type": ["string", "null"], "description": "烧录产物路径（.hex；补生成或工具链生成）" },
+    "bin_path": { "type": ["string", "null"], "description": "合并产物路径（.bin，S6 消费）；转换工具缺失时为 null" },
+    "error_count": { "type": "integer", "description": "编译错误数（GUI 模式无法精确计数时为 -1）" },
+    "warning_count": { "type": "integer", "description": "编译警告数（GUI 模式无法精确计数时为 -1）" },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "file": { "type": ["string", "null"] },
+          "line": { "type": ["integer", "null"] },
+          "message": { "type": "string" }
+        },
+        "required": ["message"]
+      },
+      "description": "错误详情列表（文件/行号/消息）"
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "file": { "type": ["string", "null"] },
+          "line": { "type": ["integer", "null"] },
+          "message": { "type": "string" }
+        },
+        "required": ["message"]
+      },
+      "description": "警告详情列表"
+    },
+    "bin_warning": { "type": ["string", "null"], "description": "bin/hex 转换警告（工具缺失/降级路径说明）" },
+    "build_log": { "type": "string", "description": "完整编译日志路径（outputs/s7b/build.log）" },
+    "gui_build_log": { "type": ["string", "null"], "description": "GUI 操作记录路径；CLI 机制为 null" },
+    "tool_exit_code": { "type": ["integer", "null"], "description": "工具链退出码（超时/无法启动为 null）" },
+    "timed_out": { "type": "boolean", "description": "是否编译超时（超时杀进程并按失败处理）" },
+    "generated_at": { "type": "string" }
+  }
+}

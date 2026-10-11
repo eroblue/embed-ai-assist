@@ -113,12 +113,21 @@ def _manifest_inventory_lines(manifest: dict, platform_token: str, rtos: str) ->
     """manifest 接口清单（任务书第 4 节）：逐外设的实例/接口/回调/落点文件。"""
     lines: list[str] = []
     for h in analysis.manifest_peripheral_headers(manifest):
-        periph = analysis.slug_token(h.get("peripheral") or "")
-        lines.append(f"### {h.get('file')}（外设 {periph}）")
+        is_sys = h.get("kind") == "sys"
+        periph = analysis.slug_token(h.get("peripheral") or "") or "sys"
+        kind_label = "系统接口" if is_sys else f"外设 {periph}"
+        lines.append(f"### {h.get('file')}（{kind_label}）")
         lines.append("")
         lines.append(f"- 说明：{h.get('description') or '-'}")
         lines.append(f"- **实现落点：`{analysis.impl_file_name(periph, platform_token)}`**"
                      f"（include 对应 Port 头，只实现本外设接口）")
+        if is_sys:
+            lines.append("- **sys 实现要点（OTA 向量表重定向）**：`SCB->VTOR = FLASH_BASE + "
+                         "flash_offset`（SCB/FLASH_BASE 来自厂商 CMSIS 头，仅实现层可用）；"
+                         "写 VTOR 后必须加 `__DSB(); __ISB();` 屏障（ARM 推荐惯例，保证后续"
+                         "取向量用新表）；偏移对齐要求按芯片手册校验（如 Cortex-M3 VTOR "
+                         "须 512 字节对齐），非法值返回 PORT_ERR_PARAM；VTOR 是内核寄存器，"
+                         "不涉及 S5a 能力缺口")
         for inst in h.get("logical_instances", []):
             lines.append(f"- 逻辑实例 `{inst.get('name')}`：{inst.get('description') or '-'}")
             lines.append(f"  - hw_instance：{inst.get('hw_instance') if inst.get('hw_instance') is not None else '**null（Agent 按 capabilities/设计输入选定，并在文件头注释登记）**'}"

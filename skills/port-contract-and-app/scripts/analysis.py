@@ -132,6 +132,7 @@ def load_context(config_path: Path, workspace: Path | None = None,
     architecture = arch_override or project_cfg.get("architecture") or "layered"
     rtos = project_cfg.get("rtos") or "none"
     power_enabled = (project_cfg.get("power") or {}).get("enabled", False)
+    flash_offset = int(project_cfg.get("flash_offset") or 0)
     s5b_cfg = config.get("s5b") or {}
     inputs_cfg = project_cfg.get("inputs") or {}
 
@@ -145,6 +146,7 @@ def load_context(config_path: Path, workspace: Path | None = None,
         "architecture": architecture,
         "rtos": rtos,
         "power_enabled": power_enabled,
+        "flash_offset": flash_offset,
         "language": s5b_cfg.get("language") or "c99",
         "port_split": s5b_cfg.get("port_split") or "",
         "inputs": {

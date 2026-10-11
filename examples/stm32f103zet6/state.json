@@ -1,0 +1,318 @@
+{
+  "circuit": {
+    "netlist_path": "outputs/circuit_netlist.json",
+    "component_count": 233,
+    "net_count": 290,
+    "pin_count": 660,
+    "parse_status": "partial",
+    "eda_tool": "pdf",
+    "source_file": "E:\\skills\\EmbedSoftAutomaticProject\\embed-ai-assist\\examples\\stm32f103zet6\\schematic\\WarShip STM32F1_V3.4_SCH.pdf",
+    "excel_path": "outputs/pin_table.xlsx",
+    "error": "第5页 疑似 BOM/表格页（无元件框），已跳过; 第1页: 元件 R51 未识别到引脚（无框符号可能未标引脚号）; 第1页: 元件 D9 未识别到引脚（无框符号可能未标引脚号）; 第2页: 元件 LED1 未识别到引脚（无框符号可能未标引脚号）; 第2页: 元件 LED0 未识别到引脚（无框符号可能未标引脚号）; 第2页: 元件 D1 未识别到引脚（无框符号可能未标引脚号）; 第3页: 元件 LED0 未识别到引脚（无框符号可能未标引脚号）; 第3页: 元件 D210 未识别到引脚（无框符号可能未标引脚号）; 第3页: 元件 LED1 未识别到引脚（无框符号可能未标引脚号）; 第4页: 元件 C442 未识别到引脚（无框符号可能未标引脚号）; 低置信度连接 155 条（< 0.7），已写入人工核对清单; 410 个引脚未吸附到导线，未生成连接",
+    "updated_at": "2026-09-24T08:11:14",
+    "source_format": "pdf",
+    "confidence": 0.808,
+    "low_confidence_count": 155,
+    "review_path": "outputs/pdf_review.md",
+    "facts": {
+      "facts_path": "E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/App/outputs/circuit_facts.json",
+      "facts_xlsx_path": "E:/skills/EmbedSoftAutomaticProject/embed-ai-assist/examples/stm32f103zet6/App/outputs/circuit_facts.xlsx",
+      "verified_pin_count": 97,
+      "conflict_count": 4,
+      "warning_count": 64,
+      "nc_pin_count": 23,
+      "verify_status": "partial",
+      "verify_scope": "all",
+      "inference_mode": "rule",
+      "error": null,
+      "updated_at": "2026-09-24T08:12:40"
+    }
+  },
+  "spec": {
+    "status": "success",
+    "spec_path": "outputs/s2/spec.json",
+    "software_spec_path": null,
+    "spec_summary": {
+      "total_requirements": 14,
+      "feature_count": 10,
+      "uncovered_count": 0
+    },
+    "source_file": "docs/智能环境监测仪功能规格书.md",
+    "error": null,
+    "updated_at": "2026-09-23T18:03:26"
+  },
+  "chip": {
+    "datasheet_path": "E:\\skills\\EmbedSoftAutomaticProject\\embed-ai-assist\\platforms\\stm32f103zet6\\datasheets\\STM32F103ZET6.pdf",
+    "datasheet_secondary_path": "E:\\skills\\EmbedSoftAutomaticProject\\embed-ai-assist\\platforms\\stm32f103zet6\\datasheets\\STM32F10x_Reference_Manual.pdf",
+    "svd_path": "E:\\skills\\EmbedSoftAutomaticProject\\embed-ai-assist\\platforms\\stm32f103zet6\\svd\\STM32F103xx.svd",
+    "sdk_header_path": "E:\\skills\\EmbedSoftAutomaticProject\\embed-ai-assist\\platforms\\stm32f103zet6\\sdk\\cmsis\\stm32f10x.h",
+    "mcu_family": "STM32F1",
+    "package": "LQFP144",
+    "pin_count": 144,
+    "pin_defined_count": 144,
+    "register_count": 449,
+    "peripheral_count": 53,
+    "pins_path": "outputs/chip_info/pins.json",
+    "registers_path": "outputs/chip_info/registers.json",
+    "clock_tree_path": "outputs/chip_info/clock_tree.json",
+    "peripherals_path": "outputs/chip_info/peripherals.json",
+    "pin_table_excel_path": "outputs/chip_info/pin_table.xlsx",
+    "register_map_excel_path": "outputs/chip_info/register_map.xlsx",
+    "extract_status": "success",
+    "extract_scope": "all",
+    "error": null,
+    "updated_at": "2026-09-16T15:52:09"
+  },
+  "facts": null,
+  "code": null,
+  "project": null,
+  "build": null,
+  "firmware": null,
+  "test": null,
+  "flash": null,
+  "log": null,
+  "analysis": null,
+  "workflow": null,
+  "s5a": {
+    "status": "done",
+    "rtos": "none",
+    "architecture": "layered",
+    "power_enabled": false,
+    "init_sources": [
+      "Drivers/BSP/Src/adc_init.c",
+      "Drivers/BSP/Src/clock_init.c",
+      "Drivers/BSP/Src/dht11_init.c",
+      "Drivers/BSP/Src/driver_dht11.c",
+      "Drivers/BSP/Src/driver_lcd.c",
+      "Drivers/BSP/Src/fsmc_init.c",
+      "Drivers/BSP/Src/gpio_init.c",
+      "Drivers/BSP/Src/hal_init.c",
+      "Drivers/BSP/Src/nvic_init.c",
+      "Drivers/BSP/Src/tim_init.c",
+      "Drivers/BSP/Src/uart_init.c"
+    ],
+    "init_headers": [
+      "Drivers/BSP/Inc/adc_init.h",
+      "Drivers/BSP/Inc/clock_init.h",
+      "Drivers/BSP/Inc/dht11_init.h",
+      "Drivers/BSP/Inc/driver_dht11.h",
+      "Drivers/BSP/Inc/driver_lcd.h",
+      "Drivers/BSP/Inc/fsmc_init.h",
+      "Drivers/BSP/Inc/gpio_init.h",
+      "Drivers/BSP/Inc/hal_init.h",
+      "Drivers/BSP/Inc/nvic_init.h",
+      "Drivers/BSP/Inc/tim_init.h",
+      "Drivers/BSP/Inc/uart_init.h"
+    ],
+    "entry_source": "Drivers/BSP/Src/hal_init.c",
+    "entry_header": "Drivers/BSP/Inc/hal_init.h",
+    "rtos_hw_init": null,
+    "power_init": null,
+    "hardware_capabilities": "outputs/s5a/hardware_capabilities.json",
+    "ide_pending_files": "outputs/s5a/ide_pending_files.json",
+    "error": null,
+    "updated_at": "2026-09-29T17:36:33",
+    "incremental": true,
+    "changed_modules": []
+  },
+  "s5b": {
+    "status": "done",
+    "rtos": "none",
+    "architecture": "layered",
+    "power_enabled": false,
+    "port_manifest": "outputs/s5b/port_interface_manifest.json",
+    "osal_header": null,
+    "power_header": null,
+    "generation_brief": "outputs/s5b/generation_brief.md",
+    "incremental": true,
+    "traceability": "outputs/s5b/traceability.json",
+    "capability_gap": null,
+    "ide_pending_files": "outputs/s5b/ide_pending_files.json",
+    "error": null,
+    "updated_at": "2026-09-29T18:21:49",
+    "port_headers": [
+      "Drivers/Port/Inc/adc_port.h",
+      "Drivers/Port/Inc/gpio_port.h",
+      "Drivers/Port/Inc/par_port.h",
+      "Drivers/Port/Inc/timer_port.h",
+      "Drivers/Port/Inc/uart_port.h",
+      "Drivers/Port/Inc/wdt_port.h"
+    ],
+    "app_sources": [
+      "App/Src/app.c",
+      "App/Src/app_alarm_control.c",
+      "App/Src/app_env_sensor.c",
+      "App/Src/app_key_handler.c",
+      "App/Src/app_lcd_display.c",
+      "App/Src/app_mode_control.c",
+      "App/Src/app_uart_report.c"
+    ],
+    "app_headers": [
+      "App/Inc/app.h",
+      "App/Inc/app_alarm_control.h",
+      "App/Inc/app_env_sensor.h",
+      "App/Inc/app_key_handler.h",
+      "App/Inc/app_lcd_display.h",
+      "App/Inc/app_mode_control.h",
+      "App/Inc/app_uart_report.h"
+    ],
+    "app_task_sources": [],
+    "protocol_sources": [],
+    "driver_sources": [
+      "Drivers/BSP/Src/driver_dht11.c",
+      "Drivers/BSP/Src/driver_lcd.c"
+    ],
+    "driver_headers": [
+      "Drivers/BSP/Inc/driver_dht11.h",
+      "Drivers/BSP/Inc/driver_lcd.h"
+    ],
+    "main_source": "App/Src/main.c",
+    "flows": [
+      {
+        "file": "docs/flow/app_alarm_control_state.md",
+        "module": "app_alarm_control",
+        "version": "1.1",
+        "status": "approved"
+      },
+      {
+        "file": "docs/flow/app_env_sensor_flow.md",
+        "module": "app_env_sensor",
+        "version": "1.1",
+        "status": "approved"
+      },
+      {
+        "file": "docs/flow/app_key_handler_state.md",
+        "module": "app_key_handler",
+        "version": "1.0",
+        "status": "approved"
+      },
+      {
+        "file": "docs/flow/app_lcd_display_flow.md",
+        "module": "app_lcd_display",
+        "version": "1.0",
+        "status": "approved"
+      },
+      {
+        "file": "docs/flow/app_mode_control_state.md",
+        "module": "app_mode_control",
+        "version": "1.0",
+        "status": "approved"
+      },
+      {
+        "file": "docs/flow/app_oled_display_flow.md",
+        "module": "app_oled_display",
+        "version": "1.0",
+        "status": "deprecated"
+      },
+      {
+        "file": "docs/flow/app_uart_report_sequence.md",
+        "module": "app_uart_report",
+        "version": "1.0",
+        "status": "approved"
+      }
+    ],
+    "flow_diffs": {
+      "app_alarm_control": "skip",
+      "app_env_sensor": "skip",
+      "app_key_handler": "skip",
+      "app_lcd_display": "skip",
+      "app_mode_control": "skip",
+      "app_oled_display": "deprecated",
+      "app_uart_report": "skip"
+    }
+  },
+  "s5c": {
+    "status": "done",
+    "rtos": "none",
+    "architecture": "layered",
+    "power_enabled": false,
+    "generation_brief": "outputs/s5c/generation_brief.md",
+    "port_impl_sources": [
+      "Drivers/Port/Src/port_impl_adc_stm32f103zet6.c",
+      "Drivers/Port/Src/port_impl_gpio_stm32f103zet6.c",
+      "Drivers/Port/Src/port_impl_par_stm32f103zet6.c",
+      "Drivers/Port/Src/port_impl_timer_stm32f103zet6.c",
+      "Drivers/Port/Src/port_impl_uart_stm32f103zet6.c",
+      "Drivers/Port/Src/port_impl_wdt_stm32f103zet6.c"
+    ],
+    "osal_impl": null,
+    "power_impl": null,
+    "skipped_files": [
+      "Drivers/Port/Src/port_impl_wdt_stm32f103zet6.c"
+    ],
+    "capability_gap": null,
+    "port_manifest_snapshot": "outputs/s5c/port_manifest_snapshot.json",
+    "port_diffs": [
+      "outputs/s5c/port_diffs/adc_diff.json",
+      "outputs/s5c/port_diffs/gpio_diff.json",
+      "outputs/s5c/port_diffs/par_diff.json",
+      "outputs/s5c/port_diffs/timer_diff.json",
+      "outputs/s5c/port_diffs/uart_diff.json",
+      "outputs/s5c/port_diffs/wdt_diff.json"
+    ],
+    "generation_modes": {
+      "adc": "skip",
+      "gpio": "skip",
+      "par": "skip",
+      "timer": "skip",
+      "uart": "skip",
+      "wdt": "skip"
+    },
+    "error": null,
+    "updated_at": "2026-09-29T18:21:49"
+  },
+  "s7a": {
+    "status": "done",
+    "build_system": "gcc_make",
+    "checked_tools": [
+      {
+        "name": "gcc",
+        "path": "C:\\gcc-arm\\bin\\arm-none-eabi-gcc.exe",
+        "present": true,
+        "version": "14.2"
+      },
+      {
+        "name": "gcc_objcopy",
+        "path": "C:\\gcc-arm\\bin\\arm-none-eabi-objcopy.exe",
+        "present": true,
+        "version": "14.2"
+      },
+      {
+        "name": "make",
+        "path": "C:\\msys64\\usr\\bin\\make.exe",
+        "present": true,
+        "version": "4.4.1"
+      }
+    ],
+    "installed_tools": [
+      "gcc",
+      "gcc_objcopy",
+      "make"
+    ],
+    "config_updated": true,
+    "check_result": "outputs/s7a/toolchain_check.json",
+    "install_report": "outputs/s7a/install_report.md",
+    "error": null,
+    "updated_at": "2026-09-30T19:45:45"
+  },
+  "s7b": {
+    "status": "done",
+    "build_system": "gcc_make",
+    "build_mode": "cli",
+    "build_config": null,
+    "build_target": "App",
+    "artifact_path": "build/Template.elf",
+    "artifact_format": "elf",
+    "hex_path": "build/Template.hex",
+    "bin_path": "build/Template.bin",
+    "error_count": 0,
+    "warning_count": 4,
+    "build_log": "outputs/s7b/build.log",
+    "build_result": "outputs/s7b/build_result.json",
+    "error_analysis": null,
+    "gui_build_log": null,
+    "bin_warning": "Keil 启动文件（ARMCC 语法）已替换为 GNU 语法: startup_stm32f10x_hd.s; 链接脚本 为 S7b 生成文件，已重新生成: Template.ld; Makefile 为 S7b 生成文件，已重新生成: Makefile",
+    "error": null,
+    "updated_at": "2026-09-30T22:41:59"
+  }
+}

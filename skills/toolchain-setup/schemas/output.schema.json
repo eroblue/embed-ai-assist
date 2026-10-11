@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.s7a.output.v1",
+  "title": "S7a toolchain-setup 输出契约（state.json 的 s7a 字段）",
+  "type": "object",
+  "required": ["status", "build_system", "checked_tools", "installed_tools",
+               "config_updated", "check_result", "install_report",
+               "error", "updated_at"],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["skipped", "running", "done", "error"],
+      "description": "skipped=全部就绪无需安装；running=prepare 检测到缺失待安装；done=安装成功或商业工具仅需手动指引；error=安装失败或用户拒绝"
+    },
+    "build_system": { "type": "string", "description": "本次检查的构建系统" },
+    "checked_tools": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "path", "present"],
+        "properties": {
+          "name": { "type": "string" },
+          "path": { "type": ["string", "null"] },
+          "present": { "type": "boolean" },
+          "version": { "type": ["string", "null"], "description": "版本探测结果（商业工具/探测失败为 null）" }
+        }
+      },
+      "description": "检测结果（prepare 段快照；install 的对照基线）"
+    },
+    "installed_tools": {
+      "type": "array", "items": { "type": "string" },
+      "description": "本次实际安装的工具名（未安装为空）"
+    },
+    "config_updated": {
+      "type": "boolean",
+      "description": "是否回填了全局 config.json 的 tool_paths（Agent 在用户确认后执行）"
+    },
+    "check_result": { "type": "string", "description": "outputs/s7a/toolchain_check.json 路径" },
+    "install_report": {
+      "type": ["string", "null"],
+      "description": "outputs/s7a/install_report.md 路径（无安装动作时为 null）"
+    },
+    "error": { "type": ["string", "null"] },
+    "updated_at": { "type": "string" }
+  }
+}

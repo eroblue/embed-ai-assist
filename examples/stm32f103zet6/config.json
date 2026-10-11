@@ -2,8 +2,10 @@
   "platform": "stm32f103zet6",
   "project": {
     "build_target": "App",
+    "build_system": "keil",
     "architecture": "layered",
     "rtos": "none",
+    "flash_offset": 0,
     "power": {
       "enabled": false
     },

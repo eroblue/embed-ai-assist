@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.s7b.output.v1",
+  "title": "S7b build 输出契约（state.json 的 s7b 字段）",
+  "type": "object",
+  "required": ["status", "build_system", "build_mode", "build_target",
+               "error_count", "warning_count", "build_log", "build_result",
+               "error", "updated_at"],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["pending", "running", "done", "error"],
+      "description": "running=prepare 已出任务书；done=编译成功且产物校验通过；error=编译失败（error_analysis 已产出）或环境/配置失败"
+    },
+    "build_system": {
+      "type": "string",
+      "enum": ["keil", "iar", "gcc_make", "gcc_cmake", "vendor_ide"],
+      "description": "本次实际使用的构建系统"
+    },
+    "build_mode": {
+      "type": "string",
+      "enum": ["cli", "gui"],
+      "description": "vendor_ide 为 gui（S12 编排与 S9 烧录可据此区分），其余为 cli"
+    },
+    "build_config": {
+      "type": ["string", "null"],
+      "description": "本次实际使用的构建配置（target/configuration 名；gcc_make/vendor_ide 无 config 概念为 null）"
+    },
+    "build_target": {
+      "type": "string",
+      "enum": ["App", "BootLoader"],
+      "description": "本次编译的目标工程"
+    },
+    "artifact_path": {
+      "type": ["string", "null"],
+      "description": "主调试产物路径（.axf/.out/.elf，工作区内相对 POSIX 路径）；无法定位为 null（由 S9 flash 阶段再定位）"
+    },
+    "artifact_format": {
+      "type": ["string", "null"],
+      "enum": ["axf", "out", "elf", null],
+      "description": "主调试产物格式"
+    },
+    "hex_path": {
+      "type": ["string", "null"],
+      "description": "烧录产物路径（.hex，S9 flash 消费）"
+    },
+    "bin_path": {
+      "type": ["string", "null"],
+      "description": "合并产物路径（.bin，S6 firmware-merger 消费）；bin 转换工具缺失时为 null 并附警告"
+    },
+    "error_count": { "type": "integer", "description": "编译错误数（GUI 模式无法精确计数时为 -1）" },
+    "warning_count": { "type": "integer", "description": "编译警告数（GUI 模式无法精确计数时为 -1）" },
+    "build_log": { "type": "string", "description": "完整编译日志路径（outputs/s7b/build.log）" },
+    "build_result": { "type": "string", "description": "结果摘要路径（outputs/s7b/build_result.json）" },
+    "makefile_generated": {
+      "type": "boolean",
+      "description": "阶段 A' 是否生成了 Makefile（仅显式 gcc_make 且无 Makefile 时触发；skip-if-modified 跳过或非 gcc_make 为 false）"
+    },
+    "linker_script_generated": {
+      "type": "boolean",
+      "description": "阶段 A' 是否生成了 .ld 链接脚本（引用工程内/平台库现成脚本时为 false）"
+    },
+    "error_analysis": {
+      "type": ["string", "null"],
+      "description": "Agent 分析报告路径（outputs/s7b/error_analysis.md，仅编译失败时存在）"
+    },
+    "gui_build_log": {
+      "type": ["string", "null"],
+      "description": "GUI 编译操作记录路径（outputs/s7b/gui_build_log.md）；CLI 机制为 null"
+    },
+    "bin_warning": {
+      "type": ["string", "null"],
+      "description": "bin 转换工具缺失警告（bin_path=null 时说明 S6 合并需用户手动提供 bin）"
+    },
+    "error": { "type": ["string", "null"] },
+    "updated_at": { "type": "string" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "done" } } },
+      "then": {
+        "required": ["artifact_path", "artifact_format", "hex_path", "bin_path", "bin_warning"]
+      }
+    },
+    {
+      "if": { "properties": { "build_mode": { "const": "gui" } } },
+      "then": { "required": ["gui_build_log"] }
+    }
+  ]
+}

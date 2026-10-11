@@ -107,10 +107,11 @@ port-contract-and-app/
 │   ├── incremental_generation_rules.md ← 定点修改原则/范围校验阈值
 │   └── ide_project_formats.md        ← IDE 工程说明（Agent 不碰工程文件）
 └── assets/
-    ├── port_templates/               ← 9 个 Port 接口模板（挑选→裁剪→扩展）
+    ├── port_templates/               # 10 个 Port 接口模板（挑选→裁剪→扩展）
     │   ├── uart_port.h.tpl / i2c_port.h.tpl / spi_port.h.tpl
     │   ├── gpio_port.h.tpl / adc_port.h.tpl / timer_port.h.tpl
     │   ├── wdt_port.h.tpl（通用必备外设的默认接口，用看门狗时取用）
+    │   ├── sys_port.h.tpl（flash_offset>0 时取用：OTA App 向量表重定向）
     │   ├── osal.h.tpl（rtos != none 时生成）
     │   └── power_port.h.tpl（power.enabled 时生成）
     ├── flow_skeletons/               ← 3 个流程图骨架（front-matter + 围栏）
@@ -128,7 +129,8 @@ port-contract-and-app/
 | platform | config.json（项目层） | string | 是 | 芯片平台名（定位参考材料） |
 | project.build_target | config.json（项目层） | enum | 否 | `App` / `BootLoader`，缺省 App——目标工程根；流程图放 `<target>/docs/flow/`（App 与 BootLoader 各自独立） |
 | project.architecture | config.json（项目层） | enum | 否 | `flat` / `layered` / `full`，缺省 layered；flat 无 Port 层 |
-| project.rtos | config.json（项目层） | enum | 否 | `none` / `FreeRTOS` / `RT-Thread` / `Zephyr`，缺省 none |
+| `project.rtos` | config.json（项目层） | enum | 否 | `none` / `FreeRTOS` / `RT-Thread` / `Zephyr`，缺省 none |
+| `project.flash_offset` | config.json（项目层） | integer | 否 | App 在 Flash 中的重定向偏移（字节，OTA App 场景），缺省 0；**>0 且非 flat 时生成 `sys_port.h` 并在 main.c 首句显式调用 `sys_port_relocate_vector(0x...)`**（偏移量字面值写入，注释标明与 config 对应）。同一值被 S7b 链接脚本（ORIGIN=基址+偏移）与 S6/S9（bin 拼接/烧录地址）消费——三处一致，config 为权威来源 |
 | project.power.enabled | config.json（项目层） | bool | 否 | 缺省 false |
 | project.inputs.* | config.json（项目层） | string/array | 否 | software_spec / demos / sdk / existing_project / ide_project / s5b_design_input |
 | s5b.language / s5b.port_split | config.json（项目层） | string | 否 | 缺省 c99 / 按应用需求推断 |
@@ -190,6 +192,7 @@ capability_gap.json 由 Agent 复核）。
 | `<外设>_port.h`（uart/i2c/spi/gpio/adc/timer/wdt…） | `Drivers/Port/Inc/` | **非 flat** 且该外设有使用（模板 assets/port_templates/；wdt 为通用必备外设，用看门狗时直接取 `wdt_port.h.tpl` —— 超时值归 S5a，接口只含 init/feed/reset_caused） |
 | `osal.h` | `Drivers/Port/Inc/` | **RTOS 时总是生成（含 flat）** |
 | `power_port.h` | `Drivers/Port/Inc/` | power.enabled 且非 flat |
+| `sys_port.h` | `Drivers/Port/Inc/` | **flash_offset > 0 且非 flat**（OTA App 向量表重定向契约，模板 `sys_port.h.tpl`；main.c 首句显式调用，见上方骨架） |
 
 **OSAL 与外设 Port 层是两个正交维度**：Port 管"外设无关"，OSAL 管"RTOS 无关"。
 flat 只豁免外设 Port 层（APP 直接调 S5a 的 BSP 初始化接口）；8 位 MCU 跑
@@ -209,7 +212,7 @@ base_version）；status 生命周期 draft→review→approved（生成代码�
 approved 后修改须置 dirty 重新审核且 version 递增。版本快照自动存
 `docs/flow/.history/<模块>/<版本>.md`（diff 基线，勿手改）。
 
-### main.c 标准骨架（两种形态，不得混写）
+### main.c 标准骨架（三种形态，不得混写）
 
 ```c
 /* 裸机（rtos == "none"） */
@@ -225,7 +228,24 @@ int main(void)
     }
 }
 
-/* RTOS（rtos != "none"） */
+/* 裸机 + OTA App（flash_offset > 0 且非 flat，向量表重定向形态） */
+#include "hal_init.h"
+#include "app.h"
+#include "sys_port.h"
+
+#define APP_FLASH_OFFSET 0x10000u   /* OTA App 偏移，与 config project.flash_offset 一致 */
+
+int main(void)
+{
+    (void)sys_port_relocate_vector(APP_FLASH_OFFSET); /* 须在任何中断使能前 */
+    hal_init();
+    app_init();
+    while (1) {
+        app_loop();
+    }
+}
+
+/* RTOS（rtos != "none"）——flash_offset > 0 时同样在 hal_init 前加重定位调用 */
 #include "hal_init.h"
 #include "app.h"
 #include "osal.h"
@@ -257,7 +277,7 @@ int main(void)
 ### 写入 state.json（仅 s5b 字段）
 
 `status`（running/done/error）、`rtos`、`architecture`、`power_enabled`、
-`generation_brief`、`incremental`、`flows`（流程图文件列表）、`flow_diffs`、
+`flash_offset`、`generation_brief`、`incremental`、`flows`（流程图文件列表）、`flow_diffs`、
 `port_manifest`、`port_headers`、`osal_header`（null=裸机）、`power_header`、
 `app_sources`/`app_headers`（validate 从实际产物分类收集：main_source、
 protocol_sources、task_sources）、`driver_sources`/`driver_headers`、
