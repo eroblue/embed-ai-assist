@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.s9.output.v1",
+  "title": "S9 flash 输出契约（state.json 的 s9 字段）",
+  "description": "S9 烧录状态。路径约定：outputs/s9/ 下产物相对目标工程根（App/BootLoader）；release/ 下产物相对项目根（跨工程交付目录）。旧模板的 flash 键已废弃，由本键取代（s5a/s7b 新惯例）",
+  "type": "object",
+  "required": ["status", "flash_tool", "flash_mode", "error", "updated_at"],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["pending", "running", "done", "error"],
+      "description": "running=prepare 已出任务书与 jlink 脚本；done=烧录成功且产物校验通过；error=烧录失败（error_analysis 已产出）或环境/配置失败"
+    },
+    "flash_tool": {
+      "type": ["string", "null"],
+      "enum": ["jlink", "jflash", "stlink", "openocd", "pyocd", "vendor_ide", null],
+      "description": "本次实际使用的烧录工具（软件 CLI；一期仅 jlink 全链路）。工具判定失败时为 null"
+    },
+    "flash_mode": {
+      "type": "string",
+      "enum": ["cli", "gui"],
+      "description": "vendor_ide 为 gui（S12 编排可据此区分），其余为 cli"
+    },
+    "firmware_path": {
+      "type": "string",
+      "description": "烧录的固件路径（release/ 内副本——实际烧录执行体，相对项目根）"
+    },
+    "firmware_format": { "type": "string", "enum": ["hex", "bin"] },
+    "firmware_source": {
+      "type": "string",
+      "enum": ["s7b", "s6", "manual"],
+      "description": "固件来源：s7b 产物 / S6 合并固件 / --firmware 显式指定"
+    },
+    "firmware_size": {
+      "type": ["integer", "null"],
+      "description": "固件字节数"
+    },
+    "firmware_sha256": {
+      "type": ["string", "null"],
+      "description": "固件 SHA256（追溯'烧的是哪个固件'，可与 s7b 产物交叉核对）"
+    },
+    "device": { "type": "string", "description": "烧录器设备名（J-Link 设备库命名，如 STM32F103ZE）" },
+    "jflash_project": {
+      "type": ["string", "null"],
+      "description": "使用的 .jflash 工程文件路径（仅 flash_tool=jflash 时非 null，二期实现）"
+    },
+    "interface": { "type": "string", "enum": ["SWD", "JTAG"], "description": "探针接口" },
+    "target_address": {
+      "type": ["integer", "null"],
+      "description": "烧录目标地址（hex 时为解析出的首地址；bin 时为 flash_base+flash_offset；flash_offset 已含在内。解析不可得时为 null）"
+    },
+    "verify": { "type": "boolean", "description": "本次是否执行烧录后校验（选项，缺省开启）" },
+    "verify_passed": {
+      "type": ["boolean", "null"],
+      "description": "校验结果（未校验或未执行时为 null）。verify 失败不算烧录成功"
+    },
+    "reset": { "type": "boolean", "description": "烧录后复位运行选项（--no-reset 关闭）" },
+    "reset_done": { "type": "boolean", "description": "烧录后是否已复位运行（prepare 阶段为 false）" },
+    "chip_erase": { "type": "boolean", "description": "是否全片擦除（破坏性选项，显式 opt-in，缺省按固件范围擦除）" },
+    "duration_sec": { "type": ["number", "null"], "description": "烧录耗时（秒，prepare 阶段为 null）" },
+    "flash_log": { "type": "string", "description": "完整烧录日志路径（outputs/s9/flash.log，相对目标工程根）" },
+    "flash_result": { "type": "string", "description": "结果摘要路径（outputs/s9/flash_result.json）" },
+    "release_dir": { "type": "string", "description": "发布目录（release/，项目根，跨工程；S9 是唯一写者）" },
+    "release_manifest": { "type": "string", "description": "发布清单路径（release/flash_info.json，成败均写）" },
+    "error_analysis": {
+      "type": ["string", "null"],
+      "description": "Agent 分析报告路径（outputs/s9/error_analysis.md，仅烧录失败时存在）"
+    },
+    "gui_flash_log": {
+      "type": ["string", "null"],
+      "description": "GUI 烧录操作记录路径（outputs/s9/gui_flash_log.md）；CLI 机制为 null（五期演进项）"
+    },
+    "error": { "type": ["string", "null"] },
+    "updated_at": { "type": "string" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "enum": ["running", "done"] } } },
+      "then": {
+        "required": ["firmware_path", "firmware_format", "firmware_source", "device",
+                     "interface", "target_address", "verify", "reset", "chip_erase",
+                     "flash_log", "flash_result", "release_dir", "release_manifest"]
+      }
+    },
+    {
+      "if": { "properties": { "status": { "const": "done" } } },
+      "then": { "required": ["firmware_size", "firmware_sha256", "verify_passed", "reset_done", "duration_sec"] }
+    },
+    {
+      "if": { "properties": { "flash_mode": { "const": "gui" } } },
+      "then": { "required": ["gui_flash_log"] }
+    }
+  ]
+}

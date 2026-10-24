@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.s9.input.v1",
+  "title": "S9 flash 输入契约（state.json 的 S7b/S6 就绪性）",
+  "description": "S9 烧录需要上游固件产物就位：s7b 必须 done 且 hex/bin 至少一个非空（--firmware 显式指定时由 prepare 跳过本检查）；S6 合并固件（firmware 字段）可选，存在且 done 时优先消费（S6 未实现时自然落到 s7b）",
+  "type": "object",
+  "required": ["s7b"],
+  "properties": {
+    "s7b": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {
+        "status": { "const": "done", "description": "S7b 编译已完成" },
+        "hex_path": {
+          "type": ["string", "null"],
+          "description": "烧录产物（.hex，hex 优先消费）"
+        },
+        "bin_path": {
+          "type": ["string", "null"],
+          "description": "合并产物（.bin，hex 为 null 时兜底，需显式烧录地址）"
+        }
+      },
+      "anyOf": [
+        {
+          "required": ["hex_path"],
+          "properties": { "hex_path": { "type": "string" } }
+        },
+        {
+          "required": ["bin_path"],
+          "properties": { "bin_path": { "type": "string" } }
+        }
+      ]
+    },
+    "firmware": {
+      "type": ["object", "null"],
+      "description": "S6 firmware-merger 合并固件字段（可选；存在且 done 时优先消费。S6 未实现时为 null）"
+    }
+  }
+}

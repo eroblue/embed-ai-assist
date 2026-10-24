@@ -1,0 +1,27 @@
+{
+  "generated_at": "2026-10-24T16:44:54",
+  "flash_tool": "jlink",
+  "device": "STM32F103ZE",
+  "interface": "SWD",
+  "firmware": {
+    "name": "Template.hex",
+    "format": "hex",
+    "source": "s7b",
+    "size": 41586,
+    "sha256": "432b33919a2443f73e42a47b53ad84119192476ab07b0a8b73affafa72693249",
+    "release_path": "release/Template.hex"
+  },
+  "target_address": 134217728,
+  "verify": true,
+  "verify_passed": true,
+  "success": true,
+  "duration_sec": 0.578,
+  "repro_command": "cd E:\\skills\\EmbedSoftAutomaticProject\\embed-ai-assist\\examples\\stm32f103zet6\\release && C:\\Program Files\\SEGGER\\JLink\\JLink.exe -device STM32F103ZE -if SWD -speed 4000 -autoconnect 1 -CommandFile flash_cmd.jlink",
+  "release_files": [
+    "Template.hex",
+    "Template.bin",
+    "flash_cmd.jlink",
+    "flash_info.json"
+  ],
+  "error": null
+}

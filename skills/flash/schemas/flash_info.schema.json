@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.s9.flash_info.v1",
+  "title": "S9 flash 发布清单契约（release/flash_info.json）",
+  "description": "release/ 交付快照的机器可读清单：固件指纹/目标地址/设备/工具/verify 结果/复烧命令。flash 结束落盘，成败均写；hash 仅作交付追溯（生产端离线校验），不参与 release 副本复用判据（复用判据为现场计算 SHA256 比对）",
+  "type": "object",
+  "required": ["generated_at", "flash_tool", "device", "interface", "firmware",
+               "target_address", "verify", "success", "repro_command", "release_files"],
+  "properties": {
+    "generated_at": { "type": "string" },
+    "flash_tool": { "type": "string", "enum": ["jlink", "jflash", "stlink", "openocd", "pyocd", "vendor_ide"] },
+    "device": { "type": "string" },
+    "interface": { "type": "string", "enum": ["SWD", "JTAG"] },
+    "firmware": {
+      "type": "object",
+      "required": ["name", "format", "source", "size", "sha256", "release_path"],
+      "properties": {
+        "name": { "type": "string", "description": "固件文件名（如 Template.hex）" },
+        "format": { "type": "string", "enum": ["hex", "bin"] },
+        "source": { "type": "string", "enum": ["s7b", "s6", "manual"] },
+        "size": { "type": ["integer", "null"] },
+        "sha256": { "type": ["string", "null"], "description": "交付追溯用 hash（生产端离线校验收到的固件与发布时是否同一份）" },
+        "release_path": { "type": "string", "description": "发布副本路径（相对项目根，如 release/Template.hex）" }
+      }
+    },
+    "target_address": { "type": ["integer", "null"], "description": "烧录目标地址（flash_offset 已含在内）" },
+    "verify": { "type": "boolean", "description": "本次是否执行校验" },
+    "verify_passed": { "type": ["boolean", "null"] },
+    "success": { "type": "boolean", "description": "烧录是否成功（清单成败均写）" },
+    "duration_sec": { "type": ["number", "null"] },
+    "repro_command": { "type": "string", "description": "复烧命令（在 release/ 目录下执行；生产人员仅凭烧录工具 + release/ 即可复烧）" },
+    "release_files": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "本次发布涉及的 release/ 文件清单（固件副本/flash_cmd.jlink/flash_info.json）"
+    },
+    "error": { "type": ["string", "null"] }
+  }
+}

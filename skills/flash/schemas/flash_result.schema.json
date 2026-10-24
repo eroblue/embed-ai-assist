@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.s9.flash_result.v1",
+  "title": "S9 flash 烧录结果摘要契约（outputs/s9/flash_result.json）",
+  "description": "烧录执行结果（工具/固件指纹/地址/verify 结果/耗时/退出码/日志关键行）——失败复盘时直接回答'烧了什么、烧到哪、用什么烧的'",
+  "type": "object",
+  "required": ["success", "flash_tool", "flash_mode", "flash_target", "firmware_path",
+               "firmware_format", "firmware_source", "device", "interface", "verify",
+               "flash_log", "generated_at"],
+  "properties": {
+    "success": { "type": "boolean", "description": "烧录是否成功（退出码 + 日志特征双判定；verify 开启时校验通过才算成功）" },
+    "flash_tool": { "type": "string", "enum": ["jlink", "jflash", "stlink", "openocd", "pyocd", "vendor_ide"] },
+    "flash_mode": { "type": "string", "enum": ["cli", "gui"] },
+    "flash_target": { "type": "string", "enum": ["App", "BootLoader"], "description": "烧录对应的目标工程" },
+    "firmware_path": { "type": "string", "description": "烧录的固件路径（release/ 内副本，相对项目根）" },
+    "firmware_format": { "type": "string", "enum": ["hex", "bin"] },
+    "firmware_source": { "type": "string", "enum": ["s7b", "s6", "manual"] },
+    "firmware_size": { "type": ["integer", "null"] },
+    "firmware_sha256": { "type": ["string", "null"] },
+    "device": { "type": "string" },
+    "interface": { "type": "string", "enum": ["SWD", "JTAG"] },
+    "target_address": { "type": ["integer", "null"], "description": "烧录目标地址（hex 时为解析首地址；不可得为 null）" },
+    "verify": { "type": "boolean", "description": "本次是否执行校验" },
+    "verify_passed": { "type": ["boolean", "null"], "description": "校验结果（未校验为 null）" },
+    "reset": { "type": "boolean", "description": "复位运行选项" },
+    "reset_done": { "type": ["boolean", "null"], "description": "是否已复位运行（失败时为 null）" },
+    "chip_erase": { "type": "boolean", "description": "是否全片擦除" },
+    "duration_sec": { "type": ["number", "null"], "description": "烧录耗时（秒，含重试）" },
+    "tool_exit_code": { "type": ["integer", "null"], "description": "烧录工具退出码（超时/无法启动为 null）" },
+    "timed_out": { "type": "boolean", "description": "是否烧录超时（超时杀进程按失败处理）" },
+    "retries": { "type": "integer", "description": "失败自动重试次数（--retry，缺省 0 不重试）" },
+    "key_lines": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "日志关键行（下载/编程/校验/复位/失败特征行，供 analyze 与追溯）"
+    },
+    "flash_log": { "type": "string", "description": "完整烧录日志路径（outputs/s9/flash.log）" },
+    "release_manifest": { "type": "string", "description": "发布清单路径（release/flash_info.json）" },
+    "error": { "type": ["string", "null"], "description": "失败摘要（成功为 null）" },
+    "generated_at": { "type": "string" }
+  }
+}

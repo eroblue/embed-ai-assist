@@ -314,5 +314,33 @@
     "bin_warning": null,
     "error": null,
     "updated_at": "2026-10-11T12:10:18"
+  },
+  "s9": {
+    "status": "done",
+    "flash_tool": "jlink",
+    "flash_mode": "cli",
+    "firmware_path": "release/Template.hex",
+    "firmware_format": "hex",
+    "firmware_source": "s7b",
+    "firmware_size": 41586,
+    "firmware_sha256": "432b33919a2443f73e42a47b53ad84119192476ab07b0a8b73affafa72693249",
+    "device": "STM32F103ZE",
+    "jflash_project": null,
+    "interface": "SWD",
+    "target_address": 134217728,
+    "verify": true,
+    "verify_passed": true,
+    "reset": true,
+    "reset_done": true,
+    "chip_erase": false,
+    "duration_sec": 0.578,
+    "flash_log": "outputs/s9/flash.log",
+    "flash_result": "outputs/s9/flash_result.json",
+    "release_dir": "release",
+    "release_manifest": "release/flash_info.json",
+    "error_analysis": null,
+    "gui_flash_log": null,
+    "error": null,
+    "updated_at": "2026-10-24T16:44:58"
   }
 }

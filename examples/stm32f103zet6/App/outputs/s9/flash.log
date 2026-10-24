@@ -1,0 +1,58 @@
+===== 尝试 1/1 =====
+SEGGER J-Link Commander V7.54 (Compiled Sep  1 2021 10:47:47)
+DLL version V7.54, compiled Sep  1 2021 10:46:27
+
+
+J-Link Command File read successfully.
+Processing script file...
+
+J-Link connection not established yet but required for command.
+Connecting to J-Link via USB...O.K.
+Firmware: J-Link V9 compiled May  7 2021 16:26:12
+Hardware version: V9.40
+S/N: 69405618
+License(s): RDI, GDB, FlashDL, FlashBP, JFlash
+VTref=3.291V
+Device "STM32F103ZE" selected.
+
+
+Connecting to target via SWD
+InitTarget() start
+InitTarget() end
+Found SW-DP with ID 0x1BA01477
+DPIDR: 0x1BA01477
+Scanning AP map to find all available APs
+AP[1]: Stopped AP scan as end of AP map has been reached
+AP[0]: AHB-AP (IDR: 0x14770011)
+Iterating through AP map to find AHB-AP to use
+AP[0]: Core found
+AP[0]: AHB-AP ROM base: 0xE00FF000
+CPUID register: 0x411FC231. Implementer code: 0x41 (ARM)
+Found Cortex-M3 r1p1, Little endian.
+FPUnit: 6 code (BP) slots and 2 literal slots
+CoreSight components:
+ROMTbl[0] @ E00FF000
+ROMTbl[0][0]: E000E000, CID: B105E00D, PID: 001BB000 SCS
+ROMTbl[0][1]: E0001000, CID: B105E00D, PID: 001BB002 DWT
+ROMTbl[0][2]: E0002000, CID: B105E00D, PID: 000BB003 FPB
+ROMTbl[0][3]: E0000000, CID: B105E00D, PID: 001BB001 ITM
+ROMTbl[0][4]: E0040000, CID: B105900D, PID: 001BB923 TPIU-Lite
+ROMTbl[0][5]: E0041000, CID: B105900D, PID: 101BB924 ETM-M3
+Cortex-M3 identified.
+
+Downloading file [Template.hex]...
+J-Link: Flash download: Bank 0 @ 0x08000000: Skipped. Contents already match
+O.K.
+
+Loading binary file Template_verify.bin
+Reading 14768 bytes data from target memory @ 0x08000000.
+Verify successful.
+
+Reset delay: 0 ms
+Reset type NORMAL: Resets core & peripherals via SYSRESETREQ & VECTRESET bit.
+Reset: Halt core after reset via DEMCR.VC_CORERESET.
+Reset: Reset device via AIRCR.SYSRESETREQ.
+
+
+
+Script processing completed.

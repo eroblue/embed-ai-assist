@@ -6,6 +6,7 @@
     "architecture": "layered",
     "rtos": "none",
     "flash_offset": 0,
+    "flash_tool": "jlink",
     "power": {
       "enabled": false
     },

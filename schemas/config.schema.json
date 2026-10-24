@@ -18,7 +18,11 @@
         "make": { "type": "string", "description": "GNU Make 路径（gcc_make 构建系统）" },
         "cmake": { "type": "string", "description": "CMake 路径（gcc_cmake 构建系统）" },
         "vendor_ide": { "type": "string", "description": "厂家 IDE 可执行文件路径（build_system=vendor_ide 时必填）" },
-        "jflash": { "type": "string", "description": "J-Flash 可执行文件路径" },
+        "jflash": { "type": "string", "description": "J-Flash 可执行文件路径（flash_tool=jflash 时消费；兼作 S9 jlink 工具的 SEGGER 安装目录探测线索——未配置 tool_paths.jlink 时从本键同目录探测 JLink.exe）" },
+        "jlink": { "type": "string", "description": "J-Link Commander 路径（JLink.exe，flash_tool=jlink 时消费；未配置时 S9 从 tool_paths.jflash 同目录探测）" },
+        "stlink_cli": { "type": "string", "description": "STM32CubeProgrammer CLI 路径（STM32_Programmer_CLI.exe，flash_tool=stlink 时消费，三期演进项）" },
+        "openocd": { "type": "string", "description": "OpenOCD 路径（openocd.exe，flash_tool=openocd 时消费，三期演进项）" },
+        "pyocd": { "type": "string", "description": "pyOCD 路径（pyocd.exe；未配置时以 tool_paths.python -m pyocd 探测，四期演进项）" },
         "python": { "type": "string", "description": "Python 解释器路径" }
       },
       "additionalProperties": { "type": "string" }
@@ -83,6 +87,16 @@
           "minimum": 0,
           "default": 0,
           "description": "App 在 Flash 中的重定向偏移（字节，OTA App 场景，相对 Flash 基址如 0x08000000；缺省 0=无偏移）。消费方：S5b（>0 时生成 sys_port.h 契约并在 main.c 首句显式调用向量表重定位）、S7b（链接脚本 ORIGIN=基址+偏移，LENGTH=总容量-偏移）、S6/S9（bin 拼接位置/烧录目标地址）。仅 cortex_m 的 layered/full 架构生效（flat 无 Port 层，8 位 MCU 无 VTOR）"
+        },
+        "flash_tool": {
+          "type": ["string", "null"],
+          "enum": ["jlink", "jflash", "stlink", "openocd", "pyocd", "vendor_ide", null],
+          "default": null,
+          "description": "烧录工具（项目层，S9 flash 消费）：jlink=J-Link Commander CLI（推荐）；jflash=J-Flash CLI 绑定 .jflash 工程文件（二期，不参与推断）；stlink=STM32CubeProgrammer CLI（三期）；openocd（三期）；pyocd（四期）；vendor_ide=厂家 IDE 无 CLI 走 GUI 烧录机制（五期，不参与推断）。缺省 null 时 S9 智能推断（uvoptx pMon 调试器证据 > tool_paths 可用性+平台惯例，多/零候选/证据工具不可用报错不猜）；arch_family=mcu8 时必须显式配置（不推断）"
+        },
+        "flash_config": {
+          "type": "string",
+          "description": ".jflash 工程文件显式路径（项目层，可选；flash_tool=jflash 时消费，搜索优先级 --jflash-project 参数 > 本配置项 > release/*.jflash 约定，二期实现）"
         },
         "rtos": {
           "type": "string",
