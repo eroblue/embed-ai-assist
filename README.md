@@ -29,7 +29,8 @@ embed-ai-assist/
 │   ├── port-contract-and-app/           # S5b Port 契约 + APP（已实现，rule/Agent 三段式 + 流程图驱动增量）
 │   └── port-implementer/                # S5c Port 实现（已实现，rule/Agent 三段式 + 能力缺口前置 + per-peripheral 增量生成 + code-fix 分支）
 │   ├── toolchain-setup/                 # S7a 工具链检测与安装（已实现一期：检测跳过 + 手动指引；可选旁路技能）
-│   └── build/                           # S7b 编译构建（已实现：Keil/GCC-Make CLI 全链路 + Makefile/链接脚本自动生成 + 日志解析 + bin/hex 转换 + GUI 机制框架）
+│   ├── build/                           # S7b 编译构建（已实现：Keil/GCC-Make CLI 全链路 + Makefile/链接脚本自动生成 + 日志解析 + bin/hex 转换 + GUI 机制框架）
+│   └── flash/                           # S9 烧录（已实现一期：J-Link Commander CLI 全链路；jflash/stlink/openocd/pyocd/GUI 按演进路径）
 ├── platforms/                           # 共享的芯片资料库（只读）
 │   ├── stm32f103zet6/
 │   │   ├── datasheets/                  # PDF 手册（人类阅读）
@@ -117,6 +118,9 @@ embed-ai-assist/
 > `keil_fromelf` 从 Keil 根按 `ARM/ARMCLANG|ARMCC/bin/` 自动推导、`iar_ielftool` 从 IarBuild
 > 同目录探测、`gcc_objcopy` 从 gcc 同目录探测；缺哪些 S7a toolchain-setup 会检测并给出
 > 安装指引（开源工具经确认后安装，商业工具仅手动指引）。
+> S9 烧录工具键：`jlink`（J-Link Commander，未配置时从 `jflash` 同目录探测——两者同在
+> SEGGER 安装目录）、`stlink_cli` / `openocd` / `pyocd`（三/四期演进项）——烧录工具
+> 完全用户自管理，缺失时 S9 报错并给出官方下载指引，不自动安装。
 
 ### 项目 config.json（项目特有，如 examples/stm32f103zet6/config.json）
 
@@ -130,6 +134,8 @@ embed-ai-assist/
     "power": { "enabled": false },
     "build_system": "keil",
     "build_config": "Template",
+    "flash_offset": 0,
+    "flash_tool": "jlink",
     "vendor_ide": null,
     "vendor_ide_output_dir": null
   },
@@ -169,6 +175,8 @@ embed-ai-assist/
 | `project.build_system` | `keil` / `iar` / `gcc_make` / `gcc_cmake` / `vendor_ide` / `null` | `null`（自动推断） | 构建系统（S7b build 消费）：缺省按工程文件证据推断（`*.uvprojx`→keil、`*.ewp`→iar、`Makefile`→gcc_make、`CMakeLists.txt`→gcc_cmake；多候选/零候选报错，不猜）；显式 `gcc_make` 且工程根无 Makefile 时自动生成 Makefile + 链接脚本（含生成标记可重覆盖，用户自维护文件不动）；`vendor_ide`=厂家自研 IDE 无 CLI，走 GUI 编译机制（不参与推断） |
 | `project.build_config` | 字符串（如 `Template` / `Debug`） | 自动推断 | 构建配置名（S7b build 消费）：Keil target 名 / IAR configuration 名 / CMake config；缺省取工程内唯一 target/configuration 名，多 target 且未显式配置时报错 |
 | `project.flash_offset` | 整数（字节，如 `65536`） | `0` | App 在 Flash 中的重定向偏移（OTA App 场景，相对 Flash 基址）：>0 且非 flat 时 S5b 生成 `sys_port.h` 并在 main.c 首句显式调用 `sys_port_relocate_vector(0x...)`；S7b 链接脚本 `ORIGIN=基址+偏移`、`LENGTH=容量-偏移`；S6/S9 消费同一值做 bin 拼接/烧录地址（config 为唯一权威来源，四处必须一致） |
+| `project.flash_tool` | `jlink` / `jflash` / `stlink` / `openocd` / `pyocd` / `vendor_ide` / `null` | `null`（智能推断） | 烧录工具（S9 flash 消费）：缺省按证据链推断（uvoptx 调试器配置 > tool_paths 可用性 + 平台惯例，多候选/零候选/证据工具不可用报错不猜）；`jlink`=J-Link Commander CLI（一期推荐，无需 .jflash 工程文件）；`jflash`/`stlink`/`openocd`/`pyocd` 为二/三/四期演进项；`vendor_ide`=厂家 IDE GUI 烧录（五期，mcu8 平台必须显式配置，不推断）。推断结果与实际探针不符时必须显式配置 |
+| `project.flash_config` | 字符串（.jflash 工程路径） | 无 | `.jflash` 工程文件显式路径（`flash_tool=jflash` 时消费，搜索优先级 `--jflash-project` 参数 > 本配置项 > `release/*.jflash` 约定，二期实现） |
 | `project.vendor_ide` | 字符串（如 `fmd_ft`） | 无 | 厂家 IDE 标识：`build_system=vendor_ide` 时必填，用于定位 `skills/build/references/vendor_ide/<标识>.md` 操作指南（mcu8 平台必须显式配置 build_system） |
 | `project.vendor_ide_output_dir` | 字符串（如 `Project/Output/`） | 按 vendor 指南推断 | 厂家 IDE 编译输出目录（相对目标工程根）：GUI 编译后 `--collect` 从该目录按 mtime 检测产物 |
 
@@ -203,7 +211,7 @@ embed-ai-assist/
 | S7a | toolchain-setup | 编译构建 | 工具链检测与安装（**可选旁路技能**：已就绪直接 `skipped`；开源工具经用户确认后引导安装并回填 `tool_paths`——全项目唯一 config 写入例外；Keil/IAR/厂家 IDE 仅手动指引） | 已实现（一期：检测跳过 + 手动指引） |
 | S7b | build | 编译构建 | 调用工具链编译工程，双机制：CLI（Keil / IAR / GCC Make / CMake，纯 rule；显式 `gcc_make` 无 Makefile 时自动生成 Makefile + 链接脚本）+ GUI（厂家 IDE 无 CLI 时 Agent 发送编译快捷键，如辉芒微/和泰）；必须产出 bin 供 S6 | 已实现（Keil / GCC-Make CLI 全链路实测通过；IAR/CMake/GUI 按演进路径） |
 | S8 | unit-test | 编译构建 | 单元测试 | 规划中 |
-| S9 | flash | 烧录部署 | 烧录固件（J-Link/OpenOCD 等） | 规划中 |
+| S9 | flash | 烧录部署 | 烧录固件到目标板：固件优先级链（`--firmware` > S6 合并固件 > s7b hex > s7b bin，地址=flash_base+offset）→ release/ 发布（SHA256 现场比对，烧的即发布的）→ CLI 烧录 + 日志特征判定；四段式 prepare → flash → analyze（仅失败）→ validate | 已实现（一期：J-Link Commander CLI 全链路实测通过；jflash/stlink/openocd/pyocd/GUI 按演进路径，配置后报错提示） |
 | S10 | serial-monitor | 调试监控 | 串口日志采集 | 规划中 |
 | S11 | log-analyzer | 调试监控 | 日志分析，闭环反馈 | 规划中 |
 | S12 | workflow-runner | 编排 | 工作流执行器 | 规划中 |
@@ -312,17 +320,30 @@ python skills/build/scripts/validate.py --config examples/stm32f103zet6/config.j
 #      编译成功生成 .axf/.hex/.bin，bin 供 S6 固件合并消费）
 #    GCC 工具链：项目 config 显式 "build_system": "gcc_make" 后同上三步——
 #    prepare 自动生成 Makefile + Template.ld（uvprojx 解析），make 编译产出 .elf/.hex/.bin
+
+# 11. S9 烧录（S7b done 之后；项目 config 显式 "flash_tool": "jlink"——本示例 uvoptx
+#     调试器证据为 ST-Link 但实际探针为 J-Link，推断结果与实探不符必须显式指定。
+#     prepare → flash → validate；直接执行不请求确认，verify+复位缺省开启）
+python skills/flash/scripts/prepare.py --config examples/stm32f103zet6/config.json
+python skills/flash/scripts/flash.py --config examples/stm32f103zet6/config.json --timeout 120
+#    → 烧录失败时：Agent 读 outputs/s9/flash.log + key_lines 对照日志特征表
+#      产出 error_analysis.md（四类根因：连接/芯片/固件/工具），再 validate
+python skills/flash/scripts/validate.py --config examples/stm32f103zet6/config.json
+#    （产物：App/state.json 的 s9 字段 + App/outputs/s9/{flash.log,flash_result.json}；
+#      发布目录 <项目根>/release/：固件副本 + flash_cmd.jlink 复烧脚本 +
+#      flash_info.json 发布清单——烧的即发布的，可直接交付复烧）
 ```
 
-> 按步骤 1–10 顺序执行即可生成上述结果文件（`examples/` 的产物按 `.gitignore`
+> 按步骤 1–11 顺序执行即可生成上述结果文件（`examples/` 的产物按 `.gitignore`
 > 现行策略随仓库提供，可对照参考；S5b 步骤 6 需 Agent 参与流程图审核，见 S5b SKILL.md；
 > 步骤 9 可选，步骤 10 的编译命令以本机 Keil 为例，构建系统缺省按工程文件自动推断，
-> GCC-Make 路线需显式配置且走 Makefile 自动生成分支）。
+> GCC-Make 路线需显式配置且走 Makefile 自动生成分支；步骤 11 需 J-Link 探针实连目标板，
+> 烧录工具路径在全局 config.json 的 tool_paths.jlink，未配置时从 jflash 同目录探测）。
 
 ## 工作流（workflows/）
 
 `workflows/stm32_full_flow.json` 是**全流程目标态的设计示例**，包含尚未实现的
-skill（S2 / S5b / S5c / S6–S12，见 Skill 清单状态列）。待 S12 workflow-runner
+skill（S6 / S8 / S10–S12，见 Skill 清单状态列）。待 S12 workflow-runner
 实现后由其解析编排执行；当前请按「快速开始」手动逐个执行已实现的 skill。
 
 ## 许可证
