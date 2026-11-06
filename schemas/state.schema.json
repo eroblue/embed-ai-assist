@@ -94,7 +94,11 @@
     },
     "log": {
       "type": ["object", "null"],
-      "description": "serial-monitor (S10) 写入：日志路径 log.path"
+      "description": "【S10 早期兼容字段，弃用】旧版 serial-monitor 日志路径 log.path；新实现不再读写"
+    },
+    "s10": {
+      "type": ["object", "null"],
+      "description": "serial-monitor (S10) 写入：串口采集会话摘要与产物路径（字段契约详见 skills/serial-monitor/schemas/output.schema.json；数据位于 outputs/s10/<session_id>/）"
     },
     "analysis": {
       "type": ["object", "null"],

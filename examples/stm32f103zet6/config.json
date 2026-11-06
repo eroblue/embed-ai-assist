@@ -7,6 +7,15 @@
     "rtos": "none",
     "flash_offset": 0,
     "flash_tool": "jlink",
+    "serial": {
+      "port": null,
+      "baudrate": 115200,
+      "bytesize": 8,
+      "parity": "N",
+      "stopbits": 1,
+      "encoding": "utf-8",
+      "read_timeout_ms": 200
+    },
     "power": {
       "enabled": false
     },

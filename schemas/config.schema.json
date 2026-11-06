@@ -98,6 +98,20 @@
           "type": "string",
           "description": ".jflash 工程文件显式路径（项目层，可选；flash_tool=jflash 时消费，搜索优先级 --jflash-project 参数 > 本配置项 > release/*.jflash 约定，二期实现）"
         },
+        "serial": {
+          "type": "object",
+          "description": "串口默认参数（项目层，S10 serial-monitor 消费）；GUI 修改默认只在用户明确保存时写回，CLI 覆盖不回写",
+          "properties": {
+            "port": { "type": ["string", "null"], "default": null, "description": "系统串口名，如 COM5 或 /dev/ttyUSB0；机器相关，GUI 可枚举选择" },
+            "baudrate": { "type": "integer", "minimum": 1, "default": 115200 },
+            "bytesize": { "type": "integer", "enum": [5, 6, 7, 8], "default": 8 },
+            "parity": { "type": "string", "enum": ["N", "E", "O", "M", "S"], "default": "N" },
+            "stopbits": { "type": "number", "enum": [1, 1.5, 2], "default": 1 },
+            "encoding": { "type": "string", "minLength": 1, "default": "utf-8" },
+            "read_timeout_ms": { "type": "integer", "minimum": 10, "maximum": 5000, "default": 200 }
+          },
+          "additionalProperties": false
+        },
         "rtos": {
           "type": "string",
           "enum": ["none", "FreeRTOS", "RT-Thread", "Zephyr"],

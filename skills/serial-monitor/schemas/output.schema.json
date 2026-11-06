@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.s10.output.v1",
+  "title": "S10 serial-monitor state.json 输出契约（s10 字段）",
+  "type": "object",
+  "required": ["status", "session_id", "session_dir", "capture_bin", "capture_log", "session_manifest", "port", "started_at", "ended_at", "bytes_received", "stop_reason", "error", "updated_at"],
+  "properties": {
+    "status": { "type": "string", "enum": ["running", "done", "error", "interrupted"] },
+    "session_id": { "type": "string", "pattern": "^[0-9]{8}T[0-9]{6}-[a-f0-9]{8}$" },
+    "session_dir": { "type": "string", "minLength": 1 },
+    "capture_bin": { "type": "string", "minLength": 1 },
+    "capture_log": { "type": "string", "minLength": 1 },
+    "session_manifest": { "type": "string", "minLength": 1 },
+    "port": { "type": "string", "minLength": 1 },
+    "started_at": { "type": "string", "format": "date-time" },
+    "ended_at": { "type": ["string", "null"], "format": "date-time" },
+    "bytes_received": { "type": "integer", "minimum": 0 },
+    "stop_reason": { "type": ["string", "null"], "enum": ["duration_reached", "user_interrupt", "user_stop", "serial_disconnected", "serial_open_failed", "write_error", "process_interrupted", null] },
+    "error": { "type": ["string", "null"] },
+    "updated_at": { "type": "string", "format": "date-time" }
+  },
+  "allOf": [
+    { "if": { "properties": { "status": { "const": "running" } } }, "then": { "properties": { "ended_at": { "type": "null" }, "stop_reason": { "type": "null" } } } },
+    { "if": { "properties": { "status": { "const": "done" } } }, "then": { "properties": { "ended_at": { "type": "string" }, "stop_reason": { "enum": ["duration_reached", "user_interrupt", "user_stop"] }, "error": { "type": "null" } } } },
+    { "if": { "properties": { "status": { "const": "error" } } }, "then": { "properties": { "error": { "type": "string", "minLength": 1 }, "stop_reason": { "enum": ["serial_disconnected", "serial_open_failed", "write_error"] } } } },
+    { "if": { "properties": { "status": { "const": "interrupted" } } }, "then": { "properties": { "stop_reason": { "const": "process_interrupted" } } } }
+  ],
+  "additionalProperties": false
+}

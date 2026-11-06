@@ -30,7 +30,8 @@ embed-ai-assist/
 │   └── port-implementer/                # S5c Port 实现（已实现，rule/Agent 三段式 + 能力缺口前置 + per-peripheral 增量生成 + code-fix 分支）
 │   ├── toolchain-setup/                 # S7a 工具链检测与安装（已实现一期：检测跳过 + 手动指引；可选旁路技能）
 │   ├── build/                           # S7b 编译构建（已实现：Keil/GCC-Make CLI 全链路 + Makefile/链接脚本自动生成 + 日志解析 + bin/hex 转换 + GUI 机制框架）
-│   └── flash/                           # S9 烧录（已实现一期：J-Link Commander CLI 全链路；jflash/stlink/openocd/pyocd/GUI 按演进路径）
+│   ├── flash/                           # S9 烧录（已实现一期：J-Link Commander CLI 全链路；jflash/stlink/openocd/pyocd/GUI 按演进路径）
+│   └── serial-monitor/                  # S10 串口采集（Windows Tkinter GUI + CLI；RX-only，原始/可读日志与会话清单）
 ├── platforms/                           # 共享的芯片资料库（只读）
 │   ├── stm32f103zet6/
 │   │   ├── datasheets/                  # PDF 手册（人类阅读）
@@ -177,6 +178,7 @@ embed-ai-assist/
 | `project.flash_offset` | 整数（字节，如 `65536`） | `0` | App 在 Flash 中的重定向偏移（OTA App 场景，相对 Flash 基址）：>0 且非 flat 时 S5b 生成 `sys_port.h` 并在 main.c 首句显式调用 `sys_port_relocate_vector(0x...)`；S7b 链接脚本 `ORIGIN=基址+偏移`、`LENGTH=容量-偏移`；S6/S9 消费同一值做 bin 拼接/烧录地址（config 为唯一权威来源，四处必须一致） |
 | `project.flash_tool` | `jlink` / `jflash` / `stlink` / `openocd` / `pyocd` / `vendor_ide` / `null` | `null`（智能推断） | 烧录工具（S9 flash 消费）：缺省按证据链推断（uvoptx 调试器配置 > tool_paths 可用性 + 平台惯例，多候选/零候选/证据工具不可用报错不猜）；`jlink`=J-Link Commander CLI（一期推荐，无需 .jflash 工程文件）；`jflash`/`stlink`/`openocd`/`pyocd` 为二/三/四期演进项；`vendor_ide`=厂家 IDE GUI 烧录（五期，mcu8 平台必须显式配置，不推断）。推断结果与实际探针不符时必须显式配置 |
 | `project.flash_config` | 字符串（.jflash 工程路径） | 无 | `.jflash` 工程文件显式路径（`flash_tool=jflash` 时消费，搜索优先级 `--jflash-project` 参数 > 本配置项 > `release/*.jflash` 约定，二期实现） |
+| `project.serial` | object | baudrate=`115200`、8N1、encoding=`utf-8`、read_timeout_ms=`200`；port=`null` | S10 串口默认参数，保存在每个项目自己的 `config.json`；端口通常与具体电脑相关，需在 GUI 中选择。GUI 参数可临时覆盖，只有用户明确勾选保存时才更新该项目配置 |
 | `project.vendor_ide` | 字符串（如 `fmd_ft`） | 无 | 厂家 IDE 标识：`build_system=vendor_ide` 时必填，用于定位 `skills/build/references/vendor_ide/<标识>.md` 操作指南（mcu8 平台必须显式配置 build_system） |
 | `project.vendor_ide_output_dir` | 字符串（如 `Project/Output/`） | 按 vendor 指南推断 | 厂家 IDE 编译输出目录（相对目标工程根）：GUI 编译后 `--collect` 从该目录按 mtime 检测产物 |
 
@@ -212,7 +214,7 @@ embed-ai-assist/
 | S7b | build | 编译构建 | 调用工具链编译工程，双机制：CLI（Keil / IAR / GCC Make / CMake，纯 rule；显式 `gcc_make` 无 Makefile 时自动生成 Makefile + 链接脚本）+ GUI（厂家 IDE 无 CLI 时 Agent 发送编译快捷键，如辉芒微/和泰）；必须产出 bin 供 S6 | 已实现（Keil / GCC-Make CLI 全链路实测通过；IAR/CMake/GUI 按演进路径） |
 | S8 | unit-test | 编译构建 | 单元测试 | 规划中 |
 | S9 | flash | 烧录部署 | 烧录固件到目标板：固件优先级链（`--firmware` > S6 合并固件 > s7b hex > s7b bin，地址=flash_base+offset）→ release/ 发布（SHA256 现场比对，烧的即发布的）→ CLI 烧录 + 日志特征判定；四段式 prepare → flash → analyze（仅失败）→ validate | 已实现（一期：J-Link Commander CLI 全链路实测通过；jflash/stlink/openocd/pyocd/GUI 按演进路径，配置后报错提示） |
-| S10 | serial-monitor | 调试监控 | 串口日志采集 | 规划中 |
+| S10 | serial-monitor | 调试监控 | Windows GUI 主入口 + CLI 高级入口；RX-only 采集、实时显示、独立会话落盘 | 已实现并完成硬件闭环实测（COM128；GUI 开始/停止、日志落盘与 validate 校验通过） |
 | S11 | log-analyzer | 调试监控 | 日志分析，闭环反馈 | 规划中 |
 | S12 | workflow-runner | 编排 | 工作流执行器 | 规划中 |
 
@@ -244,7 +246,7 @@ S5 拆分为三个 Skill，将平台无关的应用逻辑与平台相关的硬�
 ## 环境要求
 
 - Python 3.10+（本机 `C:/Python314/python.exe`，路径配置在根 config.json 的 `tool_paths.python`）
-- 依赖：`pip install altium-monkey jsonschema openpyxl pdfplumber pypdf`（.docx 规格书另需 `python-docx`）
+- 依赖：`pip install altium-monkey jsonschema openpyxl pdfplumber pypdf pyserial`（.docx 规格书另需 `python-docx`）
 
 ## 芯片资料获取（PDF 不入库）
 
@@ -340,10 +342,15 @@ python skills/flash/scripts/validate.py --config examples/stm32f103zet6/config.j
 > GCC-Make 路线需显式配置且走 Makefile 自动生成分支；步骤 11 需 J-Link 探针实连目标板，
 > 烧录工具路径在全局 config.json 的 tool_paths.jlink，未配置时从 jflash 同目录探测）。
 
+S10 是烧录后的可选调试步骤，不自动由 S9 启动，也可单独用于观察设备上电启动日志。Windows 用户双击
+`skills/serial-monitor/scripts/start_s10.pyw`，选择项目配置、刷新并选择串口，确认参数后点击“开始采集”；如需捕获上电最早期日志，先开始采集，再给目标板上电或复位。点击“停止采集”或关闭窗口会先保存已收到的数据。
+
+每次会话保存在 `<项目根>/<build_target>/outputs/s10/<session_id>/`，包含：`capture.bin`（原始接收字节）、`capture.log`（带主机接收时间和可读文本的 JSONL）及 `session.json`（参数、状态和统计）。停止后可将 `capture.log` 或其他日志文件交给 S11 分析；S10 本身只采集和保存，不解释日志。
+
 ## 工作流（workflows/）
 
 `workflows/stm32_full_flow.json` 是**全流程目标态的设计示例**，包含尚未实现的
-skill（S6 / S8 / S10–S12，见 Skill 清单状态列）。待 S12 workflow-runner
+skill（S6 / S8 / S11 / S12，见 Skill 清单状态列）。待 S12 workflow-runner
 实现后由其解析编排执行；当前请按「快速开始」手动逐个执行已实现的 skill。
 
 ## 许可证

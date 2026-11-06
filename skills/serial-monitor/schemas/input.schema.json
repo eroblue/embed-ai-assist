@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.s10.input.v1",
+  "title": "S10 serial-monitor 可选 state 上下文",
+  "description": "S10 无上游硬依赖；仅允许读取可选 S9 固件摘要作为会话上下文。",
+  "type": "object",
+  "properties": {
+    "s9": {
+      "type": ["object", "null"],
+      "properties": {
+        "status": { "type": "string" },
+        "firmware_path": { "type": ["string", "null"] },
+        "firmware_sha256": { "type": ["string", "null"] },
+        "updated_at": { "type": ["string", "null"] }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

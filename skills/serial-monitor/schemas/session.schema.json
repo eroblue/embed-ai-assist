@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.s10.session.v1",
+  "title": "S10 串口采集会话清单",
+  "type": "object",
+  "required": ["schema_version", "session_id", "status", "target", "port", "serial", "started_at", "ended_at", "duration_sec", "duration_limit_sec", "stop_reason", "bytes_received", "chunks_received", "capture_bin", "capture_log", "encoding_errors", "s9_context", "error"],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "session_id": { "type": "string", "pattern": "^[0-9]{8}T[0-9]{6}-[a-f0-9]{8}$" },
+    "status": { "type": "string", "enum": ["running", "stopped", "completed", "error"] },
+    "target": { "type": "string", "enum": ["App", "BootLoader"] },
+    "port": { "type": "string", "minLength": 1 },
+    "serial": {
+      "type": "object",
+      "required": ["baudrate", "bytesize", "parity", "stopbits", "encoding", "read_timeout_ms"],
+      "properties": {
+        "baudrate": { "type": "integer", "minimum": 1 },
+        "bytesize": { "type": "integer", "enum": [5, 6, 7, 8] },
+        "parity": { "type": "string", "enum": ["N", "E", "O", "M", "S"] },
+        "stopbits": { "type": "number", "enum": [1, 1.5, 2] },
+        "encoding": { "type": "string", "minLength": 1 },
+        "read_timeout_ms": { "type": "integer", "minimum": 10, "maximum": 5000 }
+      },
+      "additionalProperties": false
+    },
+    "started_at": { "type": "string", "format": "date-time" },
+    "ended_at": { "type": ["string", "null"], "format": "date-time" },
+    "duration_sec": { "type": ["number", "null"], "minimum": 0 },
+    "duration_limit_sec": { "type": ["number", "null"], "exclusiveMinimum": 0 },
+    "stop_reason": { "type": ["string", "null"], "enum": ["duration_reached", "user_interrupt", "user_stop", "serial_disconnected", "serial_open_failed", "write_error", null] },
+    "bytes_received": { "type": "integer", "minimum": 0 },
+    "chunks_received": { "type": "integer", "minimum": 0 },
+    "capture_bin": { "const": "capture.bin" },
+    "capture_log": { "const": "capture.log" },
+    "encoding_errors": { "type": "integer", "minimum": 0 },
+    "s9_context": {
+      "type": ["object", "null"],
+      "properties": {
+        "status": { "type": "string" },
+        "firmware_path": { "type": ["string", "null"] },
+        "firmware_sha256": { "type": ["string", "null"] },
+        "updated_at": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "error": { "type": ["string", "null"] }
+  },
+  "allOf": [
+    { "if": { "properties": { "status": { "const": "running" } } }, "then": { "properties": { "ended_at": { "type": "null" }, "duration_sec": { "type": "null" }, "stop_reason": { "type": "null" }, "error": { "type": "null" } } } },
+    { "if": { "properties": { "status": { "enum": ["stopped", "completed"] } } }, "then": { "properties": { "ended_at": { "type": "string" }, "duration_sec": { "type": "number" }, "stop_reason": { "enum": ["duration_reached", "user_interrupt", "user_stop"] }, "error": { "type": "null" } } } },
+    { "if": { "properties": { "status": { "const": "error" } } }, "then": { "properties": { "ended_at": { "type": "string" }, "duration_sec": { "type": "number" }, "stop_reason": { "enum": ["serial_disconnected", "serial_open_failed", "write_error"] }, "error": { "type": "string", "minLength": 1 } } } }
+  ],
+  "additionalProperties": true
+}

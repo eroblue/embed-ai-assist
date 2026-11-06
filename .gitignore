@@ -50,9 +50,10 @@ examples/**/BootLoader/build/
 projects/**/App/build/
 projects/**/BootLoader/build/
 
-# S7 运行时数据（build.log / gui_build_log.md / build_result.json 等过程文件）
+# S7/S10 运行时数据（构建过程文件与串口采集会话，不纳入版本控制）
 **/outputs/s7a/
 **/outputs/s7b/
+**/outputs/s10/
 
 # 备份文件
 *.bak
