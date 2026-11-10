@@ -31,7 +31,8 @@ embed-ai-assist/
 │   ├── toolchain-setup/                 # S7a 工具链检测与安装（已实现一期：检测跳过 + 手动指引；可选旁路技能）
 │   ├── build/                           # S7b 编译构建（已实现：Keil/GCC-Make CLI 全链路 + Makefile/链接脚本自动生成 + 日志解析 + bin/hex 转换 + GUI 机制框架）
 │   ├── flash/                           # S9 烧录（已实现一期：J-Link Commander CLI 全链路；jflash/stlink/openocd/pyocd/GUI 按演进路径）
-│   └── serial-monitor/                  # S10 串口采集（Windows Tkinter GUI + CLI；RX-only，原始/可读日志与会话清单）
+│   ├── serial-monitor/                  # S10 串口采集（Windows Tkinter GUI + CLI；RX-only，原始/可读日志与会话清单）
+│   └── log-analyzer/                    # S11 日志现象提取（错误/关键流程/重复记录 + 证据引用）
 ├── platforms/                           # 共享的芯片资料库（只读）
 │   ├── stm32f103zet6/
 │   │   ├── datasheets/                  # PDF 手册（人类阅读）
@@ -79,7 +80,7 @@ embed-ai-assist/
 │   └── my_project/                     # 结构同 examples（App/ + BootLoader/ 双工程）
 ├── schemas/                             # 全局契约（config/state schema）
 ├── workflows/                           # 工作流定义
-├── docs/                                # 文档（skill 模板等）
+├── docs/                                # 文档（skill 模板、skill_requirements/）
 ├── config.json                          # 全局配置（工具路径等）
 └── README.md
 ```
@@ -215,7 +216,7 @@ embed-ai-assist/
 | S8 | unit-test | 编译构建 | 单元测试 | 规划中 |
 | S9 | flash | 烧录部署 | 烧录固件到目标板：固件优先级链（`--firmware` > S6 合并固件 > s7b hex > s7b bin，地址=flash_base+offset）→ release/ 发布（SHA256 现场比对，烧的即发布的）→ CLI 烧录 + 日志特征判定；四段式 prepare → flash → analyze（仅失败）→ validate | 已实现（一期：J-Link Commander CLI 全链路实测通过；jflash/stlink/openocd/pyocd/GUI 按演进路径，配置后报错提示） |
 | S10 | serial-monitor | 调试监控 | Windows GUI 主入口 + CLI 高级入口；RX-only 采集、实时显示、独立会话落盘 | 已实现并完成硬件闭环实测（COM128；GUI 开始/停止、日志落盘与 validate 校验通过） |
-| S11 | log-analyzer | 调试监控 | 日志分析，闭环反馈 | 规划中 |
+| S11 | log-analyzer | 调试监控 | 提取日志错误、关键运行流程、重复现象和事件顺序；每项结论引用可回查证据 | 初版已实现，待实测 |
 | S12 | workflow-runner | 编排 | 工作流执行器 | 规划中 |
 
 新 Skill 按 `docs/skill_template.md` 模板生成。
@@ -347,10 +348,12 @@ S10 是烧录后的可选调试步骤，不自动由 S9 启动，也可单独用
 
 每次会话保存在 `<项目根>/<build_target>/outputs/s10/<session_id>/`，包含：`capture.bin`（原始接收字节）、`capture.log`（带主机接收时间和可读文本的 JSONL）及 `session.json`（参数、状态和统计）。停止后可将 `capture.log` 或其他日志文件交给 S11 分析；S10 本身只采集和保存，不解释日志。
 
+S11 可接收 S10 会话目录或其他文本日志。运行 `python skills/log-analyzer/scripts/prepare.py <日志路径或会话目录> --project-config <项目config.json>` 后，由 Agent 根据生成的 `analysis_brief.md` 整理运行流程和错误现象，填写 `analysis.json`、`report.md`，再运行 `validate.py` 校验证据引用。S11 不读代码、不判断根因，也不自动调用修复 Skill。用户确认问题后，可将本模板复制到当前项目的 `docs/` 目录（与 `s5a_design_input.md` 同级），记录预期/实际行为和 S11 evidence ID，再要求 Agent 结合反馈和项目代码选择 S5a/b/c 及其分支。
+
 ## 工作流（workflows/）
 
 `workflows/stm32_full_flow.json` 是**全流程目标态的设计示例**，包含尚未实现的
-skill（S6 / S8 / S11 / S12，见 Skill 清单状态列）。待 S12 workflow-runner
+skill（S6 / S8 / S12，见 Skill 清单状态列）。待 S12 workflow-runner
 实现后由其解析编排执行；当前请按「快速开始」手动逐个执行已实现的 skill。
 
 ## 许可证

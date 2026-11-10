@@ -102,7 +102,11 @@
     },
     "analysis": {
       "type": ["object", "null"],
-      "description": "log-analyzer (S11) 写入：分析结果 error_report / workflow.status"
+      "description": "【旧版兼容字段，弃用】S11 早期分析字段；新实现写入 s11，workflow 状态由 S12 管理"
+    },
+    "s11": {
+      "type": ["object", "null"],
+      "description": "log-analyzer (S11) 写入：日志运行现象摘要和分析产物路径（字段契约见 skills/log-analyzer/schemas/output.schema.json）；不包含代码修复交接"
     },
     "workflow": {
       "type": ["object", "null"],

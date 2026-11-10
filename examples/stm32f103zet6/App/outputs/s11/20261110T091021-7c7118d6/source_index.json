@@ -1,0 +1,93 @@
+{
+  "schema_version": "1.0",
+  "analysis_id": "20261110T091021-7c7118d6",
+  "sources": [
+    {
+      "source_id": "SRC01",
+      "path": "E:\\skills\\EmbedSoftAutomaticProject\\embed-ai-assist\\examples\\stm32f103zet6\\App\\outputs\\s10\\20261106T101434-0e1b3703\\capture.log",
+      "sha256": "80dd71219035dc5c474813705c49fa734822906423eac9a56ab775543fa56e74",
+      "format": "s10_capture_log",
+      "encoding": "utf-8",
+      "session_context": {
+        "session_id": "20261106T101434-0e1b3703",
+        "status": "stopped",
+        "target": "App",
+        "port": "COM128",
+        "serial": {
+          "baudrate": 115200,
+          "bytesize": 8,
+          "parity": "N",
+          "stopbits": 1.0,
+          "encoding": "utf-8",
+          "read_timeout_ms": 200
+        },
+        "started_at": "2026-11-06T10:14:34.549+08:00",
+        "ended_at": "2026-11-06T10:14:53.348+08:00",
+        "duration_sec": 18.791,
+        "stop_reason": "user_stop",
+        "bytes_received": 480,
+        "chunks_received": 4,
+        "encoding_errors": 0,
+        "firmware_sha256": "432b33919a2443f73e42a47b53ad84119192476ab07b0a8b73affafa72693249"
+      },
+      "evidence": [
+        {
+          "evidence_id": "SRC01-L000001",
+          "line_number": 1,
+          "text": "[LCD] diag code=0003 id=0000 0080 0000 colmod=0005 (0=ok 1=no-resp 2=wrong-id 3=reg-read)",
+          "record_numbers": [
+            2
+          ],
+          "ts_host": "2026-11-06T10:14:36.631+08:00"
+        },
+        {
+          "evidence_id": "SRC01-L000002",
+          "line_number": 2,
+          "text": "{\"temp\":0,\"humi\":0,\"light\":99,\"mode\":\"AUTO\",\"alarm\":\"SENSOR_FAULT\"}",
+          "record_numbers": [
+            2
+          ],
+          "ts_host": "2026-11-06T10:14:36.631+08:00"
+        },
+        {
+          "evidence_id": "SRC01-L000003",
+          "line_number": 3,
+          "text": "[LCD] diag code=0003 id=0000 0080 0000 colmod=0005 (0=ok 1=no-resp 2=wrong-id 3=reg-read)",
+          "record_numbers": [
+            3
+          ],
+          "ts_host": "2026-11-06T10:14:42.611+08:00"
+        },
+        {
+          "evidence_id": "SRC01-L000004",
+          "line_number": 4,
+          "text": "{\"temp\":0,\"humi\":0,\"light\":99,\"mode\":\"AUTO\",\"alarm\":\"SENSOR_FAULT\"}",
+          "record_numbers": [
+            4
+          ],
+          "ts_host": "2026-11-06T10:14:42.828+08:00"
+        },
+        {
+          "evidence_id": "SRC01-L000005",
+          "line_number": 5,
+          "text": "[LCD] diag code=0003 id=0000 0080 0000 colmod=0005 (0=ok 1=no-resp 2=wrong-id 3=reg-read)",
+          "record_numbers": [
+            5
+          ],
+          "ts_host": "2026-11-06T10:14:48.791+08:00"
+        },
+        {
+          "evidence_id": "SRC01-L000006",
+          "line_number": 6,
+          "text": "{\"temp\":0,\"humi\":0,\"light\":99,\"mode\":\"AUTO\",\"alarm\":\"SENSOR_FAULT\"}",
+          "record_numbers": [
+            5
+          ],
+          "ts_host": "2026-11-06T10:14:48.791+08:00"
+        }
+      ],
+      "warnings": []
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.s11.output.v1",
+  "title": "state.json 的 s11 摘要",
+  "type": "object",
+  "required": ["status", "analysis_id", "source_count", "finding_count", "source_index_path", "analysis_path", "report_path", "updated_at", "error"],
+  "properties": {
+    "status": { "type": "string", "const": "done" },
+    "analysis_id": { "type": "string" },
+    "source_count": { "type": "integer", "minimum": 1 },
+    "finding_count": { "type": "integer", "minimum": 0 },
+    "source_index_path": { "type": "string" },
+    "analysis_path": { "type": "string" },
+    "report_path": { "type": "string" },
+    "updated_at": { "type": "string" },
+    "error": { "type": ["string", "null"] }
+  },
+  "additionalProperties": false
+}

@@ -342,5 +342,31 @@
     "gui_flash_log": null,
     "error": null,
     "updated_at": "2026-10-24T16:44:58"
+  },
+  "s10": {
+    "status": "done",
+    "session_id": "20261106T101434-0e1b3703",
+    "session_dir": "outputs/s10/20261106T101434-0e1b3703",
+    "capture_bin": "outputs/s10/20261106T101434-0e1b3703/capture.bin",
+    "capture_log": "outputs/s10/20261106T101434-0e1b3703/capture.log",
+    "session_manifest": "outputs/s10/20261106T101434-0e1b3703/session.json",
+    "port": "COM128",
+    "started_at": "2026-11-06T10:14:34.549+08:00",
+    "ended_at": "2026-11-06T10:14:53.348+08:00",
+    "bytes_received": 480,
+    "stop_reason": "user_stop",
+    "error": null,
+    "updated_at": "2026-11-06T10:15:26.853+08:00"
+  },
+  "s11": {
+    "status": "done",
+    "analysis_id": "20261110T091021-7c7118d6",
+    "source_count": 1,
+    "finding_count": 3,
+    "source_index_path": "outputs/s11/20261110T091021-7c7118d6/source_index.json",
+    "analysis_path": "outputs/s11/20261110T091021-7c7118d6/analysis.json",
+    "report_path": "outputs/s11/20261110T091021-7c7118d6/report.md",
+    "updated_at": "2026-11-10T09:10:53+08:00",
+    "error": null
   }
 }

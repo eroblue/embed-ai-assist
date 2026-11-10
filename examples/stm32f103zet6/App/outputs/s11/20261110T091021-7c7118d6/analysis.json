@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "analysis_id": "20261110T091021-7c7118d6",
+  "summary": "本次 S10 会话记录到 3 次相同的 LCD 诊断行（code=0003，括号说明 3=reg-read），并伴随 3 次相同传感器状态 JSON（alarm=SENSOR_FAULT）。日志覆盖约 18.8 秒，期间未记录恢复或状态变化。",
+  "user_observation": null,
+  "findings": [
+    {
+      "finding_id": "F001",
+      "kind": "error",
+      "observation": "日志重复记录 LCD 诊断 code=0003；该行括号标注 3=reg-read。该记录出现 3 次。",
+      "evidence_ids": [
+        "SRC01-L000001",
+        "SRC01-L000003",
+        "SRC01-L000005"
+      ],
+      "occurrence_count": 3,
+      "time_range": "2026-11-06T10:14:36.631+08:00 至 2026-11-06T10:14:48.791+08:00",
+      "limitations": [
+        "日志仅给出诊断码及其文本说明，不能据此确定原因。"
+      ]
+    },
+    {
+      "finding_id": "F002",
+      "kind": "warning",
+      "observation": "3 条状态 JSON 内容相同：temp=0、humi=0、light=99、mode=AUTO、alarm=SENSOR_FAULT。",
+      "evidence_ids": [
+        "SRC01-L000002",
+        "SRC01-L000004",
+        "SRC01-L000006"
+      ],
+      "occurrence_count": 3,
+      "time_range": "2026-11-06T10:14:36.631+08:00 至 2026-11-06T10:14:48.791+08:00",
+      "limitations": [
+        "日志未提供字段单位、合法范围或传感器故障定义；不能判断数值是否符合预期。"
+      ]
+    },
+    {
+      "finding_id": "F003",
+      "kind": "event_order",
+      "observation": "按主机接收顺序，首次诊断行与状态 JSON 同批出现；第二次诊断行先于状态 JSON 约 0.217 秒；第三批两行同一主机接收时间。",
+      "evidence_ids": [
+        "SRC01-L000001",
+        "SRC01-L000002",
+        "SRC01-L000003",
+        "SRC01-L000004",
+        "SRC01-L000005",
+        "SRC01-L000006"
+      ],
+      "occurrence_count": null,
+      "time_range": "2026-11-06T10:14:36.631+08:00 至 2026-11-06T10:14:48.791+08:00",
+      "limitations": [
+        "ts_host 是主机接收时间，不代表设备事件产生时间。"
+      ]
+    }
+  ],
+  "limitations": [
+    "采集窗口为 2026-11-06 10:14:34.549 至 10:14:53.348（+08:00），停止原因是 user_stop；窗口外的行为不可见。",
+    "共接收 480 字节、4 个数据块，解码错误为 0。"
+  ]
+}

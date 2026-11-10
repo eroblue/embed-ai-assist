@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "embedaiassist.s11.source_index.v1",
+  "title": "S11 来源和证据索引",
+  "type": "object",
+  "required": ["schema_version", "analysis_id", "sources", "warnings"],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "analysis_id": { "type": "string" },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source_id", "path", "sha256", "format", "encoding", "evidence", "warnings"],
+        "properties": {
+          "source_id": { "type": "string" },
+          "path": { "type": "string" },
+          "sha256": { "type": ["string", "null"] },
+          "format": { "type": "string", "enum": ["s10_capture_log", "text"] },
+          "encoding": { "type": "string" },
+          "session_context": { "type": ["object", "null"] },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["evidence_id", "line_number", "text", "record_numbers", "ts_host"],
+              "properties": {
+                "evidence_id": { "type": "string" },
+                "line_number": { "type": "integer", "minimum": 1 },
+                "text": { "type": "string" },
+                "record_numbers": { "type": "array", "items": { "type": "integer", "minimum": 1 } },
+                "ts_host": { "type": ["string", "null"] }
+              },
+              "additionalProperties": false
+            }
+          },
+          "warnings": { "type": "array", "items": { "type": "string" } }
+        },
+        "additionalProperties": false
+      }
+    },
+    "warnings": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": false
+}
