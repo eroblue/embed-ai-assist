@@ -1,6 +1,6 @@
 ---
 name: "port-implementer"
-description: "S5c Port 实现，三段式执行模型 + per-peripheral 增量生成：rule 脚本 prepare.py 做 S5a/S5b 就绪与配置一致性检查、能力缺口前置检测（manifest 需求 × hardware_capabilities 供给，缺口即终止）、flat 判定、旧平台/旧 RTOS 残留清理与用户修改检测（skip-if-modified）、per-peripheral diff（port_differ 逐单元判定 full/incremental/skip/blocked/deprecated）与代码基线镜像，并输出 Agent 任务书（含每单元生成模式表）；Agent（LLM）按生成模式实现 Port/OSAL/Power 接口到具体 HAL/RTOS 的适配代码（Drivers/Port/Src/，按 PROJECT_LAYOUT.md 解析，含中断回调判空规范）；rule 脚本 validate.py 校验产物（manifest 接口全覆盖/禁止向上依赖/ISR 判空抽查）、复跑增量范围校验（diff_range_checker）、写 manifest 快照、记录文件哈希，并调用公共工具 ide_sync.py 同步 IDE 工程。在 S5a 和 S5b 都完成后触发；flat 架构跳过生成。维护期支持 code-fix 分支入口（manifest 未变时的定点修复，不走主流程）。"
+description: "S5c Port/OSAL/Power 实现：基于 S5a 硬件能力和 S5b manifest 生成或增量更新平台适配；支持 full/diff。用户要求修复时结合反馈、证据和代码可 code-fix 实现偏差；接口/设计变化走 diff/full，不直接修改 S5a/S5b 契约。"
 ---
 
 # port-implementer Port 实现（S5c）
@@ -106,7 +106,7 @@ port-implementer/
 | outputs/s5a/hardware_capabilities.json | S5a 产物 | json | 是 | **实现 Port 的唯一硬件依据**（禁止直接读 S3/S4 数据） |
 | outputs/s5b/port_interface_manifest.json | S5b 产物 | json | 是 | **实现 Port 的唯一接口依据**（禁止硬解析 C 头文件） |
 | outputs/s5c/port_manifest_snapshot.json | S5c 历史产物 | json | 否 | **接口变化检测基线**（增量机制依据）；首次执行不存在 → 全部单元 full 建基线 |
-| outputs/s5c/file_hashes.json | S5c 历史产物 | json | 否 | **用户手改检测基线**（skip-if-modified）；首次执行不存在 → 全部视为未改过 |
+| outputs/s5c/file_hashes.json | S5c 历史产物 | json | 否 | **用户手改检测基线**（skip-if-modified）；文件不存在/缺少记录时，自动流程无法判断已有源码是否手改，Agent 须在 prepare 前人工检查 |
 | s5c.platform | config.json（项目层） | string | 否 | 平台标识（文件命名后缀）；缺省取顶层 `platform`，小写化 |
 | s5c.hal_framework | config.json（项目层） | string | 否 | HAL 框架（如 `std_periph` / `hal` / `ll`，用于定位参考材料） |
 | project.build_target | config.json（项目层） | enum | 否 | `App` / `BootLoader`，缺省 App——目标工程根（state.json/源码/outputs/IDE 目录所在），docs/ 与 references/ 为项目根共享 |
@@ -208,7 +208,7 @@ adc 可 incremental）：
 
 | 维度 | 依据 | 检测时机 | 作用 |
 |---|---|---|---|
-| **用户手改** | 文件当前 sha256 vs `file_hashes.json` 基线 | prepare 段 | 决定 `skip`（+漂移）/ `blocked` |
+| **用户手改** | 文件当前 sha256 vs `file_hashes.json` 中已有记录 | prepare 段 | 有记录且 hash 不同则 `skip`（+漂移）/ `blocked`；无记录不能判定是否手改 |
 | **接口变化** | 本轮 manifest 单元签名 vs `port_manifest_snapshot.json` | prepare 段 | 决定 `skip` / `incremental` / `full` |
 | **设计输入变化** | 本轮 `docs/s5c_design_input.md` sha256 vs 快照 `design_input_hash` | prepare 段 | **仅提示**：任务书标注"设计输入已变化"，**不自动改文件**（用户确认受影响单元后，删除文件触发 `full` 或走 `code-fix`） |
 
@@ -220,8 +220,7 @@ adc 可 incremental）：
 阈值 `> 60% → full`（对标 S5b `flow_differ` 的 `FULL_RATIO_THRESHOLD`，命名与阈值
 保持一致，便于建立统一心智模型）。判定链与算法详见 `references/port_diff_rules.md`。
 
-**用户手改保护优先于"首次执行全 full"**：`skip-if-modified` 是硬约束，用户改过的
-文件不得被自动重写——即使本轮无签名基线（首次执行/新增单元）也判 skip。
+**可检测到的用户手改优先于"首次执行全 full"**：当 `file_hashes.json` 中存在该文件的旧哈希且当前 hash 不同，`skip-if-modified` 会保护它，即使本轮无 manifest 签名基线。若哈希记录缺失，自动流程无法识别手改；Agent 必须在 prepare 前检查已有实现文件，有修改或来源不明时先暂停，不能按 full 覆盖。
 
 **分支入口原则**（与 S5b 一致）：不走完整主流程的维护操作（`code-fix` 等）作为
 **独立 Agent 入口**新增章节，不改动主流程与散件脚本——按需触发、默认不执行；
@@ -331,32 +330,48 @@ IDE 工程文件（`.uvprojx`/`.ewp`）的同步由公共工具
 - **失败不中断**：输出 `outputs/_shared/ide_sync_manual.md` 手动清单
 - IDE 工程由用户手动创建，工具只做增量同步
 
-## 分支入口：code-fix（按需触发，默认不执行）
+## 分支判定（S5a/S5b/S5c 共用顺序）
 
-**用途**：manifest 未变、文件 hash 未变、但实现行为不符合预期时，由用户直接指定
-"文件 + 函数 + 症状"，Agent 定点修复。**不走 prepare 主流程**。
+三个 Skill 都按同一顺序判定，但各自只检查和修改本 Skill 负责的输入与产物；这是 Agent 操作规则，不是自动路由脚本。
+
+1. 用户是否明确要求修复？没有明确要求时，不启动 `code-fix`，只整理分析或询问下一步。
+2. 从反馈、预期行为和已批准设计中确认“应该发生什么”；不清楚时先向用户澄清。S10/S11/S7b 证据只能描述现象，不能单独决定根因或 Skill 归属。
+3. 检查问题是否来自配置、上游事实或设计/接口本身。需要改变这些输入时，不走 `code-fix`：局部变化且影响范围可确认时走 `diff`；变化广泛或无法可靠界定范围时走 `full`。改变预期行为前先让用户确认设计内容。
+4. 只有设计与接口仍正确、代码实现偏离设计、且问题属于 S5c 时，才走本节的 `code-fix`。
+5. `diff` 只能在对应 Skill 的比较依据有效且影响范围可界定时做局部生成。比较依据缺失或不一致时，不假定未变部分可靠；按本 Skill 的机制重建完整基线或全量生成。运行会重生成文件的 prepare 前，检查目标文件和工作区是否有用户手改；现有修改无法安全保留/合并时先暂停，不静默覆盖。
+
+**判定示例**：用户只要求总结 S11 日志 → 只分析，不启动修复；manifest 或硬件能力契约需要改变 → 回 S5b/S5a 更新契约，再按影响范围走 `diff`/`full`；契约没变但 Port/OSAL/Power 实现偏离设计且用户要求修复 → 判断属于 S5c 后走 `code-fix`；日志无法定位到契约或适配实现 → 查 S5a/S5b/S5c 输入与代码，仍不确定则向用户说明，不猜测修改。
+
+## S5c 生成分支
+
+- `full`：首次生成；manifest 比较依据缺失/不可用；或平台、RTOS、接口变化广泛影响适配实现。prepare 对无签名基线的单元判为 full。`file_hashes.json` 缺少现有实现文件的记录时，自动流程无法确认该文件是否有用户修改；必须在运行 prepare 前人工检查该文件，有未提交修改或来源不明时暂停，不静默覆盖。已有哈希且检测到漂移的文件按 `skip-if-modified` 保护。
+- `diff`：`port_manifest_snapshot.json` 可核对，只有局部接口变化。运行 prepare/`port_differ.py`，按外设的 full/incremental/skip/blocked 判定处理；blocked 时停止并报告，不自行绕过。现有实现文件若没有 `file_hashes.json` 记录，须在 prepare 前人工检查是否有用户改动。
+- `code-fix`：按共用判定确认后，定点修复 S5c 适配实现；不能在 S5c 修改 S5a hardware capabilities 或 S5b manifest 契约。
+
+用户要求修复后，先读调试反馈及所引用的 S11/S7b 证据，再检查 S5a/S5b/S5c 设计输入和代码。用户无需提供文件或函数位置。若问题来自设计/接口变化，转入 `diff` / `full`，不得通过 code-fix 绕过接口更新。
+
+## 分支入口：code-fix（用户明确要求后执行）
+
+**用途**：用户确认运行行为偏离既定 manifest 或其他已批准设计，且硬件能力与接口输入正确时，Agent 阅读反馈和源码后定点修复。用户无需指定文件或函数。**不走 prepare 主流程**。
 
 **设计依据**（与 S5b 一致的"分支入口原则"）：不走完整主流程的维护操作作为独立
 Agent 入口新增章节，不改动主流程与散件脚本；按需触发、默认不执行；
 **禁止为预留而建空壳脚本或空壳参数**。
 
-### 触发条件（用户显式发起）
+### 触发条件
 
-- 用户在对话中指明：文件路径 + 函数名 + 预期行为 vs 实际行为
-- 或用户提供日志/现象描述 + 定位线索
+- 用户明确要求依据调试反馈、运行日志或编译结果修复问题。
+- S11/S7b 只提供证据，不自动触发本分支，也不判断 S5c 是否为问题归属。
 
 ### 执行流程
 
-1. `[agent]` 读指定文件 + 用户描述 + 本 SKILL.md + `references/hal_mapping_guide.md`
-   / `port_impl_pattern.md` / `isr_safety_rules.md`
-2. `[agent]` 定位问题 → **向用户确认修复方案**（先方案后动手）
-3. `[agent]` 定点修改，不做无关重构
-4. `[rule]` 最小校验子集：include 规则（不 include `app*` / `protocol_*`）+
-   ISR 回调判空（若改动涉及 ISR）；**不跑全量 validate**，不做 manifest 全覆盖检查
-5. `[rule]` 更新 `outputs/s5c/file_hashes.json`：**保留该文件的旧基线**（让该文件
-   进入"用户维护"状态，下轮 prepare 判 `skip`+漂移），或直接把该文件追加进
-   `state.s5c.skipped_files`
-6. `[agent]` 向用户报告改动摘要（文件 / 函数 / 改动前后对比 / 未验证项）
+1. `[agent]` 读取用户反馈文档、所引用证据、Port manifest、hardware capabilities、相关源码和必要 references，并确认问题属于 S5c。
+2. `[agent]` 检查输入设计/接口仍正确。若需要改变契约，说明应回到 S5a/S5b；若预期不清，先向用户澄清，不进入修复。
+3. `[agent]` 检查工作区和目标文件现有改动。把本次修改前原文件、SHA256 和本次差异备份到 `outputs/s5c/codefix_backups/<feedback_id>/`；备份目录已存在不得覆盖，目标文件有用户改动且无法安全合并时暂停。
+4. `[agent]` 定点修改，不做无关重构。
+5. `[rule/agent]` 仅执行与改动相关的最小检查：S5c include 规则及（若改动涉及 ISR）回调判空；不跑全量 validate 或 manifest 全覆盖检查。
+6. `[agent]` 不更新 `outputs/s5c/file_hashes.json` 中该文件的旧哈希，也不把 code-fix 后的新哈希登记为自动生成基线；后续 prepare 可据此识别漂移并保护用户维护文件。code-fix 不修改 `state.s5c.status`、`state.s5c.skipped_files` 或 manifest 快照。
+7. `[agent]` 报告改动摘要、函数/文件、关联证据、执行过的检查及未验证项；未运行 S7b 时明确说明未经过编译验证。
 
 ### 不做
 
@@ -369,7 +384,7 @@ Agent 入口新增章节，不改动主流程与散件脚本；按需触发、�
 
 ### 与 skip-if-modified 的协同
 
-code-fix 修完 → 哈希与基线不一致 → 下次主流程 prepare 判 `skip`+漂移 →
+code-fix 修完 → 源码哈希与旧基线不一致 → 下次主流程 prepare 判 `skip`+漂移 →
 **修复被保留**。这是设计意图：**code-fix 天然产出"用户维护文件"**，无需额外机制。
 
 ### 后续可能的扩展入口（描述原则，不预建）
@@ -404,8 +419,7 @@ python skills/port-implementer/scripts/prepare.py --config examples/<项目>/con
 python skills/port-implementer/scripts/diff_range_checker.py --config examples/<项目>/config.json   # 有 incremental 时
 python skills/port-implementer/scripts/validate.py --config examples/<项目>/config.json
 
-# 维护期分支入口（不进主流程）：
-#   用户直接告诉 Agent：文件 + 函数 + 症状，走 code-fix 流程
+# 维护期：用户提供调试反馈/编译证据并明确要求修复；Agent 阅读代码选择 code-fix 或 diff/full
 ```
 
 ## 依赖
@@ -441,12 +455,12 @@ python skills/port-implementer/scripts/validate.py --config examples/<项目>/co
 - **ISR 内回调调用前必须判空**，不得裸调未注册的回调
 - 不得把所有 Port 实现塞进一个文件，必须按外设拆分
 - 不得把代码放在 `outputs/` 中，必须放在布局解析的 S5c 产物目录
-- **不重写任务书标注"用户已修改"的文件**（skip-if-modified）
+- **不重写任务书标注"用户已修改"的文件**（skip-if-modified）；缺少哈希记录的既有文件需在 prepare 前人工核查
 - **`incremental` 模式无权重写整个文件**，只做定点修改；diff 范围异常时
   不得自行修复后继续（先报告用户）
 - **`blocked` 模式必须报告用户**（手改 + 上游变更冲突），不自行处理
 - **`skip` 模式绝对不动文件**（含用户手改与接口未变两类）
-- **首次执行（无 snapshot）时未手改的文件全部按 full 建基线**，不跳过
+- **首次执行（无 snapshot）时已确认未手改的文件按 full 建基线**；有既有文件但缺少哈希记录时必须先人工核查
 - **code-fix 分支入口不做全量 validate**，只做最小校验子集；
   不改变 `state.s5c.status`；不动 `port_manifest_snapshot.json`
 - 不直接修改 IDE 工程文件——同步统一由公共工具

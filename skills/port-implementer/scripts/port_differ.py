@@ -30,6 +30,7 @@ OSAL/Power 取同名键，用 kind 区分）。
 from __future__ import annotations
 
 import argparse
+import json
 import sys
 from datetime import datetime
 from pathlib import Path

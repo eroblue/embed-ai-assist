@@ -150,7 +150,7 @@ def main(argv: list[str] | None = None) -> int:
             "gui_build_log": result.get("gui_build_log"),
             "bin_warning": result.get("bin_warning"),
             "error": (f"编译失败：错误 {result['error_count']} 个"
-                      "（根因分析与修复建议见 error_analysis.md）"),
+                      "（编译诊断摘要见 error_analysis.md）"),
             "updated_at": datetime.now().isoformat(timespec="seconds"),
         }
 

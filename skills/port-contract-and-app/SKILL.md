@@ -1,6 +1,6 @@
 ---
 name: "port-contract-and-app"
-description: "S5b Port 契约与应用，三段式执行模型 + 两阶段生成：rule 脚本 prepare.py 检查 S2/S4 就绪（均可选，缺失自动降级）并输出 Agent 任务书，Agent（LLM）阶段 A 先做功能模块拆分、逐模块编写 Mermaid 流程图（docs/flow/，用户审核 approved 后经 flow_differ 判定 full/incremental/skip 再按映射规则生成模块代码），阶段 B 完成顶层连接（app.c/main.c/任务创建）；Agent 定义平台无关的 Port/OSAL/Power 接口并生成 APP、协议层、设备驱动代码，填写 port_interface_manifest.json（S5c 实现 Port 的唯一依据）；rule 脚本 validate.py 校验产物（流程图一致性/禁止 include/mtime 守卫），并调用公共工具 ide_sync.py 同步 IDE 工程。与 S5a 可并行；产物全部平台无关。"
+description: "S5b Port 契约与应用：从规格和已批准流程图生成平台无关 APP、协议、驱动及 Port 接口；支持 full/diff。用户要求修复时结合调试反馈、已批准流程图和代码，可 code-fix 实现偏差；功能设计变化须更新并审核流程图后走 diff/full。"
 ---
 
 # port-contract-and-app Port 契约与应用（S5b）
@@ -298,7 +298,7 @@ protocol_sources、task_sources）、`driver_sources`/`driver_headers`、
 | `blocked` | approved 后修改未重审 / 版本回退 / dirty / 基线快照 hash 与 index 不一致 | 已实现（flow_differ） |
 | `deprecated` | 模块在 flow_index 登记为废弃 | 已实现（flow_differ，处置：移除代码） |
 
-**分支入口原则**：不走完整主流程的维护操作（如未来的 code-fix、impact 分析）作为**独立 Agent 入口**新增章节，不改动上述主流程与散件脚本——按需触发、默认不执行（与 Mock 可选后处理同模式）。禁止为预留而建空壳脚本或空壳参数。
+**维护分支原则**：`code-fix` 仅在用户明确要求修复时触发；设计或接口变化继续走已有 `diff` / `full` 主流程。不为分支额外增加未必要的 CLI 参数或脚本。
 
 ## 执行步骤（Agent 操作手册）
 
@@ -372,6 +372,34 @@ python skills/port-contract-and-app/scripts/flow_differ.py --config examples/gd3
 python skills/port-contract-and-app/scripts/diff_range_checker.py --config examples/gd32f205vet6/config.json  # 步骤 9（增量后）
 python skills/port-contract-and-app/scripts/validate.py --config examples/gd32f205vet6/config.json        # 步骤 12（终验）
 ```
+
+## 分支判定（S5a/S5b/S5c 共用顺序）
+
+三个 Skill 都按同一顺序判定，但各自只检查和修改本 Skill 负责的输入与产物；这是 Agent 操作规则，不是自动路由脚本。
+
+1. 用户是否明确要求修复？没有明确要求时，不启动 `code-fix`，只整理分析或询问下一步。
+2. 从反馈、预期行为和已批准设计中确认“应该发生什么”；不清楚时先向用户澄清。S10/S11/S7b 证据只能描述现象，不能单独决定根因或 Skill 归属。
+3. 检查问题是否来自配置、上游事实或设计/接口本身。需要改变这些输入时，不走 `code-fix`：局部变化且影响范围可确认时走 `diff`；变化广泛或无法可靠界定范围时走 `full`。改变预期行为前先让用户确认设计内容。
+4. 只有设计与接口仍正确、代码实现偏离设计、且问题属于 S5b 时，才走本节的 `code-fix`。
+5. `diff` 只能在对应 Skill 的比较依据有效且影响范围可界定时做局部生成。比较依据缺失或不一致时，不假定未变部分可靠；按本 Skill 的机制重建完整基线或全量生成。运行会重生成文件的 prepare 前，检查目标文件和工作区是否有用户手改；现有修改无法安全保留/合并时先暂停，不静默覆盖。
+
+**判定示例**：用户只要求总结 S11 日志 → 只分析，不启动修复；用户确认功能行为或接口设计要改变 → 先更新并审核流程图，再按影响范围走 `diff`/`full`；用户确认流程图和接口没变、实现偏离流程图并要求修复 → 判断属于 S5b 后走 `code-fix`；日志无法说明是否偏离流程图 → 先核对反馈和设计，仍不清楚则向用户提问。
+
+## S5b 生成分支
+
+- `full`：首次生成；没有可用的流程图历史基线；流程图大范围变化，或无法确认局部影响范围。所有受影响功能流程审核通过后，按完整生成流程处理。
+- `diff`：当前流程图已批准，`.history/<模块>/<版本>.md` 和 `flow_index.json` 等比较依据可用，且只有局部模块变化。先审核变更流程图，再由 `flow_differ.py` 判定 full/incremental/skip/blocked；blocked 时停止生成并按规则重新审核。若结果含 `baseline_mismatch`，先核对索引与历史快照，不得依据该 diff 生成。
+- `code-fix`：预期行为与已批准流程图、接口一致，但 S5b 代码实现偏离。只改 S5b 负责代码，不重跑完整 prepare/generate，不修改 S5a/S5c 产物或 `state.s5b.status`。
+
+问题修复时先读调试反馈、所引用的 S11/S7b 证据、项目规格、已批准流程图、traceability 和相关源码。用户不必先定位到文件或函数。若功能预期不清或需要改变，先向用户确认；需要编译验证时按用户授权调用 S7b。
+
+### code-fix 执行
+
+1. 从反馈、traceability、流程图和源码中定位问题，记录关联 evidence ID；确认问题属于 S5b。
+2. 检查流程图和接口仍准确。若需改变，说明变化并取得用户对预期行为的确认，再转入 `diff`/`full` 设计审核流程。
+3. 检查工作区和目标文件现有改动。对本次要改的文件保存原件、SHA256 和本次差异到 `outputs/s5b/codefix_backups/<feedback_id>/`；备份目录已存在不得覆盖，目标有用户改动且无法安全合并时暂停并说明。
+4. 对 S5b 代码做最小修改，运行与改动相关的静态检查及流程一致性校验；不执行完整生成校验。
+5. 报告修改文件、行为依据、关联证据、验证结果和未验证项；不更新 S5b 主流程状态。未执行 S7b 时明确标注未经过编译验证。
 
 ## 换平台语义（重要）
 

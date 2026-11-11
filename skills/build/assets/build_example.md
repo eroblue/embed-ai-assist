@@ -77,8 +77,7 @@ python skills/build/scripts/validate.py --config examples/ft61f14x/config.json
 
 ```text
 build.py 退出码 1 → Agent 读 outputs/s7b/build.log + build_result.json
-→ 根因四分类（代码/配置/环境/输入）
-→ 产出 outputs/s7b/error_analysis.md（只建议不执行）
-→ 用户判定后：validate.py 收口；S5 代码问题则用户发起
-  "读 outputs/s7b/error_analysis.md，走 S5c code-fix 分支修复 xxx"
+→ 产出 outputs/s7b/error_analysis.md（编译诊断摘要和日志定位，不判定代码归属）
+→ 用户将 build.log / build_result.json / error_analysis.md 路径填入调试反馈文档
+→ 用户明确要求修复后，Agent 结合项目设计与代码选择 S5a/b/c 及对应分支
 ```

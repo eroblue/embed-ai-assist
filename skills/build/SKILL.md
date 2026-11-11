@@ -14,8 +14,8 @@ description: "S7b 编译构建：调用工具链编译目标工程（Keil/IAR/GC
   工程、发送编译快捷键完成编译，`build.py --collect` 收口
 
 编译成功后**必须产出 bin 格式产物**（S6 firmware-merger 合并 Boot+App 消费）。
-编译失败时 Agent 只产出 `error_analysis.md`（不自动修复，与 S5c code-fix 的衔接
-由用户显式发起）。
+编译失败时 Agent 只整理编译诊断并产出 `error_analysis.md`（不自动修复、不判断
+S5a/b/c 归属）；用户可将它与 `build.log`、`build_result.json` 一起引用到调试反馈文档。
 
 层级与上下游：属于"编译构建"层，在 S5 全部完成后触发（S12 workflow-runner 编排
 或用户手动执行）。上游 S5a/S5b/S5c（源码就位）；下游 S6（消费 bin）、S9（烧录
@@ -111,7 +111,7 @@ build/
 | `build.log` | 完整编译日志（多编码解码 UTF-8→GBK→replace） |
 | `gui_build_log.md` | GUI 编译操作记录（仅 vendor_ide，Agent 逐步记录） |
 | `build_result.json` | 结果摘要（schema 见 build_result.schema.json） |
-| `error_analysis.md` | 编译失败时 Agent 产出的根因分析与修复建议 |
+| `error_analysis.md` | 编译失败时 Agent 整理的诊断摘要、可用日志定位和待确认事项；不判断 S5 子 Skill |
 | `gui_session.json` | GUI 机制 T0/输出目录会话数据（prepare 写、--collect 读） |
 
 可执行产物（axf/hex/bin）在工程目录（工具链默认位置），state 只存指针与统计
@@ -177,12 +177,9 @@ build_result.json（错误数按抄录行统计，无法统计为 -1）。
 
 13. 读 build.log + build_result.json + SKILL.md + references/（GUI 另读
     gui_build_log.md，区分"编译失败"与"GUI 操作失败"——后者归环境问题）。
-14. 根因四分类：**代码问题**（S5 生成缺陷）/ **配置问题**（工程文件配置错）/
-    **环境问题**（工具链版本/路径/依赖）/ **输入问题**（上游产物不一致）。
-15. 产出 `error_analysis.md`：错误摘要（按根因分类）/ 每条错误详细分析（消息/
-    可能原因/定位建议）/ 修复建议（**只建议不执行**）/ 推荐路径（判定为 S5 代码
-    问题时明确写"建议走 S5c code-fix 分支"）。
-16. **不自动修复**、不改动任何代码、不触发 code-fix。
+14. 仅根据 `build.log` 与 `build_result.json` 整理编译器实际报告的错误和警告，保留源文件/行号（若有）及对应日志位置；GUI 操作问题与编译诊断分开记录。
+15. 产出 `error_analysis.md`：编译结果摘要、逐条诊断原文/定位、构建配置及需要进一步检查的信息。标明哪些是编译器事实、哪些是尚未确认的解释；不判断代码归属或 S5 子 Skill。
+16. **不自动修复**、不改动任何代码、不触发 S5。
 
 ### 阶段 D：validate（rule，validate.py）
 
@@ -222,14 +219,13 @@ python skills/build/scripts/validate.py --config examples/ft61f14x/config.json
 - 不修改工程文件（.uvprojx / .ewp / CMakeLists.txt）；不调用 ide_sync.py
   （例外：阶段 A' 生成/重新生成含标记的 Makefile 与 .ld——用户自维护文件仍不覆盖）
 - 不生成任何 C 代码；不修改 S5a/S5b/S5c 产物
-- 不自动触发任何下游 Skill 与 S7a（含 S5c code-fix）
+- 不自动触发任何下游 Skill 与 S7a
 
 **Agent 侧（analyze 阶段）**：
 
 - 不自动修复代码——只分析、报告、给建议；不修改任何源文件与配置文件
-- 不触发 S5c code-fix（由用户显式发起："读 outputs/s7b/error_analysis.md，走
-  S5c code-fix 分支修复 xxx"）
-- 不把编译错误简单归为"S5 代码问题"——必须区分代码/配置/环境/输入四类根因
+- 不选择或触发 S5 子 Skill；由 Agent 在用户明确要求修复后结合项目设计与代码判断
+- 不在缺少源码上下文时判断编译错误根因或将其归为 S5a/b/c 问题
 - 不臆造错误原因——分析必须基于 build.log 与 build_result.json 的实际内容
 - 不修改 state.s7b.status（由 validate 收口）
 
