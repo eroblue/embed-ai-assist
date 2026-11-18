@@ -2,7 +2,7 @@
 __pycache__/
 *.pyc
 .venv/
-.build/pyinstaller/
+.build/
 
 # 项目输出（大文件、临时产物；含 App/BootLoader 双工程与项目级 outputs/）
 # projects/**/App/outputs/

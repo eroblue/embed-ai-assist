@@ -16,7 +16,7 @@ TOOLS = ROOT / "tools"
 BUILD = ROOT / ".build" / "pyinstaller"
 
 
-def build(which: str) -> None:
+def build(which: str, distpath: Path = TOOLS) -> None:
     try:
         from PyInstaller.__main__ import run
     except ImportError as exc:
@@ -39,7 +39,7 @@ def build(which: str) -> None:
          windows / "System32" / "Wbem"])
     args = [
         "--noconfirm", "--clean", "--onefile", "--windowed", "--noupx",
-        "--name", name, "--distpath", str(TOOLS),
+        "--name", name, "--distpath", str(distpath),
         "--workpath", str(BUILD / "work"), "--specpath", str(BUILD / "spec"),
         "--paths", str(ROOT / "skills" / skill / "scripts"),
         "--paths", str(ROOT / "skills" / "_shared" / "scripts"),
@@ -47,18 +47,20 @@ def build(which: str) -> None:
     for source, destination in data:
         args.extend(["--add-data", f"{source};{destination}"])
     args.append(str(script))
-    print(f"Building {name} -> {TOOLS / (name + '.exe')}", flush=True)
+    print(f"Building {name} -> {distpath / (name + '.exe')}", flush=True)
     run(args)
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="打包 S10/S12 Windows GUI")
     parser.add_argument("target", choices=["s10", "s12", "all"], nargs="?", default="all")
+    parser.add_argument("--distpath", type=Path, default=TOOLS,
+                        help="exe 输出目录（默认仓库根 tools/）")
     args = parser.parse_args()
     if sys.platform != "win32":
         parser.error("此打包脚本需在 Windows 上运行")
     for item in (["s10", "s12"] if args.target == "all" else [args.target]):
-        build(item)
+        build(item, args.distpath.resolve())
 
 
 if __name__ == "__main__":

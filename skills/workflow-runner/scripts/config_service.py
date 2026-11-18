@@ -12,7 +12,7 @@ FROZEN = bool(getattr(sys, "frozen", False))
 ROOT = Path(sys.executable).resolve().parent.parent if FROZEN else Path(__file__).resolve().parents[3]
 RESOURCES = Path(sys._MEIPASS) if FROZEN else ROOT
 SKILL = RESOURCES / "skills" / "workflow-runner"
-VERSION = "0.1.0"
+VERSION = "0.1.1"
 
 SKILLS = [
     ("S1", "schematic-reader", "原理图解析"),

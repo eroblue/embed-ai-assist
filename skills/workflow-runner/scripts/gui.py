@@ -27,6 +27,7 @@ class Window(QMainWindow):
         self.config_path = None
         self.profile_file = None
         self.fields = {}
+        self.step_widgets = {}
         self.profile_name = QLineEdit()
         self.project_name = QLineEdit()
         self.build_target = QComboBox(); self.build_target.addItems(["App", "BootLoader"])
@@ -40,6 +41,8 @@ class Window(QMainWindow):
         self.serial_stop = QComboBox(); self.serial_stop.addItems(["1", "1.5", "2"])
         self.serial_encoding = QLineEdit()
         self.serial_timeout = QSpinBox(); self.serial_timeout.setRange(10, 5000)
+        self.global_paths = QTextEdit(); self.global_paths.setReadOnly(True); self.global_paths.setMaximumHeight(130)
+        self._saved_project_values = None
         self.project_label = QLabel("未选择项目")
         self.profile_combo = QComboBox()
         self.skill_list = QListWidget()
@@ -64,23 +67,21 @@ class Window(QMainWindow):
         row = QHBoxLayout(); row.addWidget(self.project_label, 1)
         pick = QPushButton("选择项目…"); pick.clicked.connect(self.choose_project); row.addWidget(pick)
         outer.addLayout(row)
-        self.tabs.addTab(self._project_tab(), "项目设置")
-        self.tabs.addTab(self._profile_tab(), "工作流方案")
+        self.tabs.addTab(self._project_tab(), "通用配置")
+        self.tabs.addTab(self._profile_tab(), "工作流配置")
         self.tabs.addTab(self.monitor, "运行监控")
         outer.addWidget(self.tabs)
         self.statusBar().showMessage("请选择项目 config.json")
 
     def _project_tab(self):
         page = QWidget(); layout = QVBoxLayout(page); form = QFormLayout()
-        for label, widget in [("项目名称", self.project_name), ("目标工程", self.build_target),
-                              ("构建方式", self.build_system), ("构建配置", self.build_config),
-                              ("烧录工具", self.flash_tool), ("串口", self.serial_port),
-                              ("波特率", self.serial_baud), ("数据位", self.serial_bytes),
-                              ("校验位", self.serial_parity), ("停止位", self.serial_stop),
-                              ("编码", self.serial_encoding), ("读取超时 ms", self.serial_timeout)]:
+        for label, widget in [("项目名称", self.project_name), ("目标工程", self.build_target)]:
             form.addRow(label, widget)
         layout.addLayout(form)
-        save = QPushButton("保存项目设置"); save.clicked.connect(self.save_project_settings)
+        layout.addWidget(QLabel("机器共用工具路径（根目录 config.json，只读）"))
+        layout.addWidget(self.global_paths)
+        layout.addWidget(QLabel("编译、烧录和串口的项目默认参数，请到工作流配置中对应的 Skill 面板设置。"))
+        save = QPushButton("保存项目通用配置"); save.clicked.connect(self.save_project_settings)
         layout.addWidget(save); layout.addStretch()
         return page
 
@@ -131,9 +132,33 @@ class Window(QMainWindow):
         if not item:
             return
         sid = item.data(Qt.ItemDataRole.UserRole)
+        if sid in self.step_widgets:
+            self.parameter_area.takeWidget()
+            self.parameter_area.setWidget(self.step_widgets[sid])
+            return
         widget = QWidget(); layout = QVBoxLayout(widget)
+        self.step_widgets[sid] = widget
         layout.addWidget(QLabel(f"{sid} · {CATALOG[sid][0]}"))
         layout.addWidget(QLabel(CATALOG[sid][1]))
+        project_form = QFormLayout()
+        project_widgets = {
+            "S7b": [("构建方式", self.build_system), ("构建配置", self.build_config)],
+            "S9": [("烧录工具", self.flash_tool)],
+            "S10": [("串口", self.serial_port), ("波特率", self.serial_baud),
+                    ("数据位", self.serial_bytes), ("校验位", self.serial_parity),
+                    ("停止位", self.serial_stop), ("编码", self.serial_encoding),
+                    ("读取超时 ms", self.serial_timeout)],
+        }
+        if sid in project_widgets:
+            layout.addWidget(QLabel("项目默认参数 · 保存在项目 config.json"))
+            for label, control in project_widgets[sid]:
+                project_form.addRow(label, control)
+            layout.addLayout(project_form)
+            save_defaults = QPushButton("保存项目默认参数")
+            save_defaults.clicked.connect(self.save_project_settings)
+            layout.addWidget(save_defaults)
+        if STEP_FIELDS.get(sid):
+            layout.addWidget(QLabel("仅当前方案覆盖（可选，留空使用项目默认值）"))
         form = QFormLayout()
         self.fields.setdefault(sid, {})
         for key, label, kind, choices in STEP_FIELDS.get(sid, []):
@@ -149,6 +174,7 @@ class Window(QMainWindow):
                 self.fields[sid][key] = control
             form.addRow(label, self.fields[sid][key])
         layout.addLayout(form); layout.addStretch()
+        self.parameter_area.takeWidget()
         self.parameter_area.setWidget(widget)
 
     def choose_project(self):
@@ -173,6 +199,9 @@ class Window(QMainWindow):
             self._combo(self.serial_stop, str(serial.get("stopbits", 1)))
             self.serial_encoding.setText(serial.get("encoding", "utf-8"))
             self.serial_timeout.setValue(serial.get("read_timeout_ms", 200))
+            global_cfg = read_json(ROOT / "config.json")
+            self.global_paths.setPlainText(json.dumps(global_cfg.get("tool_paths", {}), ensure_ascii=False, indent=2))
+            self._saved_project_values = self._project_values()
             self.reload_profiles(); self.new_profile()
             self.statusBar().showMessage(f"项目：{self.config_path.parent}")
         except Exception as exc:
@@ -186,21 +215,26 @@ class Window(QMainWindow):
         if not self.config_path:
             return
         try:
-            old = project_config(self.config_path).get("project") or {}
-            serial = dict(old.get("serial") or {})
-            serial.update({"port": self.serial_port.text().strip() or None,
-                           "baudrate": self.serial_baud.value(), "bytesize": int(self.serial_bytes.currentText()),
-                           "parity": self.serial_parity.currentText(), "stopbits": float(self.serial_stop.currentText()),
-                           "encoding": self.serial_encoding.text().strip(), "read_timeout_ms": self.serial_timeout.value()})
-            save_project(self.config_path, {"name": self.project_name.text().strip(),
-                "build_target": self.build_target.currentText(),
+            values = self._project_values()
+            save_project(self.config_path, values)
+            self._saved_project_values = values
+            self.statusBar().showMessage("项目默认参数已保存")
+        except Exception as exc:
+            QMessageBox.critical(self, "保存项目设置失败", str(exc))
+
+    def _project_values(self):
+        old = (project_config(self.config_path).get("project") or {}) if self.config_path else {}
+        serial = dict(old.get("serial") or {})
+        serial.update({"port": self.serial_port.text().strip() or None,
+                       "baudrate": self.serial_baud.value(), "bytesize": int(self.serial_bytes.currentText()),
+                       "parity": self.serial_parity.currentText(), "stopbits": float(self.serial_stop.currentText()),
+                       "encoding": self.serial_encoding.text().strip(),
+                       "read_timeout_ms": self.serial_timeout.value()})
+        return {"name": self.project_name.text().strip(), "build_target": self.build_target.currentText(),
                 "build_system": None if self.build_system.currentIndex() == 0 else self.build_system.currentText(),
                 "build_config": self.build_config.text().strip(),
                 "flash_tool": None if self.flash_tool.currentIndex() == 0 else self.flash_tool.currentText(),
-                "serial": serial})
-            self.statusBar().showMessage("项目设置已保存")
-        except Exception as exc:
-            QMessageBox.critical(self, "保存项目设置失败", str(exc))
+                "serial": serial}
 
     def reload_profiles(self):
         self.profile_combo.clear()
@@ -258,6 +292,8 @@ class Window(QMainWindow):
     def _profile_data(self):
         if not self.config_path:
             raise ValueError("请先选择项目")
+        if self._saved_project_values != self._project_values():
+            raise ValueError("项目默认参数有未保存的修改，请先在对应 Skill 面板保存")
         target = (project_config(self.config_path).get("project") or {}).get("build_target") or "App"
         if target != self.build_target.currentText():
             raise ValueError("目标工程有未保存修改，请先保存项目设置")
