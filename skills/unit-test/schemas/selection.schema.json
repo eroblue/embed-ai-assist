@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "type": "object",
+  "required": ["mode", "candidate_count", "planned", "batch", "deferred", "unselected", "inventory_uncertain"],
+  "properties": {"mode": {"type": "string"}, "candidate_count": {"type": "integer"},
+    "inventory_uncertain": {"type": "boolean"}, "planned": {"type": "array", "items": {"type": "string"}},
+    "batch": {"type": "array", "items": {"type": "string"}},
+    "deferred": {"type": "array", "items": {"type": "string"}},
+    "unselected": {"type": "array", "items": {"type": "string"}}}
+}

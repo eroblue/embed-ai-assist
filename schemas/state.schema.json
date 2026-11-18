@@ -88,6 +88,10 @@
       "type": ["object", "null"],
       "description": "【已废弃，由 s9 键取代（S5/S7 系列新惯例）】flash (S9) 旧模板键，S9 不再读写"
     },
+    "s8": {
+      "type": ["object", "null"],
+      "description": "unit-test (S8) 写入：本批主机单元测试状态、数量与 outputs/s8/<run_id>/ 产物路径；详细契约见 skills/unit-test/schemas/output.schema.json"
+    },
     "s9": {
       "type": ["object", "null"],
       "description": "flash (S9) 写入：烧录状态 s9.status / s9.flash_tool / s9.firmware_path / s9.verify_passed 等（字段契约详见 skills/flash/schemas/output.schema.json；产物在 outputs/s9/，发布在项目根 release/）"

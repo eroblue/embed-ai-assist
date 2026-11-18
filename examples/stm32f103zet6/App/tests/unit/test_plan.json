@@ -1,0 +1,130 @@
+{
+  "units": [
+    {
+      "id": "App/Src/app_mode_control",
+      "source": "App/Src/app_mode_control.c",
+      "status": "ready",
+      "test_source": "tests/unit/test_app_mode_control.c",
+      "include_dirs": ["App/Inc"],
+      "cases": [
+        {"id": "mode_initial", "scenario": "initialize module", "expected": "AUTO, unmuted, display AUTO", "expected_basis": "docs/flow/app_mode_control_state.md: approved initial AUTO state"},
+        {"id": "mode_toggle", "scenario": "press mode key once", "expected": "MANUAL and display MANUAL", "expected_basis": "App/Inc/app_mode_control.h: mode key switches AUTO/MANUAL"},
+        {"id": "mute_independent", "scenario": "press mute key while in MANUAL", "expected": "mode remains MANUAL, muted, display MUTED", "expected_basis": "docs/flow/app_mode_control_state.md: mute overlays mode and restores display"}
+      ]
+    },
+    {
+      "id": "App/Src/app_env_sensor",
+      "source": "App/Src/app_env_sensor.c",
+      "status": "ready",
+      "test_source": "tests/unit/test_app_env_sensor.c",
+      "mocks": ["tests/unit/mocks/mock_env_interfaces.c"],
+      "include_dirs": ["App/Inc", "Drivers/BSP/Inc", "Drivers/Port/Inc", "tests/unit/mocks"],
+      "cases": [
+        {"id": "initial_fault", "scenario": "initialize with no sensor reading", "expected": "fault set, one fault event, no read", "expected_basis": "App/Inc/app_env_sensor.h and approved docs/flow/app_env_sensor_flow.md: no valid reading is fault"},
+        {"id": "first_valid_recovery", "scenario": "mock 25C/60% and 1650mV, advance 200 ticks", "expected": "fault cleared, one recovery event, temperature 25, humidity 60, light 50%", "expected_basis": "approved docs/flow/app_env_sensor_flow.md: 2s period, first success recovers and updates data"},
+        {"id": "read_failure_retains", "scenario": "mock DHT timeout after a valid sample, advance 200 ticks", "expected": "last temperature and humidity retained, no fault yet", "expected_basis": "approved docs/flow/app_env_sensor_flow.md: read failure retains last valid data"}
+      ]
+    },
+    {
+      "id": "App/Src/app_alarm_control", "source": "App/Src/app_alarm_control.c", "status": "ready",
+      "test_source": "tests/unit/test_app_alarm_control.c",
+      "include_dirs": ["App/Inc", "Drivers/Port/Inc"],
+      "cases": [
+        {"id": "alarm_init", "scenario": "初始化告警控制", "expected": "NORMAL，执行器关闭", "expected_basis": "App/Inc/app_alarm_control.h"},
+        {"id": "high_temp_actuator", "scenario": "自动模式、温度31°C", "expected": "高温告警，执行器开启", "expected_basis": "docs/flow/app_alarm_control_state.md"},
+        {"id": "low_temp_actuator", "scenario": "温度降至9°C", "expected": "低温告警，执行器关闭", "expected_basis": "docs/flow/app_alarm_control_state.md"},
+        {"id": "sensor_fault_silent", "scenario": "发布传感器故障事件", "expected": "进入故障态，蜂鸣关闭", "expected_basis": "App/Inc/app_alarm_control.h 与 S5b 已确认的代码契约"},
+        {"id": "sensor_recovered", "scenario": "故障后发布恢复事件", "expected": "恢复 NORMAL", "expected_basis": "App/Inc/app_alarm_control.h"}
+      ]
+    },
+    {
+      "id": "App/Src/app_key_handler", "source": "App/Src/app_key_handler.c", "status": "ready",
+      "test_source": "tests/unit/test_app_key_handler.c",
+      "include_dirs": ["App/Inc", "Drivers/Port/Inc"],
+      "cases": [
+        {"id": "bounce_ignored", "scenario": "按下不足5个采样拍后释放", "expected": "无按键事件", "expected_basis": "App/Inc/app_key_handler.h"},
+        {"id": "short_press", "scenario": "稳定按下5拍并稳定释放5拍", "expected": "产生一次 MODE 事件", "expected_basis": "docs/flow/app_key_handler_state.md"},
+        {"id": "long_press_no_short_event", "scenario": "按下超过1秒后释放", "expected": "不产生短按事件", "expected_basis": "App/Inc/app_key_handler.h"}
+      ]
+    },
+    {
+      "id": "App/Src/app_uart_report", "source": "App/Src/app_uart_report.c", "status": "ready",
+      "test_source": "tests/unit/test_app_uart_report.c",
+      "include_dirs": ["App/Inc", "Drivers/Port/Inc"],
+      "cases": [
+        {"id": "uart_init_ready", "scenario": "初始化上报口", "expected": "115200-8N1配置且就绪", "expected_basis": "App/Inc/app_uart_report.h"},
+        {"id": "before_period_no_write", "scenario": "推进499个10ms节拍", "expected": "未发送", "expected_basis": "docs/flow/app_uart_report_sequence.md"},
+        {"id": "json_frame", "scenario": "第500拍发送环境数据", "expected": "发送约定JSON帧", "expected_basis": "App/Inc/app_uart_report.h 与 S5b 已确认的代码契约"},
+        {"id": "three_failed_cycles", "scenario": "连续3周期发送失败", "expected": "每周期最多重试2次且标记上报故障", "expected_basis": "App/Inc/app_uart_report.h"},
+        {"id": "success_clears_fault", "scenario": "故障后下一周期发送成功", "expected": "清除上报故障", "expected_basis": "App/Inc/app_uart_report.h"}
+      ]
+    },
+    {
+      "id": "Drivers/BSP/Src/hal_init", "source": "Drivers/BSP/Src/hal_init.c", "status": "ready",
+      "test_source": "tests/unit/test_hal_init.c",
+      "include_dirs": ["Drivers/BSP/Inc"],
+      "cases": [{"id": "init_order", "scenario": "调用硬件初始化总入口", "expected": "按时钟、中断、GPIO、Timer、ADC、FSMC、UART、DHT顺序调用", "expected_basis": "docs/s5a_design_input.md 与 Drivers/BSP/Src/hal_init.c 的初始化顺序说明"}]
+    },
+    {"id": "Drivers/BSP/Src/adc_init", "source": "Drivers/BSP/Src/adc_init.c", "status": "not_testable_on_host", "reason": "直接配置 STM32 ADC/GPIO 寄存器与校准等待，需目标板验证硬件行为"},
+    {"id": "Drivers/BSP/Src/clock_init", "source": "Drivers/BSP/Src/clock_init.c", "status": "not_testable_on_host", "reason": "时钟树和 Flash 等待周期依赖 MCU 寄存器及真实时钟"},
+    {"id": "Drivers/BSP/Src/dht11_init", "source": "Drivers/BSP/Src/dht11_init.c", "status": "not_testable_on_host", "reason": "DHT11 引脚初始化直接调用厂商 GPIO/RCC 接口，电平效果需目标板验证"},
+    {"id": "Drivers/BSP/Src/fsmc_init", "source": "Drivers/BSP/Src/fsmc_init.c", "status": "not_testable_on_host", "reason": "FSMC 总线时序和引脚复用依赖真实 MCU/面板"},
+    {"id": "Drivers/BSP/Src/gpio_init", "source": "Drivers/BSP/Src/gpio_init.c", "status": "not_testable_on_host", "reason": "GPIO 引脚映射与电平依赖 MCU 寄存器和板级连线"},
+    {"id": "Drivers/BSP/Src/nvic_init", "source": "Drivers/BSP/Src/nvic_init.c", "status": "not_testable_on_host", "reason": "中断分组与优先级效果依赖 Cortex-M NVIC"},
+    {"id": "Drivers/BSP/Src/tim_init", "source": "Drivers/BSP/Src/tim_init.c", "status": "not_testable_on_host", "reason": "定时器时钟、PWM 与中断时序需目标板验证"},
+    {"id": "Drivers/BSP/Src/uart_init", "source": "Drivers/BSP/Src/uart_init.c", "status": "not_testable_on_host", "reason": "USART 配置与实际串口收发需目标板验证"},
+    {"id": "Drivers/Port/Src/port_impl_adc_stm32f103zet6", "source": "Drivers/Port/Src/port_impl_adc_stm32f103zet6.c", "status": "not_testable_on_host", "reason": "实现直接读写 STM32 ADC 寄存器，转换结果需目标板验证"},
+    {"id": "Drivers/Port/Src/port_impl_gpio_stm32f103zet6", "source": "Drivers/Port/Src/port_impl_gpio_stm32f103zet6.c", "status": "not_testable_on_host", "reason": "GPIO 有效电平与引脚映射需目标板电气验证"},
+    {"id": "Drivers/Port/Src/port_impl_par_stm32f103zet6", "source": "Drivers/Port/Src/port_impl_par_stm32f103zet6.c", "status": "not_testable_on_host", "reason": "FSMC 并口读写依赖真实总线与 LCD 面板"},
+    {"id": "Drivers/Port/Src/port_impl_timer_stm32f103zet6", "source": "Drivers/Port/Src/port_impl_timer_stm32f103zet6.c", "status": "not_testable_on_host", "reason": "计时与中断时序依赖 MCU 定时器"},
+    {"id": "Drivers/Port/Src/port_impl_uart_stm32f103zet6", "source": "Drivers/Port/Src/port_impl_uart_stm32f103zet6.c", "status": "not_testable_on_host", "reason": "UART 中断、寄存器及实际串口收发需目标板验证"},
+    {"id": "Drivers/Port/Src/port_impl_wdt_stm32f103zet6", "source": "Drivers/Port/Src/port_impl_wdt_stm32f103zet6.c", "status": "not_testable_on_host", "reason": "独立看门狗复位效果依赖真实硬件，主机模拟不能证明复位"},
+    {
+      "id": "App/Src/app", "source": "App/Src/app.c", "status": "ready",
+      "test_source": "tests/unit/test_app.c",
+      "include_dirs": ["App/Inc", "Drivers/Port/Inc"],
+      "cases": [
+        {"id": "app_init_order", "scenario": "全部依赖初始化成功", "expected": "按定时器、模式、按键、告警、采集、串口、显示、运行灯、看门狗的顺序初始化", "expected_basis": "App/Inc/app.h 与 docs/s5b_design_input.md"},
+        {"id": "output_soft_failure", "scenario": "串口和显示初始化失败", "expected": "软失败不阻断 app_init", "expected_basis": "App/Src/app.c 的软失败设计说明"},
+        {"id": "sensor_init_failure", "scenario": "采集模块初始化返回超时", "expected": "向上返回错误，跳过后续输出模块初始化", "expected_basis": "App/Inc/app.h 与 App/Src/app.c 的初始化约定"}
+      ]
+    },
+    {
+      "id": "App/Src/app_lcd_display", "source": "App/Src/app_lcd_display.c", "status": "ready",
+      "test_source": "tests/unit/test_app_lcd_display.c",
+      "include_dirs": ["App/Inc", "Drivers/BSP/Inc", "Drivers/Port/Inc"],
+      "cases": [
+        {"id": "display_init", "scenario": "显示驱动初始化成功", "expected": "模块就绪", "expected_basis": "App/Inc/app_lcd_display.h"},
+        {"id": "before_refresh", "scenario": "推进19个10ms节拍", "expected": "不刷新屏幕", "expected_basis": "docs/flow/app_lcd_display_flow.md"},
+        {"id": "normal_render", "scenario": "第20拍读取环境与状态", "expected": "写入四行约定文本", "expected_basis": "docs/flow/app_lcd_display_flow.md"},
+        {"id": "alarm_dark_phase", "scenario": "高温告警后的下一刷新", "expected": "告警行隐藏", "expected_basis": "App/Inc/app_lcd_display.h"},
+        {"id": "alarm_light_phase", "scenario": "再下一刷新", "expected": "告警行重新显示", "expected_basis": "App/Inc/app_lcd_display.h"}
+      ]
+    },
+    {
+      "id": "Drivers/BSP/Src/driver_dht11", "source": "Drivers/BSP/Src/driver_dht11.c", "status": "ready",
+      "test_source": "tests/unit/test_driver_dht11.c",
+      "include_dirs": ["Drivers/BSP/Inc", "Drivers/Port/Inc"],
+      "cases": [
+        {"id": "dht_init", "scenario": "初始化 DHT11 逻辑引脚", "expected": "先绑定 GPIO 再切输入", "expected_basis": "Drivers/BSP/Inc/driver_dht11.h"},
+        {"id": "dht_null_arg", "scenario": "温度指针为空", "expected": "返回参数错误", "expected_basis": "Drivers/BSP/Inc/driver_dht11.h"},
+        {"id": "dht_valid_frame", "scenario": "Mock 返回湿度60温度25且校验和正确的40位波形", "expected": "返回成功并解码 25°C、60%", "expected_basis": "DHT11 帧格式与 Drivers/BSP/Inc/driver_dht11.h"},
+        {"id": "dht_checksum", "scenario": "Mock 返回错误校验和", "expected": "返回状态错误", "expected_basis": "Drivers/BSP/Inc/driver_dht11.h"},
+        {"id": "dht_timeout", "scenario": "传感器响应电平始终不拉低", "expected": "返回超时", "expected_basis": "Drivers/BSP/Inc/driver_dht11.h"},
+        {"id": "dht_deinit", "scenario": "反初始化", "expected": "释放 GPIO 逻辑实例", "expected_basis": "Drivers/BSP/Inc/driver_dht11.h"}
+      ]
+    },
+    {
+      "id": "Drivers/BSP/Src/driver_lcd", "source": "Drivers/BSP/Src/driver_lcd.c", "status": "ready",
+      "test_source": "tests/unit/test_driver_lcd.c",
+      "include_dirs": ["Drivers/BSP/Inc", "Drivers/Port/Inc"],
+      "cases": [
+        {"id": "lcd_init_bus_error", "scenario": "并口初始化失败", "expected": "初始化向上返回失败", "expected_basis": "Drivers/BSP/Inc/driver_lcd.h"},
+        {"id": "lcd_bad_arguments", "scenario": "空指针或非法行号", "expected": "返回参数错误", "expected_basis": "Drivers/BSP/Inc/driver_lcd.h"},
+        {"id": "lcd_id_read", "scenario": "Mock 返回 NT35510 ID 字节", "expected": "组合为 0x5510", "expected_basis": "Drivers/BSP/Inc/driver_lcd.h"},
+        {"id": "lcd_no_response_code", "scenario": "三条 ID 寄存器均回读 0", "expected": "自检码为 1", "expected_basis": "Drivers/BSP/Inc/driver_lcd.h"},
+        {"id": "lcd_deinit", "scenario": "反初始化", "expected": "释放并口实例", "expected_basis": "Drivers/BSP/Inc/driver_lcd.h"}
+      ]
+    }
+  ]
+}

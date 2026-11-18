@@ -30,6 +30,7 @@ embed-ai-assist/
 │   └── port-implementer/                # S5c Port 实现（已实现，rule/Agent 三段式 + 能力缺口前置 + per-peripheral 增量生成 + code-fix 分支）
 │   ├── toolchain-setup/                 # S7a 工具链检测与安装（已实现一期：检测跳过 + 手动指引；可选旁路技能）
 │   ├── build/                           # S7b 编译构建（已实现：Keil/GCC-Make CLI 全链路 + Makefile/链接脚本自动生成 + 日志解析 + bin/hex 转换 + GUI 机制框架）
+│   ├── unit-test/                       # S8 主机侧 C 单元测试（范围选择 + Agent 用例/Mock + 编译运行/结果校验）
 │   ├── flash/                           # S9 烧录（已实现一期：J-Link Commander CLI 全链路；jflash/stlink/openocd/pyocd/GUI 按演进路径）
 │   ├── serial-monitor/                  # S10 串口采集（Windows Tkinter GUI + CLI；RX-only，原始/可读日志与会话清单）
 │   └── log-analyzer/                    # S11 日志现象提取（错误/关键流程/重复记录 + 证据引用）
@@ -213,13 +214,25 @@ embed-ai-assist/
 | S6 | firmware-merger | 编译构建 | 固件合并（Boot + App、多核、OTA 包等）；**消费 S7b 的 bin 产物**，实际执行顺序 S7b → S6 | 规划中 |
 | S7a | toolchain-setup | 编译构建 | 工具链检测与安装（**可选旁路技能**：已就绪直接 `skipped`；开源工具经用户确认后引导安装并回填 `tool_paths`——全项目唯一 config 写入例外；Keil/IAR/厂家 IDE 仅手动指引） | 已实现（一期：检测跳过 + 手动指引） |
 | S7b | build | 编译构建 | 调用工具链编译工程，双机制：CLI（Keil / IAR / GCC Make / CMake，纯 rule；显式 `gcc_make` 无 Makefile 时自动生成 Makefile + 链接脚本）+ GUI（厂家 IDE 无 CLI 时 Agent 发送编译快捷键，如辉芒微/和泰）；必须产出 bin 供 S6 | 已实现（Keil / GCC-Make CLI 全链路实测通过；IAR/CMake/GUI 按演进路径） |
-| S8 | unit-test | 编译构建 | 单元测试 | 规划中 |
+| S8 | unit-test | 编译构建 | 主机侧 C 单元测试：候选模块清单、关键/指定/比例/源码变更范围选择、Agent 用例与 Mock、规则层编译运行和结果报告；测试代码放目标工程 `tests/unit/` | 已实现首版（STM32 示例 10 个模块、39 个用例主机实测通过；另 14 个硬件适配模块需实机验证；候选清单比例为暂定值） |
 | S9 | flash | 烧录部署 | 烧录固件到目标板：固件优先级链（`--firmware` > S6 合并固件 > s7b hex > s7b bin，地址=flash_base+offset）→ release/ 发布（SHA256 现场比对，烧的即发布的）→ CLI 烧录 + 日志特征判定；四段式 prepare → flash → analyze（仅失败）→ validate | 已实现（一期：J-Link Commander CLI 全链路实测通过；jflash/stlink/openocd/pyocd/GUI 按演进路径，配置后报错提示） |
 | S10 | serial-monitor | 调试监控 | Windows GUI 主入口 + CLI 高级入口；RX-only 采集、实时显示、独立会话落盘 | 已实现并完成硬件闭环实测（COM128；GUI 开始/停止、日志落盘与 validate 校验通过） |
 | S11 | log-analyzer | 调试监控 | 提取日志错误、关键运行流程、重复现象和事件顺序；每项结论引用可回查证据 | 初版已实现，待实测 |
-| S12 | workflow-runner | 编排 | 工作流执行器 | 规划中 |
+| S12 | workflow-runner | 编排 | PyQt6 配置命名工作流方案；Agent 按方案执行，GUI 显示各 Skill 进度与耗时 | 初版已实现，待项目实测 |
 
 新 Skill 按 `docs/skill_template.md` 模板生成。
+
+### S8 主机单元测试首版
+
+S8 先扫描源码模块候选并选取当前批次；Agent 根据需求、设计和代码在目标工程 `tests/unit/` 写测试与 Mock，规则脚本再编译运行。比例以**候选模块数**为暂定分母，不代表代码覆盖率。每次运行的中文报告和结果在 `outputs/s8/<run_id>/`，该运行目录不纳入版本控制。本批有模块缺测试计划时结果为 `partial`，不能称为全测通过。
+
+```bash
+python skills/unit-test/scripts/prepare.py --config examples/<project>/config.json --mode explicit --units app_mode_control,app_env_sensor
+python skills/unit-test/scripts/run.py --config examples/<project>/config.json --run-dir examples/<project>/App/outputs/s8/<run_id>
+python skills/unit-test/scripts/validate.py --config examples/<project>/config.json --run-dir examples/<project>/App/outputs/s8/<run_id>
+```
+
+`prepare.py` 输出实际运行目录。使用 `--mode ratio --ratio 0.10` 可按比例选择；`--max-agent-units` 限制每批需要新编测试的候选数。`changed` 模式目前仅比较源码 SHA256，需提供 `--baseline <旧unit_inventory.json>`。详细约束见 `skills/unit-test/SKILL.md`。
 
 ## S5 三分架构（Ports & Adapters）
 

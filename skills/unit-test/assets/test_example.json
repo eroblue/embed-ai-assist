@@ -1,0 +1,12 @@
+{
+  "units": [
+    {
+      "id": "App/Src/app_mode_control",
+      "source": "App/Src/app_mode_control.c",
+      "status": "ready",
+      "test_source": "tests/unit/test_app_mode_control.c",
+      "include_dirs": ["App/Inc"],
+      "cases": [{"id": "mode_initial", "scenario": "initialize the mode module", "expected": "AUTO and unmuted", "expected_basis": "App/Inc/app_mode_control.h"}]
+    }
+  ]
+}

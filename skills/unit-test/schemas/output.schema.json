@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "type": "object",
+  "required": ["status", "run_id", "result_path", "report_path", "selected_unit_count", "executed_unit_count", "remaining_unit_count", "updated_at"],
+  "properties": {"status": {"enum": ["done", "partial", "failed", "blocked"]}, "run_id": {"type": "string"},
+    "result_path": {"type": "string"}, "report_path": {"type": "string"},
+    "selected_unit_count": {"type": "integer", "minimum": 0},
+    "executed_unit_count": {"type": "integer", "minimum": 0},
+    "remaining_unit_count": {"type": "integer", "minimum": 0},
+    "updated_at": {"type": "string"}}
+}

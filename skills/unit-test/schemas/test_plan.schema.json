@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object", "required": ["units"], "additionalProperties": false,
+  "properties": {"units": {"type": "array", "items": {"type": "object",
+    "required": ["id", "source", "status"], "additionalProperties": false,
+    "properties": {
+      "id": {"type": "string"}, "source": {"type": "string"},
+      "status": {"enum": ["ready", "needs_clarification", "not_testable_on_host", "skipped"]},
+      "reason": {"type": "string"}, "test_source": {"type": "string"},
+      "mocks": {"type": "array", "items": {"type": "string"}},
+      "include_dirs": {"type": "array", "items": {"type": "string"}},
+      "cases": {"type": "array", "minItems": 1, "items": {"type": "object",
+        "required": ["id", "scenario", "expected", "expected_basis"], "additionalProperties": false,
+        "properties": {"id": {"type": "string"}, "scenario": {"type": "string"},
+          "expected": {"type": "string"}, "expected_basis": {"type": "string"}}}}
+    },
+    "allOf": [{"if": {"properties": {"status": {"const": "ready"}}, "required": ["status"]},
+      "then": {"required": ["test_source", "cases"]}}]
+  }}}
+}

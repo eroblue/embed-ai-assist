@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "type": "object",
+  "required": ["config"], "properties": {"config": {"type": "string"},
+    "mode": {"enum": ["budget", "ratio", "explicit", "changed", "all"]},
+    "ratio": {"type": "number", "exclusiveMinimum": 0, "maximum": 1},
+    "units": {"type": "array", "items": {"type": "string"}},
+    "critical_units": {"type": "array", "items": {"type": "string"}},
+    "max_agent_units": {"type": "integer", "minimum": 1}}
+}

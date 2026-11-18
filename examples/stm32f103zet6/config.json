@@ -23,6 +23,17 @@
       "functional_spec": "docs/智能环境监测仪功能规格书.md"
     }
   },
+  "s8": {
+    "selection": {
+      "mode": "ratio",
+      "ratio": 1.0,
+      "critical_units": [
+        "App/Src/app_env_sensor",
+        "App/Src/app_mode_control"
+      ],
+      "max_agent_units": 30
+    }
+  },
   "schematic_path": "schematic/WarShip STM32F1_V3.4_SCH.pdf",
   "datasheet_path": "platforms/stm32f103zet6/datasheets/STM32F103ZET6.pdf",
   "datasheet_secondary_path": "platforms/stm32f103zet6/datasheets/STM32F10x_Reference_Manual.pdf",

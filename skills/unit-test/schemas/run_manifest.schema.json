@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "type": "object",
+  "required": ["run_id", "compiler", "source_hashes"],
+  "properties": {"run_id": {"type": "string"}, "compiler": {"type": "string"},
+    "source_hashes": {"type": "object", "additionalProperties": {"type": "string"}}}
+}

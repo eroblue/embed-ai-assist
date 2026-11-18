@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "type": "object",
+  "required": ["run_id", "units", "passed_count", "failed_count"],
+  "properties": {"run_id": {"type": "string"}, "passed_count": {"type": "integer", "minimum": 0},
+    "failed_count": {"type": "integer", "minimum": 0}, "units": {"type": "array", "items": {"type": "object",
+      "required": ["unit_id", "status"], "properties": {"unit_id": {"type": "string"},
+        "status": {"enum": ["passed", "failed", "skipped", "needs_clarification", "not_testable_on_host"]}}}}}
+}

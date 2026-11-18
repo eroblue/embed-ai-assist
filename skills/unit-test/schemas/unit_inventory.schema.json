@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object", "required": ["candidate_count", "inventory_uncertain", "denominator_kind", "units"],
+  "properties": {"candidate_count": {"type": "integer", "minimum": 0}, "inventory_uncertain": {"type": "boolean"},
+    "denominator_kind": {"type": "string"}, "units": {"type": "array", "items": {"type": "object",
+      "required": ["id", "source", "sha256", "review_status"],
+      "properties": {"id": {"type": "string"}, "source": {"type": "string"},
+        "sha256": {"type": "string"}, "review_status": {"type": "string"}}}}}
+}
