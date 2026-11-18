@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object", "required": ["seq", "run_id", "event", "ts_host", "monotonic_ns"],
+  "properties": {
+    "seq": {"type": "integer", "minimum": 1}, "run_id": {"type": "string"},
+    "event": {"enum": ["run_started", "step_started", "wait_started", "wait_ended", "heartbeat", "step_finished", "run_finished"]},
+    "ts_host": {"type": "string", "format": "date-time"},
+    "monotonic_ns": {"type": "integer", "minimum": 0},
+    "step_id": {"type": "string"}, "status": {"type": "string"},
+    "message": {"type": "string"}, "profile_path": {"type": "string"},
+    "duration_s": {"type": "number", "minimum": 0}
+  }, "additionalProperties": false
+}

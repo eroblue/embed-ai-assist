@@ -43,6 +43,11 @@
       "type": "object",
       "description": "项目工程选项（项目层；S5a 校验后写入 state.json，S5b/S5c 消费。各 Skill 加载合并配置时统一按本 schema 拦截非法值）",
       "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "项目显示名称（可选，S12 GUI 使用）；缺省显示项目目录名，不改变目录或平台标识"
+        },
         "target": {
           "type": "string",
           "description": "目标平台名（platform 字段的备选写法）"
@@ -229,6 +234,29 @@
     "output_dir": {
       "type": "string",
       "description": "输出目录（项目层，相对目标工程目录 App/BootLoader，默认 outputs/）"
+    },
+    "s8": {
+      "type": "object",
+      "properties": {
+        "selection": {
+          "type": "object",
+          "properties": {
+            "mode": {"enum": ["budget", "ratio", "explicit", "changed", "all"]},
+            "critical_units": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+            "units": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+            "ratio": {"type": "number", "exclusiveMinimum": 0, "maximum": 1},
+            "max_agent_units": {"type": "integer", "minimum": 1}
+          },
+          "allOf": [
+            {"if": {"properties": {"mode": {"const": "ratio"}}, "required": ["mode"]}, "then": {"required": ["ratio"]}},
+            {"if": {"properties": {"mode": {"const": "explicit"}}, "required": ["mode"]}, "then": {"required": ["units"], "properties": {"units": {"minItems": 1}}}}
+          ],
+          "additionalProperties": false
+        },
+        "host_compiler": {"type": "string"},
+        "test_timeout_seconds": {"type": "integer", "minimum": 1}
+      },
+      "additionalProperties": false
     },
     "eda_tool": {
       "type": "string",

@@ -9,8 +9,10 @@ from datetime import datetime
 from pathlib import Path
 
 SCRIPT_DIR = Path(__file__).resolve().parent
-SKILL_DIR = SCRIPT_DIR.parent
-ROOT_DIR = SKILL_DIR.parent.parent
+FROZEN = bool(getattr(sys, "frozen", False))
+RESOURCE_ROOT = Path(sys._MEIPASS) if FROZEN else SCRIPT_DIR.parents[2]
+SKILL_DIR = RESOURCE_ROOT / "skills" / "serial-monitor"
+ROOT_DIR = Path(sys.executable).resolve().parent.parent if FROZEN else RESOURCE_ROOT
 SHARED_DIR = SKILL_DIR.parent / "_shared" / "scripts"
 if str(SHARED_DIR) not in sys.path:
     sys.path.insert(0, str(SHARED_DIR))
@@ -81,7 +83,7 @@ def load_context(config_path: Path) -> dict:
     root_config_path = ROOT_DIR / "config.json"
     global_config = load_json(root_config_path) if root_config_path.is_file() else {}
     config = deep_merge(global_config, project_config)
-    errors = validate_schema(config, ROOT_DIR / "schemas" / "config.schema.json", "config")
+    errors = validate_schema(config, RESOURCE_ROOT / "schemas" / "config.schema.json", "config")
     if errors:
         raise S10Error("配置契约校验失败：" + "; ".join(errors))
     project_root = config_path.parent
@@ -214,7 +216,7 @@ def save_project_serial(config_path: Path, serial_options: dict) -> None:
         key: serial_options[key]
         for key in ("port", "baudrate", "bytesize", "parity", "stopbits", "encoding", "read_timeout_ms")
     }
-    errors = validate_schema(deep_merge(load_json(ROOT_DIR / "config.json") if (ROOT_DIR / "config.json").is_file() else {}, project_config), ROOT_DIR / "schemas" / "config.schema.json", "config")
+    errors = validate_schema(deep_merge(load_json(ROOT_DIR / "config.json") if (ROOT_DIR / "config.json").is_file() else {}, project_config), RESOURCE_ROOT / "schemas" / "config.schema.json", "config")
     if errors:
         raise S10Error("保存的串口配置不符合契约：" + "; ".join(errors))
     save_json_atomic(config_path, project_config)

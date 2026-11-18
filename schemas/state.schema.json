@@ -106,7 +106,7 @@
     },
     "analysis": {
       "type": ["object", "null"],
-      "description": "【旧版兼容字段，弃用】S11 早期分析字段；新实现写入 s11，workflow 状态由 S12 管理"
+      "description": "【旧版兼容字段，弃用】S11 早期分析字段；新实现写入 s11"
     },
     "s11": {
       "type": ["object", "null"],
@@ -114,7 +114,7 @@
     },
     "workflow": {
       "type": ["object", "null"],
-      "description": "workflow-runner (S12) 写入：工作流执行状态"
+      "description": "【旧版兼容字段，弃用】早期 S12 规划字段；新 S12 不读写，工作流进度保存在 outputs/s12/<run_id>/events.jsonl"
     }
   }
 }

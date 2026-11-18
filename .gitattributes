@@ -12,4 +12,5 @@
 .pdf binary
 .hex binary
 .bin binary
+.exe binary
 .elf binary

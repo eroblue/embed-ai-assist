@@ -21,7 +21,7 @@ def settings_path() -> Path:
 
 
 class SerialMonitorApp:
-    def __init__(self, root: tk.Tk, config_path: Path | None = None):
+    def __init__(self, root: tk.Tk, config_path: Path | None = None, prefill: dict | None = None):
         self.root = root
         self.root.title("Embed AI Assist · S10 串口监控")
         self.root.geometry("1040x720")
@@ -37,6 +37,7 @@ class SerialMonitorApp:
         self.bytes_displayed = 0
         self.is_stopping = False
         self.last_session_dir: Path | None = None
+        self.prefill = prefill or {}
         self._build_ui()
         self.root.protocol("WM_DELETE_WINDOW", self.close)
         self.root.after(80, self._poll_events)
@@ -153,6 +154,12 @@ class SerialMonitorApp:
         self.timeout_var.set(str(values["read_timeout_ms"]))
         self._save_recent(context["project_config_path"])
         self.refresh_ports()
+        for key, variable in (("port", self.port_var), ("baudrate", self.baud_var),
+                              ("bytesize", self.bytesize_var), ("parity", self.parity_var),
+                              ("stopbits", self.stopbits_var), ("encoding", self.encoding_var)):
+            if key in self.prefill:
+                variable.set(str(self.prefill[key]))
+        self._update_start_enabled()
         self.status_var.set(f"已加载项目 · {context['target']} · 未连接")
 
     def refresh_ports(self) -> None:
@@ -357,9 +364,7 @@ class SerialMonitorApp:
         self.root.destroy()
 
 
-def main(config_path: Path | None = None) -> None:
+def main(config_path: Path | None = None, prefill: dict | None = None) -> None:
     root = tk.Tk()
-    SerialMonitorApp(root, config_path)
+    SerialMonitorApp(root, config_path, prefill)
     root.mainloop()
-
-\n

@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object", "required": ["profile_path", "run_id", "events_path"],
+  "properties": {
+    "profile_path": {"type": "string"}, "run_id": {"type": "string"},
+    "events_path": {"type": "string"}
+  }, "additionalProperties": false
+}

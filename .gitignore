@@ -2,6 +2,7 @@
 __pycache__/
 *.pyc
 .venv/
+.build/pyinstaller/
 
 # 项目输出（大文件、临时产物；含 App/BootLoader 双工程与项目级 outputs/）
 # projects/**/App/outputs/
@@ -53,6 +54,7 @@ projects/**/BootLoader/build/
 # S7/S10 运行时数据（构建过程文件与串口采集会话，不纳入版本控制）
 **/outputs/s7a/
 **/outputs/s7b/
+**/outputs/s8/
 **/outputs/s10/
 
 # 备份文件

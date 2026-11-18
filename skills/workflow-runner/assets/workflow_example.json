@@ -1,0 +1,9 @@
+{
+  "schema_version": "1.0",
+  "name": "仅编译",
+  "project_config": "../config.json",
+  "build_target": "App",
+  "steps": [
+    {"id": "S7b", "skill": "build", "enabled": true, "params": {"rebuild": false}}
+  ]
+}

@@ -1,0 +1,10 @@
+QMainWindow { background: #f5f7fb; color: #18283c; }
+QWidget { font-family: "Microsoft YaHei UI"; font-size: 10pt; }
+QTabWidget::pane, QGroupBox { border: 1px solid #d8e0eb; border-radius: 7px; background: white; }
+QLineEdit, QComboBox, QSpinBox, QTextEdit, QListWidget { border: 1px solid #c5d0df; border-radius: 5px; padding: 5px; background: white; }
+QLineEdit:focus, QComboBox:focus, QSpinBox:focus { border-color: #3182ce; }
+QPushButton { background: #2563a6; color: white; border: 0; border-radius: 5px; padding: 7px 13px; }
+QPushButton:hover { background: #1c508a; }
+QPushButton:disabled { background: #aab8c8; }
+QMenuBar, QMenu { background: #eaf0f8; }
+QStatusBar { background: #eaf0f8; }

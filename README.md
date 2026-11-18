@@ -357,7 +357,7 @@ python skills/flash/scripts/validate.py --config examples/stm32f103zet6/config.j
 > 烧录工具路径在全局 config.json 的 tool_paths.jlink，未配置时从 jflash 同目录探测）。
 
 S10 是烧录后的可选调试步骤，不自动由 S9 启动，也可单独用于观察设备上电启动日志。Windows 用户双击
-`skills/serial-monitor/scripts/start_s10.pyw`，选择项目配置、刷新并选择串口，确认参数后点击“开始采集”；如需捕获上电最早期日志，先开始采集，再给目标板上电或复位。点击“停止采集”或关闭窗口会先保存已收到的数据。
+`tools/EmbedAI-S10.exe`，选择项目配置、刷新并选择串口，确认参数后点击“开始采集”；如需捕获上电最早期日志，先开始采集，再给目标板上电或复位。点击“停止采集”或关闭窗口会先保存已收到的数据。
 
 每次会话保存在 `<项目根>/<build_target>/outputs/s10/<session_id>/`，包含：`capture.bin`（原始接收字节）、`capture.log`（带主机接收时间和可读文本的 JSONL）及 `session.json`（参数、状态和统计）。停止后可将 `capture.log` 或其他日志文件交给 S11 分析；S10 本身只采集和保存，不解释日志。
 
@@ -365,9 +365,13 @@ S11 可接收 S10 会话目录或其他文本日志。运行 `python skills/log-
 
 ## 工作流（workflows/）
 
-`workflows/stm32_full_flow.json` 是**全流程目标态的设计示例**，包含尚未实现的
-skill（S6 / S8 / S12，见 Skill 清单状态列）。待 S12 workflow-runner
-实现后由其解析编排执行；当前请按「快速开始」手动逐个执行已实现的 skill。
+`workflows/stm32_full_flow.json` 是早期全流程目标态示例，尚不是 S12 的命名方案格式。
+S12 初版双击仓库根目录的 `tools/EmbedAI-S12.exe` 打开界面；同目录的 `EmbedAI-S10.exe`
+用于串口采集。需要重新打包时运行 `python tools/build_gui.py all`（见 `tools/README.md`）。
+用户保存方案并将界面
+显示的“执行 S12，配置文件：…”粘贴到当前项目 Agent 对话中。Agent 按
+`skills/workflow-runner/SKILL.md` 调用所选 Skill，并通过 `scripts/progress.py` 记录进度；
+GUI 的“运行监控”页读取各步耗时。各 Skill 仍可按「快速开始」单独执行。
 
 ## 许可证
 

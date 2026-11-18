@@ -10,7 +10,14 @@ if str(SCRIPT_DIR) not in sys.path:
 try:
     import gui
     project_config = Path(sys.argv[1]).expanduser() if len(sys.argv) > 1 else None
-    gui.main(project_config)
+    prefill = None
+    if "--s12-profile" in sys.argv:
+        import json
+        profile_path = Path(sys.argv[sys.argv.index("--s12-profile") + 1]).expanduser()
+        profile = json.loads(profile_path.read_text(encoding="utf-8"))
+        prefill = next((step.get("params", {}) for step in profile.get("steps", [])
+                        if step.get("id") == "S10" and step.get("enabled")), None)
+    gui.main(project_config, prefill)
 except Exception as exc:
     try:
         import tkinter
