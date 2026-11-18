@@ -41,9 +41,12 @@ class Window(QMainWindow):
         self.serial_stop = QComboBox(); self.serial_stop.addItems(["1", "1.5", "2"])
         self.serial_encoding = QLineEdit()
         self.serial_timeout = QSpinBox(); self.serial_timeout.setRange(10, 5000)
-        self.global_paths = QTextEdit(); self.global_paths.setReadOnly(True); self.global_paths.setMaximumHeight(130)
+        self.global_paths = QTextEdit(); self.global_paths.setReadOnly(True)
+        self.global_paths.setMinimumHeight(240)
         self._saved_project_values = None
         self.project_label = QLabel("未选择工程")
+        self.project_label.setWordWrap(True)
+        self.project_label.setMinimumHeight(42)
         self.profile_combo = QComboBox()
         self.skill_list = QListWidget()
         self.skill_list.setDragDropMode(QListWidget.DragDropMode.InternalMove)
@@ -79,10 +82,10 @@ class Window(QMainWindow):
             form.addRow(label, widget)
         layout.addLayout(form)
         layout.addWidget(QLabel("机器共用工具路径（根目录 config.json，只读）"))
-        layout.addWidget(self.global_paths)
+        layout.addWidget(self.global_paths, 1)
         layout.addWidget(QLabel("编译、烧录和串口的项目默认参数，请到工作流配置中对应的 Skill 面板设置。"))
         save = QPushButton("保存项目通用配置"); save.clicked.connect(self.save_project_settings)
-        layout.addWidget(save); layout.addStretch()
+        layout.addWidget(save)
         return page
 
     def _profile_tab(self):
@@ -186,6 +189,7 @@ class Window(QMainWindow):
         try:
             data = project_config(path)
             self.config_path = path.resolve(); self.project_label.setText(str(self.config_path))
+            self.project_label.setToolTip(str(self.config_path))
             p = data.get("project") or {}; serial = p.get("serial") or {}
             self.project_name.setText(p.get("name") or path.parent.name)
             self._combo(self.build_target, p.get("build_target") or "App")
