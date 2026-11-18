@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0",
+  "name": "编译+烧录+测试+日志+分析",
+  "project_config": "../config.json",
+  "build_target": "App",
+  "steps": [
+    {
+      "id": "S1",
+      "skill": "schematic-reader",
+      "enabled": false,
+      "params": {}
+    },
+    {
+      "id": "S2",
+      "skill": "spec-reader",
+      "enabled": false,
+      "params": {}
+    },
+    {
+      "id": "S3",
+      "skill": "datasheet-extractor",
+      "enabled": false,
+      "params": {}
+    },
+    {
+      "id": "S4",
+      "skill": "circuit-investigator",
+      "enabled": false,
+      "params": {}
+    },
+    {
+      "id": "S5a",
+      "skill": "hardware-initializer",
+      "enabled": false,
+      "params": {}
+    },
+    {
+      "id": "S5b",
+      "skill": "port-contract-and-app",
+      "enabled": false,
+      "params": {}
+    },
+    {
+      "id": "S5c",
+      "skill": "port-implementer",
+      "enabled": false,
+      "params": {}
+    },
+    {
+      "id": "S6",
+      "skill": "firmware-merger",
+      "enabled": false,
+      "params": {}
+    },
+    {
+      "id": "S7a",
+      "skill": "toolchain-setup",
+      "enabled": false,
+      "params": {}
+    },
+    {
+      "id": "S7b",
+      "skill": "build",
+      "enabled": true,
+      "params": {}
+    },
+    {
+      "id": "S8",
+      "skill": "unit-test",
+      "enabled": true,
+      "params": {
+        "mode": "ratio"
+      }
+    },
+    {
+      "id": "S9",
+      "skill": "flash",
+      "enabled": true,
+      "params": {}
+    },
+    {
+      "id": "S10",
+      "skill": "serial-monitor",
+      "enabled": true,
+      "params": {}
+    },
+    {
+      "id": "S11",
+      "skill": "log-analyzer",
+      "enabled": true,
+      "params": {}
+    }
+  ]
+}
