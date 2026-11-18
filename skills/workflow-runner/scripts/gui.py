@@ -43,7 +43,7 @@ class Window(QMainWindow):
         self.serial_timeout = QSpinBox(); self.serial_timeout.setRange(10, 5000)
         self.global_paths = QTextEdit(); self.global_paths.setReadOnly(True); self.global_paths.setMaximumHeight(130)
         self._saved_project_values = None
-        self.project_label = QLabel("未选择项目")
+        self.project_label = QLabel("未选择工程")
         self.profile_combo = QComboBox()
         self.skill_list = QListWidget()
         self.skill_list.setDragDropMode(QListWidget.DragDropMode.InternalMove)
@@ -65,13 +65,13 @@ class Window(QMainWindow):
     def _build_ui(self):
         shell = QWidget(); outer = QVBoxLayout(shell); self.setCentralWidget(shell)
         row = QHBoxLayout(); row.addWidget(self.project_label, 1)
-        pick = QPushButton("选择项目…"); pick.clicked.connect(self.choose_project); row.addWidget(pick)
+        pick = QPushButton("选择工程…"); pick.clicked.connect(self.choose_project); row.addWidget(pick)
         outer.addLayout(row)
         self.tabs.addTab(self._project_tab(), "通用配置")
         self.tabs.addTab(self._profile_tab(), "工作流配置")
         self.tabs.addTab(self.monitor, "运行监控")
         outer.addWidget(self.tabs)
-        self.statusBar().showMessage("请选择项目 config.json")
+        self.statusBar().showMessage("请选择工程的 config.json")
 
     def _project_tab(self):
         page = QWidget(); layout = QVBoxLayout(page); form = QFormLayout()
@@ -87,7 +87,7 @@ class Window(QMainWindow):
 
     def _profile_tab(self):
         page = QWidget(); layout = QVBoxLayout(page)
-        head = QHBoxLayout(); head.addWidget(QLabel("已有方案")); head.addWidget(self.profile_combo, 1)
+        head = QHBoxLayout(); head.addWidget(QLabel("选择已保存的工作流")); head.addWidget(self.profile_combo, 1)
         open_button = QPushButton("打开"); open_button.clicked.connect(self.open_selected_profile); head.addWidget(open_button)
         layout.addLayout(head)
         name_row = QHBoxLayout(); name_row.addWidget(QLabel("方案名称")); name_row.addWidget(self.profile_name, 1)
@@ -104,7 +104,7 @@ class Window(QMainWindow):
 
     def _build_menu(self):
         file_menu = self.menuBar().addMenu("文件")
-        for label, handler in [("选择项目…", self.choose_project), ("新建方案", self.new_profile),
+        for label, handler in [("选择工程…", self.choose_project), ("新建方案", self.new_profile),
                                ("打开方案", self.open_selected_profile), ("保存方案", self.save_current_profile),
                                ("另存为", self.save_current_profile), ("退出", self.close)]:
             action = QAction(label, self); action.triggered.connect(handler); file_menu.addAction(action)
@@ -114,7 +114,7 @@ class Window(QMainWindow):
             action = QAction(label, self); action.triggered.connect(handler); tools.addAction(action)
         help_menu = self.menuBar().addMenu("帮助")
         about = QAction("关于", self); about.triggered.connect(lambda: QMessageBox.about(self, "关于 S12", f"S12 工作流配置\n版本 {VERSION}\n{ROOT}")); help_menu.addAction(about)
-        guide = QAction("使用说明", self); guide.triggered.connect(lambda: QMessageBox.information(self, "使用说明", "选择项目，配置项目设置与工作流方案，保存后复制指令到 Agent 对话框。")); help_menu.addAction(guide)
+        guide = QAction("使用说明", self); guide.triggered.connect(lambda: QMessageBox.information(self, "使用说明", "先选择工程 config.json；在工作流配置页打开已保存的工作流，或新建并保存方案，然后复制执行指令到 Agent 对话框。")); help_menu.addAction(guide)
 
     def _create_skill_items(self):
         for sid, name, purpose in SKILLS:
@@ -178,7 +178,7 @@ class Window(QMainWindow):
         self.parameter_area.setWidget(widget)
 
     def choose_project(self):
-        filename, _ = QFileDialog.getOpenFileName(self, "选择项目 config.json", "", "JSON (*.json)")
+        filename, _ = QFileDialog.getOpenFileName(self, "选择工程的 config.json", "", "JSON (*.json)")
         if filename:
             self.open_project(Path(filename))
 
@@ -291,7 +291,7 @@ class Window(QMainWindow):
 
     def _profile_data(self):
         if not self.config_path:
-            raise ValueError("请先选择项目")
+            raise ValueError("请先选择工程 config.json")
         if self._saved_project_values != self._project_values():
             raise ValueError("项目默认参数有未保存的修改，请先在对应 Skill 面板保存")
         target = (project_config(self.config_path).get("project") or {}).get("build_target") or "App"
